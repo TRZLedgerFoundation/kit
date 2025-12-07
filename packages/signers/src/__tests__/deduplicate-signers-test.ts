@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, TrezoaError } from '@trezoa/errors';
 
 import { deduplicateSigners } from '../deduplicate-signers';
 import {
@@ -42,7 +42,7 @@ describe('deduplicateSigners', () => {
 
         // Then we expect an error to be thrown.
         expect(fn).toThrow(
-            new SolanaError(SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
+            new TrezoaError(TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
                 address: addressA,
             }),
         );

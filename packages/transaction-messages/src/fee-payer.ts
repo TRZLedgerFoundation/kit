@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { BaseTransactionMessage } from './transaction-message';
 
@@ -25,8 +25,8 @@ type ExcludeTransactionMessageFeePayer<TTransactionMessage extends BaseTransacti
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { setTransactionMessageFeePayer } from '@solana/transaction-messages';
+ * import { address } from '@trezoa/addresses';
+ * import { setTransactionMessageFeePayer } from '@trezoa/transaction-messages';
  *
  * const myAddress = address('mpngsFd4tmbUfzDYJayjKZwZcaR7aWb2793J6grLsGu');
  * const txPaidByMe = setTransactionMessageFeePayer(myAddress, tx);

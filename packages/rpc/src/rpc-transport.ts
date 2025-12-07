@@ -1,10 +1,10 @@
-import { pipe } from '@solana/functional';
-import { createHttpTransport, createHttpTransportForSolanaRpc } from '@solana/rpc-transport-http';
-import type { ClusterUrl } from '@solana/rpc-types';
+import { pipe } from '@trezoa/functional';
+import { createHttpTransport, createHttpTransportForTrezoaRpc } from '@trezoa/rpc-transport-http';
+import type { ClusterUrl } from '@trezoa/rpc-types';
 
 import { RpcTransportFromClusterUrl } from './rpc-clusters';
 import { getRpcTransportWithRequestCoalescing } from './rpc-request-coalescer';
-import { getSolanaRpcPayloadDeduplicationKey } from './rpc-request-deduplication';
+import { getTrezoaRpcPayloadDeduplicationKey } from './rpc-request-deduplication';
 
 type RpcTransportConfig = Parameters<typeof createHttpTransport>[0];
 interface DefaultRpcTransportConfig<TClusterUrl extends ClusterUrl> extends RpcTransportConfig {
@@ -26,7 +26,7 @@ function normalizeHeaders<T extends Record<string, string>>(
  * Creates a {@link RpcTransport} with some default behaviours.
  *
  * The default behaviours include:
- * - An automatically-set `Solana-Client` request header, containing the version of `@solana/kit`
+ * - An automatically-set `Trezoa-Client` request header, containing the version of `@trezoa/kit`
  * - Logic that coalesces multiple calls in the same runloop, for the same methods with the same
  *   arguments, into a single network request.
  * - [node-only] An automatically-set `Accept-Encoding` request header asking the server to compress
@@ -38,7 +38,7 @@ export function createDefaultRpcTransport<TClusterUrl extends ClusterUrl>(
     config: DefaultRpcTransportConfig<TClusterUrl>,
 ): RpcTransportFromClusterUrl<TClusterUrl> {
     return pipe(
-        createHttpTransportForSolanaRpc({
+        createHttpTransportForTrezoaRpc({
             ...config,
             headers: {
                 ...(__NODEJS__ &&
@@ -55,6 +55,6 @@ export function createDefaultRpcTransport<TClusterUrl extends ClusterUrl>(
                 } as { [overrideHeader: string]: string }),
             },
         }) as RpcTransportFromClusterUrl<TClusterUrl>,
-        transport => getRpcTransportWithRequestCoalescing(transport, getSolanaRpcPayloadDeduplicationKey),
+        transport => getRpcTransportWithRequestCoalescing(transport, getTrezoaRpcPayloadDeduplicationKey),
     );
 }

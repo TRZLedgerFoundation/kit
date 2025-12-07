@@ -1,5 +1,5 @@
 {
-    "name": "@solana/kit-docs",
+    "name": "@trezoa/kit-docs",
     "version": "0.0.0",
     "private": true,
     "scripts": {
@@ -24,16 +24,16 @@
         "twoslash": "^0.3.1"
     },
     "devDependencies": {
-        "@solana-program/address-lookup-table": "^0.7.0",
-        "@solana-program/compute-budget": "^0.8.0",
-        "@solana-program/memo": "^0.7.0",
-        "@solana-program/system": "^0.7.0",
-        "@solana-program/token": "^0.5.1",
-        "@solana/compat": "5.0.1-canary-20251119225544",
-        "@solana/kit": "5.0.1-canary-20251119225544",
-        "@solana/react": "5.0.1-canary-20251119225544",
-        "@solana/web3.js": "^1.98.2",
-        "@solana/webcrypto-ed25519-polyfill": "5.0.1-canary-20251119225544",
+        "@trezoa-program/address-lookup-table": "^0.7.0",
+        "@trezoa-program/compute-budget": "^0.8.0",
+        "@trezoa-program/memo": "^0.7.0",
+        "@trezoa-program/system": "^0.7.0",
+        "@trezoa-program/token": "^0.5.1",
+        "@trezoa/compat": "5.0.1-canary-20251119225544",
+        "@trezoa/kit": "5.0.1-canary-20251119225544",
+        "@trezoa/react": "5.0.1-canary-20251119225544",
+        "@trezoa/web3.js": "^1.98.2",
+        "@trezoa/webcrypto-ed25519-polyfill": "5.0.1-canary-20251119225544",
         "@tailwindcss/postcss": "^4.1.4",
         "@types/mdx": "^2.0.13",
         "@types/node": "22.13.8",

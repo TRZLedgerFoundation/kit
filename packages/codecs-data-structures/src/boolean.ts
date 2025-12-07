@@ -11,7 +11,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     FixedSizeNumberCodec,
     FixedSizeNumberDecoder,
@@ -21,7 +21,7 @@ import {
     NumberCodec,
     NumberDecoder,
     NumberEncoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 
 /**
  * Defines the configuration options for boolean codecs.

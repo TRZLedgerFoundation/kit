@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
@@ -7,15 +7,15 @@ import type {
     AccountInfoWithBase64EncodedZStdCompressedData,
     AccountInfoWithJsonData,
     Commitment,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 type AccountNotificationsApiCommonConfig = Readonly<{
     /**
      * Get notified when a modification to an account has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcSubscriptionsApi} in
-     * use. For example, when using an API created by a `createSolanaRpcSubscriptions*()` helper,
+     * use. For example, when using an API created by a `createTrezoaRpcSubscriptions*()` helper,
      * the default commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API
      * layer on the client, the default commitment applied by the server is `"finalized"`.
      */
@@ -34,7 +34,7 @@ export type AccountNotificationsApi = {
      * is a base64-encoded string.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/websocket/accountsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/accountsubscribe
      */
     accountNotifications(
         address: Address,
@@ -42,7 +42,7 @@ export type AccountNotificationsApi = {
             Readonly<{
                 encoding: 'base64';
             }>,
-    ): SolanaRpcResponse<AccountInfoBase & AccountInfoWithBase64EncodedData>;
+    ): TrezoaRpcResponse<AccountInfoBase & AccountInfoWithBase64EncodedData>;
     /**
      * Subscribe for notifications when there is a change in the {@link Lamports} or data of the
      * account at the specified address.
@@ -55,7 +55,7 @@ export type AccountNotificationsApi = {
      * as a tuple whose first element is a base64-encoded string.
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/websocket/accountsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/accountsubscribe
      */
     accountNotifications(
         address: Address,
@@ -63,7 +63,7 @@ export type AccountNotificationsApi = {
             Readonly<{
                 encoding: 'base64+zstd';
             }>,
-    ): SolanaRpcResponse<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>;
+    ): TrezoaRpcResponse<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>;
     /**
      * Subscribe for notifications when there is a change in the {@link Lamports} or data of the
      * account at the specified address.
@@ -77,7 +77,7 @@ export type AccountNotificationsApi = {
      * element is a base64-encoded string.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/websocket/accountsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/accountsubscribe
      */
     accountNotifications(
         address: Address,
@@ -85,7 +85,7 @@ export type AccountNotificationsApi = {
             Readonly<{
                 encoding: 'jsonParsed';
             }>,
-    ): SolanaRpcResponse<AccountInfoBase & AccountInfoWithJsonData>;
+    ): TrezoaRpcResponse<AccountInfoBase & AccountInfoWithJsonData>;
     /**
      * Subscribe for notifications when there is a change in the {@link Lamports} or data of the
      * account at the specified address.
@@ -98,7 +98,7 @@ export type AccountNotificationsApi = {
      * field will materialize as the string `"error: data too large for bs58 encoding"`.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/websocket/accountsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/accountsubscribe
      */
     accountNotifications(
         address: Address,
@@ -106,7 +106,7 @@ export type AccountNotificationsApi = {
             Readonly<{
                 encoding: 'base58';
             }>,
-    ): SolanaRpcResponse<AccountInfoBase & AccountInfoWithBase58EncodedData>;
+    ): TrezoaRpcResponse<AccountInfoBase & AccountInfoWithBase58EncodedData>;
     /**
      * Subscribe for notifications when there is a change in the {@link Lamports} or data of the
      * account at the specified address.
@@ -119,10 +119,10 @@ export type AccountNotificationsApi = {
      * string `"error: data too large for bs58 encoding"`.
      *
      * {@label base58-legacy}
-     * @see https://solana.com/docs/rpc/websocket/accountsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/accountsubscribe
      */
     accountNotifications(
         address: Address,
         config?: AccountNotificationsApiCommonConfig,
-    ): SolanaRpcResponse<AccountInfoBase & AccountInfoWithBase58Bytes>;
+    ): TrezoaRpcResponse<AccountInfoBase & AccountInfoWithBase58Bytes>;
 };

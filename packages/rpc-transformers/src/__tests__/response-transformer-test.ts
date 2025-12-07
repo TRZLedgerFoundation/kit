@@ -1,16 +1,16 @@
-import { SOLANA_ERROR__JSON_RPC__PARSE_ERROR, SolanaError } from '@solana/errors';
-import { RpcRequest } from '@solana/rpc-spec-types';
+import { TREZOA_ERROR__JSON_RPC__PARSE_ERROR, TrezoaError } from '@trezoa/errors';
+import { RpcRequest } from '@trezoa/rpc-spec-types';
 
-import { getDefaultResponseTransformerForSolanaRpc } from '../response-transformer';
+import { getDefaultResponseTransformerForTrezoaRpc } from '../response-transformer';
 import { KEYPATH_WILDCARD } from '../tree-traversal';
 
-describe('getDefaultResponseTransformerForSolanaRpc', () => {
+describe('getDefaultResponseTransformerForTrezoaRpc', () => {
     describe('given an array as input', () => {
         const input = [10, 10n, '10', ['10', [10n, 10], 10]] as const;
         const request = {} as RpcRequest;
         const response = { result: input };
         it('casts the numbers in the array to a `bigint`, recursively', () => {
-            const transformer = getDefaultResponseTransformerForSolanaRpc();
+            const transformer = getDefaultResponseTransformerForTrezoaRpc();
             expect(transformer(response, request)).toStrictEqual([
                 BigInt(input[0]),
                 input[1],
@@ -25,7 +25,7 @@ describe('getDefaultResponseTransformerForSolanaRpc', () => {
         const response = { result: input };
 
         it('casts the numbers in the object to `bigints`, recursively', () => {
-            const transformer = getDefaultResponseTransformerForSolanaRpc();
+            const transformer = getDefaultResponseTransformerForTrezoaRpc();
             expect(transformer(response, request)).toStrictEqual({
                 a: BigInt(input.a),
                 b: input.b,
@@ -44,7 +44,7 @@ describe('getDefaultResponseTransformerForSolanaRpc', () => {
         `(
             'performs no `bigint` upcasts on $description when the allowlist is of the form in test case $#',
             ({ allowedKeyPaths, expectation, input }) => {
-                const transformer = getDefaultResponseTransformerForSolanaRpc({
+                const transformer = getDefaultResponseTransformerForTrezoaRpc({
                     allowedNumericKeyPaths: { getFoo: allowedKeyPaths },
                 });
                 const request = { methodName: 'getFoo' } as RpcRequest;
@@ -56,13 +56,13 @@ describe('getDefaultResponseTransformerForSolanaRpc', () => {
     describe('given a JSON RPC error as input', () => {
         const request = {} as RpcRequest;
         const response = {
-            error: { code: SOLANA_ERROR__JSON_RPC__PARSE_ERROR, message: 'o no' },
+            error: { code: TREZOA_ERROR__JSON_RPC__PARSE_ERROR, message: 'o no' },
         };
 
-        it('throws it as a SolanaError', () => {
-            const transformer = getDefaultResponseTransformerForSolanaRpc();
+        it('throws it as a TrezoaError', () => {
+            const transformer = getDefaultResponseTransformerForTrezoaRpc();
             expect(() => transformer(response, request)).toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__PARSE_ERROR, { __serverMessage: 'o no' }),
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__PARSE_ERROR, { __serverMessage: 'o no' }),
             );
         });
     });

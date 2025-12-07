@@ -1,4 +1,4 @@
-import type { GetBlockApi, Rpc } from '@solana/rpc';
+import type { GetBlockApi, Rpc } from '@trezoa/rpc';
 import DataLoader from 'dataloader';
 
 import { buildCoalescedFetchesByArgsHash, ToFetchMap } from './coalescer';

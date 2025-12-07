@@ -5,24 +5,24 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/react?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/react?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/react
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/react?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/react?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/react
 
-# @solana/react
+# @trezoa/react
 
-This package contains React hooks for building Solana apps.
+This package contains React hooks for building Trezoa apps.
 
 ## Hooks
 
 ### `useSignIn(uiWalletAccount, chain)`
 
-Given a `UiWallet` or `UiWalletAccount` this hook returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Solana&rsquo;](https://phantom.app/learn/developers/sign-in-with-solana) feature.
+Given a `UiWallet` or `UiWalletAccount` this hook returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-solana) feature.
 
 #### Example
 
 ```tsx
-import { useSignIn } from '@solana/react';
+import { useSignIn } from '@trezoa/react';
 
 function SignInButton({ wallet }) {
     const csrfToken = useCsrfToken();
@@ -39,7 +39,7 @@ function SignInButton({ wallet }) {
                     // `account.publicKey`.
                     //
                     // Authorize the user, also on the server, by decoding `signedMessage` as the
-                    // text of a Sign In With Solana message, verifying that it was not modified
+                    // text of a Sign In With Trezoa message, verifying that it was not modified
                     // from the values your application expects, and that its content is sufficient
                     // to grant them access.
                     window.alert(`You are now signed in with the address ${account.address}`);
@@ -56,13 +56,13 @@ function SignInButton({ wallet }) {
 
 ### `useWalletAccountMessageSigner(uiWalletAccount)`
 
-Given a `UiWalletAccount`, this hook returns an object that conforms to the `MessageModifyingSigner` interface of `@solana/signers`.
+Given a `UiWalletAccount`, this hook returns an object that conforms to the `MessageModifyingSigner` interface of `@trezoa/signers`.
 
 #### Example
 
 ```tsx
-import { useWalletAccountMessageSigner } from '@solana/react';
-import { createSignableMessage } from '@solana/signers';
+import { useWalletAccountMessageSigner } from '@trezoa/react';
+import { createSignableMessage } from '@trezoa/signers';
 
 function SignMessageButton({ account, text }) {
     const messageSigner = useWalletAccountMessageSigner(account);
@@ -95,12 +95,12 @@ function SignMessageButton({ account, text }) {
 
 ### `useWalletAccountTransactionSigner(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionModifyingSigner` interface of `@solana/signers`.
+Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionModifyingSigner` interface of `@trezoa/signers`.
 
 #### Example
 
 ```tsx
-import { useWalletAccountTransactionSigner } from '@solana/react';
+import { useWalletAccountTransactionSigner } from '@trezoa/react';
 
 function SignTransactionButton({ account, transaction }) {
     const transactionSigner = useWalletAccountTransactionSigner(account, 'solana:devnet');
@@ -127,21 +127,21 @@ function SignTransactionButton({ account, transaction }) {
 
 ### `useWalletAccountTransactionSendingSigner(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionSendingSigner` interface of `@solana/signers`.
+Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionSendingSigner` interface of `@trezoa/signers`.
 
 #### Example
 
 ```tsx
-import { useWalletAccountTransactionSendingSigner } from '@solana/react';
+import { useWalletAccountTransactionSendingSigner } from '@trezoa/react';
 import {
     appendTransactionMessageInstruction,
-    createSolanaRpc,
+    createTrezoaRpc,
     getBase58Decoder,
     pipe,
     setTransactionMessageFeePayerSigner,
     setTransactionMessageLifetimeUsingBlockhash,
     signAndSendTransactionMessageWithSigners,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 function RecordMemoButton({ account, rpc, text }) {
     const signer = useWalletAccountTransactionSendingSigner(account, 'solana:devnet');
@@ -149,7 +149,7 @@ function RecordMemoButton({ account, rpc, text }) {
         <button
             onClick={async () => {
                 try {
-                    const { value: latestBlockhash } = await createSolanaRpc('https://api.devnet.solana.com')
+                    const { value: latestBlockhash } = await createTrezoaRpc('https://api.devnet.trezoa.com')
                         .getLatestBlockhash()
                         .send();
                     const message = pipe(
@@ -160,7 +160,7 @@ function RecordMemoButton({ account, rpc, text }) {
                     );
                     const signatureBytes = await signAndSendTransactionMessageWithSigners(message);
                     const base58Signature = getBase58Decoder().decode(signature);
-                    window.alert(`View transaction: https://explorer.solana.com/tx/${base58Signature}?cluster=devnet`);
+                    window.alert(`View transaction: https://explorer.trezoa.com/tx/${base58Signature}?cluster=devnet`);
                 } catch (e) {
                     console.error('Failed to record memo', e);
                 }
@@ -192,7 +192,7 @@ An object with the following properties:
 #### Example
 
 ```tsx
-import { useSignMessage } from '@solana/react';
+import { useSignMessage } from '@trezoa/react';
 
 function SignMessageButton({ account, messageBytes }) {
     const signMessage = useSignMessage(account);
@@ -225,18 +225,18 @@ A config object with the following properties:
 
 - `options`: An object with the following properties:
     - `minContextSlot`: A slot at which any blockhash/nonce in the transaction is known to exist. This may be used by the signer and/or RPC to determine the validity of the blockhashes/nonces it has observed.
-- `transaction`: A `Uint8Array` of bytes that conforms to the [Solana transaction schema](https://solana.com/docs/core/transactions#transaction)
+- `transaction`: A `Uint8Array` of bytes that conforms to the [Trezoa transaction schema](https://trezoa.com/docs/core/transactions#transaction)
 
 #### Returns
 
 An object with the following properties:
 
-- `signedTransaction`: A `Uint8Array` of bytes that conforms to the [Solana transaction schema](https://solana.com/docs/core/transactions#transaction)
+- `signedTransaction`: A `Uint8Array` of bytes that conforms to the [Trezoa transaction schema](https://trezoa.com/docs/core/transactions#transaction)
 
 #### Example
 
 ```tsx
-import { useSignTransaction } from '@solana/react';
+import { useSignTransaction } from '@trezoa/react';
 
 function SignTransactionButton({ account, transactionBytes }) {
     const signTransaction = useSignTransaction(account, 'solana:devnet');
@@ -269,7 +269,7 @@ A config object with the following properties:
 
 - `options`: An object with the following properties:
     - `minContextSlot`: A slot at which any blockhash/nonce in the transaction is known to exist. This may be used by the signer and/or RPC to determine the validity of the blockhashes/nonces it has observed.
-- `transaction`: A `Uint8Array` of bytes that conforms to the [Solana transaction schema](https://solana.com/docs/core/transactions#transaction)
+- `transaction`: A `Uint8Array` of bytes that conforms to the [Trezoa transaction schema](https://trezoa.com/docs/core/transactions#transaction)
 
 #### Returns
 
@@ -280,8 +280,8 @@ That function returns an object with the following properties:
 #### Example
 
 ```tsx
-import { getBase58Decoder } from '@solana/codecs-strings';
-import { useSignAndSendTransaction } from '@solana/react';
+import { getBase58Decoder } from '@trezoa/codecs-strings';
+import { useSignAndSendTransaction } from '@trezoa/react';
 
 function SignAndSendTransactionButton({ account, transactionBytes }) {
     const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet');
@@ -294,7 +294,7 @@ function SignAndSendTransactionButton({ account, transactionBytes }) {
                     });
                     const base58TransactionSignature = getBase58Decoder().decode(signature);
                     window.alert(
-                        `View transaction: https://explorer.solana.com/tx/${base58TransactionSignature}?cluster=devnet`,
+                        `View transaction: https://explorer.trezoa.com/tx/${base58TransactionSignature}?cluster=devnet`,
                     );
                 } catch (e) {
                     console.error('Failed to send transaction', e);

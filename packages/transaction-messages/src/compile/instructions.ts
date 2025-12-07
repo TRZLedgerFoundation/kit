@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { Instruction } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { Instruction } from '@trezoa/instructions';
 
 import { OrderedAccounts } from './accounts';
 

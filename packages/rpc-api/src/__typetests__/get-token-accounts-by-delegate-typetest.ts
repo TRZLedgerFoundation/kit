@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Rpc } from '@solana/rpc-spec';
+import { Address } from '@trezoa/addresses';
+import { Rpc } from '@trezoa/rpc-spec';
 
 import { GetTokenAccountsByDelegateApi } from '..';
 

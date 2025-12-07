@@ -1,10 +1,10 @@
 import {
-    SOLANA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS,
-    SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+    TREZOA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS,
+    TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { getSignersFromTransactionMessage, TransactionMessageWithSigners } from './account-signer-meta';
 import { isTransactionModifyingSigner } from './transaction-modifying-signer';
@@ -19,7 +19,7 @@ import { isTransactionSendingSigner } from './transaction-sending-signer';
  *
  * @example
  * ```ts
- * import { assertIsTransactionMessageWithSingleSendingSigner } from '@solana/signers';
+ * import { assertIsTransactionMessageWithSingleSendingSigner } from '@trezoa/signers';
  *
  * assertIsTransactionMessageWithSingleSendingSigner(transactionMessage);
  * transactionMessage satisfies TransactionMessageWithSingleSendingSigner;
@@ -47,8 +47,8 @@ export type TransactionMessageWithSingleSendingSigner = Brand<
  *     isTransactionMessageWithSingleSendingSigner,
  *     signAndSendTransactionMessageWithSigners,
  *     signTransactionMessageWithSigners,
- * } from '@solana/signers';
- * import { getBase64EncodedWireTransaction } from '@solana/transactions';
+ * } from '@trezoa/signers';
+ * import { getBase64EncodedWireTransaction } from '@trezoa/transactions';
  *
  * let transactionSignature: SignatureBytes;
  * if (isTransactionMessageWithSingleSendingSigner(transactionMessage)) {
@@ -87,7 +87,7 @@ export function isTransactionMessageWithSingleSendingSigner<
  * import {
  *     assertIsTransactionMessageWithSingleSendingSigner,
  *     signAndSendTransactionMessageWithSigners
- * } from '@solana/signers';
+ * } from '@trezoa/signers';
  *
  * assertIsTransactionMessageWithSingleSendingSigner(transactionMessage);
  * const transactionSignature = await signAndSendTransactionMessageWithSigners(transactionMessage);
@@ -105,7 +105,7 @@ export function assertIsTransactionMessageWithSingleSendingSigner<
     const sendingSigners = signers.filter(isTransactionSendingSigner);
 
     if (sendingSigners.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING);
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING);
     }
 
     // When identifying if there are multiple sending signers, we only need to check for
@@ -116,6 +116,6 @@ export function assertIsTransactionMessageWithSingleSendingSigner<
     );
 
     if (sendingOnlySigners.length > 1) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS);
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS);
     }
 }

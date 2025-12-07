@@ -1,13 +1,13 @@
 /**
  * This package contains types that describe the implementation of the JSON RPC Subscriptions API,
  * as well as methods to create one. It can be used standalone, but it is also exported as part of
- * Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+ * Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
  *
  * @example
  * ```ts
  * const rpcSubscriptions =
  *     // Step 1 - Create a `RpcSubscriptions` instance. This may be stateful.
- *     createSolanaRpcSubscriptions(mainnet('wss://api.mainnet-beta.solana.com'));
+ *     createTrezoaRpcSubscriptions(mainnet('wss://api.mainnet-beta.trezoa.com'));
  * const response = await rpcSubscriptions
  *     // Step 2 - Call supported methods on it to produce `PendingRpcSubscriptionsRequest` objects.
  *     .slotNotifications({ commitment: 'confirmed' })

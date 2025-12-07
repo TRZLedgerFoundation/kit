@@ -1,14 +1,14 @@
-import { SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import { TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetEpochInfoApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getEpochInfo', () => {
     let rpc: Rpc<GetEpochInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -37,10 +37,10 @@ describe('getEpochInfo', () => {
                 })
                 .send();
             await Promise.all([
-                expect(epochInfoPromise).rejects.toThrow(SolanaError),
+                expect(epochInfoPromise).rejects.toThrow(TrezoaError),
                 expect(epochInfoPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
                 ),
                 expect(epochInfoPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
             ]);

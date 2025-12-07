@@ -1,14 +1,14 @@
-import { createHttpTransportForSolanaRpc } from '@solana/rpc-transport-http';
+import { createHttpTransportForTrezoaRpc } from '@trezoa/rpc-transport-http';
 
 import { createDefaultRpcTransport } from '../rpc-transport';
 
-jest.mock('@solana/rpc-transport-http');
+jest.mock('@trezoa/rpc-transport-http');
 
 describe('createDefaultRpcTransport', () => {
     if (__NODEJS__) {
         it('adds default compression headers', () => {
             createDefaultRpcTransport({ url: 'fake://url' });
-            expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+            expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
                 expect.objectContaining({
                     headers: expect.objectContaining({
                         'accept-encoding': 'br,gzip,deflate',
@@ -21,7 +21,7 @@ describe('createDefaultRpcTransport', () => {
                 headers: { 'aCcEpT-eNcOdInG': 'zstd' },
                 url: 'fake://url',
             });
-            expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+            expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
                 expect.objectContaining({
                     headers: expect.objectContaining({
                         'accept-encoding': 'zstd',
@@ -35,7 +35,7 @@ describe('createDefaultRpcTransport', () => {
             headers: { aUtHoRiZaTiOn: 'Picard, 4 7 Alpha Tango' },
             url: 'fake://url',
         });
-        expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+        expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
             expect.objectContaining({
                 headers: expect.objectContaining({
                     authorization: 'Picard, 4 7 Alpha Tango',
@@ -45,7 +45,7 @@ describe('createDefaultRpcTransport', () => {
     });
     it('adds a `solana-client` header with the current NPM package version by default', () => {
         createDefaultRpcTransport({ url: 'fake://url' });
-        expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+        expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
             expect.objectContaining({
                 headers: expect.objectContaining({
                     // Version is defined in `setup-define-version-constant.ts`
@@ -59,7 +59,7 @@ describe('createDefaultRpcTransport', () => {
             headers: { 'sOlAnA-cLiEnT': 'fakeversion' },
             url: 'fake://url',
         });
-        expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+        expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
             expect.objectContaining({
                 headers: expect.objectContaining({
                     // Version is defined in `setup-define-version-constant.ts`
@@ -67,7 +67,7 @@ describe('createDefaultRpcTransport', () => {
                 }),
             }),
         );
-        expect(createHttpTransportForSolanaRpc).toHaveBeenCalledWith(
+        expect(createHttpTransportForTrezoaRpc).toHaveBeenCalledWith(
             expect.objectContaining({
                 headers: expect.not.objectContaining({
                     'sOlAnA-cLiEnT': 'fakeversion',

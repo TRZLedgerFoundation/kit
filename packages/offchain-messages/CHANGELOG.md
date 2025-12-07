@@ -1,1 +1,1 @@
-# @solana/offchain-messages
+# @trezoa/offchain-messages

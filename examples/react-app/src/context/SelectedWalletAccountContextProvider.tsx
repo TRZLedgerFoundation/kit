@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { SelectedWalletAccountContext, SelectedWalletAccountState } from './SelectedWalletAccountContext';
 
-const STORAGE_KEY = 'solana-wallet-standard-example-react:selected-wallet-and-address';
+const STORAGE_KEY = 'trezoa-wallet-standard-example-react:selected-wallet-and-address';
 
 let wasSetterInvoked = false;
 function getSavedWalletAccount(wallets: readonly UiWallet[]): UiWalletAccount | undefined {

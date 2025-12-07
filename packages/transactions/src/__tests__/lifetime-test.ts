@@ -1,12 +1,12 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { SOLANA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, SolanaError } from '@solana/errors';
-import { Blockhash } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, TrezoaError } from '@trezoa/errors';
+import { Blockhash } from '@trezoa/rpc-types';
 import {
     CompiledTransactionMessage,
     CompiledTransactionMessageWithLifetime,
     Nonce,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import {
     assertIsTransactionWithBlockhashLifetime,
@@ -149,7 +149,7 @@ describe('getTransactionLifetimeConstraintFromCompiledTransactionMessage', () =>
         await expect(() =>
             getTransactionLifetimeConstraintFromCompiledTransactionMessage(compiledTransactionMessage),
         ).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, {
                 nonce: 'abc',
             }),
         );

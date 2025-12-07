@@ -1,4 +1,4 @@
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 
 import { assertIsMessagePartialSigner, isMessagePartialSigner, MessagePartialSigner } from '../message-partial-signer';
 

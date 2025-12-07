@@ -1,18 +1,18 @@
 import {
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
-    SolanaError,
-} from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+    TrezoaError,
+} from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetInflationRewardApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getInflationReward', () => {
     let rpc: Rpc<GetInflationRewardApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     [{ minContextSlot: 0n }, null].forEach(minContextConfig => {
         describe(`when called with ${
@@ -38,10 +38,10 @@ describe('getInflationReward', () => {
                 })
                 .send();
             await Promise.all([
-                expect(sendPromise).rejects.toThrow(SolanaError),
+                expect(sendPromise).rejects.toThrow(TrezoaError),
                 expect(sendPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE,
                 ),
                 expect(sendPromise).rejects.toHaveProperty(
                     'context.__serverMessage',
@@ -59,10 +59,10 @@ describe('getInflationReward', () => {
                 })
                 .send();
             await Promise.all([
-                expect(sendPromise).rejects.toThrow(SolanaError),
+                expect(sendPromise).rejects.toThrow(TrezoaError),
                 expect(sendPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
                 ),
                 expect(sendPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
             ]);

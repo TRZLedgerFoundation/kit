@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL,
-    SOLANA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL,
+    TREZOA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { addCodecSentinel } from '../add-codec-sentinel';
 import { Offset } from '../codec';
@@ -41,7 +41,7 @@ describe('addCodecSentinel', () => {
         const codec = addCodecSentinel(mockCodec, b('ff'));
 
         expect(() => codec.encode('helloworld')).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL, {
+            new TrezoaError(TREZOA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL, {
                 encodedBytes: b('68656c6c6f776f726cff'),
                 hexEncodedBytes: '68656c6c6f776f726cff',
                 hexSentinel: 'ff',
@@ -55,7 +55,7 @@ describe('addCodecSentinel', () => {
         const codec = addCodecSentinel(mockCodec, b('ff'));
 
         expect(() => codec.decode(b('68656c6c6f776f726c64000000'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES, {
+            new TrezoaError(TREZOA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES, {
                 decodedBytes: b('68656c6c6f776f726c64000000'),
                 hexDecodedBytes: '68656c6c6f776f726c64000000',
                 hexSentinel: 'ff',

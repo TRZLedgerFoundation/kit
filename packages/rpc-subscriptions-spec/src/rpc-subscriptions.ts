@@ -1,6 +1,6 @@
-import { SOLANA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, SolanaError } from '@solana/errors';
-import { Callable, Flatten, OverloadImplementations, UnionToIntersection } from '@solana/rpc-spec-types';
-import { createAsyncIterableFromDataPublisher } from '@solana/subscribable';
+import { TREZOA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, TrezoaError } from '@trezoa/errors';
+import { Callable, Flatten, OverloadImplementations, UnionToIntersection } from '@trezoa/rpc-spec-types';
+import { createAsyncIterableFromDataPublisher } from '@trezoa/subscribable';
 
 import { RpcSubscriptionsApi, RpcSubscriptionsPlan } from './rpc-subscriptions-api';
 import { PendingRpcSubscriptionsRequest, RpcSubscribeOptions } from './rpc-subscriptions-request';
@@ -63,7 +63,7 @@ export function createSubscriptionRpc<TRpcSubscriptionsApiMethods>(
                 const notificationName = p.toString();
                 const createRpcSubscriptionPlan = Reflect.get(target, notificationName, receiver);
                 if (!createRpcSubscriptionPlan) {
-                    throw new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, {
+                    throw new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, {
                         notificationName,
                     });
                 }

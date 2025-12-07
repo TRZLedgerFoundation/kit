@@ -1,4 +1,4 @@
-import { EncodedString } from '@solana/nominal-types';
+import { EncodedString } from '@trezoa/nominal-types';
 
 import { Transaction } from '../transaction';
 import { getBase64EncodedWireTransaction } from '../wire-transaction';

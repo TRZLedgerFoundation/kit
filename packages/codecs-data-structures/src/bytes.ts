@@ -6,7 +6,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 /**
  * Returns an encoder for raw byte arrays.

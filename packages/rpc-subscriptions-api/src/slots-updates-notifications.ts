@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type SlotsUpdatesNotificationsApiNotificationBase = Readonly<{
     /** The newly updated slot */
@@ -45,7 +45,7 @@ export type SlotsUpdatesNotificationsApi = {
      * This subscription is unstable. The format of this subscription may change in the future, and
      * may not be supported by every node.
      *
-     * @see https://solana.com/docs/rpc/websocket/slotsupdatessubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/slotsupdatessubscribe
      */
     slotsUpdatesNotifications(): SlotsUpdatesNotificationsApiNotification;
 };

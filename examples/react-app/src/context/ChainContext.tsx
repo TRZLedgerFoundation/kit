@@ -1,22 +1,22 @@
-import type { ClusterUrl } from '@solana/kit';
-import { devnet } from '@solana/kit';
+import type { ClusterUrl } from '@trezoa/kit';
+import { devnet } from '@trezoa/kit';
 import { createContext } from 'react';
 
 export type ChainContext = Readonly<{
-    chain: `solana:${string}`;
+    chain: `trezoa:${string}`;
     displayName: string;
-    setChain?(chain: `solana:${string}`): void;
-    solanaExplorerClusterName: 'devnet' | 'mainnet-beta' | 'testnet';
-    solanaRpcSubscriptionsUrl: ClusterUrl;
-    solanaRpcUrl: ClusterUrl;
+    setChain?(chain: `trezoa:${string}`): void;
+    trezoaExplorerClusterName: 'devnet' | 'mainnet-beta' | 'testnet';
+    trezoaRpcSubscriptionsUrl: ClusterUrl;
+    trezoaRpcUrl: ClusterUrl;
 }>;
 
 export const DEFAULT_CHAIN_CONFIG = Object.freeze({
-    chain: 'solana:devnet',
+    chain: 'trezoa:devnet',
     displayName: 'Devnet',
-    solanaExplorerClusterName: 'devnet',
-    solanaRpcSubscriptionsUrl: devnet('wss://api.devnet.solana.com'),
-    solanaRpcUrl: devnet('https://api.devnet.solana.com'),
+    trezoaExplorerClusterName: 'devnet',
+    trezoaRpcSubscriptionsUrl: devnet('wss://api.devnet.trezoa.com'),
+    trezoaRpcUrl: devnet('https://api.devnet.trezoa.com'),
 });
 
 export const ChainContext = createContext<ChainContext>(DEFAULT_CHAIN_CONFIG);

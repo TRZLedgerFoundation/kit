@@ -1,6 +1,6 @@
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { Button, Callout, DropdownMenu } from '@radix-ui/themes';
-import { SolanaSignIn } from '@solana/wallet-standard-features';
+import { TrezoaSignIn } from '@trezoa/wallet-standard-features';
 import type { UiWallet } from '@wallet-standard/react';
 import { useWallets } from '@wallet-standard/react';
 import { useContext, useRef, useState } from 'react';
@@ -38,10 +38,10 @@ export function SignInMenu({ children }: Props) {
             </ErrorBoundary>
         );
     }
-    const walletsThatSupportSignInWithSolana = [];
+    const walletsThatSupportSignInWithTrezoa = [];
     for (const wallet of wallets) {
-        if (wallet.features.includes(SolanaSignIn)) {
-            walletsThatSupportSignInWithSolana.push(wallet);
+        if (wallet.features.includes(TrezoaSignIn)) {
+            walletsThatSupportSignInWithTrezoa.push(wallet);
         }
     }
     return (
@@ -54,21 +54,21 @@ export function SignInMenu({ children }: Props) {
                     </Button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
-                    {walletsThatSupportSignInWithSolana.length === 0 ? (
+                    {walletsThatSupportSignInWithTrezoa.length === 0 ? (
                         <Callout.Root color="orange" highContrast>
                             <Callout.Icon>
                                 <ExclamationTriangleIcon />
                             </Callout.Icon>
                             <Callout.Text>
                                 This browser has no wallets installed that support{' '}
-                                <a href="https://phantom.app/learn/developers/sign-in-with-solana" target="_blank">
-                                    Sign In With Solana
+                                <a href="https://phantom.app/learn/developers/sign-in-with-trezoa" target="_blank">
+                                    Sign In With Trezoa
                                 </a>
                                 .
                             </Callout.Text>
                         </Callout.Root>
                     ) : (
-                        walletsThatSupportSignInWithSolana.map(renderItem)
+                        walletsThatSupportSignInWithTrezoa.map(renderItem)
                     )}
                 </DropdownMenu.Content>
             </DropdownMenu.Root>

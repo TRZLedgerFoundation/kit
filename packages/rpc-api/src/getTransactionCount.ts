@@ -1,4 +1,4 @@
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 
 type GetTransactionCountApiResponse = bigint;
 
@@ -6,7 +6,7 @@ export type GetTransactionCountApi = {
     /**
      * Returns the current number of transactions to have achieved a given level of commitment.
      *
-     * @see https://solana.com/docs/rpc/http/gettransactioncount
+     * @see https://trezoa.com/docs/rpc/http/gettransactioncount
      */
     getTransactionCount(
         config?: Readonly<{
@@ -15,7 +15,7 @@ export type GetTransactionCountApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */

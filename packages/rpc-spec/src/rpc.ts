@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, SolanaError } from '@solana/errors';
-import { Callable, Flatten, OverloadImplementations, UnionToIntersection } from '@solana/rpc-spec-types';
+import { TREZOA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, TrezoaError } from '@trezoa/errors';
+import { Callable, Flatten, OverloadImplementations, UnionToIntersection } from '@trezoa/rpc-spec-types';
 
 import { RpcApi, RpcPlan } from './rpc-api';
 import { RpcTransport } from './rpc-transport';
@@ -79,7 +79,7 @@ function makeProxy<TRpcMethods, TRpcTransport extends RpcTransport>(
                 const methodName = p.toString();
                 const getApiPlan = Reflect.get(target, methodName, receiver);
                 if (!getApiPlan) {
-                    throw new SolanaError(SOLANA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, {
+                    throw new TrezoaError(TREZOA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, {
                         method: methodName,
                         params: rawParams,
                     });

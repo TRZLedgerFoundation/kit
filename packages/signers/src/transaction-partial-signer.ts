@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_PARTIAL_SIGNER, SolanaError } from '@solana/errors';
-import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@solana/transactions';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_PARTIAL_SIGNER, TrezoaError } from '@trezoa/errors';
+import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@trezoa/transactions';
 
 import { BaseTransactionSignerConfig, SignatureDictionary } from './types';
 
@@ -61,8 +61,8 @@ export type TransactionPartialSigner<TAddress extends string = string> = Readonl
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isTransactionPartialSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isTransactionPartialSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isTransactionPartialSigner({ address, signTransactions: async () => {} }); // true
@@ -85,8 +85,8 @@ export function isTransactionPartialSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsTransactionPartialSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsTransactionPartialSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsTransactionPartialSigner({ address, signTransactions: async () => {} }); // void
@@ -100,7 +100,7 @@ export function assertIsTransactionPartialSigner<TAddress extends string>(value:
     address: Address<TAddress>;
 }): asserts value is TransactionPartialSigner<TAddress> {
     if (!isTransactionPartialSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_PARTIAL_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_PARTIAL_SIGNER, {
             address: value.address,
         });
     }

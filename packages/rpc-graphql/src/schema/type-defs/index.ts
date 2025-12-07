@@ -6,10 +6,10 @@ import { transactionTypeDefs } from './transaction';
 import { typeTypeDefs } from './types';
 
 /**
- * Creates the GraphQL type definitions for the Solana GraphQL schema.
+ * Creates the GraphQL type definitions for the Trezoa GraphQL schema.
  *
- * @returns     Solana GraphQL type definitions.
+ * @returns     Trezoa GraphQL type definitions.
  */
-export function createSolanaGraphQLTypeDefs() {
+export function createTrezoaGraphQLTypeDefs() {
     return [accountTypeDefs, blockTypeDefs, instructionTypeDefs, rootTypeDefs, typeTypeDefs, transactionTypeDefs];
 }

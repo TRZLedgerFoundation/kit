@@ -3,8 +3,8 @@ import type {
     RpcSubscriptionsChannel,
     RpcSubscriptionsChannelCreator,
     RpcSubscriptionsTransport,
-} from '@solana/rpc-subscriptions-spec';
-import type { ClusterUrl, DevnetUrl, MainnetUrl, TestnetUrl } from '@solana/rpc-types';
+} from '@trezoa/rpc-subscriptions-spec';
+import type { ClusterUrl, DevnetUrl, MainnetUrl, TestnetUrl } from '@trezoa/rpc-types';
 
 export type RpcSubscriptionsChannelCreatorDevnet<TOutboundMessage, TInboundMessage> = RpcSubscriptionsChannelCreator<
     TOutboundMessage,
@@ -98,7 +98,7 @@ export type RpcSubscriptionsChannelWithCluster<TOutboundMessage, TInboundMessage
  *     /* ... *\/
  * }
  *
- * const channel = createCustomSubscriptionsChannel(testnet('ws://api.testnet.solana.com'));
+ * const channel = createCustomSubscriptionsChannel(testnet('ws://api.testnet.trezoa.com'));
  * channel satisfies RpcSubscriptionsChannelTestnet; // OK
  * ```
  */
@@ -163,7 +163,7 @@ export type RpcSubscriptionsTransportWithCluster =
  *     /* ... *\/
  * }
  *
- * const transport = createCustomSubscriptionsTransport(testnet('ws://api.testnet.solana.com'));
+ * const transport = createCustomSubscriptionsTransport(testnet('ws://api.testnet.trezoa.com'));
  * transport satisfies RpcSubscriptionsTransportTestnet; // OK
  * ```
  */
@@ -201,7 +201,7 @@ export type RpcSubscriptionsTransportFromClusterUrl<TClusterUrl extends ClusterU
  * ): Promise<AsyncIterable<SpecialAccountInfo>> {
  *     /* ... *\/
  * }
- * const rpcSubscriptions = createSolanaRpcSubscriptions(devnet('https://api.devnet.solana.com'));
+ * const rpcSubscriptions = createTrezoaRpcSubscriptions(devnet('https://api.devnet.trezoa.com'));
  * await subscribeToSpecialAccountNotifications(address('ReAL1111111111111111111111111111'), rpcSubscriptions); // ERROR
  * ```
  */
@@ -233,7 +233,7 @@ export type RpcSubscriptionsDevnet<TRpcMethods> = RpcSubscriptions<TRpcMethods> 
  * ): Promise<AsyncIterable<SpecialAccountInfo>> {
  *     /* ... *\/
  * }
- * const rpcSubscriptions = createSolanaRpcSubscriptions(devnet('https://api.devnet.solana.com'));
+ * const rpcSubscriptions = createTrezoaRpcSubscriptions(devnet('https://api.devnet.trezoa.com'));
  * await subscribeToSpecialAccountNotifications(address('ReAL1111111111111111111111111111'), rpcSubscriptions); // ERROR
  * ```
  */
@@ -266,7 +266,7 @@ export type RpcSubscriptionsTestnet<TRpcMethods> = RpcSubscriptions<TRpcMethods>
  * ): Promise<AsyncIterable<SpecialAccountInfo>> {
  *     /* ... *\/
  * }
- * const rpcSubscriptions = createSolanaRpcSubscriptions(devnet('https://api.devnet.solana.com'));
+ * const rpcSubscriptions = createTrezoaRpcSubscriptions(devnet('https://api.devnet.trezoa.com'));
  * await subscribeToSpecialAccountNotifications(address('ReAL1111111111111111111111111111'), rpcSubscriptions); // ERROR
  * ```
  */
@@ -284,7 +284,7 @@ export type RpcSubscriptionsMainnet<TRpcMethods> = RpcSubscriptions<TRpcMethods>
  *     /* ... *\/
  * }
  * const transport = createDefaultRpcSubscriptionsTransport({
- *     createChannel: createDefaultSolanaRpcSubscriptionsChannelCreator({
+ *     createChannel: createDefaultTrezoaRpcSubscriptionsChannelCreator({
  *         url: mainnet('ws://rpc.company'),
  *     }),
  * });

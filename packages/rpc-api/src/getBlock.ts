@@ -10,8 +10,8 @@ import type {
     TransactionForFullJson,
     TransactionForFullJsonParsed,
     UnixTimestamp,
-} from '@solana/rpc-types';
-import type { TransactionVersion } from '@solana/transaction-messages';
+} from '@trezoa/rpc-types';
+import type { TransactionVersion } from '@trezoa/transaction-messages';
 
 // API response types
 
@@ -49,7 +49,7 @@ type GetBlockCommonConfig = Readonly<{
      * Fetch blocks from slots that have reached at least this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -82,7 +82,7 @@ type GetBlockCommonConfig = Readonly<{
      * property will be returned in the response.
      *
      * If a block contains any transaction at a version higher than this, the server will throw
-     * {@link SolanaErrorCode.SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
+     * {@link TrezoaErrorCode.TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
      */
     maxSupportedTransactionVersion?: GetBlockMaxSupportedTransactionVersion;
     /**
@@ -115,7 +115,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-none--rewards-none}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -130,7 +130,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-none--rewards-included}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -145,7 +145,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-signatures--rewards-none}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -160,7 +160,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-signatures--rewards-included}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -175,7 +175,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-accounts--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -194,7 +194,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-accounts--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -209,7 +209,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-accounts--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -229,7 +229,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-accounts--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -248,7 +248,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base58--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -268,7 +268,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base58--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -284,7 +284,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base58--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -305,7 +305,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base58--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -325,7 +325,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base64--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -345,7 +345,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base64--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -361,7 +361,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base64--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -382,7 +382,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-base64--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -402,7 +402,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-parsed--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -422,7 +422,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-parsed--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -438,7 +438,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-parsed--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -458,7 +458,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-parsed--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -478,7 +478,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-json--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -498,7 +498,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-json--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -514,7 +514,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-json--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,
@@ -534,7 +534,7 @@ export type GetBlockApi = {
      * Returns identity and transaction information about a confirmed block in the ledger
      *
      * {@label transactions-json--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/http/getblock
+     * @see https://trezoa.com/docs/rpc/http/getblock
      */
     getBlock(
         slot: Slot,

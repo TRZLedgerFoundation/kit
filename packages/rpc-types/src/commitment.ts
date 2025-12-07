@@ -1,10 +1,10 @@
-import { SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, TrezoaError } from '@trezoa/errors';
 
 /**
  * A union of all possible commitment statuses -- each a measure of the network confirmation and
  * stake levels on a particular block.
  *
- * Read more about the statuses themselves, [here](https://docs.solana.com/cluster/commitments).
+ * Read more about the statuses themselves, [here](https://docs.trezoa.com/cluster/commitments).
  */
 export type Commitment = 'confirmed' | 'finalized' | 'processed';
 
@@ -17,7 +17,7 @@ function getCommitmentScore(commitment: Commitment): number {
         case 'processed':
             return 0;
         default:
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
                 unexpectedValue: commitment satisfies never,
             });
     }

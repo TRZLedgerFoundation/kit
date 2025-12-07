@@ -1,4 +1,4 @@
-import type { Lamports, Slot } from '@solana/rpc-types';
+import type { Lamports, Slot } from '@trezoa/rpc-types';
 
 type GetBlockCommitmentApiResponse = Readonly<{
     /**
@@ -14,7 +14,7 @@ export type GetBlockCommitmentApi = {
     /**
      * Returns the amount of cluster stake in {@link Lamports} that has voted on a particular block,
      * as well as the stake attributed to each vote account.
-     * @see https://solana.com/docs/rpc/http/getblockcommitment
+     * @see https://trezoa.com/docs/rpc/http/getblockcommitment
      */
     getBlockCommitment(slot: Slot): GetBlockCommitmentApiResponse;
 };

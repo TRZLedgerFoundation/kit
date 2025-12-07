@@ -5,7 +5,7 @@ import {
     isTransactionMessageWithBlockhashLifetime,
     isTransactionMessageWithDurableNonceLifetime,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import type { TransactionWithLifetime } from './lifetime';
 import type { SignaturesMap, TransactionFromTransactionMessage, TransactionMessageBytes } from './transaction';

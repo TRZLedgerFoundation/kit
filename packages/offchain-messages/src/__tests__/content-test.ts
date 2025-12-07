@@ -1,11 +1,11 @@
-import { getUtf8Codec } from '@solana/codecs-strings';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax,
@@ -38,7 +38,7 @@ describe('assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax()', () => 
                     text: 'Hello world',
                 }),
             ).toThrow(
-                new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+                new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
                     actualMessageFormat: format,
                     expectedMessageFormat: OffchainMessageContentFormat.RESTRICTED_ASCII_1232_BYTES_MAX,
                 }),
@@ -52,7 +52,7 @@ describe('assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax()', () => 
                 text: '!'.repeat(1232 + 1),
             }),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 1232 + 1,
                 maxBytes: 1232,
             }),
@@ -72,7 +72,7 @@ describe('assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax()', () => 
                 format: OffchainMessageContentFormat.RESTRICTED_ASCII_1232_BYTES_MAX,
                 text: '',
             }),
-        ).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
+        ).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
     });
     it.each(['\x19', '\x7f'])('throws when the content contains out of range character %j', char => {
         expect(() =>
@@ -80,7 +80,7 @@ describe('assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax()', () => 
                 format: OffchainMessageContentFormat.RESTRICTED_ASCII_1232_BYTES_MAX,
                 text: char,
             }),
-        ).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE));
+        ).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE));
     });
     it.each(Array.from({ length: 0x7e - 0x20 + 1 }, (_, ii) => String.fromCharCode(0x20 + ii)))(
         'does not throw when the content contains allowed character %j',
@@ -163,7 +163,7 @@ describe('assertIsOffchainMessageContentUtf8Of1232BytesMax()', () => {
                 text: 'Hello world',
             }),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
                 actualMessageFormat: format,
                 expectedMessageFormat: OffchainMessageContentFormat.UTF8_1232_BYTES_MAX,
             }),
@@ -176,7 +176,7 @@ describe('assertIsOffchainMessageContentUtf8Of1232BytesMax()', () => {
                 text,
             }),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: getUtf8Codec().getSizeFromValue(text),
                 maxBytes: 1232,
             }),
@@ -188,7 +188,7 @@ describe('assertIsOffchainMessageContentUtf8Of1232BytesMax()', () => {
                 format: OffchainMessageContentFormat.UTF8_1232_BYTES_MAX,
                 text: '',
             }),
-        ).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
+        ).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
     });
     it.each(UTF8_WITHIN_1232)('does not throw a length exceeded error when the content is "%s"', text => {
         expect(() =>
@@ -249,7 +249,7 @@ describe('assertIsOffchainMessageContentUtf8Of65535BytesMax()', () => {
                 text: 'Hello world',
             }),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
                 actualMessageFormat: format,
                 expectedMessageFormat: OffchainMessageContentFormat.UTF8_65535_BYTES_MAX,
             }),
@@ -262,7 +262,7 @@ describe('assertIsOffchainMessageContentUtf8Of65535BytesMax()', () => {
                 text,
             }),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: getUtf8Codec().getSizeFromValue(text),
                 maxBytes: 65535,
             }),
@@ -274,7 +274,7 @@ describe('assertIsOffchainMessageContentUtf8Of65535BytesMax()', () => {
                 format: OffchainMessageContentFormat.UTF8_65535_BYTES_MAX,
                 text: '',
             }),
-        ).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
+        ).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY));
     });
     it.each(UTF8_WITHIN_65535)('does not throw a length exceeded error when the content is "%s"', text => {
         expect(() =>

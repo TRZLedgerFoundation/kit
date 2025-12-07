@@ -1,11 +1,11 @@
 import {
-    SOLANA_ERROR__INSTRUCTION_ERROR__BORSH_IO_ERROR,
-    SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM,
-    SOLANA_ERROR__INSTRUCTION_ERROR__UNKNOWN,
-    SolanaErrorCode,
+    TREZOA_ERROR__INSTRUCTION_ERROR__BORSH_IO_ERROR,
+    TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM,
+    TREZOA_ERROR__INSTRUCTION_ERROR__UNKNOWN,
+    TrezoaErrorCode,
 } from '../codes';
-import { SolanaError } from '../error';
-import { getSolanaErrorFromInstructionError } from '../instruction-error';
+import { TrezoaError } from '../error';
+import { getTrezoaErrorFromInstructionError } from '../instruction-error';
 
 const EXPECTED_ERROR_CODES = [
     ['GenericError', 4615001],
@@ -63,51 +63,51 @@ const EXPECTED_ERROR_CODES = [
     ['BuiltinProgramsMustConsumeComputeUnits', 4615054],
 ] as const;
 
-describe('getSolanaErrorFromInstructionError', () => {
+describe('getTrezoaErrorFromInstructionError', () => {
     it.each(EXPECTED_ERROR_CODES)(
-        'produces the correct `SolanaError` for a `%s` error',
+        'produces the correct `TrezoaError` for a `%s` error',
         (transactionError, expectedCode) => {
-            const error = getSolanaErrorFromInstructionError(123, transactionError);
-            expect(error).toEqual(new SolanaError(expectedCode as SolanaErrorCode, { index: 123 }));
+            const error = getTrezoaErrorFromInstructionError(123, transactionError);
+            expect(error).toEqual(new TrezoaError(expectedCode as TrezoaErrorCode, { index: 123 }));
         },
     );
     it.each(EXPECTED_ERROR_CODES)(
-        'produces the correct `SolanaError` for a `%s` error with a bigint index',
+        'produces the correct `TrezoaError` for a `%s` error with a bigint index',
         (transactionError, expectedCode) => {
-            const error = getSolanaErrorFromInstructionError(123n, transactionError);
-            expect(error).toEqual(new SolanaError(expectedCode as SolanaErrorCode, { index: 123 }));
+            const error = getTrezoaErrorFromInstructionError(123n, transactionError);
+            expect(error).toEqual(new TrezoaError(expectedCode as TrezoaErrorCode, { index: 123 }));
         },
     );
-    it('produces the correct `SolanaError` for a `Custom` error', () => {
-        const error = getSolanaErrorFromInstructionError(123, { Custom: 789 });
+    it('produces the correct `TrezoaError` for a `Custom` error', () => {
+        const error = getTrezoaErrorFromInstructionError(123, { Custom: 789 });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
                 code: 789,
                 index: 123,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `Custom` error with a bigint code', () => {
-        const error = getSolanaErrorFromInstructionError(123, { Custom: 789n });
+    it('produces the correct `TrezoaError` for a `Custom` error with a bigint code', () => {
+        const error = getTrezoaErrorFromInstructionError(123, { Custom: 789n });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
                 code: 789,
                 index: 123,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `BorshIoError` error (pre SDK 3.0 newtype style)', () => {
-        const error = getSolanaErrorFromInstructionError(123, { BorshIoError: 'abc' });
+    it('produces the correct `TrezoaError` for a `BorshIoError` error (pre SDK 3.0 newtype style)', () => {
+        const error = getTrezoaErrorFromInstructionError(123, { BorshIoError: 'abc' });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__BORSH_IO_ERROR, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__BORSH_IO_ERROR, {
                 index: 123,
             }),
         );
     });
     it("returns the unknown error when encountering an enum name that's missing from the map", () => {
-        const error = getSolanaErrorFromInstructionError(123, 'ThisDoesNotExist');
+        const error = getTrezoaErrorFromInstructionError(123, 'ThisDoesNotExist');
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__UNKNOWN, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__UNKNOWN, {
                 errorName: 'ThisDoesNotExist',
                 index: 123,
             }),
@@ -115,9 +115,9 @@ describe('getSolanaErrorFromInstructionError', () => {
     });
     it("returns the unknown error when encountering an enum struct that's missing from the map", () => {
         const expectedContext = {} as const;
-        const error = getSolanaErrorFromInstructionError(123, { ThisDoesNotExist: expectedContext });
+        const error = getTrezoaErrorFromInstructionError(123, { ThisDoesNotExist: expectedContext });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__UNKNOWN, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__UNKNOWN, {
                 errorName: 'ThisDoesNotExist',
                 index: 123,
                 instructionErrorContext: expectedContext,

@@ -1,7 +1,7 @@
-import { Address } from '@solana/addresses';
-import { getBase58Encoder, getBase64Decoder } from '@solana/codecs-strings';
-import { SOLANA_ERROR__INVALID_NONCE, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND, SolanaError } from '@solana/errors';
-import { Nonce } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { getBase58Encoder, getBase64Decoder } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__INVALID_NONCE, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND, TrezoaError } from '@trezoa/errors';
+import { Nonce } from '@trezoa/transaction-messages';
 
 import { createNonceInvalidationPromiseFactory } from '../confirmation-strategy-nonce';
 
@@ -150,7 +150,7 @@ describe('createNonceInvalidationPromiseFactory', () => {
             nonceAccountAddress: '9'.repeat(44) as Address,
         });
         await expect(invalidationPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND, {
+            new TrezoaError(TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND, {
                 nonceAccountAddress: '9'.repeat(44),
             }),
         );
@@ -169,7 +169,7 @@ describe('createNonceInvalidationPromiseFactory', () => {
             nonceAccountAddress: '9'.repeat(44) as Address,
         });
         await expect(invalidationPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__INVALID_NONCE, {
+            new TrezoaError(TREZOA_ERROR__INVALID_NONCE, {
                 actualNonceValue: '55555555555555555555555555555555555555555555',
                 expectedNonceValue: '44444444444444444444444444444444444444444444',
             }),
@@ -207,7 +207,7 @@ describe('createNonceInvalidationPromiseFactory', () => {
             nonceAccountAddress: '9'.repeat(44) as Address,
         });
         await expect(invalidationPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__INVALID_NONCE, {
+            new TrezoaError(TREZOA_ERROR__INVALID_NONCE, {
                 actualNonceValue: '55555555555555555555555555555555555555555555',
                 expectedNonceValue: '44444444444444444444444444444444444444444444',
             }),

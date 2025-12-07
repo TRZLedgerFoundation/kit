@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { SignatureBytes } from '@solana/keys';
+import { SignatureBytes } from '@trezoa/keys';
 import {
     BaseTransactionMessage,
     TransactionMessageWithBlockhashLifetime,
@@ -7,13 +7,13 @@ import {
     TransactionMessageWithFeePayer,
     TransactionMessageWithinSizeLimit,
     TransactionMessageWithLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 import {
     FullySignedTransaction,
     Transaction,
     TransactionWithinSizeLimit,
     TransactionWithLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import { TransactionMessageWithSigners } from '../account-signer-meta';
 import {

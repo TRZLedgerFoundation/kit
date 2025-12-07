@@ -1,4 +1,4 @@
-import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@solana/accounts';
+import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@trezoa/accounts';
 import {
     combineCodec,
     getArrayDecoder,
@@ -10,10 +10,10 @@ import {
     type VariableSizeCodec,
     type VariableSizeDecoder,
     type VariableSizeEncoder,
-} from '@solana/codecs';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
-import { Epoch, getDefaultLamportsDecoder, getDefaultLamportsEncoder, type Lamports } from '@solana/rpc-types';
+} from '@trezoa/codecs';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
+import { Epoch, getDefaultLamportsDecoder, getDefaultLamportsEncoder, type Lamports } from '@trezoa/rpc-types';
 
 import { fetchEncodedSysvarAccount, SYSVAR_STAKE_HISTORY_ADDRESS } from './sysvar';
 

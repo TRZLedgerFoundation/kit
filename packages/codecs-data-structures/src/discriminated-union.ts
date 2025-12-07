@@ -9,9 +9,9 @@ import {
     FixedSizeEncoder,
     transformDecoder,
     transformEncoder,
-} from '@solana/codecs-core';
-import { getU8Decoder, getU8Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { getU8Decoder, getU8Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, TrezoaError } from '@trezoa/errors';
 
 import { getTupleDecoder, getTupleEncoder } from './tuple';
 import { getUnionDecoder, getUnionEncoder } from './union';
@@ -375,7 +375,7 @@ function getVariantDiscriminator<const TVariants extends Variants<Decoder<any> |
 ) {
     const discriminator = variants.findIndex(([key]) => discriminatorValue === key);
     if (discriminator < 0) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, {
             value: discriminatorValue,
             variants: variants.map(([key]) => key),
         });

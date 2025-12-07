@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 import { WalletVersion } from '@wallet-standard/base';
 import { UiWalletAccount } from '@wallet-standard/ui';
 
@@ -9,7 +9,7 @@ import { useSignIn } from '../useSignIn';
 
 const mockWalletAccount = {
     address: address('123'),
-    chains: ['solana:danknet', 'bitcoin:mainnet'] as const,
+    chains: ['trezoa:danknet', 'bitcoin:mainnet'] as const,
     features: [],
     publicKey: new Uint8Array([1, 2, 3]),
     '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
@@ -17,7 +17,7 @@ const mockWalletAccount = {
 
 const mockWallet = {
     accounts: [mockWalletAccount],
-    chains: ['solana:danknet', 'bitcoin:mainnet'] as const,
+    chains: ['trezoa:danknet', 'bitcoin:mainnet'] as const,
     features: [],
     icon: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBAAA=',
     name: 'Mock Wallet',

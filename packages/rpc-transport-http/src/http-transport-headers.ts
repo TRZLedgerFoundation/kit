@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, TrezoaError } from '@trezoa/errors';
 
 export type AllowedHttpRequestHeaders = Readonly<
     {
@@ -15,7 +15,7 @@ export type AllowedHttpRequestHeaders = Readonly<
 >;
 // These are headers that we simply don't allow the developer to override because they're
 // fundamental to the operation of the JSON-RPC transport.
-type DisallowedHeaders = 'Accept' | 'Content-Length' | 'Content-Type' | 'Solana-Client';
+type DisallowedHeaders = 'Accept' | 'Content-Length' | 'Content-Type' | 'Trezoa-Client';
 type ForbiddenHeaders =
     | 'Accept-Charset'
     // Though technically forbidden in non-Node environments, we don't have a way to target
@@ -95,7 +95,7 @@ export function assertIsAllowedHttpRequestHeaders(
         );
     });
     if (badHeaders.length > 0) {
-        throw new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
+        throw new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
             headers: badHeaders,
         });
     }

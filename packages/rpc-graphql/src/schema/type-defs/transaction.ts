@@ -61,7 +61,7 @@ export const transactionTypeDefs = /* GraphQL */ `
     }
 
     """
-    A Solana transaction
+    A Trezoa transaction
     """
     type Transaction {
         blockTime: BigInt

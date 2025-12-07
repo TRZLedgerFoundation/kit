@@ -1,5 +1,5 @@
-import { getBase64Decoder } from '@solana/codecs-strings';
-import { Brand, EncodedString } from '@solana/nominal-types';
+import { getBase64Decoder } from '@trezoa/codecs-strings';
+import { Brand, EncodedString } from '@trezoa/nominal-types';
 
 import { getTransactionEncoder } from './codecs';
 import { Transaction } from './transaction';
@@ -13,7 +13,7 @@ export type Base64EncodedWireTransaction = Brand<EncodedString<string, 'base64'>
  *
  * @example
  * ```ts
- * import { getBase64EncodedWireTransaction, signTransaction } from '@solana/transactions';
+ * import { getBase64EncodedWireTransaction, signTransaction } from '@trezoa/transactions';
  *
  * const serializedTransaction = getBase64EncodedWireTransaction(signedTransaction);
  * const signature = await rpc.sendTransaction(serializedTransaction, { encoding: 'base64' }).send();

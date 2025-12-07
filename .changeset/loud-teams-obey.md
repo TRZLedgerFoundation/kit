@@ -1,5 +1,5 @@
 ---
-'@solana/instruction-plans': minor
+'@trezoa/instruction-plans': minor
 ---
 
 Accept any `Error` object in failed `SingleTransactionPlanResult`

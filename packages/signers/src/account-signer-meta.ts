@@ -1,9 +1,9 @@
-import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@solana/instructions';
+import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@trezoa/instructions';
 import {
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionVersion,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { deduplicateSigners } from './deduplicate-signers';
 import { TransactionMessageWithFeePayerSigner } from './fee-payer-signer';
@@ -23,8 +23,8 @@ import { isTransactionSigner, TransactionSigner } from './transaction-signer';
  *
  * @example
  * ```ts
- * import { AccountRole } from '@solana/instructions';
- * import { generateKeyPairSigner, AccountSignerMeta } from '@solana/signers';
+ * import { AccountRole } from '@trezoa/instructions';
+ * import { generateKeyPairSigner, AccountSignerMeta } from '@trezoa/signers';
  *
  * const signer = await generateKeyPairSigner();
  * const account: AccountSignerMeta = {
@@ -60,8 +60,8 @@ type AccountMetaWithSigner<TSigner extends TransactionSigner = TransactionSigner
  *
  * @example
  * ```ts
- * import { AccountRole, Instruction } from '@solana/instructions';
- * import { generateKeyPairSigner, InstructionWithSigners } from '@solana/signers';
+ * import { AccountRole, Instruction } from '@trezoa/instructions';
+ * import { generateKeyPairSigner, InstructionWithSigners } from '@trezoa/signers';
  *
  * const [authority, buffer] = await Promise.all([
  *     generateKeyPairSigner(),
@@ -101,9 +101,9 @@ export type InstructionWithSigners<
  *
  * @example
  * ```ts
- * import { Instruction } from '@solana/instructions';
- * import { BaseTransactionMessage } from '@solana/transaction-messages';
- * import { generateKeyPairSigner, InstructionWithSigners, TransactionMessageWithSigners } from '@solana/signers';
+ * import { Instruction } from '@trezoa/instructions';
+ * import { BaseTransactionMessage } from '@trezoa/transaction-messages';
+ * import { generateKeyPairSigner, InstructionWithSigners, TransactionMessageWithSigners } from '@trezoa/signers';
  *
  * const signer = await generateKeyPairSigner();
  * const firstInstruction: Instruction = { ... };
@@ -134,7 +134,7 @@ export type TransactionMessageWithSigners<
  *
  * @example
  * ```ts
- * import { InstructionWithSigners, getSignersFromInstruction } from '@solana/signers';
+ * import { InstructionWithSigners, getSignersFromInstruction } from '@trezoa/signers';
  *
  * const signerA = { address: address('1111..1111'), signTransactions: async () => {} };
  * const signerB = { address: address('2222..2222'), signTransactions: async () => {} };
@@ -173,8 +173,8 @@ export function getSignersFromInstruction<TSigner extends TransactionSigner = Tr
  *
  * @example
  * ```ts
- * import { Instruction } from '@solana/instructions';
- * import { InstructionWithSigners, TransactionMessageWithSigners, getSignersFromTransactionMessage } from '@solana/signers';
+ * import { Instruction } from '@trezoa/instructions';
+ * import { InstructionWithSigners, TransactionMessageWithSigners, getSignersFromTransactionMessage } from '@trezoa/signers';
  *
  * const signerA = { address: address('1111..1111'), signTransactions: async () => {} };
  * const signerB = { address: address('2222..2222'), signTransactions: async () => {} };

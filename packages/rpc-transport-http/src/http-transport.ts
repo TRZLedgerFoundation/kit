@@ -1,6 +1,6 @@
-import { SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR, SolanaError } from '@solana/errors';
-import type { RpcTransport } from '@solana/rpc-spec';
-import type { RpcResponse } from '@solana/rpc-spec-types';
+import { TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR, TrezoaError } from '@trezoa/errors';
+import type { RpcTransport } from '@trezoa/rpc-spec';
+import type { RpcResponse } from '@trezoa/rpc-spec-types';
 import type Dispatcher from 'undici-types/dispatcher';
 
 import { HttpTransportConfig as Config } from './http-transport-config';
@@ -26,9 +26,9 @@ function warnDispatcherWasSuppliedInNonNodeEnvironment() {
  *
  * @example
  * ```ts
- * import { createHttpTransport } from '@solana/rpc-transport-http';
+ * import { createHttpTransport } from '@trezoa/rpc-transport-http';
  *
- * const transport = createHttpTransport({ url: 'https://api.mainnet-beta.solana.com' });
+ * const transport = createHttpTransport({ url: 'https://api.mainnet-beta.trezoa.com' });
  * const response = await transport({
  *     payload: { id: 1, jsonrpc: '2.0', method: 'getSlot' },
  * });
@@ -68,7 +68,7 @@ export function createHttpTransport(config: Config): RpcTransport {
         };
         const response = await fetch(url, requestInfo);
         if (!response.ok) {
-            throw new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR, {
+            throw new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR, {
                 headers: response.headers,
                 message: response.statusText,
                 statusCode: response.status,

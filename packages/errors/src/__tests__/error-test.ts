@@ -1,16 +1,16 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { isSolanaError, SolanaError } from '../error';
+import { isTrezoaError, TrezoaError } from '../error';
 import { getErrorMessage } from '../message-formatter';
 
 jest.mock('../message-formatter');
 
-describe('SolanaError', () => {
+describe('TrezoaError', () => {
     describe('given an error with context', () => {
-        let errorWithContext: SolanaError;
+        let errorWithContext: TrezoaError;
         beforeEach(() => {
-            errorWithContext = new SolanaError(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+            errorWithContext = new TrezoaError(
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 { foo: 'bar' },
             );
@@ -33,8 +33,8 @@ describe('SolanaError', () => {
     });
     describe('given an error with no context', () => {
         beforeEach(() => {
-            new SolanaError(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+            new TrezoaError(
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 undefined,
             );
@@ -44,12 +44,12 @@ describe('SolanaError', () => {
         });
     });
     describe('given an error with a cause', () => {
-        let errorWithCause: SolanaError;
+        let errorWithCause: TrezoaError;
         let cause: unknown;
         beforeEach(() => {
             cause = {};
-            errorWithCause = new SolanaError(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+            errorWithCause = new TrezoaError(
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 { cause },
             );
@@ -60,11 +60,11 @@ describe('SolanaError', () => {
     });
     describe.each(['cause'])('given an error with only the `%s` property from `ErrorOptions` present', propName => {
         let errorOptionValue: unknown;
-        let errorWithOption: SolanaError;
+        let errorWithOption: TrezoaError;
         beforeEach(() => {
             errorOptionValue = Symbol();
-            errorWithOption = new SolanaError(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+            errorWithOption = new TrezoaError(
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 { [propName]: errorOptionValue },
             );
@@ -83,43 +83,43 @@ describe('SolanaError', () => {
         expect.assertions(1);
         jest.mocked(getErrorMessage).mockReturnValue('o no');
         await jest.isolateModulesAsync(async () => {
-            const SolanaErrorModule =
+            const TrezoaErrorModule =
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 await import('../error');
-            // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
-            const error456 = new SolanaErrorModule.SolanaError(456);
+            // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
+            const error456 = new TrezoaErrorModule.TrezoaError(456);
             expect(error456).toHaveProperty('message', 'o no');
         });
     });
 });
 
-describe('isSolanaError()', () => {
-    let error123: SolanaError;
+describe('isTrezoaError()', () => {
+    let error123: TrezoaError;
     beforeEach(() => {
-        // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
-        error123 = new SolanaError(123);
+        // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
+        error123 = new TrezoaError(123);
     });
-    it('returns `true` for an instance of `SolanaError`', () => {
-        expect(isSolanaError(error123)).toBe(true);
+    it('returns `true` for an instance of `TrezoaError`', () => {
+        expect(isTrezoaError(error123)).toBe(true);
     });
     it('returns `false` for an instance of `Error`', () => {
-        expect(isSolanaError(new Error('bad thing'))).toBe(false);
+        expect(isTrezoaError(new Error('bad thing'))).toBe(false);
     });
     it('returns `true` when the error code matches', () => {
         expect(
-            isSolanaError(
+            isTrezoaError(
                 error123,
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
             ),
         ).toBe(true);
     });
     it('returns `false` when the error code does not match', () => {
         expect(
-            isSolanaError(
+            isTrezoaError(
                 error123,
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 456,
             ),
         ).toBe(false);

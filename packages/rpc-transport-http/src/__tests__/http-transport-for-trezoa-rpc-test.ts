@@ -1,22 +1,22 @@
-import { RpcTransport } from '@solana/rpc-spec';
+import { RpcTransport } from '@trezoa/rpc-spec';
 
 const MAX_SAFE_INTEGER = BigInt(Number.MAX_SAFE_INTEGER);
 const MAX_SAFE_INTEGER_PLUS_ONE = BigInt(Number.MAX_SAFE_INTEGER) + 1n;
 
-describe('createHttpTransportForSolanaRpc', () => {
+describe('createHttpTransportForTrezoaRpc', () => {
     let fetchSpy: jest.SpyInstance;
     let makeHttpRequest: RpcTransport;
     beforeEach(async () => {
         await jest.isolateModulesAsync(async () => {
             fetchSpy = jest.spyOn(globalThis, 'fetch');
-            const { createHttpTransportForSolanaRpc } =
+            const { createHttpTransportForTrezoaRpc } =
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                await import('../http-transport-for-solana-rpc');
-            makeHttpRequest = createHttpTransportForSolanaRpc({ url: 'http://localhost' });
+                await import('../http-transport-for-trezoa-rpc');
+            makeHttpRequest = createHttpTransportForTrezoaRpc({ url: 'http://localhost' });
         });
     });
-    describe('when the request is from the Solana RPC API', () => {
+    describe('when the request is from the Trezoa RPC API', () => {
         it('passes all bigints as large numerical values in the request body', async () => {
             expect.assertions(1);
             fetchSpy.mockResolvedValue({ ok: true, text: () => `{"ok":true}` });
@@ -66,7 +66,7 @@ describe('createHttpTransportForSolanaRpc', () => {
             });
         });
     });
-    describe('when the request is not from the Solana RPC API', () => {
+    describe('when the request is not from the Trezoa RPC API', () => {
         it('fails to stringify bigints in requests', async () => {
             expect.assertions(1);
             const promise = makeHttpRequest({

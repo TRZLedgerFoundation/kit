@@ -11,7 +11,7 @@ import { createHttpTransport } from '../index';
 let VALIDATOR_URL = process.argv[2];
 ok(
     typeof URL === 'undefined' || !!URL,
-    'You must supply the URL of a rate-limit-free Solana JSON-RPC server as the first argument to this script',
+    'You must supply the URL of a rate-limit-free Trezoa JSON-RPC server as the first argument to this script',
 );
 VALIDATOR_URL ??= 'http://127.0.0.1:8899';
 
@@ -25,8 +25,8 @@ let dispatcher: Dispatcher | undefined;
 function createDispatcher(options: Agent.Options) {
     dispatcher = new Agent({
         ...options,
-        // One second fewer than the Solana RPC's keepalive timeout.
-        // Read more: https://github.com/solana-labs/solana/issues/27859#issuecomment-1340097889
+        // One second fewer than the Trezoa RPC's keepalive timeout.
+        // Read more: https://github.com/trezoa-team/solana/issues/27859#issuecomment-1340097889
         keepAliveTimeout: 19000,
     });
 }

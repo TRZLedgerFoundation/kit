@@ -1,10 +1,10 @@
-import type { Address } from '@solana/addresses';
-import { SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetBlockProductionApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -13,7 +13,7 @@ const CONTEXT_MATCHER = expect.objectContaining({
 describe('getBlockProduction', () => {
     let rpc: Rpc<GetBlockProductionApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -72,10 +72,10 @@ describe('getBlockProduction', () => {
                 })
                 .send();
             await Promise.all([
-                expect(blockProductionPromise).rejects.toThrow(SolanaError),
+                expect(blockProductionPromise).rejects.toThrow(TrezoaError),
                 expect(blockProductionPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__INVALID_PARAMS,
+                    TREZOA_ERROR__JSON_RPC__INVALID_PARAMS,
                 ),
                 expect(blockProductionPromise).rejects.toHaveProperty(
                     'context.__serverMessage',

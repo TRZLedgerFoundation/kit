@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { createDecoder, createEncoder } from '../codec';
 import { fixCodecSize } from '../fix-codec-size';
@@ -36,7 +36,7 @@ describe('reverseCodec', () => {
 
         // Variable-size codec.
         // @ts-expect-error Reversed codec should be fixed-size.
-        expect(() => reverseCodec(base16)).toThrow(new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
+        expect(() => reverseCodec(base16)).toThrow(new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
     });
 });
 
@@ -55,7 +55,7 @@ describe('reverseEncoder', () => {
         expect(reversedEncoder.encode(42)).toStrictEqual(new Uint8Array([0, 42]));
 
         // @ts-expect-error Reversed encoder should be fixed-size.
-        expect(() => reverseEncoder(base16)).toThrow(new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
+        expect(() => reverseEncoder(base16)).toThrow(new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
     });
 
     it('gives the encoder access to the unboxed original byte array', () => {
@@ -89,7 +89,7 @@ describe('reverseDecoder', () => {
         expect(reversedDecoder.read(new Uint8Array([42, 0]), 0)).toStrictEqual(['0-42', 2]);
 
         // @ts-expect-error Reversed decoder should be fixed-size.
-        expect(() => reverseDecoder(base16)).toThrow(new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
+        expect(() => reverseDecoder(base16)).toThrow(new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH));
     });
 
     it('does not modify the input bytes in-place', () => {

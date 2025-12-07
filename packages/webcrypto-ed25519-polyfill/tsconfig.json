@@ -3,7 +3,7 @@
     "compilerOptions": {
         "lib": ["DOM", "ES2015", "ES2022.Error", "ES2022"]
     },
-    "display": "@solana/webcrypto-ed25519-polyfill",
+    "display": "@trezoa/webcrypto-ed25519-polyfill",
     "extends": "../tsconfig/base.json",
     "include": ["../build-scripts/build-time-constants.d.ts", "src"]
 }

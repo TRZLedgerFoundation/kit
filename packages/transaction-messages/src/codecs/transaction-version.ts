@@ -5,12 +5,12 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED,
-    SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED,
+    TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { MAX_SUPPORTED_TRANSACTION_VERSION, TransactionVersion } from '../transaction-message';
 
@@ -31,13 +31,13 @@ export function getTransactionVersionEncoder(): VariableSizeEncoder<TransactionV
                 return offset;
             }
             if (value < 0 || value > 127) {
-                throw new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_OUT_OF_RANGE, {
+                throw new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_OUT_OF_RANGE, {
                     actualVersion: value,
                 });
             }
 
             if (value > MAX_SUPPORTED_TRANSACTION_VERSION) {
-                throw new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
+                throw new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
                     unsupportedVersion: value,
                 });
             }
@@ -65,7 +65,7 @@ export function getTransactionVersionDecoder(): VariableSizeDecoder<TransactionV
             } else {
                 const version = firstByte ^ VERSION_FLAG_MASK;
                 if (version > MAX_SUPPORTED_TRANSACTION_VERSION) {
-                    throw new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
+                    throw new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
                         unsupportedVersion: version,
                     });
                 }

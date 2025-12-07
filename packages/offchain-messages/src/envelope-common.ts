@@ -1,4 +1,4 @@
-import { VariableSizeEncoder } from '@solana/codecs-core';
+import { VariableSizeEncoder } from '@trezoa/codecs-core';
 
 import { OffchainMessageEnvelope } from './envelope';
 import { OffchainMessage, OffchainMessageBytes } from './message';

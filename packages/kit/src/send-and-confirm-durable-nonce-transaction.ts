@@ -1,11 +1,11 @@
-import type { GetAccountInfoApi, GetSignatureStatusesApi, Rpc, SendTransactionApi } from '@solana/rpc';
-import type { AccountNotificationsApi, RpcSubscriptions, SignatureNotificationsApi } from '@solana/rpc-subscriptions';
+import type { GetAccountInfoApi, GetSignatureStatusesApi, Rpc, SendTransactionApi } from '@trezoa/rpc';
+import type { AccountNotificationsApi, RpcSubscriptions, SignatureNotificationsApi } from '@trezoa/rpc-subscriptions';
 import {
     createNonceInvalidationPromiseFactory,
     createRecentSignatureConfirmationPromiseFactory,
     waitForDurableNonceTransactionConfirmation,
-} from '@solana/transaction-confirmation';
-import { SendableTransaction, Transaction, TransactionWithDurableNonceLifetime } from '@solana/transactions';
+} from '@trezoa/transaction-confirmation';
+import { SendableTransaction, Transaction, TransactionWithDurableNonceLifetime } from '@trezoa/transactions';
 
 import { sendAndConfirmDurableNonceTransaction_INTERNAL_ONLY_DO_NOT_EXPORT } from './send-transaction-internal';
 
@@ -18,9 +18,9 @@ type SendAndConfirmDurableNonceTransactionFunction = (
 ) => Promise<void>;
 
 type SendAndConfirmDurableNonceTransactionFactoryConfig<TCluster> = {
-    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link SendTransactionApi} of the Solana RPC API */
+    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link SendTransactionApi} of the Trezoa RPC API */
     rpc: Rpc<GetAccountInfoApi & GetSignatureStatusesApi & SendTransactionApi> & { '~cluster'?: TCluster };
-    /** An object that supports the {@link AccountNotificationsApi} and the {@link SignatureNotificationsApi} of the Solana RPC Subscriptions API */
+    /** An object that supports the {@link AccountNotificationsApi} and the {@link SignatureNotificationsApi} of the Trezoa RPC Subscriptions API */
     rpcSubscriptions: RpcSubscriptions<AccountNotificationsApi & SignatureNotificationsApi> & { '~cluster'?: TCluster };
 };
 
@@ -33,23 +33,23 @@ type SendAndConfirmDurableNonceTransactionFactoryConfig<TCluster> = {
  * @example
  * ```ts
  * import {
- *     isSolanaError,
+ *     isTrezoaError,
  *     sendAndConfirmDurableNonceTransactionFactory,
- *     SOLANA_ERROR__INVALID_NONCE,
- *     SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND,
- * } from '@solana/kit';
+ *     TREZOA_ERROR__INVALID_NONCE,
+ *     TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND,
+ * } from '@trezoa/kit';
  *
  * const sendAndConfirmNonceTransaction = sendAndConfirmDurableNonceTransactionFactory({ rpc, rpcSubscriptions });
  *
  * try {
  *     await sendAndConfirmNonceTransaction(transaction, { commitment: 'confirmed' });
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
  *         console.error(
  *             'The lifetime specified by this transaction refers to a nonce account ' +
  *                 `\`${e.context.nonceAccountAddress}\` that does not exist`,
  *         );
- *     } else if (isSolanaError(e, SOLANA_ERROR__INVALID_NONCE)) {
+ *     } else if (isTrezoaError(e, TREZOA_ERROR__INVALID_NONCE)) {
  *         console.error('This transaction depends on a nonce that is no longer valid');
  *     } else {
  *         throw e;

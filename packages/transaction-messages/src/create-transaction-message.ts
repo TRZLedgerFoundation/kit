@@ -17,7 +17,7 @@ type EmptyTransactionMessage<TVersion extends TransactionVersion> = Omit<
  *
  * @example
  * ```ts
- * import { createTransactionMessage } from '@solana/transaction-messages';
+ * import { createTransactionMessage } from '@trezoa/transaction-messages';
  *
  * const message = createTransactionMessage({ version: 0 });
  * ```

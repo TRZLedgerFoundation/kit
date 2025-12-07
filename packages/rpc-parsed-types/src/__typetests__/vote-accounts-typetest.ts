@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@trezoa/rpc-types';
 
 import { JsonParsedVoteAccount } from '../vote-accounts';
 

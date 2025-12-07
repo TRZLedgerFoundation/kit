@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME, SolanaError } from '@solana/errors';
-import { type Blockhash, isBlockhash } from '@solana/rpc-types';
+import { TREZOA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME, TrezoaError } from '@trezoa/errors';
+import { type Blockhash, isBlockhash } from '@trezoa/rpc-types';
 
 import { ExcludeTransactionMessageLifetime, TransactionMessageWithLifetime } from './lifetime';
 import { BaseTransactionMessage } from './transaction-message';
@@ -46,7 +46,7 @@ export interface TransactionMessageWithBlockhashLifetime {
  *
  * @example
  * ```ts
- * import { isTransactionMessageWithBlockhashLifetime } from '@solana/transaction-messages';
+ * import { isTransactionMessageWithBlockhashLifetime } from '@trezoa/transaction-messages';
  *
  * if (isTransactionMessageWithBlockhashLifetime(message)) {
  *     // At this point, `message` has been refined to a `TransactionMessageWithBlockhashLifetime`.
@@ -78,7 +78,7 @@ export function isTransactionMessageWithBlockhashLifetime(
  *
  * @example
  * ```ts
- * import { assertIsTransactionMessageWithBlockhashLifetime } from '@solana/transaction-messages';
+ * import { assertIsTransactionMessageWithBlockhashLifetime } from '@trezoa/transaction-messages';
  *
  * try {
  *     // If this type assertion function doesn't throw, then
@@ -97,7 +97,7 @@ export function assertIsTransactionMessageWithBlockhashLifetime(
     transactionMessage: BaseTransactionMessage | (BaseTransactionMessage & TransactionMessageWithBlockhashLifetime),
 ): asserts transactionMessage is BaseTransactionMessage & TransactionMessageWithBlockhashLifetime {
     if (!isTransactionMessageWithBlockhashLifetime(transactionMessage)) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME);
     }
 }
 
@@ -108,7 +108,7 @@ export function assertIsTransactionMessageWithBlockhashLifetime(
  *
  * @example
  * ```ts
- * import { setTransactionMessageLifetimeUsingBlockhash } from '@solana/transaction-messages';
+ * import { setTransactionMessageLifetimeUsingBlockhash } from '@trezoa/transaction-messages';
  *
  * const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
  * const txMessageWithBlockhashLifetime = setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, txMessage);

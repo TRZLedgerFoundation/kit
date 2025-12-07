@@ -1,4 +1,4 @@
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 
 import { assertIsKeyPairSigner, isKeyPairSigner, KeyPairSigner } from '../keypair-signer';
 

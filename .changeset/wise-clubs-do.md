@@ -1,5 +1,5 @@
 ---
-'@solana/transaction-messages': patch
+'@trezoa/transaction-messages': patch
 ---
 
 Export BlockhashLifetimeConstraint and NonceLifetimeConstraint

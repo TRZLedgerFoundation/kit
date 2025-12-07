@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Base64EncodedDataResponse } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Base64EncodedDataResponse } from '@trezoa/rpc-types';
 
 import { JsonParsedBpfUpgradeableLoaderProgramAccount } from '../bpf-upgradeable-loader-accounts';
 

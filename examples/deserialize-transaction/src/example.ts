@@ -1,13 +1,13 @@
 /**
  * EXAMPLE
- * Deserialize and inspect a transaction with @solana/kit
+ * Deserialize and inspect a transaction with @trezoa/kit
  *
  * Before running any of the examples in this monorepo, make sure to set up a test validator by
  * running `pnpm test:setup` in the root directory.
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLogger } from '@solana/example-utils/createLogger.js';
+import { createLogger } from '@trezoa/example-utils/createLogger.js';
 import {
     Address,
     appendTransactionMessageInstructions,
@@ -15,7 +15,7 @@ import {
     assertIsInstructionWithData,
     compressTransactionMessageUsingAddressLookupTables,
     createKeyPairSignerFromBytes,
-    createSolanaRpc,
+    createTrezoaRpc,
     createTransactionMessage,
     decompileTransactionMessageFetchingLookupTables,
     getBase64EncodedWireTransaction,
@@ -29,15 +29,15 @@ import {
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
     verifySignature,
-} from '@solana/kit';
-import { fetchAddressLookupTable } from '@solana-program/address-lookup-table';
-import { getAddMemoInstruction, MEMO_PROGRAM_ADDRESS, parseAddMemoInstruction } from '@solana-program/memo';
+} from '@trezoa/kit';
+import { fetchAddressLookupTable } from '@trezoa-program/address-lookup-table';
+import { getAddMemoInstruction, MEMO_PROGRAM_ADDRESS, parseAddMemoInstruction } from '@trezoa-program/memo';
 import {
-    getTransferSolInstruction,
+    getTransferTrzInstruction,
     identifySystemInstruction,
     parseTransferSolInstruction,
     SystemInstruction,
-} from '@solana-program/system';
+} from '@trezoa-program/system';
 
 const log = createLogger('Deserialize');
 
@@ -57,7 +57,7 @@ log.info({ address: LOOKUP_TABLE_ADDRESS }, '[setup] Setting lookup table addres
  *
  * This example uses your local test validator which must be running before you run this script.
  */
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
 
 /**
  * SETUP: TRANSACTION LIFETIME
@@ -105,13 +105,13 @@ const transactionMessage = pipe(
     tx =>
         appendTransactionMessageInstructions(
             [
-                getTransferSolInstruction({
+                getTransferTrzInstruction({
                     amount: lamports(12345678n),
                     destination: DESTINATION_ADDRESS,
                     source: SOURCE_ACCOUNT_SIGNER,
                 }),
                 getAddMemoInstruction({
-                    memo: 'hello from @solana/kit',
+                    memo: 'hello from @trezoa/kit',
                 }),
             ],
             tx,
@@ -121,7 +121,7 @@ log.info('[setup] Created the transaction message');
 
 /**
  * SETUP: COMPRESS WITH LOOKUP TABLE
- * As the destination of our transfer SOL instruction is in our lookup table, we can use the
+ * As the destination of our transfer TRZ instruction is in our lookup table, we can use the
  * lookup table to compress the transaction.
  *
  * This will modify the accounts referred to in the transaction, so that where possible they
@@ -139,7 +139,7 @@ log.info(`[setup] Compressed the transaction message using lookup table ${LOOKUP
 
 /**
  * SETUP: PARTIALLY SIGN THE TRANSACTION
- * A Solana transaction can have multiple signers that must sign before it is sent to the network.
+ * A Trezoa transaction can have multiple signers that must sign before it is sent to the network.
  * In our case the fee payer and the source account would both need to sign the transaction
  * We used a signer for the source account, so it will sign it when we call `signTransactionMessageWithSigners`
  * But we only used an address for the fee payer, and we don't have its private key to sign the transaction
@@ -170,7 +170,7 @@ log.info(`[setup] Encoded the transaction as base64: ${base64EncodedTransaction.
 
 /**
  * STEP 1: DECODE TO TRANSACTION
- * @solana/kit has encoders/decoders for many Solana data structures and common data formats,
+ * @trezoa/kit has encoders/decoders for many Trezoa data structures and common data formats,
  * including both base64 strings and our `Transaction` data structure
  * To convert between these, we first encode to a byte array, and then decode to the
  * desired data structure.
@@ -220,12 +220,12 @@ log.info(
  * about the transaction. Let's do that next.
  */
 
-// Again we have a decoder to convert from bytes to a Solana data structure, in this case the `CompiledTransactionMessage`
+// Again we have a decoder to convert from bytes to a Trezoa data structure, in this case the `CompiledTransactionMessage`
 const compiledTransactionMessageDecoder = getCompiledTransactionMessageDecoder();
 const compiledTransactionMessage = compiledTransactionMessageDecoder.decode(decodedTransaction.messageBytes);
 
 // This gives us the data structure `CompiledTransactionMessage`. This is the format that transactions are
-// compiled before the entire transaction is encoded to base64 to be sent to the Solana network.
+// compiled before the entire transaction is encoded to base64 to be sent to the Trezoa network.
 
 // Let's inspect some fields of `compiledTransactionMessage`
 // We can see its version:
@@ -259,7 +259,7 @@ log.info(
 );
 
 /**
- * This is the SOL transfer instruction
+ * This is the TRZ transfer instruction
  * The program account index is 2, which matches the system program (1111...) in our static accounts
  * The first account index is 1, which matches the signer we used as the source address
  * But the second account index is 4, which is outside our array of static accounts.
@@ -351,11 +351,11 @@ log.info(decompiledTransactionMessage.instructions[0].data, '[step 3] The data b
 /**
  * STEP 4: PARSING THE INSTRUCTIONS
  * To understand what is actually happening in each instruction, we need to decode the data field
- * We will do this by using the generated `@solana-program/system` client, which can decode data
- * from the @solana/kit instruction data structure for the System program
+ * We will do this by using the generated `@trezoa-program/system` client, which can decode data
+ * from the @trezoa/kit instruction data structure for the System program
  * We know from the program address (11111111111111111111111111111111) that the first instruction
  * is to the system program
- * You can generate such a client for any Solana program using Codama
+ * You can generate such a client for any Trezoa program using Codama
  * See https://github.com/codama-idl/codama for more information on Codama
  */
 
@@ -367,16 +367,16 @@ const identifiedInstruction = identifySystemInstruction(firstInstruction);
 // We can compare the `identifiedInstruction` to the enum values, like this
 if (identifiedInstruction === SystemInstruction.TransferSol) {
     log.info('[step 4] The first instruction calls the TransferSol instruction of the system program');
-    // Narrow the type again, the instruction must have accounts to be parsed as a transfer SOL instruction
+    // Narrow the type again, the instruction must have accounts to be parsed as a transfer TRZ instruction
     assertIsInstructionWithAccounts(firstInstruction);
 
     // TODO: This can just be `parseTransferSolInstruction(firstInstruction)` when the client is updated
-    // with the `@solana/kit` version that changes the instruction data type to `ReadonlyUint8Array`
+    // with the `@trezoa/kit` version that changes the instruction data type to `ReadonlyUint8Array`
     const parsedFirstInstruction = parseTransferSolInstruction({
         ...firstInstruction,
         data: firstInstruction.data as unknown as Uint8Array,
     });
-    log.info(parsedFirstInstruction, '[step 4] The parsed Transfer SOL instruction');
+    log.info(parsedFirstInstruction, '[step 4] The parsed Transfer TRZ instruction');
 
     // This gives us an understanding of what exactly is happening in the instruction
     // We can see the source address, the destination address, and the amount of lamports
@@ -402,7 +402,7 @@ if (secondInstruction.programAddress === MEMO_PROGRAM_ADDRESS) {
 assertIsInstructionWithData(secondInstruction);
 
 // TODO: This can just be `parseAddMemoInstruction(secondInstruction)` when the client is updated
-// with the `@solana/kit` version that changes the instruction data type to `ReadonlyUint8Array`
+// with the `@trezoa/kit` version that changes the instruction data type to `ReadonlyUint8Array`
 const parsedSecondInstruction = parseAddMemoInstruction({
     ...secondInstruction,
     data: secondInstruction.data as unknown as Uint8Array,

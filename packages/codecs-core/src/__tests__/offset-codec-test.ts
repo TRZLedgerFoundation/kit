@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 import { offsetCodec } from '../offset-codec';
 import { b, expectNewPostOffset, expectNewPreOffset, getMockCodec } from './__setup__';
@@ -219,14 +219,14 @@ describe('offsetCodec', () => {
             const mockCodec = getMockCodec({ innerSize: 0, size: 10 });
             const codec = offsetCodec(mockCodec, { preOffset: () => -1 });
             expect(() => codec.encode(42)).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetEncoder',
                     offset: -1,
                 }),
             );
             expect(() => codec.decode(b('00'.repeat(10)))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetDecoder',
                     offset: -1,
@@ -238,14 +238,14 @@ describe('offsetCodec', () => {
             const mockCodec = getMockCodec({ innerSize: 0, size: 10 });
             const codec = offsetCodec(mockCodec, { preOffset: () => 11 });
             expect(() => codec.encode(42)).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetEncoder',
                     offset: 11,
                 }),
             );
             expect(() => codec.decode(b('00'.repeat(10)))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetDecoder',
                     offset: 11,
@@ -264,14 +264,14 @@ describe('offsetCodec', () => {
             const mockCodec = getMockCodec({ innerSize: 0, size: 10 });
             const codec = offsetCodec(mockCodec, { postOffset: () => -1 });
             expect(() => codec.encode(42)).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetEncoder',
                     offset: -1,
                 }),
             );
             expect(() => codec.decode(b('00'.repeat(10)))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetDecoder',
                     offset: -1,
@@ -283,14 +283,14 @@ describe('offsetCodec', () => {
             const mockCodec = getMockCodec({ innerSize: 0, size: 10 });
             const codec = offsetCodec(mockCodec, { postOffset: () => 11 });
             expect(() => codec.encode(42)).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetEncoder',
                     offset: 11,
                 }),
             );
             expect(() => codec.decode(b('00'.repeat(10)))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
                     bytesLength: 10,
                     codecDescription: 'offsetDecoder',
                     offset: 11,

@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { StringifiedBigInt, UnixTimestamp } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { StringifiedBigInt, UnixTimestamp } from '@trezoa/rpc-types';
 
 import type { JsonParsedStakeProgramAccount } from '../stake-accounts';
 

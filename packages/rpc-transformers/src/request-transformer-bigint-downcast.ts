@@ -6,7 +6,7 @@ import { getTreeWalkerRequestTransformer } from './tree-traversal';
  *
  * @example
  * ```ts
- * import { getBigIntDowncastRequestTransformer } from '@solana/rpc-transformers';
+ * import { getBigIntDowncastRequestTransformer } from '@trezoa/rpc-transformers';
  *
  * const requestTransformer = getBigIntDowncastRequestTransformer();
  * ```

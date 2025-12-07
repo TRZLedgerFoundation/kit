@@ -1,4 +1,4 @@
-import type { RpcSubscriptionsTransport } from '@solana/rpc-subscriptions-spec';
+import type { RpcSubscriptionsTransport } from '@trezoa/rpc-subscriptions-spec';
 
 import { getRpcSubscriptionsTransportWithSubscriptionCoalescing } from '../rpc-subscriptions-coalescer';
 

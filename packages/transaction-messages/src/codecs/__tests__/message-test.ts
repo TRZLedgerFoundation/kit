@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Decoder, Encoder } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { Decoder, Encoder } from '@trezoa/codecs-core';
 
 import { CompiledTransactionMessage, CompiledTransactionMessageWithLifetime } from '../../compile/message';
 import {

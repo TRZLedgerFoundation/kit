@@ -1,8 +1,8 @@
-import { Address, getAddressFromPublicKey } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { SOLANA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, SolanaError } from '@solana/errors';
-import { createKeyPairFromBytes, createKeyPairFromPrivateKeyBytes, generateKeyPair, signBytes } from '@solana/keys';
-import { partiallySignTransaction } from '@solana/transactions';
+import { Address, getAddressFromPublicKey } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, TrezoaError } from '@trezoa/errors';
+import { createKeyPairFromBytes, createKeyPairFromPrivateKeyBytes, generateKeyPair, signBytes } from '@trezoa/keys';
+import { partiallySignTransaction } from '@trezoa/transactions';
 
 import { isMessagePartialSigner, MessagePartialSigner } from './message-partial-signer';
 import { isTransactionPartialSigner, TransactionPartialSigner } from './transaction-partial-signer';
@@ -18,7 +18,7 @@ import { isTransactionPartialSigner, TransactionPartialSigner } from './transact
  *
  * @example
  * ```ts
- * import { generateKeyPairSigner } from '@solana/signers';
+ * import { generateKeyPairSigner } from '@trezoa/signers';
  *
  * const signer = generateKeyPairSigner();
  * signer.address; // Address;
@@ -44,7 +44,7 @@ export type KeyPairSigner<TAddress extends string = string> = MessagePartialSign
  *
  * @example
  * ```ts
- * import { generateKeyPairSigner, isKeyPairSigner } from '@solana/signers';
+ * import { generateKeyPairSigner, isKeyPairSigner } from '@trezoa/signers';
  *
  * const signer = await generateKeyPairSigner();
  * isKeyPairSigner(signer); // true
@@ -70,7 +70,7 @@ export function isKeyPairSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { generateKeyPairSigner, assertIsKeyPairSigner } from '@solana/signers';
+ * import { generateKeyPairSigner, assertIsKeyPairSigner } from '@trezoa/signers';
  *
  * const signer = await generateKeyPairSigner();
  * assertIsKeyPairSigner(signer); // void
@@ -82,7 +82,7 @@ export function assertIsKeyPairSigner<TAddress extends string>(value: {
     address: Address<TAddress>;
 }): asserts value is KeyPairSigner<TAddress> {
     if (!isKeyPairSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, {
             address: value.address,
         });
     }
@@ -102,8 +102,8 @@ export function assertIsKeyPairSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
- * import { createSignerFromKeyPair, KeyPairSigner } from '@solana/signers';
+ * import { generateKeyPair } from '@trezoa/keys';
+ * import { createSignerFromKeyPair, KeyPairSigner } from '@trezoa/signers';
  *
  * const keyPair: CryptoKeyPair = await generateKeyPair();
  * const signer: KeyPairSigner = await createSignerFromKeyPair(keyPair);
@@ -139,7 +139,7 @@ export async function createSignerFromKeyPair(keyPair: CryptoKeyPair): Promise<K
  *
  * @example
  * ```ts
- * import { generateKeyPairSigner } from '@solana/signers';
+ * import { generateKeyPairSigner } from '@trezoa/signers';
  *
  * const signer = await generateKeyPairSigner();
  * ```
@@ -156,7 +156,7 @@ export async function generateKeyPairSigner(): Promise<KeyPairSigner> {
  * @example
  * ```ts
  * import fs from 'fs';
- * import { createKeyPairSignerFromBytes } from '@solana/signers';
+ * import { createKeyPairSignerFromBytes } from '@trezoa/signers';
  *
  * // Get bytes from local keypair file.
  * const keypairFile = fs.readFileSync('~/.config/solana/id.json');
@@ -180,8 +180,8 @@ export async function createKeyPairSignerFromBytes(
  *
  * @example
  * ```ts
- * import { getUtf8Encoder } from '@solana/codecs-strings';
- * import { createKeyPairSignerFromPrivateKeyBytes } from '@solana/signers';
+ * import { getUtf8Encoder } from '@trezoa/codecs-strings';
+ * import { createKeyPairSignerFromPrivateKeyBytes } from '@trezoa/signers';
  *
  * const message = getUtf8Encoder().encode('Hello, World!');
  * const seed = new Uint8Array(await crypto.subtle.digest('SHA-256', message));

@@ -1,13 +1,13 @@
-import { address } from '@solana/addresses';
-import { SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, SolanaError } from '@solana/errors';
-import { pipe } from '@solana/functional';
-import type { Blockhash } from '@solana/rpc-types';
+import { address } from '@trezoa/addresses';
+import { TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, TrezoaError } from '@trezoa/errors';
+import { pipe } from '@trezoa/functional';
+import type { Blockhash } from '@trezoa/rpc-types';
 import {
     appendTransactionMessageInstruction,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import {
     assertIsTransactionMessageWithinSizeLimit,
@@ -64,7 +64,7 @@ describe('assertIsTransactionMessageWithinSizeLimit', () => {
 
     it('throws when the compiled size is above the transaction size limit', () => {
         expect(() => assertIsTransactionMessageWithinSizeLimit(OVERSIZED_TRANSACTION_MESSAGE)).toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, {
                 transactionSize: 1405,
                 transactionSizeLimit: TRANSACTION_SIZE_LIMIT,
             }),

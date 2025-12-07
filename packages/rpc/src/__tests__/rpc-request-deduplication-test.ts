@@ -1,30 +1,30 @@
-import { getSolanaRpcPayloadDeduplicationKey } from '../rpc-request-deduplication';
+import { getTrezoaRpcPayloadDeduplicationKey } from '../rpc-request-deduplication';
 
-describe('getSolanaRpcPayloadDeduplicationKey', () => {
+describe('getTrezoaRpcPayloadDeduplicationKey', () => {
     it('produces no key for undefined payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey(undefined)).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey(undefined)).toBeUndefined();
     });
     it('produces no key for null payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey(null)).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey(null)).toBeUndefined();
     });
     it('produces no key for array payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey([])).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey([])).toBeUndefined();
     });
     it('produces no key for string payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey('o hai')).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey('o hai')).toBeUndefined();
     });
     it('produces no key for numeric payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey(123)).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey(123)).toBeUndefined();
     });
     it('produces no key for bigint payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey(123n)).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey(123n)).toBeUndefined();
     });
     it('produces no key for object payloads that are not JSON-RPC payloads', () => {
-        expect(getSolanaRpcPayloadDeduplicationKey({})).toBeUndefined();
+        expect(getTrezoaRpcPayloadDeduplicationKey({})).toBeUndefined();
     });
     it('produces a key for a JSON-RPC payload', () => {
         expect(
-            getSolanaRpcPayloadDeduplicationKey({
+            getTrezoaRpcPayloadDeduplicationKey({
                 id: 1,
                 jsonrpc: '2.0',
                 method: 'getFoo',
@@ -34,7 +34,7 @@ describe('getSolanaRpcPayloadDeduplicationKey', () => {
     });
     it('produces identical keys for two materially identical JSON-RPC payloads', () => {
         expect(
-            getSolanaRpcPayloadDeduplicationKey({
+            getTrezoaRpcPayloadDeduplicationKey({
                 id: 1,
                 jsonrpc: '2.0',
                 method: 'getFoo',
@@ -42,7 +42,7 @@ describe('getSolanaRpcPayloadDeduplicationKey', () => {
             }),
         ).toEqual(
             /* eslint-disable sort-keys-fix/sort-keys-fix */
-            getSolanaRpcPayloadDeduplicationKey({
+            getTrezoaRpcPayloadDeduplicationKey({
                 jsonrpc: '2.0',
                 method: 'getFoo',
                 params: { b: { d: 4, c: [2, 3] }, a: 1 },

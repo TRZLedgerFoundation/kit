@@ -1,13 +1,13 @@
 import {
-    SOLANA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT,
-    SOLANA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT,
+    TREZOA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     assertDigestCapabilityIsAvailable,
@@ -17,8 +17,8 @@ import {
 } from '../subtle-crypto';
 
 // HACK: Pierce the veil of `jest.isolateModules` so that the modules inside get the same version of
-//       `@solana/errors` that is imported above.
-jest.mock('@solana/errors', () => jest.requireActual('@solana/errors'));
+//       `@trezoa/errors` that is imported above.
+jest.mock('@trezoa/errors', () => jest.requireActual('@trezoa/errors'));
 
 describe('assertDigestCapabilityIsAvailable()', () => {
     describe('when `SubtleCrypto::digest` is available', () => {
@@ -36,7 +36,7 @@ describe('assertDigestCapabilityIsAvailable()', () => {
             });
             it('throws', () => {
                 expect(assertDigestCapabilityIsAvailable).toThrow(
-                    new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
+                    new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
                 );
             });
         });
@@ -54,7 +54,7 @@ describe('assertDigestCapabilityIsAvailable()', () => {
         });
         it('throws', () => {
             expect(assertDigestCapabilityIsAvailable).toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED),
             );
         });
     });
@@ -76,7 +76,7 @@ describe('assertKeyExporterIsAvailable()', () => {
             });
             it('throws', () => {
                 expect(assertKeyExporterIsAvailable).toThrow(
-                    new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
+                    new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
                 );
             });
         });
@@ -94,7 +94,7 @@ describe('assertKeyExporterIsAvailable()', () => {
         });
         it('throws', () => {
             expect(assertKeyExporterIsAvailable).toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED),
             );
         });
     });
@@ -123,7 +123,7 @@ describe('assertKeyGenerationIsAvailable()', () => {
             it('rejects', async () => {
                 expect.assertions(1);
                 await expect(assertKeyGenerationIsAvailable()).rejects.toThrow(
-                    new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
+                    new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
                 );
             });
         });
@@ -142,7 +142,7 @@ describe('assertKeyGenerationIsAvailable()', () => {
         it('rejects', async () => {
             expect.assertions(1);
             await expect(assertKeyGenerationIsAvailable()).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED),
             );
         });
     });
@@ -159,7 +159,7 @@ describe('assertKeyGenerationIsAvailable()', () => {
         it('rejects', async () => {
             expect.assertions(1);
             await expect(assertKeyGenerationIsAvailable()).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED),
             );
         });
         it('remembers the result from the first time it is called (parallel checks)', async () => {
@@ -200,7 +200,7 @@ describe('assertSigningCapabilityIsAvailable()', () => {
             });
             it('throws', () => {
                 expect(assertSigningCapabilityIsAvailable).toThrow(
-                    new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
+                    new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
                 );
             });
         });
@@ -218,7 +218,7 @@ describe('assertSigningCapabilityIsAvailable()', () => {
         });
         it('throws', () => {
             expect(assertSigningCapabilityIsAvailable).toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED),
             );
         });
     });
@@ -240,7 +240,7 @@ describe('assertVerificationCapabilityIsAvailable()', () => {
             });
             it('throws', () => {
                 expect(assertVerificationCapabilityIsAvailable).toThrow(
-                    new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
+                    new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT),
                 );
             });
         });
@@ -258,7 +258,7 @@ describe('assertVerificationCapabilityIsAvailable()', () => {
         });
         it('throws', () => {
             expect(assertVerificationCapabilityIsAvailable).toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED),
             );
         });
     });

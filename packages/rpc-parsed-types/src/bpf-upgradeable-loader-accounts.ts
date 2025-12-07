@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Base64EncodedDataResponse, Slot } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Base64EncodedDataResponse, Slot } from '@trezoa/rpc-types';
 
 import type { RpcParsedType } from './rpc-parsed-type';
 

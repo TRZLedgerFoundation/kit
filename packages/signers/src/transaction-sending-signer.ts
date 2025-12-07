@@ -1,7 +1,7 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_SENDING_SIGNER, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { Transaction, TransactionWithLifetime } from '@solana/transactions';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_SENDING_SIGNER, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { Transaction, TransactionWithLifetime } from '@trezoa/transactions';
 
 import { BaseTransactionSignerConfig } from './types';
 
@@ -73,8 +73,8 @@ export type TransactionSendingSigner<TAddress extends string = string> = Readonl
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isTransactionSendingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isTransactionSendingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isTransactionSendingSigner({ address, signAndSendTransactions: async () => {} }); // true
@@ -97,8 +97,8 @@ export function isTransactionSendingSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsTransactionSendingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsTransactionSendingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsTransactionSendingSigner({ address, signAndSendTransactions: async () => {} }); // void
@@ -112,7 +112,7 @@ export function assertIsTransactionSendingSigner<TAddress extends string>(value:
     address: Address<TAddress>;
 }): asserts value is TransactionSendingSigner<TAddress> {
     if (!isTransactionSendingSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_SENDING_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_SENDING_SIGNER, {
             address: value.address,
         });
     }

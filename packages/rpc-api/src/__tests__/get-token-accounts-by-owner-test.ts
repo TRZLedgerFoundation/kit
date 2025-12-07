@@ -1,14 +1,14 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__JSON_RPC__INVALID_PARAMS,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
-    SolanaError,
-} from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+    TREZOA_ERROR__JSON_RPC__INVALID_PARAMS,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+    TrezoaError,
+} from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetTokenAccountsByOwnerApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -17,7 +17,7 @@ const CONTEXT_MATCHER = expect.objectContaining({
 describe('getTokenAccountsByOwner', () => {
     let rpc: Rpc<GetTokenAccountsByOwnerApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -87,10 +87,10 @@ describe('getTokenAccountsByOwner', () => {
                 )
                 .send();
             await Promise.all([
-                expect(accountInfoPromise).rejects.toThrow(SolanaError),
+                expect(accountInfoPromise).rejects.toThrow(TrezoaError),
                 expect(accountInfoPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
                 ),
                 expect(accountInfoPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
             ]);
@@ -128,7 +128,7 @@ describe('getTokenAccountsByOwner', () => {
 
             const accountInfoPromise = rpc.getTokenAccountsByOwner(owner, { mint }).send();
             await expect(accountInfoPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid param: could not find mint',
                 }),
             );
@@ -211,7 +211,7 @@ describe('getTokenAccountsByOwner', () => {
 
             const accountInfoPromise = rpc.getTokenAccountsByOwner(owner, { programId }).send();
             await expect(accountInfoPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid param: unrecognized Token program id',
                 }),
             );
@@ -240,7 +240,7 @@ describe('getTokenAccountsByOwner', () => {
 
     describe('when called with base58 encoding', () => {
         // Currently we can't test this because every token account is >128 bytes
-        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/anza-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
+        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
         it.todo('returns RPC Response with account info with annotated base58 encoding');
     });
 
@@ -387,7 +387,7 @@ describe('getTokenAccountsByOwner', () => {
 
     describe('when called with no encoding', () => {
         // Currently we can't test this because every token account is >128 bytes
-        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/anza-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
+        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
         it.todo('returns base58 data without an annotation');
     });
 

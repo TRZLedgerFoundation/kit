@@ -1,9 +1,9 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS,
-    SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS,
+    TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     assertIsTransactionMessageWithSingleSendingSigner,
@@ -88,7 +88,7 @@ describe('assertIsTransactionMessageWithSingleSendingSigner', () => {
 
         // Then we expect the assertion to fail.
         expect(() => assertIsTransactionMessageWithSingleSendingSigner(transaction)).toThrow(
-            new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS),
+            new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_CANNOT_HAVE_MULTIPLE_SENDING_SIGNERS),
         );
     });
 
@@ -100,7 +100,7 @@ describe('assertIsTransactionMessageWithSingleSendingSigner', () => {
 
         // Then we expect the assertion to fail.
         expect(() => assertIsTransactionMessageWithSingleSendingSigner(transaction)).toThrow(
-            new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING),
+            new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING),
         );
     });
 });

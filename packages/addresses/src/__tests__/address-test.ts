@@ -1,25 +1,25 @@
-import { VariableSizeEncoder } from '@solana/codecs-core';
-import { getBase58Decoder, getBase58Encoder } from '@solana/codecs-strings';
+import { VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getBase58Decoder, getBase58Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Address, getAddressCodec, getAddressComparator } from '../address';
 
-jest.mock('@solana/codecs-strings', () => ({
-    ...jest.requireActual('@solana/codecs-strings'),
+jest.mock('@trezoa/codecs-strings', () => ({
+    ...jest.requireActual('@trezoa/codecs-strings'),
     getBase58Decoder: jest.fn(),
     getBase58Encoder: jest.fn(),
 }));
 // HACK: Pierce the veil of `jest.isolateModules` so that the modules inside get the same version of
-//       `@solana/errors` that is imported above.
-jest.mock('@solana/errors', () => jest.requireActual('@solana/errors'));
+//       `@trezoa/errors` that is imported above.
+jest.mock('@trezoa/errors', () => jest.requireActual('@trezoa/errors'));
 
 // real implementations
-const originalBase58Module = jest.requireActual('@solana/codecs-strings');
+const originalBase58Module = jest.requireActual('@trezoa/codecs-strings');
 const originalGetBase58Encoder = originalBase58Module.getBase58Encoder();
 const originalGetBase58Decoder = originalBase58Module.getBase58Decoder();
 
@@ -137,7 +137,7 @@ describe('Address', () => {
                 expect(() => {
                     assertIsAddress('not-a-base-58-encoded-string');
                 }).toThrow(
-                    new SolanaError(SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
+                    new TrezoaError(TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
                         actualLength: 28,
                     }),
                 );
@@ -149,7 +149,7 @@ describe('Address', () => {
                         '2xea9jWJ9eca3dFiefTeSPP85c6qXqunCqL2h2JNffM',
                     );
                 }).toThrow(
-                    new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
+                    new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
                         actualLength: 31,
                     }),
                 );
@@ -254,7 +254,7 @@ describe('Address', () => {
         it('fatals when trying to deserialize a byte buffer shorter than 32-bytes', () => {
             const tooShortBuffer = new Uint8Array(Array(31).fill(0));
             expect(() => address.decode(tooShortBuffer)).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
                     bytesLength: 31,
                     codecDescription: 'fixCodecSize',
                     expected: 32,

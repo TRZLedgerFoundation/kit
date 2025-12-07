@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { Instruction } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { Instruction } from '@trezoa/instructions';
 
 import {
     appendTransactionMessageInstruction,

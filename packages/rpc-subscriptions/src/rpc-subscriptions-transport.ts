@@ -1,6 +1,6 @@
-import { pipe } from '@solana/functional';
-import { RpcSubscriptionsChannelCreator, RpcSubscriptionsTransport } from '@solana/rpc-subscriptions-spec';
-import { ClusterUrl } from '@solana/rpc-types';
+import { pipe } from '@trezoa/functional';
+import { RpcSubscriptionsChannelCreator, RpcSubscriptionsTransport } from '@trezoa/rpc-subscriptions-spec';
+import { ClusterUrl } from '@trezoa/rpc-types';
 
 import {
     RpcSubscriptionsChannelCreatorDevnet,

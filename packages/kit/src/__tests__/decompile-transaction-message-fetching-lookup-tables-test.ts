@@ -1,18 +1,18 @@
-import { FetchAccountsConfig, fetchJsonParsedAccounts } from '@solana/accounts';
-import type { Address } from '@solana/addresses';
-import type { GetMultipleAccountsApi, Rpc } from '@solana/rpc';
-import type { Blockhash, Lamports } from '@solana/rpc-types';
+import { FetchAccountsConfig, fetchJsonParsedAccounts } from '@trezoa/accounts';
+import type { Address } from '@trezoa/addresses';
+import type { GetMultipleAccountsApi, Rpc } from '@trezoa/rpc';
+import type { Blockhash, Lamports } from '@trezoa/rpc-types';
 import {
     CompiledTransactionMessage,
     CompiledTransactionMessageWithLifetime,
     decompileTransactionMessage,
     TransactionMessage,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { decompileTransactionMessageFetchingLookupTables } from '../decompile-transaction-message-fetching-lookup-tables';
 
-jest.mock('@solana/accounts');
-jest.mock('@solana/transaction-messages');
+jest.mock('@trezoa/accounts');
+jest.mock('@trezoa/transaction-messages');
 
 describe('decompileTransactionMessageFetchingLookupTables', () => {
     const blockhash = 'abc' as Blockhash;

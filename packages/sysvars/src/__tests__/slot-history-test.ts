@@ -1,8 +1,8 @@
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { fetchSysvarSlotHistory, getSysvarSlotHistoryCodec } from '../slot-history';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const BITVEC_DISCRIMINATOR = 1;
 const BITVEC_NUM_BITS = 1024 * 1024;
@@ -11,7 +11,7 @@ const BITVEC_LENGTH = BITVEC_NUM_BITS / 64;
 describe('slot history', () => {
     let rpc: Rpc<GetAccountInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     it('decode', () => {
         const codec = getSysvarSlotHistoryCodec();

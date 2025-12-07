@@ -9,8 +9,8 @@ import {
     getU64Codec,
     getU64Decoder,
     getU64Encoder,
-} from '@solana/codecs-numbers';
-import { SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 import {
     assertIsLamports,
@@ -27,15 +27,15 @@ describe('assertIsLamports()', () => {
     it('throws when supplied a negative number', () => {
         expect(() => {
             assertIsLamports(-1n);
-        }).toThrow(new SolanaError(SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE));
         expect(() => {
             assertIsLamports(-1000n);
-        }).toThrow(new SolanaError(SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE));
     });
     it('throws when supplied a too large number', () => {
         expect(() => {
             assertIsLamports(2n ** 64n);
-        }).toThrow(new SolanaError(SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE));
     });
     it('does not throw when supplied zero lamports', () => {
         expect(() => {

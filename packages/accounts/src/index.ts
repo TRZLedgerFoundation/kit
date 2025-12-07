@@ -1,9 +1,9 @@
 /**
- * This package contains types and helper methods for representing, fetching and decoding Solana
+ * This package contains types and helper methods for representing, fetching and decoding Trezoa
  * accounts. It can be used standalone, but it is also exported as part of Kit
- * [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+ * [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
  *
- * It provides a unified definition of a Solana account regardless of how it was retrieved and can
+ * It provides a unified definition of a Trezoa account regardless of how it was retrieved and can
  * represent both encoded and decoded accounts. It also introduces the concept of a
  * {@link MaybeAccount} which represents a fetched account that may or may not exist on-chain whilst
  * keeping track of its address in both cases.

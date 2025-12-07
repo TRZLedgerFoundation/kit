@@ -1,5 +1,5 @@
 /**
- * This package contains helpers for transforming Solana JSON RPC and RPC Subscriptions requests,
+ * This package contains helpers for transforming Trezoa JSON RPC and RPC Subscriptions requests,
  * responses, and notifications in various ways appropriate for use in a JavaScript application.
  *
  * @packageDocumentation

@@ -1,13 +1,13 @@
-import { createKeyPairFromBytes } from '@solana/keys';
-import { Keypair } from '@solana/web3.js';
+import { createKeyPairFromBytes } from '@trezoa/keys';
+import { Keypair } from '@trezoa/web3.js';
 
 /**
- * Converts a legacy [Keypair](https://solana-foundation.github.io/solana-web3.js/classes/Keypair.html)
+ * Converts a legacy [Keypair](https://trz-ledger-foundation.github.io/solana-web3.js/classes/Keypair.html)
  * object to a native Ed25519 {@link CryptoKeyPair} object.
  *
  * @example
  * ```ts
- * import { fromLegacyKeypair } from '@solana/compat';
+ * import { fromLegacyKeypair } from '@trezoa/compat';
  *
  * const legacyKeyPair = Keypair.generate();
  * const { privateKey, publicKey } = await fromLegacyKeypair(legacyKeyPair);

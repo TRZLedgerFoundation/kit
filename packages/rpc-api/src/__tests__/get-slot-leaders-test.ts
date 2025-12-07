@@ -1,13 +1,13 @@
 import { open } from 'node:fs/promises';
 
-import type { Address } from '@solana/addresses';
-import { getBase58Decoder } from '@solana/codecs-strings';
-import { SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
+import type { Address } from '@trezoa/addresses';
+import { getBase58Decoder } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
 import path from 'path';
 
 import { GetSlotLeadersApi, MinimumLedgerSlotApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const validatorKeypairPath = path.resolve(__dirname, '../../../../test-ledger/validator-keypair.json');
 
@@ -33,7 +33,7 @@ async function getValidatorAddress() {
 describe('getSlotLeaders', () => {
     let rpc: Rpc<GetSlotLeadersApi & MinimumLedgerSlotApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     describe('when called with a valid slot', () => {
@@ -58,7 +58,7 @@ describe('getSlotLeaders', () => {
                 )
                 .send();
             await expect(sendPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid slot range: leader schedule for epoch 21350398233460 is unavailable',
                 }),
             );
@@ -72,7 +72,7 @@ describe('getSlotLeaders', () => {
 
             const sendPromise = rpc.getSlotLeaders(minimumLedgerSlot, 5001).send();
             await expect(sendPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid limit; max 5000',
                 }),
             );

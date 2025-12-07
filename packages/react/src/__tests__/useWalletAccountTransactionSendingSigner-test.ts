@@ -1,16 +1,16 @@
-import { Address } from '@solana/addresses';
-import type { VariableSizeEncoder } from '@solana/codecs-core';
-import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { Transaction, TransactionMessageBytes } from '@solana/transactions';
-import { getTransactionEncoder } from '@solana/transactions';
+import { Address } from '@trezoa/addresses';
+import type { VariableSizeEncoder } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { Transaction, TransactionMessageBytes } from '@trezoa/transactions';
+import { getTransactionEncoder } from '@trezoa/transactions';
 import type { UiWalletAccount } from '@wallet-standard/ui';
 
 import { renderHook } from '../test-renderer';
 import { useSignAndSendTransaction } from '../useSignAndSendTransaction';
 import { useWalletAccountTransactionSendingSigner } from '../useWalletAccountTransactionSendingSigner';
 
-jest.mock('@solana/transactions');
+jest.mock('@trezoa/transactions');
 jest.mock('../useSignAndSendTransaction');
 
 describe('useWalletAccountTransactionSendingSigner', () => {
@@ -18,8 +18,8 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     let mockEncodeTransaction: jest.Mock;
     let mockUiWalletAccount: {
         address: Address<'11111111111111111111111111111119'>;
-        chains: ['solana:danknet'];
-        features: ['solana:signAndSendTransaction'];
+        chains: ['trezoa:danknet'];
+        features: ['trezoa:signAndSendTransaction'];
         publicKey: Uint8Array;
         '~uiWalletHandle': UiWalletAccount['~uiWalletHandle'];
     };
@@ -31,8 +31,8 @@ describe('useWalletAccountTransactionSendingSigner', () => {
         mockSignAndSendTransaction = jest.fn().mockResolvedValue({ signature: new Uint8Array([1, 2, 3]) });
         mockUiWalletAccount = {
             address: '11111111111111111111111111111119' as Address<'11111111111111111111111111111119'>,
-            chains: ['solana:danknet'] as const,
-            features: ['solana:signAndSendTransaction'] as const,
+            chains: ['trezoa:danknet'] as const,
+            features: ['trezoa:signAndSendTransaction'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
             '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
         };
@@ -47,14 +47,14 @@ describe('useWalletAccountTransactionSendingSigner', () => {
             throw new Error('o no');
         });
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(new Error('o no'));
     });
     it('returns a `TransactionSendingSigner` with an address', () => {
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         expect(result.current).toHaveProperty('address', mockUiWalletAccount.address);
     });
@@ -64,7 +64,7 @@ describe('useWalletAccountTransactionSendingSigner', () => {
             throw new Error('o no');
         });
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {
@@ -82,7 +82,7 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     it('fatals when passed more than one transaction to sign', async () => {
         expect.assertions(1);
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {
@@ -95,14 +95,14 @@ describe('useWalletAccountTransactionSendingSigner', () => {
                     { messageBytes: new Uint8Array([1, 2, 3]) as unknown as TransactionMessageBytes, signatures: {} },
                     { messageBytes: new Uint8Array([4, 5, 6]) as unknown as TransactionMessageBytes, signatures: {} },
                 ]),
-            ).rejects.toThrow(new SolanaError(SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED));
+            ).rejects.toThrow(new TrezoaError(TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED));
         }
     });
     it('encodes the input transaction and passes it to the function returned by `signTransactions`', () => {
         const mockEncodedTransaction = new Uint8Array([1, 2, 3]) as unknown as TransactionMessageBytes;
         mockEncodeTransaction.mockReturnValue(mockEncodedTransaction);
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {
@@ -127,7 +127,7 @@ describe('useWalletAccountTransactionSendingSigner', () => {
         const mockSignatureResult = new Uint8Array(64).fill(127);
         mockSignAndSendTransaction.mockResolvedValue({ signature: mockSignatureResult });
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {
@@ -147,7 +147,7 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     it('calls `signAndSendTransaction` with all options except the `abortSignal`', () => {
         const mockOptions = { minContextSlot: 123n };
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {
@@ -171,7 +171,7 @@ describe('useWalletAccountTransactionSendingSigner', () => {
     it('rejects when aborted', async () => {
         expect.assertions(1);
         const { result } = renderHook(() =>
-            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'solana:danknet'),
+            useWalletAccountTransactionSendingSigner(mockUiWalletAccount, 'trezoa:danknet'),
         );
         // eslint-disable-next-line jest/no-conditional-in-test
         if (result.__type === 'error' || !result.current) {

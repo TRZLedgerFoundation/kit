@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/subscribable?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/subscribable?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/subscribable
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/subscribable?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/subscribable?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/subscribable
 
-# @solana/subscribable
+# @trezoa/subscribable
 
 This package contains utilities for creating subscription-based event targets. These differ from the `EventTarget` interface in that the method you use to add a listener returns an unsubscribe function. It is primarily intended for internal use &ndash; particularly for those building `RpcSubscriptionChannels` and associated infrastructure.
 
@@ -20,7 +20,7 @@ This package contains utilities for creating subscription-based event targets. T
 This type represents an object with an `on` function that you can call to subscribe to certain data over a named channel.
 
 ```ts
-let dataPublisher: DataPublisher<{ error: SolanaError }>;
+let dataPublisher: DataPublisher<{ error: TrezoaError }>;
 dataPublisher.on('data', handleData); // ERROR. `data` is not a known channel name.
 dataPublisher.on('error', e => {
     console.error(e);
@@ -32,7 +32,7 @@ dataPublisher.on('error', e => {
 This type allows you to type `addEventListener` and `removeEventListener` so that the call signature of the listener matches the event type given.
 
 ```ts
-const emitter: TypedEventEmitter<{ message: MessageEvent }> = new WebSocket('wss://api.devnet.solana.com');
+const emitter: TypedEventEmitter<{ message: MessageEvent }> = new WebSocket('wss://api.devnet.trezoa.com');
 emitter.addEventListener('data', handleData); // ERROR. `data` is not a known event type.
 emitter.addEventListener('message', message => {
     console.log(message.origin); // OK. `message` is a `MessageEvent` so it has an `origin` property.
@@ -111,7 +111,7 @@ demuxedDataPublisher.on(
 Returns an object with an `on` function that you can call to subscribe to certain data over a named channel. The `on` function returns an unsubscribe function.
 
 ```ts
-const socketDataPublisher = getDataPublisherFromEventEmitter(new WebSocket('wss://api.devnet.solana.com'));
+const socketDataPublisher = getDataPublisherFromEventEmitter(new WebSocket('wss://api.devnet.trezoa.com'));
 const unsubscribe = socketDataPublisher.on('message', message => {
     if (JSON.parse(message.data).id === 42) {
         console.log('Got response 42');

@@ -1,5 +1,5 @@
-import { assertIsFixedSize } from '@solana/codecs-core';
-import { SOLANA_ERROR__CODECS__INVALID_CONSTANT, SolanaError } from '@solana/errors';
+import { assertIsFixedSize } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__CODECS__INVALID_CONSTANT, TrezoaError } from '@trezoa/errors';
 
 import { getConstantCodec } from '../constant';
 import { b } from './__setup__';
@@ -28,7 +28,7 @@ describe('getConstantCodec', () => {
     it('throws when the decoded bytes do no contain the constant bytes', () => {
         const codec = getConstantCodec(b('010203'));
         expect(() => codec.decode(b('0102ff'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_CONSTANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_CONSTANT, {
                 constant: b('010203'),
                 data: b('0102ff'),
                 hexConstant: '010203',

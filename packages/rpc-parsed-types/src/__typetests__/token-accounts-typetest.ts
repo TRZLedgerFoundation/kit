@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { StringifiedBigInt, StringifiedNumber } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { StringifiedBigInt, StringifiedNumber } from '@trezoa/rpc-types';
 
 import { JsonParsedTokenProgramAccount } from '../token-accounts';
 

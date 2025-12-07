@@ -1,15 +1,15 @@
-import { AccountRole, Instruction } from '@solana/instructions';
-import { TransactionInstruction } from '@solana/web3.js';
+import { AccountRole, Instruction } from '@trezoa/instructions';
+import { TransactionInstruction } from '@trezoa/web3.js';
 
 import { fromLegacyPublicKey } from './address';
 
 /**
- * This can be used to convert a legacy [`TransactionInstruction`](https://solana-foundation.github.io/solana-web3.js/classes/TransactionInstruction.html)
+ * This can be used to convert a legacy [`TransactionInstruction`](https://trz-ledger-foundation.github.io/solana-web3.js/classes/TransactionInstruction.html)
  * object to an {@link Instruction}.
  *
  * @example
  * ```ts
- * import { fromLegacyTransactionInstruction } from '@solana/compat';
+ * import { fromLegacyTransactionInstruction } from '@trezoa/compat';
  *
  * // Imagine a function that returns a legacy `TransactionInstruction`
  * const legacyInstruction = getMyLegacyInstruction();

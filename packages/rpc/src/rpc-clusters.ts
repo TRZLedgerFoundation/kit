@@ -1,6 +1,6 @@
-import type { SolanaRpcApi, SolanaRpcApiDevnet, SolanaRpcApiMainnet, SolanaRpcApiTestnet } from '@solana/rpc-api';
-import type { Rpc, RpcTransport } from '@solana/rpc-spec';
-import { type ClusterUrl, type DevnetUrl, type MainnetUrl, type TestnetUrl } from '@solana/rpc-types';
+import type { TrezoaRpcApi, TrezoaRpcApiDevnet, TrezoaRpcApiMainnet, TrezoaRpcApiTestnet } from '@trezoa/rpc-api';
+import type { Rpc, RpcTransport } from '@trezoa/rpc-spec';
+import { type ClusterUrl, type DevnetUrl, type MainnetUrl, type TestnetUrl } from '@trezoa/rpc-types';
 
 /**
  * A {@link RpcTransport} that communicates with the devnet cluster.
@@ -50,7 +50,7 @@ export type RpcTransportMainnet = RpcTransport & { '~cluster': 'mainnet' };
  *     /* ... *\/
  * }
  *
- * const transport = createCustomTransport(testnet('http://api.testnet.solana.com'));
+ * const transport = createCustomTransport(testnet('http://api.testnet.trezoa.com'));
  * transport satisfies RpcTransportTestnet; // OK
  * ```
  */
@@ -81,7 +81,7 @@ export type RpcTransportFromClusterUrl<TClusterUrl extends ClusterUrl> = TCluste
  * async function getSpecialAccountInfo(address: Address, rpc: Rpc<unknown>): Promise<SpecialAccountInfo> {
  *     /* ... *\/
  * }
- * const rpc = createSolanaRpc(devnet('https://api.devnet.solana.com'));
+ * const rpc = createTrezoaRpc(devnet('https://api.devnet.trezoa.com'));
  * await getSpecialAccountInfo(address('ReAL1111111111111111111111111111'), rpc); // ERROR
  * ```
  */
@@ -106,7 +106,7 @@ export type RpcDevnet<TRpcMethods> = Rpc<TRpcMethods> & { '~cluster': 'devnet' }
  * async function getSpecialAccountInfo(address: Address, rpc: Rpc<unknown>): Promise<SpecialAccountInfo> {
  *     /* ... *\/
  * }
- * const rpc = createSolanaRpc(devnet('https://api.devnet.solana.com'));
+ * const rpc = createTrezoaRpc(devnet('https://api.devnet.trezoa.com'));
  * await getSpecialAccountInfo(address('ReAL1111111111111111111111111111'), rpc); // ERROR
  * ```
  */
@@ -131,7 +131,7 @@ export type RpcTestnet<TRpcMethods> = Rpc<TRpcMethods> & { '~cluster': 'testnet'
  * async function getSpecialAccountInfo(address: Address, rpc: Rpc<unknown>): Promise<SpecialAccountInfo> {
  *     /* ... *\/
  * }
- * const rpc = createSolanaRpc(devnet('https://api.devnet.solana.com'));
+ * const rpc = createTrezoaRpc(devnet('https://api.devnet.trezoa.com'));
  * await getSpecialAccountInfo(address('ReAL1111111111111111111111111111'), rpc); // ERROR
  * ```
  */
@@ -162,44 +162,44 @@ export type RpcFromTransport<TRpcMethods, TRpcTransport extends RpcTransport> = 
         : Rpc<TRpcMethods>;
 /**
  * Given a {@link RpcTransport} this utility type will resolve to a union of all the methods of the
- * Solana RPC API supported by the transport's cluster.
+ * Trezoa RPC API supported by the transport's cluster.
  *
  * @example
  * ```ts
- * function createSolanaRpcFromTransport<TTransport extends RpcTransport>(
+ * function createTrezoaRpcFromTransport<TTransport extends RpcTransport>(
  *     transport: TTransport,
- * ): RpcFromTransport<SolanaRpcApiFromTransport<TTransport>, TTransport> {
+ * ): RpcFromTransport<TrezoaRpcApiFromTransport<TTransport>, TTransport> {
  *     /* ... *\/
  * }
  * const transport = createDefaultRpcTransport({ url: mainnet('http://rpc.company') });
  * transport satisfies RpcTransportMainnet; // OK
- * const rpc = createSolanaRpcFromTransport(transport);
- * rpc satisfies RpcMainnet<SolanaRpcApiMainnet>; // OK
+ * const rpc = createTrezoaRpcFromTransport(transport);
+ * rpc satisfies RpcMainnet<TrezoaRpcApiMainnet>; // OK
  * ```
  */
-export type SolanaRpcApiFromTransport<TTransport extends RpcTransport> = TTransport extends RpcTransportDevnet
-    ? SolanaRpcApiDevnet
+export type TrezoaRpcApiFromTransport<TTransport extends RpcTransport> = TTransport extends RpcTransportDevnet
+    ? TrezoaRpcApiDevnet
     : TTransport extends RpcTransportTestnet
-      ? SolanaRpcApiTestnet
+      ? TrezoaRpcApiTestnet
       : TTransport extends RpcTransportMainnet
-        ? SolanaRpcApiMainnet
-        : SolanaRpcApi;
+        ? TrezoaRpcApiMainnet
+        : TrezoaRpcApi;
 
 /**
  * Given a {@link ClusterUrl} this utility type will resolve to a union of all the methods of the
- * Solana RPC API supported by the URL's cluster.
+ * Trezoa RPC API supported by the URL's cluster.
  *
  * @example
  * ```ts
- * function createSolanaRpcFromClusterUrl<TClusterUrl extends ClusterUrl>(
+ * function createTrezoaRpcFromClusterUrl<TClusterUrl extends ClusterUrl>(
  *     clusterUrl: TClusterUrl,
- * ): Rpc<SolanaRpcApiFromClusterUrl<TClusterUrl>, RpcTransportFromClusterUrl<TClusterUrl>> {
+ * ): Rpc<TrezoaRpcApiFromClusterUrl<TClusterUrl>, RpcTransportFromClusterUrl<TClusterUrl>> {
  *     /* ... *\/
  * }
- * const rpc = createSolanaRpcFromClusterUrl(mainnet('http://rpc.company'));
- * rpc satisfies Rpc<SolanaRpcApiMainnet>; // OK
+ * const rpc = createTrezoaRpcFromClusterUrl(mainnet('http://rpc.company'));
+ * rpc satisfies Rpc<TrezoaRpcApiMainnet>; // OK
  * ```
  */
-export type SolanaRpcApiFromClusterUrl<TClusterUrl extends ClusterUrl> = SolanaRpcApiFromTransport<
+export type TrezoaRpcApiFromClusterUrl<TClusterUrl extends ClusterUrl> = TrezoaRpcApiFromTransport<
     RpcTransportFromClusterUrl<TClusterUrl>
 >;

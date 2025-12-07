@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { AccountRole, Instruction } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { AccountRole, Instruction } from '@trezoa/instructions';
 import {
     OffchainMessage,
     OffchainMessageApplicationDomain,
@@ -7,19 +7,19 @@ import {
     OffchainMessageContentRestrictedAsciiOf1232BytesMax,
     OffchainMessageSignatory,
     OffchainMessageWithRequiredSignatories,
-} from '@solana/offchain-messages';
-import type { Blockhash } from '@solana/rpc-types';
+} from '@trezoa/offchain-messages';
+import type { Blockhash } from '@trezoa/rpc-types';
 import {
     TransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionMessageWithLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 import {
     appendTransactionMessageInstruction,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { AccountSignerMeta, InstructionWithSigners, TransactionMessageWithSigners } from '../account-signer-meta';
 import { MessageModifyingSigner } from '../message-modifying-signer';

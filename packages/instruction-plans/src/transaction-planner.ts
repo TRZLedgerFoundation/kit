@@ -1,18 +1,18 @@
 import {
-    isSolanaError,
-    SOLANA_ERROR__INSTRUCTION_PLANS__EMPTY_INSTRUCTION_PLAN,
-    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
-    SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND,
-    SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND,
-    SolanaError,
-} from '@solana/errors';
-import { getAbortablePromise } from '@solana/promises';
+    isTrezoaError,
+    TREZOA_ERROR__INSTRUCTION_PLANS__EMPTY_INSTRUCTION_PLAN,
+    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
+    TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND,
+    TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND,
+    TrezoaError,
+} from '@trezoa/errors';
+import { getAbortablePromise } from '@trezoa/promises';
 import {
     appendTransactionMessageInstructions,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@trezoa/transactions';
 
 import {
     InstructionPlan,
@@ -110,7 +110,7 @@ export function createTransactionPlanner(config: TransactionPlannerConfig): Tran
         });
 
         if (!plan) {
-            throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__EMPTY_INSTRUCTION_PLAN);
+            throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__EMPTY_INSTRUCTION_PLAN);
         }
 
         return freezeTransactionPlan(plan);
@@ -145,7 +145,7 @@ async function traverse(
             return await traverseMessagePacker(instructionPlan, context);
         default:
             instructionPlan satisfies never;
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND, { kind });
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND, { kind });
     }
 }
 
@@ -325,7 +325,7 @@ async function selectAndMutateCandidate(
                 return candidate;
             }
         } catch (error) {
-            if (isSolanaError(error, SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN)) {
+            if (isTrezoaError(error, TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN)) {
                 // Try the next candidate.
             } else {
                 throw error;
@@ -354,7 +354,7 @@ async function createNewMessage(
     const updatedMessageSize = getTransactionMessageSize(updatedMessage);
     if (updatedMessageSize > TRANSACTION_SIZE_LIMIT) {
         const newMessageSize = getTransactionMessageSize(newMessage);
-        throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
             numBytesRequired: updatedMessageSize - newMessageSize,
             numFreeBytes: TRANSACTION_SIZE_LIMIT - newMessageSize,
         });
@@ -375,7 +375,7 @@ function freezeTransactionPlan(plan: MutableTransactionPlan): TransactionPlan {
             return parallelTransactionPlan(plan.plans.map(freezeTransactionPlan));
         default:
             plan satisfies never;
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND, { kind });
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND, { kind });
     }
 }
 
@@ -399,7 +399,7 @@ function fitEntirePlanInsideMessage(
             const newMessageSize = getTransactionMessageSize(newMessage);
             if (newMessageSize > TRANSACTION_SIZE_LIMIT) {
                 const baseMessageSize = getTransactionMessageSize(message);
-                throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+                throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                     numBytesRequired: newMessageSize - baseMessageSize,
                     numFreeBytes: TRANSACTION_SIZE_LIMIT - baseMessageSize,
                 });
@@ -414,6 +414,6 @@ function fitEntirePlanInsideMessage(
             return newMessage;
         default:
             instructionPlan satisfies never;
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND, { kind });
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_INSTRUCTION_PLAN_KIND, { kind });
     }
 }

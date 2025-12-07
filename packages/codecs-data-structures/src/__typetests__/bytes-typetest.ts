@@ -1,4 +1,4 @@
-import { ReadonlyUint8Array, VariableSizeCodec, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
+import { ReadonlyUint8Array, VariableSizeCodec, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
 
 import { getBytesCodec, getBytesDecoder, getBytesEncoder } from '../bytes';
 

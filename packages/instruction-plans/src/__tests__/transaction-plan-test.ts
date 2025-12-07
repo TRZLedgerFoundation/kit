@@ -1,4 +1,4 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
 import {
     getAllSingleTransactionPlans,

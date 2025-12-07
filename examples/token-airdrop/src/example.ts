@@ -7,14 +7,14 @@
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLogger } from '@solana/example-utils/createLogger.js';
-import pressAnyKeyPrompt from '@solana/example-utils/pressAnyKeyPrompt.js';
+import { createLogger } from '@trezoa/example-utils/createLogger.js';
+import pressAnyKeyPrompt from '@trezoa/example-utils/pressAnyKeyPrompt.js';
 import {
     appendTransactionMessageInstruction,
     assertIsTransactionWithBlockhashLifetime,
     createKeyPairSignerFromBytes,
-    createSolanaRpc,
-    createSolanaRpcSubscriptions,
+    createTrezoaRpc,
+    createTrezoaRpcSubscriptions,
     createTransactionMessage,
     createTransactionPlanExecutor,
     createTransactionPlanner,
@@ -28,14 +28,14 @@ import {
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
     TransactionPlan,
-} from '@solana/kit';
+} from '@trezoa/kit';
 import {
     estimateAndUpdateProvisoryComputeUnitLimitFactory,
     estimateComputeUnitLimitFactory,
     fillProvisorySetComputeUnitLimitInstruction,
     getSetComputeUnitPriceInstruction,
-} from '@solana-program/compute-budget';
-import { getCreateMintInstructionPlan, getMintToATAInstructionPlanAsync } from '@solana-program/token';
+} from '@trezoa-program/compute-budget';
+import { getCreateMintInstructionPlan, getMintToATAInstructionPlanAsync } from '@trezoa-program/token';
 
 const log = createLogger('Token Airdrop');
 
@@ -60,12 +60,12 @@ log.info({ address: SOURCE_ACCOUNT_SIGNER.address }, '[setup] Loaded key pair fo
 
 /**
  * SETUP: RPC CONNECTION
- * When it comes time to send our transaction to the Solana network for execution, we will do so
+ * When it comes time to send our transaction to the Trezoa network for execution, we will do so
  * through a remote procedure call (RPC) server. This example uses your local test validator which
  * must be running before you run this script.
  */
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
 
 /**
  * SETUP: DESTINATION ACCOUNTS
@@ -208,7 +208,7 @@ const transactionExecutor = createTransactionPlanExecutor({
         await sendAndConfirmTransaction(signedTransaction, { abortSignal, commitment: 'confirmed' });
         log.info(
             { signature },
-            `[transaction executor] Transaction confirmed: https://explorer.solana.com/tx/${signature}?cluster=custom&customUrl=127.0.0.1:8899`,
+            `[transaction executor] Transaction confirmed: https://explorer.trezoa.com/tx/${signature}?cluster=custom&customUrl=127.0.0.1:8899`,
         );
         return { transaction: signedTransaction };
     },

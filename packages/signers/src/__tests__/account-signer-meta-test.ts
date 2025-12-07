@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { createTransactionMessage } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { createTransactionMessage } from '@trezoa/transaction-messages';
 
 import { getSignersFromInstruction, getSignersFromTransactionMessage } from '../account-signer-meta';
 import { setTransactionMessageFeePayerSigner } from '../fee-payer-signer';

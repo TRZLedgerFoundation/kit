@@ -7,7 +7,7 @@ type Listener<TEvent extends Event> = ((evt: TEvent) => void) | { handleEvent(ob
  *
  * @example
  * ```ts
- * const emitter: TypedEventEmitter<{ message: MessageEvent }> = new WebSocket('wss://api.devnet.solana.com');
+ * const emitter: TypedEventEmitter<{ message: MessageEvent }> = new WebSocket('wss://api.devnet.trezoa.com');
  * emitter.addEventListener('data', handleData); // ERROR. `data` is not a known event type.
  * emitter.addEventListener('message', message => {
  *     console.log(message.origin); // OK. `message` is a `MessageEvent` so it has an `origin` property.

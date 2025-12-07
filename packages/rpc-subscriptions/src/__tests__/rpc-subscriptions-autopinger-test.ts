@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, SolanaError } from '@solana/errors';
-import { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+import { TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, TrezoaError } from '@trezoa/errors';
+import { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 
 import { getRpcSubscriptionsChannelWithAutoping } from '../rpc-subscriptions-autopinger';
 
@@ -72,7 +72,7 @@ describe('getRpcSubscriptionsChannelWithAutoping', () => {
     it('continues to ping even though send fataled with a non-connection-closed exception', async () => {
         expect.assertions(1);
         mockSend.mockRejectedValue(
-            // Anything other than `SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED`.
+            // Anything other than `TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED`.
             'o no',
         );
         getRpcSubscriptionsChannelWithAutoping({
@@ -158,7 +158,7 @@ describe('getRpcSubscriptionsChannelWithAutoping', () => {
     });
     it('does not send a ping after send fatals with a connection closed error', async () => {
         expect.assertions(1);
-        mockSend.mockRejectedValue(new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED));
+        mockSend.mockRejectedValue(new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED));
         getRpcSubscriptionsChannelWithAutoping({
             abortSignal: new AbortController().signal,
             channel: mockChannel,

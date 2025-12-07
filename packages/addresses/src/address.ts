@@ -8,17 +8,17 @@ import {
     FixedSizeEncoder,
     fixEncoderSize,
     transformEncoder,
-} from '@solana/codecs-core';
-import { getBase58Decoder, getBase58Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-core';
+import { getBase58Decoder, getBase58Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
-import { Brand, EncodedString } from '@solana/nominal-types';
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand, EncodedString } from '@trezoa/nominal-types';
 
 /**
- * Represents a string that validates as a Solana address. Functions that require well-formed
+ * Represents a string that validates as a Trezoa address. Functions that require well-formed
  * addresses should specify their inputs in terms of this type.
  *
  * Whenever you need to validate an arbitrary string as a base58-encoded address, use the
@@ -45,7 +45,7 @@ function getMemoizedBase58Decoder(): Decoder<string> {
  *
  * @example
  * ```ts
- * import { isAddress } from '@solana/addresses';
+ * import { isAddress } from '@trezoa/addresses';
  *
  * if (isAddress(ownerAddress)) {
  *     // At this point, `ownerAddress` has been refined to a
@@ -83,7 +83,7 @@ export function isAddress(putativeAddress: string): putativeAddress is Address<t
  *
  * @example
  * ```ts
- * import { assertIsAddress } from '@solana/addresses';
+ * import { assertIsAddress } from '@trezoa/addresses';
  *
  * // Imagine a function that fetches an account's balance when a user submits a form.
  * function handleSubmit() {
@@ -109,7 +109,7 @@ export function assertIsAddress(putativeAddress: string): asserts putativeAddres
         // Highest address (32 bytes of 255)
         putativeAddress.length > 44
     ) {
-        throw new SolanaError(SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
             actualLength: putativeAddress.length,
         });
     }
@@ -118,7 +118,7 @@ export function assertIsAddress(putativeAddress: string): asserts putativeAddres
     const bytes = base58Encoder.encode(putativeAddress);
     const numBytes = bytes.byteLength;
     if (numBytes !== 32) {
-        throw new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
+        throw new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
             actualLength: numBytes,
         });
     }
@@ -130,7 +130,7 @@ export function assertIsAddress(putativeAddress: string): asserts putativeAddres
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
+ * import { address } from '@trezoa/addresses';
  *
  * await transfer(address(fromAddress), address(toAddress), lamports(100000n));
  * ```
@@ -141,7 +141,7 @@ export function assertIsAddress(putativeAddress: string): asserts putativeAddres
  * its input.
  * >
  * > ```ts
- * > import { Address } from '@solana/addresses';
+ * > import { Address } from '@trezoa/addresses';
  * >
  * > const MEMO_PROGRAM_ADDRESS =
  * >     'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
@@ -157,7 +157,7 @@ export function address<TAddress extends string = string>(putativeAddress: TAddr
  *
  * @example
  * ```ts
- * import { getAddressEncoder } from '@solana/addresses';
+ * import { getAddressEncoder } from '@trezoa/addresses';
  *
  * const address = 'B9Lf9z5BfNPT4d5KMeaBFx8x1G4CULZYR1jA2kmxRDka' as Address;
  * const addressEncoder = getAddressEncoder();
@@ -182,7 +182,7 @@ export function getAddressEncoder(): FixedSizeEncoder<Address, 32> {
  *
  * @example
  * ```ts
- * import { getAddressDecoder } from '@solana/addresses';
+ * import { getAddressDecoder } from '@trezoa/addresses';
  *
  * const addressBytes = new Uint8Array([
  *     150, 183, 190,  48, 171,   8, 39, 156,

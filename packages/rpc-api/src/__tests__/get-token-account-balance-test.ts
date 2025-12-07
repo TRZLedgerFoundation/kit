@@ -1,10 +1,10 @@
-import type { Address } from '@solana/addresses';
-import { SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetTokenAccountBalanceApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -13,7 +13,7 @@ const CONTEXT_MATCHER = expect.objectContaining({
 describe('getTokenAccountBalance', () => {
     let rpc: Rpc<GetTokenAccountBalanceApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -47,7 +47,7 @@ describe('getTokenAccountBalance', () => {
                 )
                 .send();
             await expect(sendPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid params: missing field `commitment`.',
                 }),
             );

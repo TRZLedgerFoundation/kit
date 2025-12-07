@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 type ClusterNode = Readonly<{
     /**
@@ -43,7 +43,7 @@ export type GetClusterNodesApi = {
     /**
      * Returns information about all the nodes participating in the cluster.
      *
-     * @see https://solana.com/docs/rpc/http/getclusternodes
+     * @see https://trezoa.com/docs/rpc/http/getclusternodes
      */
     getClusterNodes(): GetClusterNodesApiResponse;
 };

@@ -6,7 +6,7 @@
         "noEmit": true,
         "target": "ESNext"
     },
-    "display": "@solana/example-transfer-lamports",
+    "display": "@trezoa/example-transfer-lamports",
     "extends": "../../packages/tsconfig/base.json",
     "include": ["src"]
 }

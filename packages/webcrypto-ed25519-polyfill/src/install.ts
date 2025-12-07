@@ -1,4 +1,4 @@
-import cryptoImpl from '@solana/crypto-impl';
+import cryptoImpl from '@trezoa/crypto-impl';
 
 import {
     exportKeyPolyfill,
@@ -20,7 +20,7 @@ function isAlgorithmEd25519(putativeEd25519Algorithm: AlgorithmIdentifier): bool
  *
  * @example
  * ```ts
- * import { install } from '@solana/webcrypto-ed25519-polyfill';
+ * import { install } from '@trezoa/webcrypto-ed25519-polyfill';
  *
  * // Calling this will shim methods on `SubtleCrypto`, adding Ed25519 support.
  * install();
@@ -95,7 +95,7 @@ export function install() {
                         .then(keyPair => {
                             if (__DEV__) {
                                 console.warn(
-                                    '`@solana/webcrypto-ed25519-polyfill` was installed in an ' +
+                                    '`@trezoa/webcrypto-ed25519-polyfill` was installed in an ' +
                                         'environment that supports Ed25519 key manipulation ' +
                                         'natively. Falling back to the native implementation. ' +
                                         'Consider installing this polyfill only in environments where ' +
@@ -189,7 +189,7 @@ export function install() {
                         .then(key => {
                             if (__DEV__) {
                                 console.warn(
-                                    '`@solana/webcrypto-ed25519-polyfill` was included in an ' +
+                                    '`@trezoa/webcrypto-ed25519-polyfill` was included in an ' +
                                         'environment that supports Ed25519 key manipulation ' +
                                         'natively. Falling back to the native implementation. ' +
                                         'Consider including this polyfill only in environments where ' +

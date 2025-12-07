@@ -1,4 +1,4 @@
-import { RpcResponse } from '@solana/rpc-spec-types';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
 import { Dispatcher } from 'undici-types';
 
 import { AllowedHttpRequestHeaders } from './http-transport-headers';
@@ -11,7 +11,7 @@ export type HttpTransportConfig = Readonly<{
      *
      * @example
      * ```ts
-     * import { createHttpTransport } from '@solana/rpc-transport-http';
+     * import { createHttpTransport } from '@trezoa/rpc-transport-http';
      * import { Agent, BalancedPool } from 'undici';
      *
      * // Create a dispatcher that, when called with a special URL, creates a round-robin pool of RPCs.
@@ -19,7 +19,7 @@ export type HttpTransportConfig = Readonly<{
      *     factory(origin, opts) {
      *         if (origin === 'https://mypool') {
      *             const upstreams = [
-     *                 'https://api.mainnet-beta.solana.com',
+     *                 'https://api.mainnet-beta.trezoa.com',
      *                 'https://mainnet.helius-rpc.com',
      *                 'https://several-neat-iguana.quiknode.pro',
      *             ];
@@ -74,7 +74,7 @@ export type HttpTransportConfig = Readonly<{
      *
      * @example
      * ```ts
-     * import { createHttpTransport } from '@solana/rpc-transport-http';
+     * import { createHttpTransport } from '@trezoa/rpc-transport-http';
      *
      * const transport = createHttpTransport({
      *     headers: {

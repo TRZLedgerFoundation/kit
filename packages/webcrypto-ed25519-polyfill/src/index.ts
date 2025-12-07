@@ -21,7 +21,7 @@
  * For all others, simply import this polyfill before use.
  *
  * ```ts
- * import { install } from '@solana/webcrypto-ed25519-polyfill';
+ * import { install } from '@trezoa/webcrypto-ed25519-polyfill';
  *
  * // Calling this will shim methods on `SubtleCrypto`, adding Ed25519 support.
  * install();

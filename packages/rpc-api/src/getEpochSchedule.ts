@@ -23,7 +23,7 @@ export type GetEpochScheduleApi = {
     /**
      * Returns the epoch schedule information from this cluster's genesis config
      *
-     * @see https://solana.com/docs/rpc/http/getepochschedule
+     * @see https://trezoa.com/docs/rpc/http/getepochschedule
      */
     getEpochSchedule(): GetEpochScheduleApiResponse;
 };

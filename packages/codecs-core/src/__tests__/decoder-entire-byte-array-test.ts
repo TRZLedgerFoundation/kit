@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, TrezoaError } from '@trezoa/errors';
 
 import { createDecoder, Decoder } from '../codec';
 import { createDecoderThatConsumesEntireByteArray } from '../decoder-entire-byte-array';
@@ -24,7 +24,7 @@ describe('createDecoderThatConsumesEntireByteArray', () => {
                 const decoder = createDecoderThatConsumesEntireByteArray(innerDecoder);
                 const bytes = new Uint8Array(5);
                 expect(() => decoder.decode(bytes)).toThrow(
-                    new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
+                    new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
                         expectedLength: 4,
                         numExcessBytes: 1,
                     }),
@@ -44,7 +44,7 @@ describe('createDecoderThatConsumesEntireByteArray', () => {
                 const decoder = createDecoderThatConsumesEntireByteArray(innerDecoder);
                 const bytes = new Uint8Array(7);
                 expect(() => decoder.decode(bytes, 2)).toThrow(
-                    new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
+                    new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
                         expectedLength: 6,
                         numExcessBytes: 1,
                     }),
@@ -73,7 +73,7 @@ describe('createDecoderThatConsumesEntireByteArray', () => {
                 const decoder = createDecoderThatConsumesEntireByteArray(innerDecoder);
                 const bytes = new Uint8Array(5);
                 expect(() => decoder.read(bytes, 0)).toThrow(
-                    new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
+                    new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
                         expectedLength: 4,
                         numExcessBytes: 1,
                     }),
@@ -100,7 +100,7 @@ describe('createDecoderThatConsumesEntireByteArray', () => {
                 const decoder = createDecoderThatConsumesEntireByteArray(innerDecoder);
                 const bytes = new Uint8Array(7);
                 expect(() => decoder.read(bytes, 2)).toThrow(
-                    new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
+                    new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
                         expectedLength: 6,
                         numExcessBytes: 1,
                     }),

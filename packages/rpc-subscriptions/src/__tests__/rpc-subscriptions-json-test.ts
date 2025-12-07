@@ -1,4 +1,4 @@
-import { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+import { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 
 import { getRpcSubscriptionsChannelWithJSONSerialization } from '../rpc-subscriptions-json';
 

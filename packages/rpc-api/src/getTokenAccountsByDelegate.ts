@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { JsonParsedTokenAccount } from '@solana/rpc-parsed-types';
+import type { Address } from '@trezoa/addresses';
+import type { JsonParsedTokenAccount } from '@trezoa/rpc-parsed-types';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
@@ -10,8 +10,8 @@ import type {
     Commitment,
     DataSlice,
     Slot,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 type TokenAccountInfoWithJsonData = Readonly<{
     data: Readonly<{
@@ -48,7 +48,7 @@ type GetTokenAccountsByDelegateApiCommonConfig = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -97,7 +97,7 @@ export type GetTokenAccountsByDelegateApi = {
      * or token accounts owned by a certain token program.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/http/gettokenaccountsbydelegate
+     * @see https://trezoa.com/docs/rpc/http/gettokenaccountsbydelegate
      */
     getTokenAccountsByDelegate(
         delegate: Address,
@@ -107,7 +107,7 @@ export type GetTokenAccountsByDelegateApi = {
             Readonly<{
                 encoding: 'base64';
             }>,
-    ): SolanaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedData>>;
+    ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedData>>;
     /**
      * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
@@ -120,7 +120,7 @@ export type GetTokenAccountsByDelegateApi = {
      * or token accounts owned by a certain token program.
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/http/gettokenaccountsbydelegate
+     * @see https://trezoa.com/docs/rpc/http/gettokenaccountsbydelegate
      */
     getTokenAccountsByDelegate(
         delegate: Address,
@@ -130,7 +130,7 @@ export type GetTokenAccountsByDelegateApi = {
             Readonly<{
                 encoding: 'base64+zstd';
             }>,
-    ): SolanaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
+    ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
     /**
      * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
@@ -142,7 +142,7 @@ export type GetTokenAccountsByDelegateApi = {
      * or token accounts owned by a certain token program.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/http/gettokenaccountsbydelegate
+     * @see https://trezoa.com/docs/rpc/http/gettokenaccountsbydelegate
      */
     getTokenAccountsByDelegate(
         delegate: Address,
@@ -151,7 +151,7 @@ export type GetTokenAccountsByDelegateApi = {
             Readonly<{
                 encoding: 'jsonParsed';
             }>,
-    ): SolanaRpcResponse<GetTokenAccountsByDelegateResponse<TokenAccountInfoWithJsonData>>;
+    ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<TokenAccountInfoWithJsonData>>;
     /**
      * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
@@ -164,7 +164,7 @@ export type GetTokenAccountsByDelegateApi = {
      * or token accounts owned by a certain token program.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/http/gettokenaccountsbydelegate
+     * @see https://trezoa.com/docs/rpc/http/gettokenaccountsbydelegate
      */
     getTokenAccountsByDelegate(
         delegate: Address,
@@ -174,7 +174,7 @@ export type GetTokenAccountsByDelegateApi = {
             Readonly<{
                 encoding: 'base58';
             }>,
-    ): SolanaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase58EncodedData>>;
+    ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase58EncodedData>>;
     /**
      * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
@@ -186,11 +186,11 @@ export type GetTokenAccountsByDelegateApi = {
      * or token accounts owned by a certain token program.
      *
      * {@label base58-legacy}
-     * @see https://solana.com/docs/rpc/http/gettokenaccountsbydelegate
+     * @see https://trezoa.com/docs/rpc/http/gettokenaccountsbydelegate
      */
     getTokenAccountsByDelegate(
         delegate: Address,
         filter: AccountsFilter,
         config?: GetTokenAccountsByDelegateApiCommonConfig & GetTokenAccountsByDelegateApiSliceableCommonConfig,
-    ): SolanaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase58Bytes>>;
+    ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase58Bytes>>;
 };

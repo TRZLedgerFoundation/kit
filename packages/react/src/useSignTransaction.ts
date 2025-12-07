@@ -1,10 +1,10 @@
 import {
-    SolanaSignAndSendTransaction,
-    SolanaSignTransaction,
-    SolanaSignTransactionFeature,
-    SolanaSignTransactionInput,
-    SolanaSignTransactionOutput,
-} from '@solana/wallet-standard-features';
+    TrezoaSignAndSendTransaction,
+    TrezoaSignTransaction,
+    TrezoaSignTransactionFeature,
+    TrezoaSignTransactionInput,
+    TrezoaSignTransactionOutput,
+} from '@trezoa/wallet-standard-features';
 import {
     WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED,
     WalletStandardError,
@@ -13,16 +13,16 @@ import { getWalletAccountFeature, UiWalletAccount } from '@wallet-standard/ui';
 import { getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from '@wallet-standard/ui-registry';
 import { useCallback } from 'react';
 
-import { OnlySolanaChains } from './chain';
+import { OnlyTrezoaChains } from './chain';
 
 type Input = Readonly<
-    Omit<SolanaSignTransactionInput, 'account' | 'chain' | 'options'> & {
+    Omit<TrezoaSignTransactionInput, 'account' | 'chain' | 'options'> & {
         options?: Readonly<{
             minContextSlot?: bigint;
         }>;
     }
 >;
-type Output = SolanaSignTransactionOutput;
+type Output = TrezoaSignTransactionOutput;
 
 /**
  * Use this to get a function capable of signing a serialized transaction with the private key of a
@@ -33,10 +33,10 @@ type Output = SolanaSignTransactionOutput;
  *
  * @example
  * ```tsx
- * import { useSignTransaction } from '@solana/react';
+ * import { useSignTransaction } from '@trezoa/react';
  *
  * function SignTransactionButton({ account, transactionBytes }) {
- *     const signTransaction = useSignTransaction(account, 'solana:devnet');
+ *     const signTransaction = useSignTransaction(account, 'trezoa:devnet');
  *     return (
  *         <button
  *             onClick={async () => {
@@ -58,15 +58,15 @@ type Output = SolanaSignTransactionOutput;
  */
 export function useSignTransaction<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: OnlySolanaChains<TWalletAccount['chains']>,
+    chain: OnlyTrezoaChains<TWalletAccount['chains']>,
 ): (input: Input) => Promise<Output>;
 export function useSignTransaction<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): (input: Input) => Promise<Output>;
 export function useSignTransaction<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): (input: Input) => Promise<Output> {
     const signTransactions = useSignTransactions(uiWalletAccount, chain);
     return useCallback(
@@ -80,21 +80,21 @@ export function useSignTransaction<TWalletAccount extends UiWalletAccount>(
 
 function useSignTransactions<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): (...inputs: readonly Input[]) => Promise<readonly Output[]> {
     if (!uiWalletAccount.chains.includes(chain)) {
         throw new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED, {
             address: uiWalletAccount.address,
             chain,
-            featureName: SolanaSignAndSendTransaction,
+            featureName: TrezoaSignAndSendTransaction,
             supportedChains: [...uiWalletAccount.chains],
             supportedFeatures: [...uiWalletAccount.features],
         });
     }
     const signTransactionFeature = getWalletAccountFeature(
         uiWalletAccount,
-        SolanaSignTransaction,
-    ) as SolanaSignTransactionFeature[typeof SolanaSignTransaction];
+        TrezoaSignTransaction,
+    ) as TrezoaSignTransactionFeature[typeof TrezoaSignTransaction];
     const account = getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(uiWalletAccount);
     return useCallback(
         async (...inputs) => {

@@ -1,5 +1,5 @@
-import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, SolanaError } from '@solana/errors';
+import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, TrezoaError } from '@trezoa/errors';
 
 import { getOffchainMessageDecoder, getOffchainMessageEncoder } from '../codecs/message';
 import { getOffchainMessageV0Decoder, getOffchainMessageV0Encoder } from '../codecs/message-v0';
@@ -89,7 +89,7 @@ describe('getOffchainMessageDecoder', () => {
         expect(() => {
             decoder.decode(encodedMessage);
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: putativeVersion,
             }),
         );
@@ -137,7 +137,7 @@ describe('getOffchainMessageEncoder', () => {
         expect(() => {
             encoder.encode({ version: putativeVersion } as OffchainMessage);
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: putativeVersion,
             }),
         );

@@ -1,12 +1,12 @@
-import type { createSolanaRpcSubscriptionsApi } from '@solana/rpc-subscriptions-api';
+import type { createTrezoaRpcSubscriptionsApi } from '@trezoa/rpc-subscriptions-api';
 
-import { createSolanaJsonRpcIntegerOverflowError } from './rpc-integer-overflow-error';
+import { createTrezoaJsonRpcIntegerOverflowError } from './rpc-integer-overflow-error';
 
 export const DEFAULT_RPC_SUBSCRIPTIONS_CONFIG: Partial<
-    NonNullable<Parameters<typeof createSolanaRpcSubscriptionsApi>[0]>
+    NonNullable<Parameters<typeof createTrezoaRpcSubscriptionsApi>[0]>
 > = {
     defaultCommitment: 'confirmed',
     onIntegerOverflow(request, keyPath, value) {
-        throw createSolanaJsonRpcIntegerOverflowError(request.methodName, keyPath, value);
+        throw createTrezoaJsonRpcIntegerOverflowError(request.methodName, keyPath, value);
     },
 };

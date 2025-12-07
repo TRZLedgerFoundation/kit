@@ -1,4 +1,4 @@
-import { getAddressDecoder, getAddressEncoder } from '@solana/addresses';
+import { getAddressDecoder, getAddressEncoder } from '@trezoa/addresses';
 import {
     combineCodec,
     transformDecoder,
@@ -6,10 +6,10 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getArrayDecoder, getArrayEncoder } from '@solana/codecs-data-structures';
-import { getU8Decoder, getU8Encoder, getU16Decoder, getU16Encoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { getArrayDecoder, getArrayEncoder } from '@trezoa/codecs-data-structures';
+import { getU8Decoder, getU8Encoder, getU16Decoder, getU16Encoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO, TrezoaError } from '@trezoa/errors';
 
 import { OffchainMessagePreambleV0 } from '../preamble-v0';
 import {
@@ -28,7 +28,7 @@ export function getOffchainMessageV0PreambleDecoder(): VariableSizeDecoder<Offch
             'requiredSignatories',
             transformDecoder(getArrayDecoder(getAddressDecoder(), { size: getU8Decoder() }), signatoryAddresses => {
                 if (signatoryAddresses.length === 0) {
-                    throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
+                    throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
                 }
                 return signatoryAddresses.map(address => Object.freeze({ address }));
             }),
@@ -48,7 +48,7 @@ export function getOffchainMessageV0PreambleEncoder(): VariableSizeEncoder<Offch
                 getArrayEncoder(getAddressEncoder(), { size: getU8Encoder() }),
                 (signatoryAddresses: OffchainMessagePreambleV0['requiredSignatories']) => {
                     if (signatoryAddresses.length === 0) {
-                        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
+                        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
                     }
                     return signatoryAddresses.map(({ address }) => address);
                 },

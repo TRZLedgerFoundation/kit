@@ -1,6 +1,6 @@
-import { AbortController } from '@solana/event-target-impl';
-import type { RpcTransport } from '@solana/rpc-spec';
-import type { RpcResponse } from '@solana/rpc-spec-types';
+import { AbortController } from '@trezoa/event-target-impl';
+import type { RpcTransport } from '@trezoa/rpc-spec';
+import type { RpcResponse } from '@trezoa/rpc-spec-types';
 
 type CoalescedRequest = {
     readonly abortController: AbortController;

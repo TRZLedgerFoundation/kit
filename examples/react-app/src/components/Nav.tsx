@@ -26,24 +26,24 @@ export function Nav() {
             <Flex gap="4" justify="between" align="center">
                 <Box flexGrow="1">
                     <Heading as="h1" size={{ initial: '4', xs: '6' }} truncate>
-                        Solana React App{' '}
+                        Trezoa React App{' '}
                         {setChain ? (
                             <DropdownMenu.Root>
                                 <DropdownMenu.Trigger>{currentChainBadge}</DropdownMenu.Trigger>
                                 <DropdownMenu.Content>
                                     <DropdownMenu.RadioGroup
                                         onValueChange={value => {
-                                            setChain(value as 'solana:${string}');
+                                            setChain(value as 'trezoa:${string}');
                                         }}
                                         value={chain}
                                     >
                                         {process.env.REACT_EXAMPLE_APP_ENABLE_MAINNET === 'true' ? (
-                                            <DropdownMenu.RadioItem value="solana:mainnet">
+                                            <DropdownMenu.RadioItem value="trezoa:mainnet">
                                                 Mainnet Beta
                                             </DropdownMenu.RadioItem>
                                         ) : null}
-                                        <DropdownMenu.RadioItem value="solana:devnet">Devnet</DropdownMenu.RadioItem>
-                                        <DropdownMenu.RadioItem value="solana:testnet">Testnet</DropdownMenu.RadioItem>
+                                        <DropdownMenu.RadioItem value="trezoa:devnet">Devnet</DropdownMenu.RadioItem>
+                                        <DropdownMenu.RadioItem value="trezoa:testnet">Testnet</DropdownMenu.RadioItem>
                                     </DropdownMenu.RadioGroup>
                                 </DropdownMenu.Content>
                             </DropdownMenu.Root>

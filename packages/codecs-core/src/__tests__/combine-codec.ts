@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH,
-    SOLANA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH,
+    TREZOA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { createDecoder, createEncoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '../codec';
 import { combineCodec } from '../combine-codec';
@@ -59,7 +59,7 @@ describe('combineCodec', () => {
                 createDecoder({ fixedSize: 2, read: jest.fn() }),
             ),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH, {
                 decoderFixedSize: 2,
                 encoderFixedSize: 1,
             }),
@@ -71,7 +71,7 @@ describe('combineCodec', () => {
                 createDecoder({ read: jest.fn() }),
             ),
         ).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH, {
                 decoderMaxSize: undefined,
                 encoderMaxSize: 1,
             }),

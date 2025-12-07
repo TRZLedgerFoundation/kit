@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
-import type { Slot } from '@solana/rpc-types';
+import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
+import type { Slot } from '@trezoa/rpc-types';
 
 import type { RootNotificationsApi } from '../root-notifications';
 

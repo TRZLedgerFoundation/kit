@@ -1,10 +1,10 @@
 import { open } from 'node:fs/promises';
 
-import type { Rpc } from '@solana/rpc-spec';
+import type { Rpc } from '@trezoa/rpc-spec';
 import path from 'path';
 
 import { GetVersionApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const logFilePath = path.resolve(__dirname, '../../../../test-ledger/validator.log');
 const featureSetPattern = /feat:([\d]+)/;
@@ -37,7 +37,7 @@ async function getVersionFromLogFile() {
 describe('getVersion', () => {
     let rpc: Rpc<GetVersionApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     describe('when called on a valid node', () => {

@@ -1,12 +1,12 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
-import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@solana/instructions';
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@trezoa/instructions';
 
 import { CompiledTransactionMessage, CompiledTransactionMessageWithLifetime } from '../compile';
 import { decompileTransactionMessage } from '../decompile-message';
@@ -1074,8 +1074,8 @@ describe('decompileTransactionMessage', () => {
 
                 const fn = () => decompileTransactionMessage(compiledTransaction);
                 expect(fn).toThrow(
-                    new SolanaError(
-                        SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
+                    new TrezoaError(
+                        TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
                         {
                             lookupTableAddresses: ['9wnrQTq5MKhYfp379pKvpy1PvRyteseQmKv4Bw3uQrUw'],
                         },
@@ -1116,8 +1116,8 @@ describe('decompileTransactionMessage', () => {
                 const fn = () =>
                     decompileTransactionMessage(compiledTransaction, { addressesByLookupTableAddress: lookupTables });
                 expect(fn).toThrow(
-                    new SolanaError(
-                        SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
+                    new TrezoaError(
+                        TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
                         {
                             highestKnownIndex: 0,
                             highestRequestedIndex: 1,
@@ -1160,8 +1160,8 @@ describe('decompileTransactionMessage', () => {
                 const fn = () =>
                     decompileTransactionMessage(compiledTransaction, { addressesByLookupTableAddress: lookupTables });
                 expect(fn).toThrow(
-                    new SolanaError(
-                        SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
+                    new TrezoaError(
+                        TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
                         {
                             highestKnownIndex: 0,
                             highestRequestedIndex: 1,
@@ -1528,8 +1528,8 @@ describe('decompileTransactionMessage', () => {
 
                 const fn = () => decompileTransactionMessage(compiledTransaction);
                 expect(fn).toThrow(
-                    new SolanaError(
-                        SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
+                    new TrezoaError(
+                        TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
                         {
                             lookupTableAddresses: [
                                 '9wnrQTq5MKhYfp379pKvpy1PvRyteseQmKv4Bw3uQrUw',

@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH,
-    SOLANA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH,
+    TREZOA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Signature, signature, signatureBytes } from '../signatures';
 
@@ -19,7 +19,7 @@ describe('signature', () => {
     it.each([63, 89])('throws on a `Signature` whose string length is %s', actualLength => {
         const thisThrows = () => signature('t'.repeat(actualLength));
         expect(thisThrows).toThrow(
-            new SolanaError(SOLANA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE, {
+            new TrezoaError(TREZOA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE, {
                 actualLength,
             }),
         );
@@ -30,7 +30,7 @@ describe('signature', () => {
     ])('throws on a `Signature` whose decoded byte length is %s', (actualLength, encodedSignature) => {
         const thisThrows = () => signature(encodedSignature);
         expect(thisThrows).toThrow(
-            new SolanaError(SOLANA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
                 actualLength,
             }),
         );
@@ -46,7 +46,7 @@ describe('signatureBytes', () => {
     it.each([63, 65])('throws on a `SignatureBytes` whose byte length is %s', actualLength => {
         const thisThrows = () => signatureBytes(new Uint8Array(actualLength));
         expect(thisThrows).toThrow(
-            new SolanaError(SOLANA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
                 actualLength,
             }),
         );

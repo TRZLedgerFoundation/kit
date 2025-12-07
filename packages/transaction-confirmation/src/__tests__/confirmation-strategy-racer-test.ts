@@ -1,4 +1,4 @@
-import { Signature } from '@solana/keys';
+import { Signature } from '@trezoa/keys';
 
 import { raceStrategies } from '../confirmation-strategy-racer';
 

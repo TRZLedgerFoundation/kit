@@ -1,11 +1,11 @@
-import { SolanaErrorCode } from '../codes';
+import { TrezoaErrorCode } from '../codes';
 import { encodeContextObject } from '../context';
 import { getErrorMessage } from '../message-formatter';
 import * as MessagesModule from '../messages';
 
 jest.mock('../context');
 jest.mock('../messages', () => ({
-    get SolanaErrorMessages() {
+    get TrezoaErrorMessages() {
         return {};
     },
     __esModule: true,
@@ -19,14 +19,14 @@ describe('getErrorMessage', () => {
         });
         it('renders advice on where to decode a context-less error', () => {
             const message = getErrorMessage(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
             );
-            expect(message).toBe('Solana error #123; Decode this error by running `npx @solana/errors decode -- 123`');
+            expect(message).toBe('Trezoa error #123; Decode this error by running `npx @trezoa/errors decode -- 123`');
         });
         it('does not call the context encoder when the error has no context', () => {
             getErrorMessage(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
             );
             expect(encodeContextObject).not.toHaveBeenCalled();
@@ -34,7 +34,7 @@ describe('getErrorMessage', () => {
         it('does not call the context encoder when the error context has no keys', () => {
             const context = {};
             getErrorMessage(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 context,
             );
@@ -43,7 +43,7 @@ describe('getErrorMessage', () => {
         it('calls the context encoder with the context', () => {
             const context = { foo: 'bar' };
             getErrorMessage(
-                // @ts-expect-error Mock error codes don't conform to `SolanaErrorCode`
+                // @ts-expect-error Mock error codes don't conform to `TrezoaErrorCode`
                 123,
                 context,
             );
@@ -52,16 +52,16 @@ describe('getErrorMessage', () => {
         it('renders advice on where to decode an error with encoded context', () => {
             jest.mocked(encodeContextObject).mockReturnValue('ENCODED_CONTEXT');
             const context = { foo: 'bar' };
-            const message = getErrorMessage(123 as SolanaErrorCode, context);
+            const message = getErrorMessage(123 as TrezoaErrorCode, context);
             expect(message).toBe(
-                "Solana error #123; Decode this error by running `npx @solana/errors decode -- 123 'ENCODED_CONTEXT'`",
+                "Trezoa error #123; Decode this error by running `npx @trezoa/errors decode -- 123 'ENCODED_CONTEXT'`",
             );
         });
         it('renders no encoded context in the decoding advice when the context has no keys', () => {
             jest.mocked(encodeContextObject).mockReturnValue('ENCODED_CONTEXT');
             const context = {};
-            const message = getErrorMessage(123 as SolanaErrorCode, context);
-            expect(message).toBe('Solana error #123; Decode this error by running `npx @solana/errors decode -- 123`');
+            const message = getErrorMessage(123 as TrezoaErrorCode, context);
+            expect(message).toBe('Trezoa error #123; Decode this error by running `npx @trezoa/errors decode -- 123`');
         });
     });
     describe('in dev mode', () => {
@@ -70,7 +70,7 @@ describe('getErrorMessage', () => {
             (globalThis as any).__DEV__ = true;
         });
         it('renders static error messages', () => {
-            const messagesSpy = jest.spyOn(MessagesModule, 'SolanaErrorMessages', 'get');
+            const messagesSpy = jest.spyOn(MessagesModule, 'TrezoaErrorMessages', 'get');
             messagesSpy.mockReturnValue({
                 // @ts-expect-error Mock error config doesn't conform to exported config.
                 123: 'static error message',
@@ -134,7 +134,7 @@ describe('getErrorMessage', () => {
             // Empty string
             { expected: '', input: '' },
         ])('interpolates variables into the error message format string `"$input"`', ({ input, expected }) => {
-            const messagesSpy = jest.spyOn(MessagesModule, 'SolanaErrorMessages', 'get');
+            const messagesSpy = jest.spyOn(MessagesModule, 'TrezoaErrorMessages', 'get');
             messagesSpy.mockReturnValue({
                 // @ts-expect-error Mock error config doesn't conform to exported config.
                 123: input,
@@ -147,7 +147,7 @@ describe('getErrorMessage', () => {
             expect(message).toBe(expected);
         });
         it('interpolates a Uint8Array variable into a error message format string', () => {
-            const messagesSpy = jest.spyOn(MessagesModule, 'SolanaErrorMessages', 'get');
+            const messagesSpy = jest.spyOn(MessagesModule, 'TrezoaErrorMessages', 'get');
             messagesSpy.mockReturnValue({
                 // @ts-expect-error Mock error config doesn't conform to exported config.
                 123: 'Here is some data: $data',
@@ -160,7 +160,7 @@ describe('getErrorMessage', () => {
             expect(message).toBe('Here is some data: 1,2,3,4');
         });
         it('interpolates an undefined variable into a error message format string', () => {
-            const messagesSpy = jest.spyOn(MessagesModule, 'SolanaErrorMessages', 'get');
+            const messagesSpy = jest.spyOn(MessagesModule, 'TrezoaErrorMessages', 'get');
             messagesSpy.mockReturnValue({
                 // @ts-expect-error Mock error config doesn't conform to exported config.
                 123: 'Here is a variable: $variable',

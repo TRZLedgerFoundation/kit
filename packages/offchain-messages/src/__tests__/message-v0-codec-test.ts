@@ -1,22 +1,22 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { getBase16Decoder } from '@solana/codecs-strings';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getBase16Decoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__CODECS__INVALID_CONSTANT,
-    SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__INVALID_CONSTANT,
+    TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { OffchainMessageApplicationDomain } from '../application-domain';
 import { getOffchainMessageV0Decoder, getOffchainMessageV0Encoder } from '../codecs/message-v0';
@@ -141,7 +141,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     0x09,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_CONSTANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_CONSTANT, {
                 constant: OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES,
                 data: encodedMessage,
                 hexConstant: getBase16Decoder().decode(OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES),
@@ -173,7 +173,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     0x09,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE),
         );
     });
     it('throws when decoding an ASCII encoded message with a non-zero version', () => {
@@ -199,7 +199,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
                 actualVersion: 1,
                 expectedVersion: 0,
             }),
@@ -228,7 +228,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: 255,
             }),
         );
@@ -254,7 +254,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                 0x00, 0x00,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when decoding an ASCII encoded message whose required signers length is zero', () => {
@@ -277,7 +277,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
         );
     });
     it('throws when decoding an ASCII encoded message whose message content is too long', () => {
@@ -303,7 +303,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     ...Array.from<number>({ length: 1232 + 1 }).fill(0x21 /* exclamation point */), 
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 1232 + 1,
                 maxBytes: 1232,
             }),
@@ -332,7 +332,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     ...Array.from<number>({ length: 12 }).fill(0x21 /* exclamation point */), 
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
                 actualLength: 12,
                 specifiedLength: 11,
             }),
@@ -391,7 +391,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                 0x00, 0x00,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when decoding a 1232-byte-max UTF-8 message whose message content is too long', () => {
@@ -417,7 +417,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     ...Array.from<number>({ length: 1232 + 1 }).fill(0x21 /* exclamation point */), 
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 1232 + 1,
                 maxBytes: 1232,
             }),
@@ -446,7 +446,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     ...Array.from<number>({ length: 12 }).fill(0x21 /* exclamation point */), 
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
                 actualLength: 12,
                 specifiedLength: 11,
             }),
@@ -505,7 +505,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                 0x00, 0x00,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when decoding a 65535-byte-max UTF-8 message whose message content does not match the length specified in the preamble', () => {
@@ -531,7 +531,7 @@ describe('getOffchainMessageV0Decoder()', () => {
                     ...Array.from<number>({ length: 12 }).fill(0x21 /* exclamation point */), 
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
                 actualLength: 12,
                 specifiedLength: 11,
             }),
@@ -588,7 +588,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                 alphabet: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
                 base: 58,
                 value: '0'.repeat(32),
@@ -608,7 +608,7 @@ describe('getOffchainMessageEncoder()', () => {
                 version: 0,
             };
             expect(() => encoder.encode(offchainMessage)).toThrow(
-                new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE, {
                     actualLength: length,
                 }),
             );
@@ -630,7 +630,7 @@ describe('getOffchainMessageEncoder()', () => {
                 version: 0,
             };
             expect(() => encoder.encode(offchainMessage)).toThrow(
-                new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH, {
+                new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH, {
                     actualLength,
                 }),
             );
@@ -647,7 +647,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 1,
         };
         expect(() => encoder.encode(offchainMessage as unknown as OffchainMessageV0)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
                 actualVersion: 1,
                 expectedVersion: 0,
             }),
@@ -664,7 +664,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 255,
         };
         expect(() => encoder.encode(offchainMessage as unknown as OffchainMessageV0)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: 255,
             }),
         );
@@ -680,7 +680,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
         );
     });
     it('throws when encoding an ASCII encoded message whose message content is outside the restricted set', () => {
@@ -694,7 +694,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE),
         );
     });
     it('throws when encoding an ASCII encoded message whose message content length is zero', () => {
@@ -708,7 +708,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when encoding an ASCII encoded message whose message content is too long', () => {
@@ -722,7 +722,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 1232 + 1,
                 maxBytes: 1232,
             }),
@@ -772,7 +772,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when encoding a 1232-byte-max UTF-8 message whose message content is too long', () => {
@@ -786,7 +786,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 1232 + 1,
                 maxBytes: 1232,
             }),
@@ -836,7 +836,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when encoding a 65535-byte-max UTF-8 message whose message content is too long', () => {
@@ -850,7 +850,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
                 actualBytes: 65535 + 1,
                 maxBytes: 65535,
             }),

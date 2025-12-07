@@ -5,7 +5,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getShortU16Codec,
     getShortU16Decoder,
@@ -13,7 +13,7 @@ import {
     getU32Codec,
     getU32Decoder,
     getU32Encoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 
 import { getBooleanCodec, getBooleanDecoder, getBooleanEncoder } from '../boolean';
 

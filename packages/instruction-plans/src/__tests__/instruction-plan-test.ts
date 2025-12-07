@@ -1,20 +1,20 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
-    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE,
-    SolanaError,
-} from '@solana/errors';
-import { pipe } from '@solana/functional';
-import { Instruction } from '@solana/instructions';
+    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
+    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { pipe } from '@trezoa/functional';
+import { Instruction } from '@trezoa/instructions';
 import {
     BaseTransactionMessage,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@trezoa/transactions';
 
 import {
     getLinearMessagePackerInstructionPlan,
@@ -26,8 +26,8 @@ import {
     singleInstructionPlan,
 } from '../instruction-plan';
 
-jest.mock('@solana/transactions', () => ({
-    ...jest.requireActual('@solana/transactions'),
+jest.mock('@trezoa/transactions', () => ({
+    ...jest.requireActual('@trezoa/transactions'),
     getTransactionMessageSize: jest.fn(),
 }));
 
@@ -221,7 +221,7 @@ describe('getLinearMessagePackerInstructionPlan', () => {
         );
         expect(messagePacker.done()).toBe(true);
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
         );
     });
     it('freezes created MessagePackerInstructionPlan objects', () => {
@@ -241,7 +241,7 @@ describe('getLinearMessagePackerInstructionPlan', () => {
 
         const messagePacker = plan.getMessagePacker();
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                 numBytesRequired: 101,
                 numFreeBytes: 49,
             }),
@@ -274,7 +274,7 @@ describe('getMessagePackerInstructionPlanFromInstructions', () => {
         ]);
         expect(messagePacker.done()).toBe(true);
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
         );
     });
     it("throws if there isn't enough space on the provided message", () => {
@@ -284,7 +284,7 @@ describe('getMessagePackerInstructionPlanFromInstructions', () => {
 
         const messagePacker = plan.getMessagePacker();
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                 numBytesRequired: 150,
                 numFreeBytes: 100,
             }),
@@ -321,7 +321,7 @@ describe('getReallocMessagePackerInstructionPlan', () => {
         ]);
         expect(messagePacker.done()).toBe(true);
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE),
         );
     });
     it("throws if there isn't enough space on the provided message", () => {
@@ -334,7 +334,7 @@ describe('getReallocMessagePackerInstructionPlan', () => {
 
         const messagePacker = plan.getMessagePacker();
         expect(() => messagePacker.packMessageToCapacity(message)).toThrow(
-            new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+            new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                 numBytesRequired: 150,
                 numFreeBytes: 100,
             }),

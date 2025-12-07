@@ -13,9 +13,9 @@ type GetVersionApiResponse = Readonly<{
 
 export type GetVersionApi = {
     /**
-     * Returns the current Solana version running on the node.
+     * Returns the current Trezoa version running on the node.
      *
-     * @see https://solana.com/docs/rpc/http/getversion
+     * @see https://trezoa.com/docs/rpc/http/getversion
      */
     getVersion(): GetVersionApiResponse;
 };

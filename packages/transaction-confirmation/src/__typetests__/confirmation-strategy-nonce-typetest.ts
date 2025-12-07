@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { GetAccountInfoApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@solana/rpc';
+import { GetAccountInfoApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@trezoa/rpc';
 import {
     AccountNotificationsApi,
     RpcSubscriptions,
     RpcSubscriptionsDevnet,
     RpcSubscriptionsMainnet,
     RpcSubscriptionsTestnet,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { createNonceInvalidationPromiseFactory } from '../confirmation-strategy-nonce';
 

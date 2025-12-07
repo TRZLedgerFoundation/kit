@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CRYPTO__RANDOM_VALUES_FUNCTION_UNIMPLEMENTED, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CRYPTO__RANDOM_VALUES_FUNCTION_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
 
 import { assertPRNGIsAvailable } from '../crypto';
 
@@ -24,7 +24,7 @@ describe('assertPRNGIsAvailable()', () => {
         });
         it('throws', () => {
             expect(assertPRNGIsAvailable).toThrow(
-                new SolanaError(SOLANA_ERROR__CRYPTO__RANDOM_VALUES_FUNCTION_UNIMPLEMENTED),
+                new TrezoaError(TREZOA_ERROR__CRYPTO__RANDOM_VALUES_FUNCTION_UNIMPLEMENTED),
             );
         });
     });

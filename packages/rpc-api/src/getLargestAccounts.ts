@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Commitment, Lamports, SolanaRpcResponse } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Commitment, Lamports, TrezoaRpcResponse } from '@trezoa/rpc-types';
 
 type GetLargestAccountsResponseItem = Readonly<{
     /** Base-58 encoded address of the account */
@@ -16,7 +16,7 @@ export type GetLargestAccountsApi = {
      *
      * Results may be cached up to two hours.
      *
-     * @see https://solana.com/docs/rpc/http/getlargestaccounts
+     * @see https://trezoa.com/docs/rpc/http/getlargestaccounts
      */
     getLargestAccounts(
         config?: Readonly<{
@@ -25,7 +25,7 @@ export type GetLargestAccountsApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */
@@ -38,5 +38,5 @@ export type GetLargestAccountsApi = {
              */
             filter?: 'circulating' | 'nonCirculating';
         }>,
-    ): SolanaRpcResponse<GetLargestAccountsApiResponse>;
+    ): TrezoaRpcResponse<GetLargestAccountsApiResponse>;
 };

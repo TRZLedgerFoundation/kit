@@ -1,13 +1,13 @@
-import { getAddressDecoder, getAddressEncoder } from '@solana/addresses';
+import { getAddressDecoder, getAddressEncoder } from '@trezoa/addresses';
 import {
     combineCodec,
     type Encoder,
     type VariableSizeCodec,
     type VariableSizeDecoder,
     type VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getArrayDecoder, getArrayEncoder, getStructDecoder, getStructEncoder } from '@solana/codecs-data-structures';
-import { getShortU16Decoder, getShortU16Encoder, getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-core';
+import { getArrayDecoder, getArrayEncoder, getStructDecoder, getStructEncoder } from '@trezoa/codecs-data-structures';
+import { getShortU16Decoder, getShortU16Encoder, getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
 
 import type { getCompiledAddressTableLookups } from '../compile/address-table-lookups';
 

@@ -1,5 +1,5 @@
 {
-    "name": "@solana/fetch-impl",
+    "name": "@trezoa/fetch-impl",
     "version": "0.0.0",
     "private": true,
     "scripts": {

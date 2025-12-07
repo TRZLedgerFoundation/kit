@@ -1,4 +1,4 @@
-import { EventTarget } from '@solana/event-target-impl';
+import { EventTarget } from '@trezoa/event-target-impl';
 
 import { DataPublisher, getDataPublisherFromEventEmitter } from '../data-publisher';
 

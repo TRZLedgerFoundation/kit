@@ -4,11 +4,11 @@ import {
     fetchJsonParsedAccount,
     type MaybeAccount,
     type MaybeEncodedAccount,
-} from '@solana/accounts';
-import type { Address } from '@solana/addresses';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { JsonParsedSysvarAccount } from '@solana/rpc-parsed-types';
-import type { Rpc } from '@solana/rpc-spec';
+} from '@trezoa/accounts';
+import type { Address } from '@trezoa/addresses';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { JsonParsedSysvarAccount } from '@trezoa/rpc-parsed-types';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 export const SYSVAR_CLOCK_ADDRESS =
     'SysvarC1ock11111111111111111111111111111111' as Address<'SysvarC1ock11111111111111111111111111111111'>;

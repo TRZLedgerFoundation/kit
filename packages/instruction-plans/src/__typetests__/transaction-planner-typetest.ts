@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
-import { Instruction } from '@solana/instructions';
+import { Instruction } from '@trezoa/instructions';
 import {
     appendTransactionMessageInstruction,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import type { InstructionPlan } from '../instruction-plan';
 import type { TransactionPlan } from '../transaction-plan';

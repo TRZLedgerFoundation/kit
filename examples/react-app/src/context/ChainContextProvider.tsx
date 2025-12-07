@@ -1,37 +1,37 @@
-import { mainnet, testnet } from '@solana/kit';
+import { mainnet, testnet } from '@trezoa/kit';
 import { useMemo, useState } from 'react';
 
 import { ChainContext, DEFAULT_CHAIN_CONFIG } from './ChainContext';
 
-const STORAGE_KEY = 'solana-example-react-app:selected-chain';
+const STORAGE_KEY = 'trezoa-example-react-app:selected-chain';
 
 export function ChainContextProvider({ children }: { children: React.ReactNode }) {
-    const [chain, setChain] = useState(() => localStorage.getItem(STORAGE_KEY) ?? 'solana:devnet');
+    const [chain, setChain] = useState(() => localStorage.getItem(STORAGE_KEY) ?? 'trezoa:devnet');
     const contextValue = useMemo<ChainContext>(() => {
         switch (chain) {
             // @ts-expect-error Intentional fall through
-            case 'solana:mainnet':
+            case 'trezoa:mainnet':
                 if (process.env.REACT_EXAMPLE_APP_ENABLE_MAINNET === 'true') {
                     return {
-                        chain: 'solana:mainnet',
+                        chain: 'trezoa:mainnet',
                         displayName: 'Mainnet Beta',
-                        solanaExplorerClusterName: 'mainnet-beta',
-                        solanaRpcSubscriptionsUrl: mainnet('wss://api.mainnet-beta.solana.com'),
-                        solanaRpcUrl: mainnet('https://api.mainnet-beta.solana.com'),
+                        trezoaExplorerClusterName: 'mainnet-beta',
+                        trezoaRpcSubscriptionsUrl: mainnet('wss://api.mainnet-beta.trezoa.com'),
+                        trezoaRpcUrl: mainnet('https://api.mainnet-beta.trezoa.com'),
                     };
                 }
             // falls through
-            case 'solana:testnet':
+            case 'trezoa:testnet':
                 return {
-                    chain: 'solana:testnet',
+                    chain: 'trezoa:testnet',
                     displayName: 'Testnet',
-                    solanaExplorerClusterName: 'testnet',
-                    solanaRpcSubscriptionsUrl: testnet('wss://api.testnet.solana.com'),
-                    solanaRpcUrl: testnet('https://api.testnet.solana.com'),
+                    trezoaExplorerClusterName: 'testnet',
+                    trezoaRpcSubscriptionsUrl: testnet('wss://api.testnet.trezoa.com'),
+                    trezoaRpcUrl: testnet('https://api.testnet.trezoa.com'),
                 };
-            case 'solana:devnet':
+            case 'trezoa:devnet':
             default:
-                if (chain !== 'solana:devnet') {
+                if (chain !== 'trezoa:devnet') {
                     localStorage.removeItem(STORAGE_KEY);
                     console.error(`Unrecognized chain \`${chain}\``);
                 }

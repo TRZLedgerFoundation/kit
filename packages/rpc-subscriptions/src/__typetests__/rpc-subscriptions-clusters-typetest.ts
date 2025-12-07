@@ -1,15 +1,15 @@
-import type { SolanaRpcSubscriptionsApi, SolanaRpcSubscriptionsApiUnstable } from '@solana/rpc-subscriptions-api';
+import type { TrezoaRpcSubscriptionsApi, TrezoaRpcSubscriptionsApiUnstable } from '@trezoa/rpc-subscriptions-api';
 import type {
     RpcSubscriptions,
     RpcSubscriptionsChannelCreator,
     RpcSubscriptionsTransport,
-} from '@solana/rpc-subscriptions-spec';
-import { devnet, mainnet, testnet } from '@solana/rpc-types';
+} from '@trezoa/rpc-subscriptions-spec';
+import { devnet, mainnet, testnet } from '@trezoa/rpc-types';
 
 import {
-    createSolanaRpcSubscriptions,
-    createSolanaRpcSubscriptions_UNSTABLE,
-    createSolanaRpcSubscriptionsFromTransport,
+    createTrezoaRpcSubscriptions,
+    createTrezoaRpcSubscriptions_UNSTABLE,
+    createTrezoaRpcSubscriptionsFromTransport,
 } from '../rpc-subscriptions';
 import { createDefaultRpcSubscriptionsChannelCreator } from '../rpc-subscriptions-channel';
 import type {
@@ -28,9 +28,9 @@ import { createRpcSubscriptionsTransportFromChannelCreator } from '../rpc-subscr
 // Define cluster-aware URLs and transports.
 
 const genericUrl = 'http://localhost:8899';
-const devnetUrl = devnet('https://api.devnet.solana.com');
-const testnetUrl = testnet('https://api.testnet.solana.com');
-const mainnetUrl = mainnet('https://api.mainnet-beta.solana.com');
+const devnetUrl = devnet('https://api.devnet.trezoa.com');
+const testnetUrl = testnet('https://api.testnet.trezoa.com');
+const mainnetUrl = mainnet('https://api.mainnet-beta.trezoa.com');
 
 // [DESCRIBE] createDefaultRpcSubscriptionsChannelCreator.
 {
@@ -132,150 +132,150 @@ const mainnetUrl = mainnet('https://api.mainnet-beta.solana.com');
     }
 }
 
-// [DESCRIBE] createSolanaRpcSubscriptionsFromTransport.
+// [DESCRIBE] createTrezoaRpcSubscriptionsFromTransport.
 {
-    const genericRpc = createSolanaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransport);
-    const devnetRpc = createSolanaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportDevnet);
-    const testnetRpc = createSolanaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportTestnet);
-    const mainnetRpc = createSolanaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportMainnet);
+    const genericRpc = createTrezoaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransport);
+    const devnetRpc = createTrezoaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportDevnet);
+    const testnetRpc = createTrezoaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportTestnet);
+    const mainnetRpc = createTrezoaRpcSubscriptionsFromTransport(null as unknown as RpcSubscriptionsTransportMainnet);
 
     // Checking stable subscriptions.
     {
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 
         // @ts-expect-error Should not have unstable subscriptions
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
     }
 
     // When no cluster is specified, it should be a generic `RpcSubscriptions`.
     {
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        genericRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        genericRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        genericRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Devnet cluster should be `RpcSubscriptionsDevnet`.
     {
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        devnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        devnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        devnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Testnet cluster should be `RpcSubscriptionsTestnet`.
     {
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        testnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        testnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        testnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Mainnet cluster should be `RpcSubscriptionsMainnet`.
     {
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        mainnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        mainnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        mainnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
     }
 }
 
-// [DESCRIBE] createSolanaRpcSubscriptions.
+// [DESCRIBE] createTrezoaRpcSubscriptions.
 {
-    const genericRpc = createSolanaRpcSubscriptions(genericUrl);
-    const devnetRpc = createSolanaRpcSubscriptions(devnetUrl);
-    const testnetRpc = createSolanaRpcSubscriptions(testnetUrl);
-    const mainnetRpc = createSolanaRpcSubscriptions(mainnetUrl);
+    const genericRpc = createTrezoaRpcSubscriptions(genericUrl);
+    const devnetRpc = createTrezoaRpcSubscriptions(devnetUrl);
+    const testnetRpc = createTrezoaRpcSubscriptions(testnetUrl);
+    const mainnetRpc = createTrezoaRpcSubscriptions(mainnetUrl);
 
     // Checking stable subscriptions.
     {
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 
         // @ts-expect-error Should not have unstable subscriptions
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
         // @ts-expect-error Should not have unstable subscriptions
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
     }
 
     // When no cluster is specified, it should be a generic `RpcSubscriptions`.
     {
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        genericRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        genericRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        genericRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        genericRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Devnet cluster should be `RpcSubscriptionsDevnet`.
     {
-        devnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        devnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        devnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        devnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        devnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Testnet cluster should be `RpcSubscriptionsTestnet`.
     {
-        testnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        testnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        testnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a mainnet RPC
-        testnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        testnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
     }
 
     // Mainnet cluster should be `RpcSubscriptionsMainnet`.
     {
-        mainnetRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi>;
-        mainnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a devnet RPC
-        mainnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>;
         // @ts-expect-error Should not be a testnet RPC
-        mainnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi>;
+        mainnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi>;
     }
 }
 
-// [DESCRIBE] createSolanaRpcSubscriptions_UNSTABLE.
+// [DESCRIBE] createTrezoaRpcSubscriptions_UNSTABLE.
 {
-    const genericRpc = createSolanaRpcSubscriptions_UNSTABLE(genericUrl);
-    const devnetRpc = createSolanaRpcSubscriptions_UNSTABLE(devnetUrl);
-    const testnetRpc = createSolanaRpcSubscriptions_UNSTABLE(testnetUrl);
-    const mainnetRpc = createSolanaRpcSubscriptions_UNSTABLE(mainnetUrl);
+    const genericRpc = createTrezoaRpcSubscriptions_UNSTABLE(genericUrl);
+    const devnetRpc = createTrezoaRpcSubscriptions_UNSTABLE(devnetUrl);
+    const testnetRpc = createTrezoaRpcSubscriptions_UNSTABLE(testnetUrl);
+    const mainnetRpc = createTrezoaRpcSubscriptions_UNSTABLE(mainnetUrl);
 
     // Checking unstable subscriptions.
     {
-        genericRpc satisfies RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
-        devnetRpc satisfies RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
-        testnetRpc satisfies RpcSubscriptionsTestnet<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
-        mainnetRpc satisfies RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>;
+        genericRpc satisfies RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
+        devnetRpc satisfies RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
+        testnetRpc satisfies RpcSubscriptionsTestnet<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
+        mainnetRpc satisfies RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>;
     }
 }

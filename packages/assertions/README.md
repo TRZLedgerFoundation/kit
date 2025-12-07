@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/assertions?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/assertions?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/assertions
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/assertions?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/assertions?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/assertions
 
-# @solana/assertions
+# @trezoa/assertions
 
-This package contains utilities for asserting that a JavaScript environment supports certain features necessary for the operation of the Solana JavaScript SDK.
+This package contains utilities for asserting that a JavaScript environment supports certain features necessary for the operation of the Trezoa JavaScript SDK.
 
 ## Functions
 

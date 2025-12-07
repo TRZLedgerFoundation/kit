@@ -4,8 +4,8 @@ import {
     FixedSizeDecoder,
     FixedSizeEncoder,
     ReadonlyUint8Array,
-} from '@solana/codecs-core';
-import { getConstantDecoder, getConstantEncoder } from '@solana/codecs-data-structures';
+} from '@trezoa/codecs-core';
+import { getConstantDecoder, getConstantEncoder } from '@trezoa/codecs-data-structures';
 
 // The string `'\xffsolana offchain'`
 const OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES: ReadonlyUint8Array = new Uint8Array([

@@ -1,15 +1,15 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address, getAddressFromPublicKey } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address, getAddressFromPublicKey } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION,
-    SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes, signBytes } from '@solana/keys';
-import { TransactionMessageWithBlockhashLifetime } from '@solana/transaction-messages';
+    TREZOA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION,
+    TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes, signBytes } from '@trezoa/keys';
+import { TransactionMessageWithBlockhashLifetime } from '@trezoa/transaction-messages';
 
 import { TransactionWithLifetime } from '../lifetime';
 import {
@@ -21,8 +21,8 @@ import {
 } from '../signatures';
 import { SignaturesMap, Transaction, TransactionMessageBytes } from '../transaction';
 
-jest.mock('@solana/addresses');
-jest.mock('@solana/keys');
+jest.mock('@trezoa/addresses');
+jest.mock('@trezoa/keys');
 
 const MOCK_BLOCKHASH_LIFETIME = {
     blockhash: '11111111111111111111111111111111',
@@ -50,7 +50,7 @@ describe('getSignatureFromTransaction', () => {
         };
         expect(() => {
             getSignatureFromTransaction(transactionWithoutFeePayerSignature);
-        }).toThrow(new SolanaError(SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING));
     });
 });
 
@@ -296,7 +296,7 @@ describe('partiallySignTransaction', () => {
             },
         };
         await expect(partiallySignTransaction([mockKeyPairB], transaction)).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
                 expectedAddresses: [mockPublicKeyAddressA],
                 unexpectedAddresses: [mockPublicKeyAddressB],
             }),
@@ -312,7 +312,7 @@ describe('partiallySignTransaction', () => {
             },
         };
         await expect(partiallySignTransaction([mockKeyPairB, mockKeyPairC], transaction)).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
                 expectedAddresses: [mockPublicKeyAddressA],
                 unexpectedAddresses: [mockPublicKeyAddressB, mockPublicKeyAddressC],
             }),
@@ -361,7 +361,7 @@ describe('signTransaction', () => {
         };
         const signedTransactionPromise = signTransaction([mockKeyPairA], transaction);
         await expect(signedTransactionPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
                 addresses: [mockPublicKeyAddressB],
             }),
         );
@@ -486,7 +486,7 @@ describe('assertIsFullySignedTransaction', () => {
         };
 
         expect(() => assertIsFullySignedTransaction(transaction)).toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
                 addresses: [mockPublicKeyAddressA],
             }),
         );
@@ -503,7 +503,7 @@ describe('assertIsFullySignedTransaction', () => {
         };
 
         expect(() => assertIsFullySignedTransaction(transaction)).toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
                 addresses: [mockPublicKeyAddressA, mockPublicKeyAddressB],
             }),
         );

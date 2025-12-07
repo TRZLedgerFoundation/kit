@@ -1,10 +1,10 @@
 import { open } from 'node:fs/promises';
 
-import type { Rpc } from '@solana/rpc-spec';
+import type { Rpc } from '@trezoa/rpc-spec';
 import path from 'path';
 
 import { GetClusterNodesApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const logFilePath = path.resolve(__dirname, '../../../../test-ledger/validator.log');
 
@@ -63,7 +63,7 @@ async function getNodeInfoFromLogFile() {
 describe('getClusterNodes', () => {
     let mockRpc: Rpc<GetClusterNodesApi>;
     beforeEach(() => {
-        mockRpc = createLocalhostSolanaRpc();
+        mockRpc = createLocalhostTrezoaRpc();
     });
 
     describe('when run against the test validator', () => {

@@ -1,11 +1,11 @@
-import type { Address } from '@solana/addresses';
-import { getBase58Encoder, getBase64Encoder } from '@solana/codecs-strings';
+import type { Address } from '@trezoa/addresses';
+import { getBase58Encoder, getBase64Encoder } from '@trezoa/codecs-strings';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
     AccountInfoWithBase58EncodedData,
     AccountInfoWithBase64EncodedData,
-} from '@solana/rpc-types';
+} from '@trezoa/rpc-types';
 
 import type { Account, BaseAccount, EncodedAccount } from './account';
 import type { MaybeAccount, MaybeEncodedAccount } from './maybe-account';

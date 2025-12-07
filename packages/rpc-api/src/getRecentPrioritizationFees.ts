@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { MicroLamports, Slot } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { MicroLamports, Slot } from '@trezoa/rpc-types';
 
 type RecentPrioritizationFee = Readonly<{
     /**
@@ -22,7 +22,7 @@ export type GetRecentPrioritizationFeesApi = {
      * @param addresses A maximum of 128 addresses. When supplied, the response will reflect the
      * prioritization fee paid for transactions which take a write-lock on all of them.
      *
-     * @see https://solana.com/docs/rpc/http/getrecentprioritizationfees
+     * @see https://trezoa.com/docs/rpc/http/getrecentprioritizationfees
      */
     getRecentPrioritizationFees(addresses?: readonly Address[]): GetRecentPrioritizationFeesApiResponse;
 };

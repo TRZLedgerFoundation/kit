@@ -1,5 +1,5 @@
 ---
-'@solana/rpc': patch
+'@trezoa/rpc': patch
 ---
 
-Add a type `SolanaRpcApiFromClusterUrl`
+Add a type `TrezoaRpcApiFromClusterUrl`

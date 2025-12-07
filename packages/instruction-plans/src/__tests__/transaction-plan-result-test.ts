@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE, SolanaError } from '@solana/errors';
-import { Signature } from '@solana/keys';
+import { TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE, TrezoaError } from '@trezoa/errors';
+import { Signature } from '@trezoa/keys';
 
 import {
     canceledSingleTransactionPlanResult,
@@ -91,7 +91,7 @@ describe('successfulSingleTransactionPlanResultFromSignature', () => {
 describe('failedSingleTransactionPlanResult', () => {
     it('creates SingleTransactionPlanResult objects with failed status', () => {
         const messageA = createMessage('A');
-        const error = new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
+        const error = new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
         const result = failedSingleTransactionPlanResult(messageA, error);
         expect(result).toEqual({
             kind: 'single',
@@ -101,13 +101,13 @@ describe('failedSingleTransactionPlanResult', () => {
     });
     it('freezes created SingleTransactionPlanResult objects', () => {
         const messageA = createMessage('A');
-        const error = new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
+        const error = new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
         const result = failedSingleTransactionPlanResult(messageA, error);
         expect(result).toBeFrozenObject();
     });
     it('freezes the status object of created SingleTransactionPlanResult objects', () => {
         const messageA = createMessage('A');
-        const error = new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
+        const error = new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
         const result = failedSingleTransactionPlanResult(messageA, error);
         expect(result.status).toBeFrozenObject();
     });
@@ -272,7 +272,7 @@ describe('summarizeTransactionPlanResult', () => {
     });
 
     it('summarizes a single failed transaction', () => {
-        const error = new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
+        const error = new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE);
         const result = failedSingleTransactionPlanResult(createMessage('A'), error);
         const summary = summarizeTransactionPlanResult(result);
         expect(summary).toEqual({
@@ -312,15 +312,15 @@ describe('summarizeTransactionPlanResult', () => {
     it('summarizes nested failed transactions', () => {
         const planA = failedSingleTransactionPlanResult(
             createMessage('A'),
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
         );
         const planB = failedSingleTransactionPlanResult(
             createMessage('B'),
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
         );
         const planC = failedSingleTransactionPlanResult(
             createMessage('C'),
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
         );
         const nestedResult = sequentialTransactionPlanResult([parallelTransactionPlanResult([planA, planB]), planC]);
 
@@ -352,7 +352,7 @@ describe('summarizeTransactionPlanResult', () => {
         const planA = successfulSingleTransactionPlanResultFromSignature(createMessage('A'), 'A' as Signature);
         const planB = failedSingleTransactionPlanResult(
             createMessage('B'),
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
         );
         const planC = canceledSingleTransactionPlanResult(createMessage('C'));
         const mixedResult = sequentialTransactionPlanResult([planA, planB, planC]);

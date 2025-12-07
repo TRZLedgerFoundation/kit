@@ -1,4 +1,4 @@
-import { Brand, CompressedData, EncodedString } from '@solana/nominal-types';
+import { Brand, CompressedData, EncodedString } from '@trezoa/nominal-types';
 
 export type Base58EncodedBytes = Brand<EncodedString<string, 'base58'>, 'Base58EncodedBytes'>;
 export type Base64EncodedBytes = Brand<EncodedString<string, 'base64'>, 'Base64EncodedBytes'>;

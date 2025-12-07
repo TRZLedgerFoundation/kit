@@ -6,7 +6,7 @@
         "noEmit": true,
         "target": "ESNext"
     },
-    "display": "@solana/example-deserialize-transaction",
+    "display": "@trezoa/example-deserialize-transaction",
     "extends": "../../packages/tsconfig/base.json",
     "include": ["src"]
 }

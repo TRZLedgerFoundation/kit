@@ -1,4 +1,4 @@
-import type { GetProgramAccountsApi, Rpc } from '@solana/rpc';
+import type { GetProgramAccountsApi, Rpc } from '@trezoa/rpc';
 import DataLoader from 'dataloader';
 
 import { sliceData } from './account';

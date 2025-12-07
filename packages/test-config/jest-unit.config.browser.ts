@@ -16,7 +16,7 @@ const config: Partial<Config.InitialProjectOptions> = {
         __REACTNATIVE__: false,
     },
     // From https://stackoverflow.com/a/73203803/1375972
-    // this is required for @solana/compat, which uses the legacy web3js
+    // this is required for @trezoa/compat, which uses the legacy web3js
     moduleNameMapper: {
         // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
         "uuid": require.resolve('uuid'),

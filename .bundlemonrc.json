@@ -2,7 +2,7 @@
     "baseDir": "./packages/",
     "files": [
         {
-            "friendlyName": "@solana/kit production bundle",
+            "friendlyName": "@trezoa/kit production bundle",
             "path": "kit/dist/index.production.min.js"
         },
         {

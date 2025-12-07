@@ -1,20 +1,20 @@
-import { SOLANA_ERROR__RPC__INTEGER_OVERFLOW, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__RPC__INTEGER_OVERFLOW, TrezoaError } from '@trezoa/errors';
 
-import { createSolanaJsonRpcIntegerOverflowError } from '../rpc-integer-overflow-error';
+import { createTrezoaJsonRpcIntegerOverflowError } from '../rpc-integer-overflow-error';
 
-describe('createSolanaJsonRpcIntegerOverflowError()', () => {
-    it('creates a `SolanaError`', () => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
-        expect(error).toBeInstanceOf(SolanaError);
+describe('createTrezoaJsonRpcIntegerOverflowError()', () => {
+    it('creates a `TrezoaError`', () => {
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
+        expect(error).toBeInstanceOf(TrezoaError);
     });
-    it('creates a `SolanaError` with the code `SOLANA_ERROR__RPC__INTEGER_OVERFLOW`', () => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
-        expect(error).toHaveProperty('context.__code', SOLANA_ERROR__RPC__INTEGER_OVERFLOW);
+    it('creates a `TrezoaError` with the code `TREZOA_ERROR__RPC__INTEGER_OVERFLOW`', () => {
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
+        expect(error).toHaveProperty('context.__code', TREZOA_ERROR__RPC__INTEGER_OVERFLOW);
     });
-    it('creates a `SolanaError` with the correct context for a path-less violation', () => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
+    it('creates a `TrezoaError` with the correct context for a path-less violation', () => {
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [2 /* third argument */], 1n);
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__RPC__INTEGER_OVERFLOW, {
+            new TrezoaError(TREZOA_ERROR__RPC__INTEGER_OVERFLOW, {
                 argumentLabel: '3rd',
                 keyPath: [2],
                 methodName: 'someMethod',
@@ -23,14 +23,14 @@ describe('createSolanaJsonRpcIntegerOverflowError()', () => {
             }),
         );
     });
-    it('creates a `SolanaError` with the correct context for a violation with a deep path', () => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [0 /* first argument */, 'foo', 'bar'], 1n);
+    it('creates a `TrezoaError` with the correct context for a violation with a deep path', () => {
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [0 /* first argument */, 'foo', 'bar'], 1n);
         expect(error).toHaveProperty('context.optionalPathLabel', ' at path `foo.bar`');
         expect(error).toHaveProperty('context.path', 'foo.bar');
     });
     it('omits the error factory function itself from the stack trace', () => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [0 /* first argument */, 'foo', 'bar'], 1n);
-        expect(error.stack).not.toMatch(/createSolanaJsonRpcIntegerOverflowError/);
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [0 /* first argument */, 'foo', 'bar'], 1n);
+        expect(error.stack).not.toMatch(/createTrezoaJsonRpcIntegerOverflowError/);
     });
     it.each(
         Object.entries({
@@ -58,7 +58,7 @@ describe('createSolanaJsonRpcIntegerOverflowError()', () => {
             12: '13th',
         }),
     )('computes the correct ordinal when crafting the argument label', (index, expectedLabel) => {
-        const error = createSolanaJsonRpcIntegerOverflowError('someMethod', [parseInt(index, 10)], 1n);
+        const error = createTrezoaJsonRpcIntegerOverflowError('someMethod', [parseInt(index, 10)], 1n);
         expect(error).toHaveProperty('context.argumentLabel', expectedLabel);
     });
 });

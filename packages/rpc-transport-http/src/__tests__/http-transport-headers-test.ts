@@ -1,11 +1,11 @@
-import { SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, SolanaError } from '@solana/errors';
-import { RpcTransport } from '@solana/rpc-spec';
+import { TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, TrezoaError } from '@trezoa/errors';
+import { RpcTransport } from '@trezoa/rpc-spec';
 
 import { assertIsAllowedHttpRequestHeaders } from '../http-transport-headers';
 
 // HACK: Pierce the veil of `jest.isolateModules` so that the modules inside get the same version of
-//       `@solana/errors` that is imported above.
-jest.mock('@solana/errors', () => jest.requireActual('@solana/errors'));
+//       `@trezoa/errors` that is imported above.
+jest.mock('@trezoa/errors', () => jest.requireActual('@trezoa/errors'));
 
 const FOREVER_PROMISE = new Promise(() => {
     /* never resolve */
@@ -46,7 +46,7 @@ describe('assertIsAllowedHttpRequestHeader', () => {
             expect(() => {
                 assertIsAllowedHttpRequestHeaders({ [forbiddenHeader]: 'value' });
             }).toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
+                new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
                     headers: [forbiddenHeader],
                 }),
             );
@@ -57,7 +57,7 @@ describe('assertIsAllowedHttpRequestHeader', () => {
             expect(() => {
                 assertIsAllowedHttpRequestHeaders({ 'Accept-Encoding': 'zstd' });
             }).toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
+                new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
                     headers: ['Accept-Encoding'],
                 }),
             );
@@ -68,13 +68,13 @@ describe('assertIsAllowedHttpRequestHeader', () => {
             expect(() => {
                 assertIsAllowedHttpRequestHeaders({ Origin: 'https://spoofed.site' });
             }).toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
+                new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
                     headers: ['Origin'],
                 }),
             );
         });
     }
-    ['Authorization', 'Content-Language', 'Solana-Client'].forEach(allowedHeader => {
+    ['Authorization', 'Content-Language', 'Trezoa-Client'].forEach(allowedHeader => {
         it('does not throw when called with the header `' + allowedHeader + '`', () => {
             expect(() => {
                 assertIsAllowedHttpRequestHeaders({ [allowedHeader]: 'value' });
@@ -154,7 +154,7 @@ describe('createHttpRequest with custom headers', () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (globalThis as any).__DEV__ = true;
             expect(createTransportWithForbiddenHeaders).toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
+                new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_HEADER_FORBIDDEN, {
                     headers: ['sEc-FeTcH-mOdE'],
                 }),
             );

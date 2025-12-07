@@ -1,6 +1,6 @@
 export const blockTypeDefs = /* GraphQL */ `
     """
-    A Solana block
+    A Trezoa block
     """
     type Block {
         blockhash: Hash

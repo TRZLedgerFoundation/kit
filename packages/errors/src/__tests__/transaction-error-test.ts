@@ -1,17 +1,17 @@
 import {
-    SOLANA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION,
-    SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT,
-    SOLANA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED,
-    SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN,
-    SolanaErrorCode,
+    TREZOA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION,
+    TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT,
+    TREZOA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED,
+    TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN,
+    TrezoaErrorCode,
 } from '../codes';
-import { SolanaError } from '../error';
-import { getSolanaErrorFromInstructionError } from '../instruction-error';
-import { getSolanaErrorFromTransactionError } from '../transaction-error';
+import { TrezoaError } from '../error';
+import { getTrezoaErrorFromInstructionError } from '../instruction-error';
+import { getTrezoaErrorFromTransactionError } from '../transaction-error';
 
 jest.mock('../instruction-error.ts');
 
-describe('getSolanaErrorFromTransactionError', () => {
+describe('getTrezoaErrorFromTransactionError', () => {
     it.each([
         ['AccountInUse', 7050001],
         ['AccountLoadedTwice', 7050002],
@@ -46,75 +46,75 @@ describe('getSolanaErrorFromTransactionError', () => {
         ['InvalidLoadedAccountsDataSizeLimit', 7050033],
         ['ResanitizationNeeded', 7050034],
         ['UnbalancedTransaction', 7050036],
-    ])('produces the correct `SolanaError` for a `%s` error', (transactionError, expectedCode) => {
-        const error = getSolanaErrorFromTransactionError(transactionError);
-        expect(error).toEqual(new SolanaError(expectedCode as SolanaErrorCode, undefined));
+    ])('produces the correct `TrezoaError` for a `%s` error', (transactionError, expectedCode) => {
+        const error = getTrezoaErrorFromTransactionError(transactionError);
+        expect(error).toEqual(new TrezoaError(expectedCode as TrezoaErrorCode, undefined));
     });
-    it('produces the correct `SolanaError` for a `DuplicateInstruction` error', () => {
-        const error = getSolanaErrorFromTransactionError({ DuplicateInstruction: 1 });
+    it('produces the correct `TrezoaError` for a `DuplicateInstruction` error', () => {
+        const error = getTrezoaErrorFromTransactionError({ DuplicateInstruction: 1 });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION, {
                 index: 1,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `DuplicateInstruction` error with a bigint index', () => {
-        const error = getSolanaErrorFromTransactionError({ DuplicateInstruction: 1n });
+    it('produces the correct `TrezoaError` for a `DuplicateInstruction` error with a bigint index', () => {
+        const error = getTrezoaErrorFromTransactionError({ DuplicateInstruction: 1n });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__DUPLICATE_INSTRUCTION, {
                 index: 1,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `InsufficientFundsForRent` error', () => {
-        const error = getSolanaErrorFromTransactionError({ InsufficientFundsForRent: { account_index: 1 } });
+    it('produces the correct `TrezoaError` for a `InsufficientFundsForRent` error', () => {
+        const error = getTrezoaErrorFromTransactionError({ InsufficientFundsForRent: { account_index: 1 } });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT, {
                 accountIndex: 1,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `InsufficientFundsForRent` error with a bigint index', () => {
-        const error = getSolanaErrorFromTransactionError({ InsufficientFundsForRent: { account_index: 1n } });
+    it('produces the correct `TrezoaError` for a `InsufficientFundsForRent` error with a bigint index', () => {
+        const error = getTrezoaErrorFromTransactionError({ InsufficientFundsForRent: { account_index: 1n } });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_RENT, {
                 accountIndex: 1,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `ProgramExecutionTemporarilyRestricted` error', () => {
-        const error = getSolanaErrorFromTransactionError({
+    it('produces the correct `TrezoaError` for a `ProgramExecutionTemporarilyRestricted` error', () => {
+        const error = getTrezoaErrorFromTransactionError({
             ProgramExecutionTemporarilyRestricted: { account_index: 1 },
         });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED, {
                 accountIndex: 1,
             }),
         );
     });
-    it('produces the correct `SolanaError` for a `ProgramExecutionTemporarilyRestricted` error with a bigint index', () => {
-        const error = getSolanaErrorFromTransactionError({
+    it('produces the correct `TrezoaError` for a `ProgramExecutionTemporarilyRestricted` error with a bigint index', () => {
+        const error = getTrezoaErrorFromTransactionError({
             ProgramExecutionTemporarilyRestricted: { account_index: 1n },
         });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__PROGRAM_EXECUTION_TEMPORARILY_RESTRICTED, {
                 accountIndex: 1,
             }),
         );
     });
     it("returns the unknown error when encountering an enum name that's missing from the map", () => {
-        const error = getSolanaErrorFromTransactionError('ThisDoesNotExist');
+        const error = getTrezoaErrorFromTransactionError('ThisDoesNotExist');
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN, {
                 errorName: 'ThisDoesNotExist',
             }),
         );
     });
     it("returns the unknown error when encountering an enum struct that's missing from the map", () => {
         const expectedContext = {} as const;
-        const error = getSolanaErrorFromTransactionError({ ThisDoesNotExist: expectedContext });
+        const error = getTrezoaErrorFromTransactionError({ ThisDoesNotExist: expectedContext });
         expect(error).toEqual(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN, {
                 errorName: 'ThisDoesNotExist',
                 transactionErrorContext: expectedContext,
             }),
@@ -122,10 +122,10 @@ describe('getSolanaErrorFromTransactionError', () => {
     });
     it('delegates `InstructionError` to the instruction error getter', () => {
         const instructionError = Symbol();
-        const mockErrorResult = Symbol() as unknown as SolanaError;
-        jest.mocked(getSolanaErrorFromInstructionError).mockReturnValue(mockErrorResult);
-        const error = getSolanaErrorFromTransactionError({ InstructionError: [123, instructionError] });
-        expect(getSolanaErrorFromInstructionError).toHaveBeenCalledWith(123, instructionError);
+        const mockErrorResult = Symbol() as unknown as TrezoaError;
+        jest.mocked(getTrezoaErrorFromInstructionError).mockReturnValue(mockErrorResult);
+        const error = getTrezoaErrorFromTransactionError({ InstructionError: [123, instructionError] });
+        expect(getTrezoaErrorFromInstructionError).toHaveBeenCalledWith(123, instructionError);
         expect(error).toBe(mockErrorResult);
     });
 });

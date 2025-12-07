@@ -5,15 +5,15 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/codecs-numbers?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/codecs-numbers?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/codecs-numbers
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/codecs-numbers?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/codecs-numbers?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/codecs-numbers
 
-# @solana/codecs-numbers
+# @trezoa/codecs-numbers
 
-This package contains codecs for numbers of different sizes and endianness. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains codecs for numbers of different sizes and endianness. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
-This package is also part of the [`@solana/codecs` package](https://github.com/anza-xyz/kit/tree/main/packages/codecs) which acts as an entry point for all codec packages as well as for their documentation.
+This package is also part of the [`@trezoa/codecs` package](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs) which acts as an entry point for all codec packages as well as for their documentation.
 
 ## Integer codecs
 
@@ -121,10 +121,10 @@ In other words, this codec provides an extendable size that adapts based on the 
 1XXXXXXX 1XXXXXXX XXXXXXXX <- From 16,384 to 4,194,303.
 ```
 
-This codec is mainly used internally when encoding and decoding Solana transactions.
+This codec is mainly used internally when encoding and decoding Trezoa transactions.
 
 Separate encoder and decoder functions are also available via `getShortU16Encoder` and `getShortU16Decoder` respectively.
 
 ---
 
-To read more about the available codecs and how to use them, check out the documentation of the main [`@solana/codecs` package](https://github.com/anza-xyz/kit/tree/main/packages/codecs).
+To read more about the available codecs and how to use them, check out the documentation of the main [`@trezoa/codecs` package](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs).

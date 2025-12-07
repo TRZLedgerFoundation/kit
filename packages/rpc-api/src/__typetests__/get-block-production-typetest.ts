@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Rpc } from '@solana/rpc-spec';
+import type { Address } from '@trezoa/addresses';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import type { GetBlockProductionApi } from '../getBlockProduction';
 

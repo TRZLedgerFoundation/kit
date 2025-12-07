@@ -1,4 +1,4 @@
-import { RpcSubscriptionsChannel, RpcSubscriptionsChannelCreator } from '@solana/rpc-subscriptions-spec';
+import { RpcSubscriptionsChannel, RpcSubscriptionsChannelCreator } from '@trezoa/rpc-subscriptions-spec';
 
 import { getChannelPoolingChannelCreator } from '../rpc-subscriptions-channel-pool';
 import { ChannelPoolEntry, createChannelPool } from '../rpc-subscriptions-channel-pool-internal';

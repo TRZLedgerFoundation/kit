@@ -6,14 +6,14 @@ import {
     isVariableSize,
     offsetCodec,
     resizeCodec,
-} from '@solana/codecs-core';
-import { getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
+} from '@trezoa/codecs-core';
+import { getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT,
-    SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT,
+    TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { getArrayCodec } from '../array';
 import { getBooleanCodec } from '../boolean';
@@ -110,13 +110,13 @@ describe('getDiscriminatedUnionCodec', () => {
 
     it('handles invalid variants', () => {
         expect(() => discriminatedUnion(getWebEvent()).encode({ __kind: 'Missing' } as unknown as WebEvent)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_DISCRIMINATED_UNION_VARIANT, {
                 value: 'Missing',
                 variants: ['PageLoad', 'Click', 'KeyPress', 'PageUnload'],
             }),
         );
         expect(() => discriminatedUnion(getWebEvent()).read(new Uint8Array([4]), 0)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, { maxRange: 3, minRange: 0, variant: 4 }),
+            new TrezoaError(TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, { maxRange: 3, minRange: 0, variant: 4 }),
         );
     });
 

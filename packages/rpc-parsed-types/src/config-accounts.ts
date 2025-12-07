@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 
 import type { RpcParsedType } from './rpc-parsed-type';
 

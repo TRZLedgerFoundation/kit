@@ -1,5 +1,5 @@
 {
-    "name": "solana-js-monorepo",
+    "name": "trezoa-js-monorepo",
     "private": true,
     "scripts": {
         "build": "turbo run --concurrency=${TURBO_CONCURRENCY:-95.84%} build",
@@ -16,12 +16,12 @@
         "@eslint/js": "^9.38.0",
         "@eslint/json": "^0.13.2",
         "@prettier/sync": "^0.6.1",
-        "@solana/build-scripts": "workspace:*",
-        "@solana/eslint-config-solana": "^4.0.0",
-        "@solana/prettier-config-solana": "0.0.5",
-        "@solana/test-config": "workspace:*",
-        "@solana/test-matchers": "workspace:*",
-        "@solana/tsconfig": "workspace:*",
+        "@trezoa/build-scripts": "workspace:*",
+        "@trezoa/eslint-config-trezoa": "^4.0.0",
+        "@trezoa/prettier-config-trezoa": "0.0.5",
+        "@trezoa/test-config": "workspace:*",
+        "@trezoa/test-matchers": "workspace:*",
+        "@trezoa/tsconfig": "workspace:*",
         "@swc/jest": "^0.2.39",
         "@types/jest": "^29.5.14",
         "@types/node": "^24",
@@ -74,5 +74,5 @@
             "jest-runner-prettier@1.0.0": "patches/jest-runner-prettier@1.0.0.patch"
         }
     },
-    "prettier": "@solana/prettier-config-solana"
+    "prettier": "@trezoa/prettier-config-solana"
 }

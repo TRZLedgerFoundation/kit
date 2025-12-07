@@ -1,4 +1,4 @@
-import type { Blockhash, Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@solana/rpc-types';
+import type { Blockhash, Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@trezoa/rpc-types';
 
 import { RpcParsedType } from './rpc-parsed-type';
 

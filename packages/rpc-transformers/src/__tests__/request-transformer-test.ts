@@ -1,16 +1,16 @@
-import type { RpcRequestTransformer } from '@solana/rpc-spec-types';
-import type { Commitment } from '@solana/rpc-types';
+import type { RpcRequestTransformer } from '@trezoa/rpc-spec-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
-import { getDefaultRequestTransformerForSolanaRpc } from '../request-transformer';
+import { getDefaultRequestTransformerForTrezoaRpc } from '../request-transformer';
 import { OPTIONS_OBJECT_POSITION_BY_METHOD } from '../request-transformer-options-object-position-config';
 
-describe('getDefaultRequestTransformerForSolanaRpc', () => {
+describe('getDefaultRequestTransformerForTrezoaRpc', () => {
     describe('given no config', () => {
         let createRequest: (params: unknown) => { methodName: 'getFoo'; params: unknown };
         let requestTransformer: RpcRequestTransformer;
         beforeEach(() => {
             createRequest = params => ({ methodName: 'getFoo', params });
-            requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+            requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
         });
         describe('given an array as input', () => {
             const input = [10n, 10, '10', ['10', [10, 10n], 10n]] as const;
@@ -82,7 +82,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
             defaultCommitment => {
                 let requestTransformer: RpcRequestTransformer;
                 beforeEach(() => {
-                    requestTransformer = getDefaultRequestTransformerForSolanaRpc({ defaultCommitment });
+                    requestTransformer = getDefaultRequestTransformerForTrezoaRpc({ defaultCommitment });
                 });
                 it.each(METHODS_SUBJECT_TO_COMMITMENT_DEFAULTING)(
                     'adds a default commitment on calls for `%s`',
@@ -102,7 +102,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
         describe('with the default commitment set to `finalized`', () => {
             let requestTransformer: RpcRequestTransformer;
             beforeEach(() => {
-                requestTransformer = getDefaultRequestTransformerForSolanaRpc({ defaultCommitment: 'finalized' });
+                requestTransformer = getDefaultRequestTransformerForTrezoaRpc({ defaultCommitment: 'finalized' });
             });
             it.each(METHODS_SUBJECT_TO_COMMITMENT_DEFAULTING)('adds no commitment on calls for `%s`', methodName => {
                 expect(requestTransformer({ methodName, params: [] }).params).not.toContainEqual(
@@ -118,7 +118,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
         describe('with no default commitment set', () => {
             let requestTransformer: RpcRequestTransformer;
             beforeEach(() => {
-                requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
             });
             it.each(METHODS_SUBJECT_TO_COMMITMENT_DEFAULTING)('sets no commitment on calls to `%s`', methodName => {
                 expect(requestTransformer({ methodName, params: [] }).params).not.toContainEqual(
@@ -142,7 +142,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                             ...new Array(optionsObjectPosition),
                             { commitment: existingCommitment, other: 'property' },
                         ];
-                        const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                        const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                         expect(requestTransformer({ methodName, params }).params).toStrictEqual([
                             ...new Array(optionsObjectPosition).map(() => expect.anything()),
                             { other: 'property' },
@@ -155,7 +155,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                             { commitment: existingCommitment },
                             'someParam',
                         ];
-                        const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                        const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                         expect(requestTransformer({ methodName, params }).params).toStrictEqual([
                             ...new Array(optionsObjectPosition).map(() => expect.anything()),
                             undefined,
@@ -165,7 +165,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                     it('truncates the params on calls to `%s` when there are no other properties left and the config object is the last param', () => {
                         expect.assertions(1);
                         const params = [...new Array(optionsObjectPosition), { commitment: existingCommitment }];
-                        const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                        const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                         expect(requestTransformer({ methodName, params }).params).toStrictEqual([
                             ...new Array(optionsObjectPosition).map(() => expect.anything()),
                         ]);
@@ -178,7 +178,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                         ...new Array(optionsObjectPosition),
                         { other: 'property', preflightCommitment: existingCommitment },
                     ];
-                    const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                    const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                     expect(requestTransformer({ methodName: 'sendTransaction', params }).params).toStrictEqual([
                         ...new Array(optionsObjectPosition).map(() => expect.anything()),
                         { other: 'property' },
@@ -192,7 +192,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                         { preflightCommitment: existingCommitment },
                         'someParam',
                     ];
-                    const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                    const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                     expect(requestTransformer({ methodName: 'sendTransaction', params }).params).toStrictEqual([
                         ...new Array(optionsObjectPosition).map(() => expect.anything()),
                         undefined,
@@ -203,7 +203,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
                     expect.assertions(1);
                     const optionsObjectPosition = OPTIONS_OBJECT_POSITION_BY_METHOD['sendTransaction'];
                     const params = [...new Array(optionsObjectPosition), { preflightCommitment: existingCommitment }];
-                    const requestTransformer = getDefaultRequestTransformerForSolanaRpc();
+                    const requestTransformer = getDefaultRequestTransformerForTrezoaRpc();
                     expect(requestTransformer({ methodName: 'sendTransaction', params }).params).toStrictEqual([
                         ...new Array(optionsObjectPosition).map(() => expect.anything()),
                     ]);
@@ -217,7 +217,7 @@ describe('getDefaultRequestTransformerForSolanaRpc', () => {
         let createRequest = (params: unknown) => ({ methodName: 'getFoo', params });
         beforeEach(() => {
             onIntegerOverflow = jest.fn();
-            requestTransformer = getDefaultRequestTransformerForSolanaRpc({ onIntegerOverflow });
+            requestTransformer = getDefaultRequestTransformerForTrezoaRpc({ onIntegerOverflow });
             createRequest = params => ({ methodName: 'getFoo', params });
         });
         Object.entries({

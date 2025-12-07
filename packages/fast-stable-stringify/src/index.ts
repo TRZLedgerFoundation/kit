@@ -16,7 +16,7 @@
  *
  * @example
  * ```js
- * import stringify from '@solana/fast-stable-stringify';
+ * import stringify from '@trezoa/fast-stable-stringify';
  * stringify({ d: 0, c: 1, a: 2, b: 3, e: 4 }); // '{"a":2,"b":3,"c":1,"d":0,"e":4}'
  * ```
  *

@@ -1,4 +1,4 @@
-import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@solana/accounts';
+import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@trezoa/accounts';
 import {
     combineCodec,
     getArrayDecoder,
@@ -8,9 +8,9 @@ import {
     type VariableSizeCodec,
     type VariableSizeDecoder,
     type VariableSizeEncoder,
-} from '@solana/codecs';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+} from '@trezoa/codecs';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 import {
     type Blockhash,
     getBlockhashDecoder,
@@ -18,7 +18,7 @@ import {
     getDefaultLamportsDecoder,
     getDefaultLamportsEncoder,
     type Lamports,
-} from '@solana/rpc-types';
+} from '@trezoa/rpc-types';
 
 import { fetchEncodedSysvarAccount, SYSVAR_RECENT_BLOCKHASHES_ADDRESS } from './sysvar';
 
@@ -40,7 +40,7 @@ type Entry = Readonly<{
  *
  * @deprecated Transaction fees should be determined with the
  * {@link GetFeeForMessageApi.getFeeForMessage} RPC method. For additional context see the
- * [Comprehensive Compute Fees proposal](https://docs.anza.xyz/proposals/comprehensive-compute-fees/).
+ * [Comprehensive Compute Fees proposal](https://docs.trezoa.xyz/proposals/comprehensive-compute-fees/).
  */
 export type SysvarRecentBlockhashes = Entry[];
 
@@ -50,7 +50,7 @@ export type SysvarRecentBlockhashes = Entry[];
  *
  * @deprecated Transaction fees should be determined with the
  * {@link GetFeeForMessageApi.getFeeForMessage} RPC method. For additional context see the
- * [Comprehensive Compute Fees proposal](https://docs.anza.xyz/proposals/comprehensive-compute-fees/).
+ * [Comprehensive Compute Fees proposal](https://docs.trezoa.xyz/proposals/comprehensive-compute-fees/).
  */
 export function getSysvarRecentBlockhashesEncoder(): VariableSizeEncoder<SysvarRecentBlockhashes> {
     return getArrayEncoder(
@@ -67,7 +67,7 @@ export function getSysvarRecentBlockhashesEncoder(): VariableSizeEncoder<SysvarR
  *
  * @deprecated Transaction fees should be determined with the
  * {@link GetFeeForMessageApi.getFeeForMessage} RPC method. For additional context see the
- * [Comprehensive Compute Fees proposal](https://docs.anza.xyz/proposals/comprehensive-compute-fees/).
+ * [Comprehensive Compute Fees proposal](https://docs.trezoa.xyz/proposals/comprehensive-compute-fees/).
  */
 export function getSysvarRecentBlockhashesDecoder(): VariableSizeDecoder<SysvarRecentBlockhashes> {
     return getArrayDecoder(
@@ -83,7 +83,7 @@ export function getSysvarRecentBlockhashesDecoder(): VariableSizeDecoder<SysvarR
  *
  * @deprecated Transaction fees should be determined with the
  * {@link GetFeeForMessageApi.getFeeForMessage} RPC method. For additional context see the
- * [Comprehensive Compute Fees proposal](https://docs.anza.xyz/proposals/comprehensive-compute-fees/).
+ * [Comprehensive Compute Fees proposal](https://docs.trezoa.xyz/proposals/comprehensive-compute-fees/).
  *
  * @see {@link getSysvarRecentBlockhashesDecoder}
  * @see {@link getSysvarRecentBlockhashesEncoder}
@@ -98,7 +98,7 @@ export function getSysvarRecentBlockhashesCodec(): VariableSizeCodec<SysvarRecen
  *
  * @deprecated Transaction fees should be determined with the
  * {@link GetFeeForMessageApi.getFeeForMessage} RPC method. For additional context see the
- * [Comprehensive Compute Fees proposal](https://docs.anza.xyz/proposals/comprehensive-compute-fees/).
+ * [Comprehensive Compute Fees proposal](https://docs.trezoa.xyz/proposals/comprehensive-compute-fees/).
  */
 export async function fetchSysvarRecentBlockhashes(
     rpc: Rpc<GetAccountInfoApi>,

@@ -1,5 +1,5 @@
-import { Decoder, Encoder } from '@solana/codecs-core';
-import { SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, SolanaError } from '@solana/errors';
+import { Decoder, Encoder } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, TrezoaError } from '@trezoa/errors';
 
 import { TransactionVersion } from '../../transaction-message';
 import {
@@ -28,7 +28,7 @@ describe.each([getTransactionVersionCodec, getTransactionVersionEncoder])(
         });
         it.each(UNSUPPORTED_VERSION_TEST_CASES)('fatals for unsupported version `%s`', (_byte, version) => {
             expect(() => transactionVersion.encode(version)).toThrow(
-                new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
+                new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
                     unsupportedVersion: version,
                 }),
             );
@@ -66,7 +66,7 @@ describe.each([getTransactionVersionCodec, getTransactionVersionDecoder])(
         });
         it.each(UNSUPPORTED_VERSION_TEST_CASES)('fatals for unsupported version `%s`', (byte, version) => {
             expect(() => transactionVersion.decode(new Uint8Array([byte]))).toThrow(
-                new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
+                new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, {
                     unsupportedVersion: version,
                 }),
             );

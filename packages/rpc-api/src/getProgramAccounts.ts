@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
@@ -12,8 +12,8 @@ import type {
     GetProgramAccountsDatasizeFilter,
     GetProgramAccountsMemcmpFilter,
     Slot,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 type GetProgramAccountsApiCommonConfig = Readonly<{
     /**
@@ -21,7 +21,7 @@ type GetProgramAccountsApiCommonConfig = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -84,7 +84,7 @@ export type GetProgramAccountsApi = {
      * is a base64-encoded string.
      *
      * {@label base64-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -94,7 +94,7 @@ export type GetProgramAccountsApi = {
                 encoding: 'base64';
                 withContext: true;
             }>,
-    ): SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase64EncodedData>[]>;
+    ): TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase64EncodedData>[]>;
     /**
      * Fetches information associated with all accounts owned by the program at the given address.
      *
@@ -102,7 +102,7 @@ export type GetProgramAccountsApi = {
      * is a base64-encoded string.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -121,7 +121,7 @@ export type GetProgramAccountsApi = {
      * as a tuple whose first element is a base64-encoded string.
      *
      * {@label base64-zstd-compressed-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -131,7 +131,7 @@ export type GetProgramAccountsApi = {
                 encoding: 'base64+zstd';
                 withContext: true;
             }>,
-    ): SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>[]>;
+    ): TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>[]>;
     /**
      * Fetches information associated with all accounts owned by the program at the given address.
      *
@@ -140,7 +140,7 @@ export type GetProgramAccountsApi = {
      * as a tuple whose first element is a base64-encoded string.
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -160,7 +160,7 @@ export type GetProgramAccountsApi = {
      * element is a base64-encoded string.
      *
      * {@label parsed-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -169,7 +169,7 @@ export type GetProgramAccountsApi = {
                 encoding: 'jsonParsed';
                 withContext: true;
             }>,
-    ): SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithJsonData>[]>;
+    ): TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithJsonData>[]>;
     /**
      * Fetches information associated with all accounts owned by the program at the given address.
      *
@@ -179,7 +179,7 @@ export type GetProgramAccountsApi = {
      * element is a base64-encoded string.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -197,7 +197,7 @@ export type GetProgramAccountsApi = {
      * will raise an error.
      *
      * {@label base58-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -207,7 +207,7 @@ export type GetProgramAccountsApi = {
                 encoding: 'base58';
                 withContext: true;
             }>,
-    ): SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase58EncodedData>[]>;
+    ): TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase58EncodedData>[]>;
     /**
      * Fetches information associated with all accounts owned by the program at the given address.
      *
@@ -216,7 +216,7 @@ export type GetProgramAccountsApi = {
      * will raise an error.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -234,7 +234,7 @@ export type GetProgramAccountsApi = {
      * any account contains more than 129 bytes of data, this method will raise an error.
      *
      * {@label base58-legacy-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,
@@ -243,7 +243,7 @@ export type GetProgramAccountsApi = {
             Readonly<{
                 withContext: true;
             }>,
-    ): SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase58Bytes>[]>;
+    ): TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & AccountInfoWithBase58Bytes>[]>;
     /**
      * Fetches information associated with all accounts owned by the program at the given address.
      *
@@ -251,7 +251,7 @@ export type GetProgramAccountsApi = {
      * any account contains more than 129 bytes of data, this method will raise an error.
      *
      * {@label base58-legacy-withcontext}
-     * @see https://solana.com/docs/rpc/http/getprogramaccounts
+     * @see https://trezoa.com/docs/rpc/http/getprogramaccounts
      */
     getProgramAccounts(
         program: Address,

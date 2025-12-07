@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { address } from '../address';
 import { assertIsOffCurveAddress, isOffCurveAddress } from '../curve';
@@ -65,7 +65,7 @@ describe('isOffCurveAddress', () => {
                 'not-a-base-58-encoded-string',
             );
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
+            new TrezoaError(TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
                 actualLength: 28,
             }),
         );
@@ -78,7 +78,7 @@ describe('isOffCurveAddress', () => {
                 '2xea9jWJ9eca3dFiefTeSPP85c6qXqunCqL2h2JNffM',
             );
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
                 actualLength: 31,
             }),
         );

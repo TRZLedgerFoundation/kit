@@ -1,13 +1,13 @@
-import { Address, getAddressFromPublicKey, getPublicKeyFromAddress } from '@solana/addresses';
-import { bytesEqual } from '@solana/codecs-core';
+import { Address, getAddressFromPublicKey, getPublicKeyFromAddress } from '@trezoa/addresses';
+import { bytesEqual } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes, signBytes, verifySignature } from '@solana/keys';
-import { NominalType } from '@solana/nominal-types';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes, signBytes, verifySignature } from '@trezoa/keys';
+import { NominalType } from '@trezoa/nominal-types';
 
 import { decodeRequiredSignatoryAddresses } from './codecs/preamble-common';
 import { OffchainMessageEnvelope } from './envelope';
@@ -44,8 +44,8 @@ export interface OffchainMessageWithRequiredSignatories<
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
- * import { partiallySignOffchainMessageEnvelope } from '@solana/offchain-messages';
+ * import { generateKeyPair } from '@trezoa/keys';
+ * import { partiallySignOffchainMessageEnvelope } from '@trezoa/offchain-messages';
  *
  * const partiallySignedOffchainMessage = await partiallySignOffchainMessageEnvelope(
  *     [myPrivateKey],
@@ -96,7 +96,7 @@ export async function partiallySignOffchainMessageEnvelope<TOffchainMessageEnvel
     );
 
     if (unexpectedSigners && unexpectedSigners.size > 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
             expectedAddresses: requiredSignatoryAddresses,
             unexpectedAddresses: [...unexpectedSigners],
         });
@@ -124,8 +124,8 @@ export async function partiallySignOffchainMessageEnvelope<TOffchainMessageEnvel
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
- * import { signOffchainMessageEnvelope } from '@solana/offchain-messages';
+ * import { generateKeyPair } from '@trezoa/keys';
+ * import { signOffchainMessageEnvelope } from '@trezoa/offchain-messages';
  *
  * const signedOffchainMessage = await signOffchainMessageEnvelope(
  *     [myPrivateKey],
@@ -153,7 +153,7 @@ export async function signOffchainMessageEnvelope<TOffchainMessageEnvelope exten
  *
  * @example
  * ```ts
- * import { isFullySignedOffchainMessageEnvelope } from '@solana/offchain-messages';
+ * import { isFullySignedOffchainMessageEnvelope } from '@trezoa/offchain-messages';
  *
  * const offchainMessageEnvelope = getOffchainMessageDecoder().decode(offchainMessageBytes);
  * if (isFullySignedOffchainMessageEnvelope(offchainMessageEnvelope)) {
@@ -174,7 +174,7 @@ export function isFullySignedOffchainMessageEnvelope<TEnvelope extends OffchainM
  *
  * @example
  * ```ts
- * import { assertIsFullySignedOffchainMessage } from '@solana/offchain-messages';
+ * import { assertIsFullySignedOffchainMessage } from '@trezoa/offchain-messages';
  *
  * const offchainMessageEnvelope = getOffchainMessageDecoder().decode(offchainMessageBytes);
  * try {
@@ -183,7 +183,7 @@ export function isFullySignedOffchainMessageEnvelope<TEnvelope extends OffchainM
  *     assertIsFullySignedOffchainMessageEnvelope(offchainMessage);
  *     // At this point we know that the offchain message is signed by all required signers.
  * } catch(e) {
- *     if (isSolanaError(e, SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING)) {
  *         setError(`Missing signatures for ${e.context.addresses.join(', ')}`);
  *     } else {
  *         throw e;
@@ -202,7 +202,7 @@ export function assertIsFullySignedOffchainMessageEnvelope<TEnvelope extends Off
     });
 
     if (missingSigs.length > 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
             addresses: missingSigs,
         });
     }
@@ -214,14 +214,14 @@ export function assertIsFullySignedOffchainMessageEnvelope<TEnvelope extends Off
  *
  * @example
  * ```ts
- * import { isSolanaError, SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE } from '@solana/errors';
- * import { verifyOffchainMessageEnvelope } from '@solana/offchain-messages';
+ * import { isTrezoaError, TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE } from '@trezoa/errors';
+ * import { verifyOffchainMessageEnvelope } from '@trezoa/offchain-messages';
  *
  * try {
  *     await verifyOffchainMessageEnvelope(offchainMessageEnvelope);
  *     // At this point the message is valid and signed by all of the required signatories.
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE)) {
  *         if (e.context.signatoriesWithMissingSignatures.length) {
  *             console.error(
  *                 'Missing signatures for the following addresses',
@@ -261,6 +261,6 @@ export async function verifyOffchainMessageEnvelope(offchainMessageEnvelope: Off
         }),
     );
     if (errorContext) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE, errorContext);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE, errorContext);
     }
 }

@@ -11,7 +11,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     FixedSizeNumberCodec,
     FixedSizeNumberDecoder,
@@ -21,12 +21,12 @@ import {
     NumberCodec,
     NumberDecoder,
     NumberEncoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT,
-    SOLANA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT,
+    TREZOA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 /**
  * Defines the configuration options for literal union codecs.
@@ -94,7 +94,7 @@ export function getLiteralUnionEncoder<const TVariants extends readonly Variant[
     return transformEncoder(discriminator, variant => {
         const index = variants.indexOf(variant);
         if (index < 0) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT, {
                 value: variant,
                 variants,
             });
@@ -148,7 +148,7 @@ export function getLiteralUnionDecoder<const TVariants extends readonly Variant[
     const discriminator = config.size ?? getU8Decoder();
     return transformDecoder(discriminator, (index: bigint | number) => {
         if (index < 0 || index >= variants.length) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE, {
                 discriminator: index,
                 maxRange: variants.length - 1,
                 minRange: 0,

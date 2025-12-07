@@ -1,10 +1,10 @@
 import {
-    SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE,
-    SOLANA_ERROR__MALFORMED_BIGINT_STRING,
-    SOLANA_ERROR__MALFORMED_NUMBER_STRING,
-    SOLANA_ERROR__TIMESTAMP_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE,
+    TREZOA_ERROR__MALFORMED_BIGINT_STRING,
+    TREZOA_ERROR__MALFORMED_NUMBER_STRING,
+    TREZOA_ERROR__TIMESTAMP_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Lamports, lamports } from '../lamports';
 import { StringifiedBigInt, stringifiedBigInt } from '../stringified-bigint';
@@ -20,7 +20,7 @@ describe('coercions', () => {
         });
         it('throws on invalid `Lamports`', () => {
             const thisThrows = () => lamports(-5n);
-            expect(thisThrows).toThrow(new SolanaError(SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE));
+            expect(thisThrows).toThrow(new TrezoaError(TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE));
         });
     });
     describe('stringifiedBigInt', () => {
@@ -32,7 +32,7 @@ describe('coercions', () => {
         it('throws on invalid `StringifiedBigInt`', () => {
             const thisThrows = () => stringifiedBigInt('test');
             expect(thisThrows).toThrow(
-                new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+                new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
                     value: 'test',
                 }),
             );
@@ -47,7 +47,7 @@ describe('coercions', () => {
         it('throws on invalid `StringifiedNumber`', () => {
             const thisThrows = () => stringifiedNumber('test');
             expect(thisThrows).toThrow(
-                new SolanaError(SOLANA_ERROR__MALFORMED_NUMBER_STRING, {
+                new TrezoaError(TREZOA_ERROR__MALFORMED_NUMBER_STRING, {
                     value: 'test',
                 }),
             );
@@ -62,7 +62,7 @@ describe('coercions', () => {
         it('throws on an out-of-range `UnixTimestamp`', () => {
             const thisThrows = () => unixTimestamp(BigInt(2n ** 63n));
             expect(thisThrows).toThrow(
-                new SolanaError(SOLANA_ERROR__TIMESTAMP_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__TIMESTAMP_OUT_OF_RANGE, {
                     value: BigInt(2n ** 63n),
                 }),
             );

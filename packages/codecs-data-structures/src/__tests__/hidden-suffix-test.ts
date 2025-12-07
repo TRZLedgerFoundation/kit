@@ -1,6 +1,6 @@
-import { assertIsFixedSize, assertIsVariableSize } from '@solana/codecs-core';
-import { getU8Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
+import { assertIsFixedSize, assertIsVariableSize } from '@trezoa/codecs-core';
+import { getU8Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
 
 import { getConstantCodec } from '../constant';
 import { getHiddenSuffixCodec } from '../hidden-suffix';

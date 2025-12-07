@@ -1,7 +1,7 @@
 import { IdentifierArray } from '@wallet-standard/base';
 
-type AssertSolanaChain<T> = T extends `solana:${string}` ? T : never;
+type AssertTrezoaChain<T> = T extends `trezoa:${string}` ? T : never;
 
-export type OnlySolanaChains<T extends IdentifierArray> = T extends IdentifierArray
-    ? AssertSolanaChain<T[number]>
+export type OnlyTrezoaChains<T extends IdentifierArray> = T extends IdentifierArray
+    ? AssertTrezoaChain<T[number]>
     : never;

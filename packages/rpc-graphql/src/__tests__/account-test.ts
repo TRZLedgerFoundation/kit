@@ -5,10 +5,10 @@ import {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../index';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 type GraphQLCompliantRpc = Rpc<
     GetAccountInfoApi & GetBlockApi & GetMultipleAccountsApi & GetProgramAccountsApi & GetTransactionApi
@@ -18,8 +18,8 @@ describe('account', () => {
     let rpc: GraphQLCompliantRpc;
     let rpcGraphQL: RpcGraphQL;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
-        rpcGraphQL = createSolanaRpcGraphQL(rpc);
+        rpc = createLocalhostTrezoaRpc();
+        rpcGraphQL = createTrezoaRpcGraphQL(rpc);
     });
 
     describe('basic queries', () => {

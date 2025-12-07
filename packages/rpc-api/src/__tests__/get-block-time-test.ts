@@ -1,13 +1,13 @@
-import { SOLANA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
+import { TREZOA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { GetBlockTimeApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getBlockTime', () => {
     let rpc: Rpc<GetBlockTimeApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     describe('when called with a currently available block', () => {
@@ -33,7 +33,7 @@ describe('getBlockTime', () => {
             const blockNumber = 2n ** 63n - 1n; // u64:MAX; safe bet it'll be too high.
             const blockTimePromise = rpc.getBlockTime(blockNumber).send();
             await expect(blockTimePromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__SERVER_ERROR_BLOCK_NOT_AVAILABLE, {
                     __serverMessage: 'Block not available for slot 9223372036854776000',
                 }),
             );

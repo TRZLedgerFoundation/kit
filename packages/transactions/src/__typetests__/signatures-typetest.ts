@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { Signature } from '@solana/keys';
+import { Signature } from '@trezoa/keys';
 
 import {
     assertIsFullySignedTransaction,

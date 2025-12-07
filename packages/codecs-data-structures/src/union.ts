@@ -13,8 +13,8 @@ import {
     isFixedSize,
     Offset,
     ReadonlyUint8Array,
-} from '@solana/codecs-core';
-import { SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 import { DrainOuterGeneric, getMaxSize, maxCodecSizes } from './utils';
 
@@ -236,7 +236,7 @@ export function getUnionCodec<const TVariants extends readonly Codec<any>[]>(
 
 function assertValidVariantIndex(variants: readonly unknown[], index: number) {
     if (typeof variants[index] === 'undefined') {
-        throw new SolanaError(SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
             maxRange: variants.length - 1,
             minRange: 0,
             variant: index,

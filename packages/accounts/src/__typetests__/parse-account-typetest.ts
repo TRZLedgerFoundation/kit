@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { Base58RpcAccount, Base64RpcAccount, JsonParsedRpcAccount } from '../__tests__/__setup__';
 import { Account, EncodedAccount } from '../account';

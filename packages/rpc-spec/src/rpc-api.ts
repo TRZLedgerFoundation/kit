@@ -4,7 +4,7 @@ import {
     RpcRequestTransformer,
     RpcResponse,
     RpcResponseTransformer,
-} from '@solana/rpc-spec-types';
+} from '@trezoa/rpc-spec-types';
 
 import type { RpcTransport } from './rpc-transport';
 

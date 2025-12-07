@@ -5,24 +5,24 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/transactions?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/transactions?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/transactions
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/transactions?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/transactions?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/transactions
 
-# @solana/transaction-messages
+# @trezoa/transaction-messages
 
-This package contains types and functions for creating transaction messages. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types and functions for creating transaction messages. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
-Transaction messages are built one step at a time using the transform functions offered by this package. To make it more ergonomic to apply consecutive transforms to your transaction messages, consider using a pipelining helper like the one in `@solana/functional`.
+Transaction messages are built one step at a time using the transform functions offered by this package. To make it more ergonomic to apply consecutive transforms to your transaction messages, consider using a pipelining helper like the one in `@trezoa/functional`.
 
 ```ts
-import { pipe } from '@solana/functional';
+import { pipe } from '@trezoa/functional';
 import {
     appendTransactionMessageInstruction,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 const transferTransactionMessage = pipe(
     createTransactionMessage({ version: 0 }),
@@ -38,7 +38,7 @@ const transferTransactionMessage = pipe(
 
 #### `TransactionVersion`
 
-As Solana transactions acquire more capabilities their version will advance. This type is a union of all possible transaction versions.
+As Trezoa transactions acquire more capabilities their version will advance. This type is a union of all possible transaction versions.
 
 ### Functions
 
@@ -47,7 +47,7 @@ As Solana transactions acquire more capabilities their version will advance. Thi
 Given a `TransactionVersion` this method will return an empty transaction having the capabilities of that version.
 
 ```ts
-import { createTransactionMessage } from '@solana/transaction-messages';
+import { createTransactionMessage } from '@trezoa/transaction-messages';
 
 const message = createTransactionMessage({ version: 0 });
 ```
@@ -67,8 +67,8 @@ This type represents a transaction message for which a fee payer has been declar
 Given a base58-encoded address of a system account, this method will return a new transaction message having the same type as the one supplied plus the `TransactionMessageWithFeePayer` type.
 
 ```ts
-import { address } from '@solana/addresses';
-import { setTransactionMessageFeePayer } from '@solana/transaction-messages';
+import { address } from '@trezoa/addresses';
+import { setTransactionMessageFeePayer } from '@trezoa/transaction-messages';
 
 const myAddress = address('mpngsFd4tmbUfzDYJayjKZwZcaR7aWb2793J6grLsGu');
 const txPaidByMe = setTransactionMessageFeePayer(myAddress, tx);
@@ -108,7 +108,7 @@ This type represents a string that is particularly known to be the base58-encode
 Given a blockhash and the last block height at which that blockhash is considered usable to land transactions, this method will return a new transaction message having the same type as the one supplied plus the `TransactionMessageWithBlockhashLifetime` type.
 
 ```ts
-import { setTransactionMessageLifetimeUsingBlockhash } from '@solana/transaction-messages';
+import { setTransactionMessageLifetimeUsingBlockhash } from '@trezoa/transaction-messages';
 
 const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
 const txMessageWithBlockhashLifetime = setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, txMessage);
@@ -119,8 +119,8 @@ const txMessageWithBlockhashLifetime = setTransactionMessageLifetimeUsingBlockha
 Given a nonce, the account where the value of the nonce is stored, and the address of the account authorized to consume that nonce, this method will return a new transaction having the same type as the one supplied plus the `TransactionMessageWithDurableNonceLifetime` type. In particular, this method _prepends_ an instruction to the transaction message designed to consume (or &lsquo;advance&rsquo;) the nonce in the same transaction whose lifetime is defined by it.
 
 ```ts
-import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@solana/transaction-messages';
-import { fetchNonce } from '@solana-program/system';
+import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@trezoa/transaction-messages';
+import { fetchNonce } from '@trezoa-program/system';
 
 const nonceAccountAddress = address('EGtMh4yvXswwHhwVhyPxGrVV2TkLTgUqGodbATEPvojZ');
 const nonceAuthorityAddress = address('4KD1Rdrd89NG7XbzW3xsX9Aqnx2EExJvExiNme6g9iAT');
@@ -143,7 +143,7 @@ Client applications primarily deal with blockhashes in the form of base58-encode
 From time to time you might acquire a string, that you expect to validate as a blockhash, from an untrusted network API or user input. To assert that such an arbitrary string is a base58-encoded blockhash, use the `assertIsBlockhash` function.
 
 ```ts
-import { assertIsBlockhash } from '@solana/transaction-messages';
+import { assertIsBlockhash } from '@trezoa/transaction-messages';
 
 // Imagine a function that asserts whether a user-supplied blockhash is valid or not.
 function handleSubmit() {
@@ -190,9 +190,9 @@ This type represents an instruction that supplies some data as input to the prog
 Given an instruction, this method will return a new transaction message with that instruction having been added to the end of the list of existing instructions.
 
 ```ts
-import { address } from '@solana/addresses';
-import { getUtf8Encoder } from '@solana/codecs-strings';
-import { appendTransactionMessageInstruction } from '@solana/transaction-messages';
+import { address } from '@trezoa/addresses';
+import { getUtf8Encoder } from '@trezoa/codecs-strings';
+import { appendTransactionMessageInstruction } from '@trezoa/transaction-messages';
 
 const memoTransactionMessage = appendTransactionMessageInstruction(
     {
@@ -230,12 +230,12 @@ Given a transaction message and a mapping of lookup tables to the addresses stor
 This means that these accounts will take up less space in the compiled transaction message. This size reduction is most significant when the transaction includes many accounts from the same lookup table.
 
 ```ts
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 import {
     AddressesByLookupTableAddressm,
     compressTransactionMessageUsingAddressLookupTables,
-} from '@solana/transaction-messages';
-import { fetchAddressLookupTable } from '@solana-program/address-lookup-table';
+} from '@trezoa/transaction-messages';
+import { fetchAddressLookupTable } from '@trezoa-program/address-lookup-table';
 
 const lookupTableAddress = address('4QwSwNriKPrz8DLW4ju5uxC2TN5cksJx6tPUPj7DGLAW');
 const {

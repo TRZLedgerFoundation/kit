@@ -1,4 +1,4 @@
-import { RpcResponseTransformer } from '@solana/rpc-spec-types';
+import { RpcResponseTransformer } from '@trezoa/rpc-spec-types';
 
 type JsonRpcResponse = { result: unknown };
 
@@ -9,7 +9,7 @@ type JsonRpcResponse = { result: unknown };
  *
  * @example
  * ```ts
- * import { getResultResponseTransformer } from '@solana/rpc-transformers';
+ * import { getResultResponseTransformer } from '@trezoa/rpc-transformers';
  *
  * const responseTransformer = getResultResponseTransformer();
  * ```

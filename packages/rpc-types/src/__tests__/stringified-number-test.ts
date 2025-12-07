@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__MALFORMED_NUMBER_STRING, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__MALFORMED_NUMBER_STRING, TrezoaError } from '@trezoa/errors';
 
 import { assertIsStringifiedNumber } from '../stringified-number';
 
@@ -7,14 +7,14 @@ describe('assertIsStringifiedNumber()', () => {
         expect(() => {
             assertIsStringifiedNumber('abc');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_NUMBER_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_NUMBER_STRING, {
                 value: 'abc',
             }),
         );
         expect(() => {
             assertIsStringifiedNumber('123a');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_NUMBER_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_NUMBER_STRING, {
                 value: '123a',
             }),
         );

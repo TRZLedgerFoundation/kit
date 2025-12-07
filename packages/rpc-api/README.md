@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-api?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-api?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-api
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-api?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-api?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-api
 
-# @solana/rpc-api
+# @trezoa/rpc-api
 
-This package contains types that describe the [methods](https://solana.com/docs/rpc/http) of the Solana JSON RPC API, and utilities for creating a `RpcApi` implementation with sensible defaults. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types that describe the [methods](https://trezoa.com/docs/rpc/http) of the Trezoa JSON RPC API, and utilities for creating a `RpcApi` implementation with sensible defaults. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 Each RPC method is described in terms of a TypeScript type of the following form:
 
@@ -30,22 +30,22 @@ const something: Something = await rpc.getSomething(address('95DpK3y3GF7U8s1k4Ev
 
 ## Types
 
-### `SolanaRpcApi{Devnet|Testnet|Mainnet}`
+### `TrezoaRpcApi{Devnet|Testnet|Mainnet}`
 
-These types represent the RPC methods available on a specific Solana cluster.
+These types represent the RPC methods available on a specific Trezoa cluster.
 
 For instance, the test clusters support the `RequestAirdropApi` while mainnet does not.
 
 ## Functions
 
-### `createSolanaRpcApi(config)`
+### `createTrezoaRpcApi(config)`
 
-Creates a `RpcApi` implementation of the Solana JSON RPC API with some default behaviours.
+Creates a `RpcApi` implementation of the Trezoa JSON RPC API with some default behaviours.
 
 The default behaviours include:
 
-- A transform that converts `bigint` inputs to `number` for compatibility with version 1.0 of the Solana JSON RPC.
-- A transform that calls the config's `onIntegerOverflow` handler whenever a `bigint` input would overflow a JavaScript IEEE 754 number. See [this](https://github.com/solana-labs/solana-web3.js/issues/1116) GitHub issue for more information.
+- A transform that converts `bigint` inputs to `number` for compatibility with version 1.0 of the Trezoa JSON RPC.
+- A transform that calls the config's `onIntegerOverflow` handler whenever a `bigint` input would overflow a JavaScript IEEE 754 number. See [this](https://github.com/trezoa-team/solana-web3.js/issues/1116) GitHub issue for more information.
 - A transform that applies a default commitment wherever not specified
 
 #### Arguments
@@ -53,4 +53,4 @@ The default behaviours include:
 A config object with the following properties:
 
 - `defaultCommitment`: An optional default `Commitment` value. Given an RPC method that takes `commitment` as a parameter, this value will be used when the caller does not supply one.
-- `onIntegerOverflow(request, keyPath, value): void`: An optional function that will be called whenever a `bigint` input exceeds that which can be expressed using JavaScript numbers. This is used in the default `SolanaRpcApi` to throw an exception rather than to allow truncated values to propagate through a program.
+- `onIntegerOverflow(request, keyPath, value): void`: An optional function that will be called whenever a `bigint` input exceeds that which can be expressed using JavaScript numbers. This is used in the default `TrezoaRpcApi` to throw an exception rather than to allow truncated values to propagate through a program.

@@ -1,7 +1,7 @@
 /**
  * This package contains utilities for encoding and decoding messages according to the offchain
  * message [specification](https://github.com/solana-foundation/SRFCs/discussions/3).
- * It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+ * It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
  *
  * @packageDocumentation
  */

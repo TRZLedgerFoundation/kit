@@ -1,5 +1,5 @@
-import type { RpcRequest, RpcRequestTransformer } from '@solana/rpc-spec-types';
-import type { Commitment } from '@solana/rpc-types';
+import type { RpcRequest, RpcRequestTransformer } from '@trezoa/rpc-spec-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { applyDefaultCommitment } from './request-transformer-default-commitment-internal';
 
@@ -10,7 +10,7 @@ import { applyDefaultCommitment } from './request-transformer-default-commitment
  *
  * @example
  * ```ts
- * import { getDefaultCommitmentRequestTransformer, OPTIONS_OBJECT_POSITION_BY_METHOD } from '@solana/rpc-transformers';
+ * import { getDefaultCommitmentRequestTransformer, OPTIONS_OBJECT_POSITION_BY_METHOD } from '@trezoa/rpc-transformers';
  *
  * const requestTransformer = getDefaultCommitmentRequestTransformer({
  *     defaultCommitment: 'confirmed',

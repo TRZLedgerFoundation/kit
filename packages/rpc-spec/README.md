@@ -5,20 +5,20 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-spec?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-spec?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-spec
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-spec?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-spec?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-spec
 
-# @solana/rpc-spec
+# @trezoa/rpc-spec
 
-This package contains types that describe the implementation of the JSON RPC API, as well as methods to create one. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types that describe the implementation of the JSON RPC API, as well as methods to create one. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 This API is designed to be used as follows:
 
 ```ts
 const rpc =
     // Step 1 - Create a `Rpc` instance. This may be stateful.
-    createSolanaRpc(mainnet('https://api.mainnet-beta.solana.com'));
+    createTrezoaRpc(mainnet('https://api.mainnet-beta.trezoa.com'));
 const response = await rpc
     // Step 2 - Call supported methods on it to produce `PendingRpcRequest` objects.
     .getLatestBlockhash({ commitment: 'confirmed' })
@@ -116,7 +116,7 @@ A helper function that returns `true` if the given payload is a JSON RPC v2 payl
 - It has a `params` property of any type.
 
 ```ts
-import { isJsonRpcPayload } from '@solana/rpc-spec';
+import { isJsonRpcPayload } from '@trezoa/rpc-spec';
 
 if (isJsonRpcPayload(payload)) {
     const payloadMethod: string = payload.method;

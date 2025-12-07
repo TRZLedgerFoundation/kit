@@ -1,5 +1,5 @@
 ---
-'@solana/instruction-plans': minor
+'@trezoa/instruction-plans': minor
 ---
 
 Make Transaction optional in successful transaction plan result + add signature

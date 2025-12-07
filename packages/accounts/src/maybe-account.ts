@@ -1,9 +1,9 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__ACCOUNTS__ACCOUNT_NOT_FOUND,
-    SOLANA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ACCOUNTS__ACCOUNT_NOT_FOUND,
+    TREZOA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Account } from './account';
 
@@ -91,7 +91,7 @@ export function assertAccountExists<TData extends Uint8Array | object, TAddress 
     account: MaybeAccount<TData, TAddress>,
 ): asserts account is Account<TData, TAddress> & { exists: true } {
     if (!account.exists) {
-        throw new SolanaError(SOLANA_ERROR__ACCOUNTS__ACCOUNT_NOT_FOUND, { address: account.address });
+        throw new TrezoaError(TREZOA_ERROR__ACCOUNTS__ACCOUNT_NOT_FOUND, { address: account.address });
     }
 }
 
@@ -121,6 +121,6 @@ export function assertAccountsExist<TData extends Uint8Array | object, TAddress 
     const missingAccounts = accounts.filter(a => !a.exists);
     if (missingAccounts.length > 0) {
         const missingAddresses = missingAccounts.map(a => a.address);
-        throw new SolanaError(SOLANA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND, { addresses: missingAddresses });
+        throw new TrezoaError(TREZOA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND, { addresses: missingAddresses });
     }
 }

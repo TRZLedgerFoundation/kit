@@ -1,5 +1,5 @@
-import { Address, getAddressComparator } from '@solana/addresses';
-import { AccountLookupMeta, AccountRole, Instruction } from '@solana/instructions';
+import { Address, getAddressComparator } from '@trezoa/addresses';
+import { AccountLookupMeta, AccountRole, Instruction } from '@trezoa/instructions';
 
 import {
     ADDRESS_MAP_TYPE_PROPERTY as TYPE,

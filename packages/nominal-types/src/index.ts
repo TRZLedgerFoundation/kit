@@ -138,5 +138,5 @@ export type EncodedString<T extends string, TEncoding extends StringEncoding> = 
  * ```
  */
 export type NominalType<TKey extends string, TMarker extends string> = {
-    readonly [K in `__${TKey}:@solana/kit`]: TMarker;
+    readonly [K in `__${TKey}:@trezoa/kit`]: TMarker;
 };

@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Commitment, DataSlice, Slot } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Commitment, DataSlice, Slot } from '@trezoa/rpc-types';
 import { ArgumentNode, GraphQLResolveInfo, isInterfaceType } from 'graphql';
 
 import { AccountLoaderArgs, ProgramAccountsLoaderArgs } from '../../loaders';
@@ -124,7 +124,7 @@ export function buildAccountLoaderArgSetFromResolveInfo(
          * commitment.
          *
          * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-         * example, when using an API created by a `createSolanaRpc*()` helper, the default
+         * example, when using an API created by a `createTrezoaRpc*()` helper, the default
          * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on
          * the client, the default commitment applied by the server is `"finalized"`.
          */

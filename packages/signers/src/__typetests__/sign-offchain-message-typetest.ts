@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
     FullySignedOffchainMessageEnvelope,
     OffchainMessage,
     OffchainMessageEnvelope,
-} from '@solana/offchain-messages';
+} from '@trezoa/offchain-messages';
 
 import { MessageModifyingSigner } from '../message-modifying-signer';
 import { MessagePartialSigner } from '../message-partial-signer';

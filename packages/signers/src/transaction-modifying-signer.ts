@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, SolanaError } from '@solana/errors';
-import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@solana/transactions';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, TrezoaError } from '@trezoa/errors';
+import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@trezoa/transactions';
 
 import { BaseTransactionSignerConfig } from './types';
 
@@ -69,8 +69,8 @@ export type TransactionModifyingSigner<TAddress extends string = string> = Reado
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isTransactionModifyingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isTransactionModifyingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isTransactionModifyingSigner({ address, modifyAndSignTransactions: async () => {} }); // true
@@ -93,8 +93,8 @@ export function isTransactionModifyingSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsTransactionModifyingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsTransactionModifyingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsTransactionModifyingSigner({ address, modifyAndSignTransactions: async () => {} }); // void
@@ -108,7 +108,7 @@ export function assertIsTransactionModifyingSigner<TAddress extends string>(valu
     address: Address<TAddress>;
 }): asserts value is TransactionModifyingSigner<TAddress> {
     if (!isTransactionModifyingSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, {
             address: value.address,
         });
     }

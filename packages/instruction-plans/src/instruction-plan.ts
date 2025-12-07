@@ -1,15 +1,15 @@
 import {
-    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
-    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE,
-    SolanaError,
-} from '@solana/errors';
-import { Instruction } from '@solana/instructions';
+    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
+    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Instruction } from '@trezoa/instructions';
 import {
     appendTransactionMessageInstruction,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@trezoa/transactions';
 
 /**
  * A set of instructions with constraints on how they can be executed.
@@ -241,9 +241,9 @@ export type MessagePacker = Readonly<{
     /**
      * Packs the provided transaction message with instructions or throws if not possible.
      *
-     * @throws {@link SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN}
+     * @throws {@link TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN}
      *   if the provided transaction message cannot be used to fill the next instructions.
-     * @throws {@link SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE}
+     * @throws {@link TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE}
      *   if the message packer is already done and no more instructions can be packed.
      */
     packMessageToCapacity: (
@@ -404,7 +404,7 @@ export function getLinearMessagePackerInstructionPlan({
                 done: () => offset >= totalBytes,
                 packMessageToCapacity: (message: BaseTransactionMessage & TransactionMessageWithFeePayer) => {
                     if (offset >= totalBytes) {
-                        throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE);
+                        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE);
                     }
 
                     const messageSizeWithBaseInstruction = getTransactionMessageSize(
@@ -417,7 +417,7 @@ export function getLinearMessagePackerInstructionPlan({
 
                     if (freeSpace <= 0) {
                         const messageSize = getTransactionMessageSize(message);
-                        throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+                        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                             // (+1) We need to pack at least one byte of data otherwise
                             // there is no point packing the base instruction alone.
                             numBytesRequired: messageSizeWithBaseInstruction - messageSize + 1,
@@ -473,7 +473,7 @@ export function getMessagePackerInstructionPlanFromInstructions<TInstruction ext
                 done: () => instructionIndex >= instructions.length,
                 packMessageToCapacity: (message: BaseTransactionMessage & TransactionMessageWithFeePayer) => {
                     if (instructionIndex >= instructions.length) {
-                        throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE);
+                        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_PACKER_ALREADY_COMPLETE);
                     }
 
                     const originalMessageSize = getTransactionMessageSize(message);
@@ -484,8 +484,8 @@ export function getMessagePackerInstructionPlanFromInstructions<TInstruction ext
 
                         if (messageSize > TRANSACTION_SIZE_LIMIT) {
                             if (index === instructionIndex) {
-                                throw new SolanaError(
-                                    SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
+                                throw new TrezoaError(
+                                    TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN,
                                     {
                                         numBytesRequired: messageSize - originalMessageSize,
                                         numFreeBytes: TRANSACTION_SIZE_LIMIT - originalMessageSize,

@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type SlotNotificationsApiNotification = Readonly<{
     /** The parent slot */
@@ -13,7 +13,7 @@ export type SlotNotificationsApi = {
     /**
      * Subscribe to receive notifications anytime a slot is processed by the validator.
      *
-     * @see https://solana.com/docs/rpc/websocket/slotsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/slotsubscribe
      */
     slotNotifications(): SlotNotificationsApiNotification;
 };

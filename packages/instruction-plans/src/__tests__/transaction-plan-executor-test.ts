@@ -1,10 +1,10 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
 import {
-    SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT,
-    SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT,
+    TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     nonDivisibleSequentialTransactionPlan,
@@ -28,7 +28,7 @@ jest.useFakeTimers();
 
 async function expectFailedToExecute(
     promise: Promise<TransactionPlanResult>,
-    error: SolanaError<typeof SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN>,
+    error: TrezoaError<typeof TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN>,
 ): Promise<void> {
     const transactionPlanResult = error.context.transactionPlanResult;
     await expect(promise).rejects.toThrow(error);
@@ -88,14 +88,14 @@ describe('createTransactionPlanExecutor', () => {
         it('fails to execute a single transaction message when the executor function rejects', async () => {
             expect.assertions(2);
             const messageA = createMessage('A');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockRejectedValue(cause);
             const executor = createTransactionPlanExecutor({ executeTransactionMessage });
 
             const promise = executor(singleTransactionPlan(messageA));
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: failedSingleTransactionPlanResult(messageA, cause),
                 }),
@@ -112,7 +112,7 @@ describe('createTransactionPlanExecutor', () => {
             const promise = executor(singleTransactionPlan(messageA));
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: failedSingleTransactionPlanResult(messageA, cause),
                 }),
@@ -134,7 +134,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: failedSingleTransactionPlanResult(messageA, cause),
                 }),
@@ -155,7 +155,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: canceledSingleTransactionPlanResult(messageA),
                 }),
@@ -250,14 +250,14 @@ describe('createTransactionPlanExecutor', () => {
             expect.assertions(2);
             const messageA = createMessage('A');
             const messageB = createMessage('B');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockImplementationOnce(forwardId).mockRejectedValueOnce(cause);
             const executor = createTransactionPlanExecutor({ executeTransactionMessage });
 
             const promise = executor(sequentialTransactionPlan([messageA, messageB]));
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: sequentialTransactionPlanResult([
                         successfulSingleTransactionPlanResult(messageA, createTransaction('A')),
@@ -271,14 +271,14 @@ describe('createTransactionPlanExecutor', () => {
             expect.assertions(2);
             const messageA = createMessage('A');
             const messageB = createMessage('B');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockRejectedValueOnce(cause).mockImplementationOnce(forwardId);
             const executor = createTransactionPlanExecutor({ executeTransactionMessage });
 
             const promise = executor(sequentialTransactionPlan([messageA, messageB]));
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: sequentialTransactionPlanResult([
                         failedSingleTransactionPlanResult(messageA, cause),
@@ -292,7 +292,7 @@ describe('createTransactionPlanExecutor', () => {
             expect.assertions(2);
             const messageA = createMessage('A');
             const messageB = createMessage('B');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockRejectedValueOnce(cause).mockImplementationOnce(forwardId);
             const executor = createTransactionPlanExecutor({ executeTransactionMessage });
 
@@ -322,7 +322,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: sequentialTransactionPlanResult([
                         successfulSingleTransactionPlanResult(messageA, createTransaction('A')),
@@ -353,7 +353,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: sequentialTransactionPlanResult([
                         canceledSingleTransactionPlanResult(messageA),
@@ -436,7 +436,7 @@ describe('createTransactionPlanExecutor', () => {
             const messageA = createMessage('A');
             const messageB = createMessage('B');
             const messageC = createMessage('C');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockImplementation((message: { id: string }) => {
                 // eslint-disable-next-line jest/no-conditional-in-test
                 return message.id === 'B' ? Promise.reject(cause) : forwardId(message);
@@ -446,7 +446,7 @@ describe('createTransactionPlanExecutor', () => {
             const promise = executor(parallelTransactionPlan([messageA, messageB, messageC]));
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         successfulSingleTransactionPlanResult(messageA, createTransaction('A')),
@@ -479,7 +479,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         successfulSingleTransactionPlanResult(messageA, createTransaction('A')),
@@ -506,7 +506,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         canceledSingleTransactionPlanResult(messageA),
@@ -578,7 +578,7 @@ describe('createTransactionPlanExecutor', () => {
             const messageE = createMessage('E');
             const messageF = createMessage('F');
             const messageG = createMessage('G');
-            const cause = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
+            const cause = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__INVALID_ARGUMENT, { index: 0 });
             const executeTransactionMessage = jest.fn().mockImplementation((message: { id: string }) => {
                 // eslint-disable-next-line jest/no-conditional-in-test
                 return message.id === 'C' ? Promise.reject(cause) : forwardId(message);
@@ -595,7 +595,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         sequentialTransactionPlanResult([
@@ -650,7 +650,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         sequentialTransactionPlanResult([
@@ -698,7 +698,7 @@ describe('createTransactionPlanExecutor', () => {
 
             await expectFailedToExecute(
                 promise,
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, {
                     cause,
                     transactionPlanResult: parallelTransactionPlanResult([
                         sequentialTransactionPlanResult([

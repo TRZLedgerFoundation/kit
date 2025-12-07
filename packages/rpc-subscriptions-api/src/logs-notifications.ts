@@ -1,8 +1,8 @@
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { Commitment, SolanaRpcResponse, TransactionError } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { Commitment, TrezoaRpcResponse, TransactionError } from '@trezoa/rpc-types';
 
-type LogsNotificationsApiNotification = SolanaRpcResponse<
+type LogsNotificationsApiNotification = TrezoaRpcResponse<
     Readonly<{
         /** Error if transaction failed, null if transaction succeeded. */
         err: TransactionError | null;
@@ -18,7 +18,7 @@ type LogsNotificationsApiConfig = Readonly<{
      * Get notified on logs from new transactions that have reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcSubscriptionsApi} in
-     * use. For example, when using an API created by a `createSolanaRpcSubscriptions*()` helper,
+     * use. For example, when using an API created by a `createTrezoaRpcSubscriptions*()` helper,
      * the default commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API
      * layer on the client, the default commitment applied by the server is `"finalized"`.
      */
@@ -30,14 +30,14 @@ export type LogsNotificationsApi = {
      * Subscribe to receive notifications containing the logs of all non-vote transactions.
      *
      * {@label non-vote}
-     * @see https://solana.com/docs/rpc/websocket/logssubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/logssubscribe
      */
     logsNotifications(filter: 'all', config?: LogsNotificationsApiConfig): LogsNotificationsApiNotification;
     /**
      * Subscribe to receive notifications containing the logs of all transactions.
      *
      * {@label all}
-     * @see https://solana.com/docs/rpc/websocket/logssubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/logssubscribe
      */
     logsNotifications(filter: 'allWithVotes', config?: LogsNotificationsApiConfig): LogsNotificationsApiNotification;
     /**
@@ -45,7 +45,7 @@ export type LogsNotificationsApi = {
      * supplied program or account.
 
     * {@label all-that-mention}
-     * @see https://solana.com/docs/rpc/websocket/logssubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/logssubscribe
      */
     logsNotifications(
         filter: {

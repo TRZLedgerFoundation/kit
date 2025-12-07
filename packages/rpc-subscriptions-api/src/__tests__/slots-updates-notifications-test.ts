@@ -1,12 +1,12 @@
-import { type RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
+import { type RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
 
 import type { SlotsUpdatesNotificationsApi } from '../slots-updates-notifications';
-import { createLocalhostSolanaRpcSubscriptions } from './__setup__';
+import { createLocalhostTrezoaRpcSubscriptions } from './__setup__';
 
 describe('slotsUpdatesNotifications', () => {
     let rpc: RpcSubscriptions<SlotsUpdatesNotificationsApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpcSubscriptions();
+        rpc = createLocalhostTrezoaRpcSubscriptions();
     });
 
     it('produces slots updates notifications', async () => {

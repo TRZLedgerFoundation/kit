@@ -1,9 +1,9 @@
 import {
-    SOLANA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH,
-    SOLANA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH,
-    SOLANA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH,
+    TREZOA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH,
+    TREZOA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     Codec,
@@ -32,7 +32,7 @@ import {
  * - **Fixed Size:** If both are fixed-size, they must have the same `fixedSize` value.
  * - **Variable Size:** If either has a `maxSize` attribute, it must match the other.
  *
- * If these conditions are not met, a {@link SolanaError} will be thrown.
+ * If these conditions are not met, a {@link TrezoaError} will be thrown.
  *
  * @typeParam TFrom - The type of the value to encode.
  * @typeParam TTo - The type of the decoded value.
@@ -42,12 +42,12 @@ import {
  * @param decoder - The `Decoder` to combine.
  * @returns A `Codec` that provides both `encode` and `decode` methods.
  *
- * @throws {SolanaError}
- * - `SOLANA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH`
+ * @throws {TrezoaError}
+ * - `TREZOA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH`
  *   Thrown if the encoder and decoder have mismatched size types (fixed vs. variable).
- * - `SOLANA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH`
+ * - `TREZOA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH`
  *   Thrown if both are fixed-size but have different `fixedSize` values.
- * - `SOLANA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH`
+ * - `TREZOA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH`
  *   Thrown if the `maxSize` attributes do not match.
  *
  * @example
@@ -105,18 +105,18 @@ export function combineCodec<TFrom, TTo extends TFrom>(
     decoder: Decoder<TTo>,
 ): Codec<TFrom, TTo> {
     if (isFixedSize(encoder) !== isFixedSize(decoder)) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH);
+        throw new TrezoaError(TREZOA_ERROR__CODECS__ENCODER_DECODER_SIZE_COMPATIBILITY_MISMATCH);
     }
 
     if (isFixedSize(encoder) && isFixedSize(decoder) && encoder.fixedSize !== decoder.fixedSize) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__ENCODER_DECODER_FIXED_SIZE_MISMATCH, {
             decoderFixedSize: decoder.fixedSize,
             encoderFixedSize: encoder.fixedSize,
         });
     }
 
     if (!isFixedSize(encoder) && !isFixedSize(decoder) && encoder.maxSize !== decoder.maxSize) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__ENCODER_DECODER_MAX_SIZE_MISMATCH, {
             decoderMaxSize: decoder.maxSize,
             encoderMaxSize: encoder.maxSize,
         });

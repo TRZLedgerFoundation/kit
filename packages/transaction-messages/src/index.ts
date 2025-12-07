@@ -1,27 +1,27 @@
 /**
  * This package contains types and functions for creating transaction messages.
  * It can be used standalone, but it is also exported as part of Kit
- * [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+ * [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
  *
  * @example
  * Transaction messages are built one step at a time using the transform functions offered by this
  * package. To make it more ergonomic to apply consecutive transforms to your transaction messages,
- * consider using a pipelining helper like the one in `@solana/functional`.
+ * consider using a pipelining helper like the one in `@trezoa/functional`.
  *
  * ```ts
- * import { pipe } from '@solana/functional';
+ * import { pipe } from '@trezoa/functional';
  * import {
  *     appendTransactionMessageInstruction,
  *     createTransactionMessage,
  *     setTransactionMessageFeePayer,
  *     setTransactionMessageLifetimeUsingBlockhash,
- * } from '@solana/transaction-messages';
+ * } from '@trezoa/transaction-messages';
  *
  * const transferTransactionMessage = pipe(
  *     createTransactionMessage({ version: 0 }),
  *     m => setTransactionMessageFeePayer(myAddress, m),
  *     m => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, m),
- *     m => appendTransactionMessageInstruction(getTransferSolInstruction({ source, destination, amount }), m),
+ *     m => appendTransactionMessageInstruction(getTransferTrzInstruction({ source, destination, amount }), m),
  * );
  * ```
  *

@@ -1,4 +1,4 @@
-import { Blockhash } from '@solana/rpc-types';
+import { Blockhash } from '@trezoa/rpc-types';
 import {
     Nonce,
     TransactionMessage,
@@ -7,7 +7,7 @@ import {
     TransactionMessageWithFeePayer,
     TransactionMessageWithinSizeLimit,
     TransactionMessageWithLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { compileTransaction } from '../compile-transaction';
 import {

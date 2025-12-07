@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-transport-http?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-transport-http?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-transport-http
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-transport-http?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-transport-http?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-transport-http
 
-# @solana/rpc-transport-http
+# @trezoa/rpc-transport-http
 
 This package allows developers to create custom RPC transports. Using these primitives, developers can create custom transports that perform transforms on messages sent and received, attempt retries, and implement routing strategies between multiple transports.
 
@@ -17,12 +17,12 @@ This package allows developers to create custom RPC transports. Using these prim
 
 ### `createHttpTransport()`
 
-Call this to create a function that conforms to the `RpcTransport` interface (see `@solana/rpc-spec`). You can use that function in your programs to make `POST` requests with headers suitable for sending JSON data to a server.
+Call this to create a function that conforms to the `RpcTransport` interface (see `@trezoa/rpc-spec`). You can use that function in your programs to make `POST` requests with headers suitable for sending JSON data to a server.
 
 ```ts
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
-const transport = createHttpTransport({ url: 'https://api.mainnet-beta.solana.com' });
+const transport = createHttpTransport({ url: 'https://api.mainnet-beta.trezoa.com' });
 const response = await transport({
     payload: { id: 1, jsonrpc: '2.0', method: 'getSlot' },
 });
@@ -36,7 +36,7 @@ const data = await response.json();
 In Node environments you can tune how requests are dispatched to the network. Use this config parameter to install a [`undici.Dispatcher`](https://undici.nodejs.org/#/docs/api/Agent) in your transport.
 
 ```ts
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 import { Agent, BalancedPool } from 'undici';
 
 // Create a dispatcher that, when called with a special URL, creates a round-robin pool of RPCs.
@@ -44,7 +44,7 @@ const dispatcher = new Agent({
     factory(origin, opts) {
         if (origin === 'https://mypool') {
             const upstreams = [
-                'https://api.mainnet-beta.solana.com',
+                'https://api.mainnet-beta.trezoa.com',
                 'https://mainnet.helius-rpc.com',
                 'https://several-neat-iguana.quiknode.pro',
             ];
@@ -88,7 +88,7 @@ An optional function that takes the response as a JSON string and converts it to
 An object of headers to set on the request. Avoid [forbidden headers](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name). Additionally, the headers `Accept`, `Content-Length`, and `Content-Type` are disallowed.
 
 ```ts
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
 const transport = createHttpTransport({
     headers: {
@@ -107,11 +107,11 @@ An optional function that takes the request payload and converts it to a JSON st
 
 A string representing the target endpoint. In Node, it must be an absolute URL using the `http` or `https` protocol.
 
-### `createHttpTransportForSolanaRpc()`
+### `createHttpTransportForTrezoaRpc()`
 
 Creates a `RpcTransport` that uses JSON HTTP requests — much like the `createHttpTransport` function — except that it also uses custom `toJson` and `fromJson` functions in order to allow `bigint` values to be serialized and deserialized correctly over the wire.
 
-Since this is something specific to the Solana RPC API, these custom JSON functions are only triggered when the request is recognized as a Solana RPC request. Normal RPC APIs should aim to wrap their `bigint` values — e.g. `u64` or `i64` — in special value objects that represent the number as a string to avoid numerical values going above `Number.MAX_SAFE_INTEGER`.
+Since this is something specific to the Trezoa RPC API, these custom JSON functions are only triggered when the request is recognized as a Trezoa RPC request. Normal RPC APIs should aim to wrap their `bigint` values — e.g. `u64` or `i64` — in special value objects that represent the number as a string to avoid numerical values going above `Number.MAX_SAFE_INTEGER`.
 
 It has the same configuration options as `createHttpTransport`, but without the `fromJson` and `toJson` options.
 
@@ -124,9 +124,9 @@ Using this core transport, you can implement specialized functionality for lever
 Here’s an example of how someone might implement a “round robin” approach to distribute requests to multiple transports:
 
 ```ts
-import { RpcTransport } from '@solana/rpc-spec';
-import { RpcResponse } from '@solana/rpc-spec-types';
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { RpcTransport } from '@trezoa/rpc-spec';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
 // Create a transport for each RPC server
 const transports = [
@@ -151,9 +151,9 @@ Another example of a possible customization for a transport is to shard requests
 Perhaps your application needs to make a large number of requests, or needs to fan request for different methods out to different servers. Here’s an example of an implementation that does the latter:
 
 ```ts
-import { RpcTransport } from '@solana/rpc-spec';
-import { RpcResponse } from '@solana/rpc-spec-types';
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { RpcTransport } from '@trezoa/rpc-spec';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
 // Create multiple transports
 const transportA = createHttpTransport({ url: 'https://mainnet-beta.my-server-1.com' });
@@ -189,9 +189,9 @@ async function shardingTransport<TResponse>(...args: Parameters<RpcTransport>): 
 The transport library can also be used to implement custom retry logic on any request:
 
 ```ts
-import { RpcTransport } from '@solana/rpc-spec';
-import { RpcResponse } from '@solana/rpc-spec-types';
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { RpcTransport } from '@trezoa/rpc-spec';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
 // Set the maximum number of attempts to retry a request
 const MAX_ATTEMPTS = 4;
@@ -234,9 +234,9 @@ async function retryingTransport<TResponse>(...args: Parameters<RpcTransport>): 
 Here’s an example of some failover logic integrated into a transport:
 
 ```ts
-import { RpcTransport } from '@solana/rpc-spec';
-import { RpcResponse } from '@solana/rpc-spec-types';
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { RpcTransport } from '@trezoa/rpc-spec';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
 // Create a transport for each RPC server
 const transports = [

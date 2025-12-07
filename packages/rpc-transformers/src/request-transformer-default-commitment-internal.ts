@@ -1,4 +1,4 @@
-import { Commitment } from '@solana/rpc-types';
+import { Commitment } from '@trezoa/rpc-types';
 
 export function applyDefaultCommitment({
     commitmentPropertyName,

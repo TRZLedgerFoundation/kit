@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, SolanaError } from '@solana/errors';
-import { PublicKey, VersionedTransaction } from '@solana/web3.js';
+import { TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, TrezoaError } from '@trezoa/errors';
+import { PublicKey, VersionedTransaction } from '@trezoa/web3.js';
 
 import { fromVersionedTransaction } from '../transaction';
 
@@ -189,7 +189,7 @@ describe('fromVersionedTransaction', () => {
         } as unknown as VersionedTransaction;
 
         expect(() => fromVersionedTransaction(transaction)).toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
                 numRequiredSignatures: 2,
                 signaturesLength: 1,
                 signerAddresses: [

@@ -1,4 +1,4 @@
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 
 type GetBlocksApiResponse = Slot[];
 
@@ -6,7 +6,7 @@ export type GetBlocksApi = {
     /**
      * Returns a list of confirmed blocks between two slots (inclusive).
      *
-     * @see https://solana.com/docs/rpc/http/getblocks
+     * @see https://trezoa.com/docs/rpc/http/getblocks
      */
     getBlocks(
         /** The first slot for which to return a confirmed block */
@@ -24,7 +24,7 @@ export type GetBlocksApi = {
              * Include only blocks at slots that have reached at least this level of commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */

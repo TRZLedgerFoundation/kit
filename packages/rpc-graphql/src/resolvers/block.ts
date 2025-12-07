@@ -1,4 +1,4 @@
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 import { GraphQLResolveInfo } from 'graphql';
 
 import { RpcGraphQLContext } from '../context';
@@ -49,11 +49,11 @@ export const resolveBlock = (fieldName?: string) => {
                         ...loadedBlock,
                     };
                 }
-                // @ts-expect-error FIX ME: https://github.com/solana-labs/solana-web3.js/pull/2052
+                // @ts-expect-error FIX ME: https://github.com/trezoa-team/solana-web3.js/pull/2052
                 if (!result.signatures && loadedBlock.signatures) {
                     result = {
                         ...result,
-                        // @ts-expect-error FIX ME: https://github.com/solana-labs/solana-web3.js/pull/2052
+                        // @ts-expect-error FIX ME: https://github.com/trezoa-team/solana-web3.js/pull/2052
                         signatures: loadedBlock.signatures,
                     };
                 }

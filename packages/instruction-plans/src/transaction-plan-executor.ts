@@ -1,12 +1,12 @@
 import {
-    SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
-    SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND,
-    SolanaError,
-} from '@solana/errors';
-import { Signature } from '@solana/keys';
-import { getAbortablePromise } from '@solana/promises';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
-import { Transaction } from '@solana/transactions';
+    TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
+    TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Signature } from '@trezoa/keys';
+import { getAbortablePromise } from '@trezoa/promises';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
+import { Transaction } from '@trezoa/transactions';
 
 import type {
     ParallelTransactionPlan,
@@ -105,7 +105,7 @@ export function createTransactionPlanExecutor(config: TransactionPlanExecutorCon
                 value: transactionPlanResult,
                 writable: false,
             });
-            throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, context);
+            throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN, context);
         }
 
         return transactionPlanResult;
@@ -128,7 +128,7 @@ async function traverse(transactionPlan: TransactionPlan, context: TraverseConte
             return await traverseSingle(transactionPlan, context);
         default:
             transactionPlan satisfies never;
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND, { kind });
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__INVALID_TRANSACTION_PLAN_KIND, { kind });
     }
 }
 

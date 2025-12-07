@@ -1,5 +1,5 @@
-import { addCodecSizePrefix, fixCodecSize, isVariableSize } from '@solana/codecs-core';
-import { getU8Codec } from '@solana/codecs-numbers';
+import { addCodecSizePrefix, fixCodecSize, isVariableSize } from '@trezoa/codecs-core';
+import { getU8Codec } from '@trezoa/codecs-numbers';
 
 import { getBytesCodec } from '../bytes';
 import { b } from './__setup__';

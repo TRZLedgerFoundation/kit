@@ -1,10 +1,10 @@
 import { open } from 'node:fs/promises';
 
-import type { Rpc } from '@solana/rpc-spec';
+import type { Rpc } from '@trezoa/rpc-spec';
 import path from 'path';
 
 import { GetGenesisHashApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const logFilePath = path.resolve(__dirname, '../../../../test-ledger/validator.log');
 const genesisHashPattern = /genesis hash: ([\d\w]{32,})/;
@@ -27,7 +27,7 @@ async function getGenesisHashFromLogFile() {
 describe('getGenesisHash', () => {
     let rpc: Rpc<GetGenesisHashApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     describe('when sent to a local validator', () => {

@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type PerformanceSample = Readonly<{
     /** Number of non-vote transactions in sample */
@@ -23,7 +23,7 @@ export type GetRecentPerformanceSamplesApi = {
      * slots that occur in a given time window.
      *
      * @param limit Number of samples to return. Maximum of 720.
-     * @see https://solana.com/docs/rpc/http/getrecentperformancesamples
+     * @see https://trezoa.com/docs/rpc/http/getrecentperformancesamples
      */
     getRecentPerformanceSamples(limit?: number): GetRecentPerformanceSamplesApiResponse;
 };

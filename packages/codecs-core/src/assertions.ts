@@ -1,16 +1,16 @@
 import {
-    SOLANA_ERROR__CODECS__CANNOT_DECODE_EMPTY_BYTE_ARRAY,
-    SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__CANNOT_DECODE_EMPTY_BYTE_ARRAY,
+    TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { ReadonlyUint8Array } from './readonly-uint8array';
 
 /**
  * Asserts that a given byte array is not empty (after the optional provided offset).
  *
- * Returns void if the byte array is not empty but throws a {@link SolanaError} otherwise.
+ * Returns void if the byte array is not empty but throws a {@link TrezoaError} otherwise.
  *
  * @param codecDescription - A description of the codec used by the assertion error.
  * @param bytes - The byte array to check.
@@ -31,7 +31,7 @@ export function assertByteArrayIsNotEmptyForCodec(
     offset = 0,
 ) {
     if (bytes.length - offset <= 0) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__CANNOT_DECODE_EMPTY_BYTE_ARRAY, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__CANNOT_DECODE_EMPTY_BYTE_ARRAY, {
             codecDescription,
         });
     }
@@ -42,7 +42,7 @@ export function assertByteArrayIsNotEmptyForCodec(
  * (after the optional provided offset).
  *
  * Returns void if the byte array has at least the expected number
- * of bytes but throws a {@link SolanaError} otherwise.
+ * of bytes but throws a {@link TrezoaError} otherwise.
  *
  * @param codecDescription - A description of the codec used by the assertion error.
  * @param expected - The minimum number of bytes expected in the byte array.
@@ -66,7 +66,7 @@ export function assertByteArrayHasEnoughBytesForCodec(
 ) {
     const bytesLength = bytes.length - offset;
     if (bytesLength < expected) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
             bytesLength,
             codecDescription,
             expected,
@@ -94,7 +94,7 @@ export function assertByteArrayHasEnoughBytesForCodec(
  */
 export function assertByteArrayOffsetIsNotOutOfRange(codecDescription: string, offset: number, bytesLength: number) {
     if (offset < 0 || offset > bytesLength) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE, {
             bytesLength,
             codecDescription,
             offset,

@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, TrezoaError } from '@trezoa/errors';
 
 /**
  * Asserts that a given string contains only characters from the specified alphabet.
@@ -11,7 +11,7 @@ import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@sol
  * @param testValue - The string to validate against the given alphabet.
  * @param givenValue - The original string provided by the user (defaults to `testValue`).
  *
- * @throws {SolanaError} If `testValue` contains characters not present in `alphabet`.
+ * @throws {TrezoaError} If `testValue` contains characters not present in `alphabet`.
  *
  * @example
  * Validating a base-8 encoded string.
@@ -22,7 +22,7 @@ import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@sol
  */
 export function assertValidBaseString(alphabet: string, testValue: string, givenValue = testValue) {
     if (!testValue.match(new RegExp(`^[${alphabet}]*$`))) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
             alphabet,
             base: alphabet.length,
             value: givenValue,

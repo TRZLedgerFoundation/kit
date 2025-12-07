@@ -1,7 +1,7 @@
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { GetSignatureStatusesApi, RequestAirdropApi, Rpc } from '@solana/rpc';
-import { lamports } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { GetSignatureStatusesApi, RequestAirdropApi, Rpc } from '@trezoa/rpc';
+import { lamports } from '@trezoa/rpc-types';
 
 import { requestAndConfirmAirdrop_INTERNAL_ONLY_DO_NOT_EXPORT } from '../airdrop-internal';
 

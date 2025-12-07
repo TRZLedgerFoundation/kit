@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import type { Address } from '@solana/addresses';
-import { lamports } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { lamports } from '@trezoa/rpc-types';
 
 import { Account, EncodedAccount } from '../account';
 import { MaybeAccount, MaybeEncodedAccount } from '../maybe-account';

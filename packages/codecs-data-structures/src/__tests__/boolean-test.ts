@@ -1,5 +1,5 @@
-import { transformCodec } from '@solana/codecs-core';
-import { getShortU16Codec, getU32Codec } from '@solana/codecs-numbers';
+import { transformCodec } from '@trezoa/codecs-core';
+import { getShortU16Codec, getU32Codec } from '@trezoa/codecs-numbers';
 
 import { getBooleanCodec } from '../boolean';
 import { b } from './__setup__';

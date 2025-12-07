@@ -1,7 +1,7 @@
-import { AbortController } from '@solana/event-target-impl';
-import type { Signature } from '@solana/keys';
-import { safeRace } from '@solana/promises';
-import type { Commitment } from '@solana/rpc-types';
+import { AbortController } from '@trezoa/event-target-impl';
+import type { Signature } from '@trezoa/keys';
+import { safeRace } from '@trezoa/promises';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { createRecentSignatureConfirmationPromiseFactory } from './confirmation-strategy-recent-signature';
 

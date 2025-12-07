@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { Account } from '../account';
 import { assertAccountExists, assertAccountsExist, MaybeAccount } from '../maybe-account';

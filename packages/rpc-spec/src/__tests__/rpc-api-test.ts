@@ -1,6 +1,6 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import type { RpcRequest } from '@solana/rpc-spec-types';
+import type { RpcRequest } from '@trezoa/rpc-spec-types';
 
 import { createJsonRpcApi } from '../rpc-api';
 import type { RpcTransport } from '../rpc-transport';

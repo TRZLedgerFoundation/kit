@@ -1,7 +1,7 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, SolanaError } from '@solana/errors';
-import { pipe } from '@solana/functional';
-import { appendTransactionMessageInstruction, createTransactionMessage } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, TrezoaError } from '@trezoa/errors';
+import { pipe } from '@trezoa/functional';
+import { appendTransactionMessageInstruction, createTransactionMessage } from '@trezoa/transaction-messages';
 
 import { isProgramError } from '../program-error';
 
@@ -14,7 +14,7 @@ describe('isProgramError', () => {
         );
 
         // And a custom program error on the instruction.
-        const error = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+        const error = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
             code: 42,
             index: 0,
         });
@@ -31,7 +31,7 @@ describe('isProgramError', () => {
         );
 
         // And a custom program error with code 42.
-        const error = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+        const error = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
             code: 42,
             index: 0,
         });
@@ -51,7 +51,7 @@ describe('isProgramError', () => {
         );
 
         // And a custom program error on the instruction.
-        const error = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+        const error = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
             code: 42,
             index: 0,
         });
@@ -72,7 +72,7 @@ describe('isProgramError', () => {
         );
 
         // And a custom program error pointing to a missing instruction.
-        const error = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+        const error = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
             code: 42,
             index: 999,
         });
@@ -89,7 +89,7 @@ describe('isProgramError', () => {
         );
 
         // And a custom program error on the instruction with code 42.
-        const error = new SolanaError(SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
+        const error = new TrezoaError(TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, {
             code: 42,
             index: 0,
         });

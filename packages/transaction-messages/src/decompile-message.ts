@@ -1,14 +1,14 @@
-import { Address, assertIsAddress } from '@solana/addresses';
+import { Address, assertIsAddress } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_FEE_PAYER_MISSING,
-    SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_INSTRUCTION_PROGRAM_ADDRESS_NOT_FOUND,
-    SolanaError,
-} from '@solana/errors';
-import { pipe } from '@solana/functional';
-import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@solana/instructions';
-import type { Blockhash } from '@solana/rpc-types';
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING,
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_FEE_PAYER_MISSING,
+    TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_INSTRUCTION_PROGRAM_ADDRESS_NOT_FOUND,
+    TrezoaError,
+} from '@trezoa/errors';
+import { pipe } from '@trezoa/functional';
+import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@trezoa/instructions';
+import type { Blockhash } from '@trezoa/rpc-types';
 
 import { AddressesByLookupTableAddress } from './addresses-by-lookup-table-address';
 import { setTransactionMessageLifetimeUsingBlockhash } from './blockhash';
@@ -74,7 +74,7 @@ function getAddressLookupMetas(
     const compiledAddressTableLookupAddresses = compiledAddressTableLookups.map(l => l.lookupTableAddress);
     const missing = compiledAddressTableLookupAddresses.filter(a => addressesByLookupTableAddress[a] === undefined);
     if (missing.length > 0) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_CONTENTS_MISSING, {
             lookupTableAddresses: missing,
         });
     }
@@ -90,8 +90,8 @@ function getAddressLookupMetas(
 
         const highestIndex = Math.max(...readonlyIndexes, ...writableIndexes);
         if (highestIndex >= addresses.length) {
-            throw new SolanaError(
-                SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
+            throw new TrezoaError(
+                TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_ADDRESS_LOOKUP_TABLE_INDEX_OUT_OF_RANGE,
                 {
                     highestKnownIndex: addresses.length - 1,
                     highestRequestedIndex: highestIndex,
@@ -126,7 +126,7 @@ function convertInstruction(
 ): Instruction {
     const programAddress = accountMetas[instruction.programAddressIndex]?.address;
     if (!programAddress) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_INSTRUCTION_PROGRAM_ADDRESS_NOT_FOUND, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_INSTRUCTION_PROGRAM_ADDRESS_NOT_FOUND, {
             index: instruction.programAddressIndex,
         });
     }
@@ -213,7 +213,7 @@ export function decompileTransactionMessage(
 ): BaseTransactionMessage & TransactionMessageWithFeePayer & TransactionMessageWithLifetime {
     const feePayer = compiledTransactionMessage.staticAccounts[0];
     if (!feePayer) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_FEE_PAYER_MISSING);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__FAILED_TO_DECOMPILE_FEE_PAYER_MISSING);
     }
 
     const accountMetas = getAccountMetas(compiledTransactionMessage);

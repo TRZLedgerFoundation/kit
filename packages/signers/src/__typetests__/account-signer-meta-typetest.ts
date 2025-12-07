@@ -1,5 +1,5 @@
-import { address } from '@solana/addresses';
-import { AccountRole } from '@solana/instructions';
+import { address } from '@trezoa/addresses';
+import { AccountRole } from '@trezoa/instructions';
 
 import { AccountSignerMeta } from '../account-signer-meta';
 import { TransactionSigner } from '../transaction-signer';

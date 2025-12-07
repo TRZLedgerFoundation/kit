@@ -1,38 +1,38 @@
-import { SolanaErrorCode, SolanaErrorCodeWithCause } from './codes';
-import { SolanaErrorContext } from './context';
+import { TrezoaErrorCode, TrezoaErrorCodeWithCause } from './codes';
+import { TrezoaErrorContext } from './context';
 import { getErrorMessage } from './message-formatter';
 
 /**
- * A type guard that returns `true` if the input is a {@link SolanaError}, optionally with a
+ * A type guard that returns `true` if the input is a {@link TrezoaError}, optionally with a
  * particular error code.
  *
- * When the `code` argument is supplied and the input is a {@link SolanaError}, TypeScript will
- * refine the error's {@link SolanaError#context | `context`} property to the type associated with
+ * When the `code` argument is supplied and the input is a {@link TrezoaError}, TypeScript will
+ * refine the error's {@link TrezoaError#context | `context`} property to the type associated with
  * that error code. You can use that context to render useful error messages, or to make
  * context-aware decisions that help your application to recover from the error.
  *
  * @example
  * ```ts
  * import {
- *     SOLANA_ERROR__TRANSACTION__MISSING_SIGNATURE,
- *     SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
- *     isSolanaError,
- * } from '@solana/errors';
- * import { assertIsFullySignedTransaction, getSignatureFromTransaction } from '@solana/transactions';
+ *     TREZOA_ERROR__TRANSACTION__MISSING_SIGNATURE,
+ *     TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
+ *     isTrezoaError,
+ * } from '@trezoa/errors';
+ * import { assertIsFullySignedTransaction, getSignatureFromTransaction } from '@trezoa/transactions';
  *
  * try {
  *     const transactionSignature = getSignatureFromTransaction(tx);
  *     assertIsFullySignedTransaction(tx);
  *     /* ... *\/
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
  *         displayError(
  *             "We can't send this transaction without signatures for these addresses:\n- %s",
  *             // The type of the `context` object is now refined to contain `addresses`.
  *             e.context.addresses.join('\n- '),
  *         );
  *         return;
- *     } else if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
+ *     } else if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
  *         if (!tx.feePayer) {
  *             displayError('Choose a fee payer for this transaction before sending it');
  *         } else {
@@ -44,53 +44,53 @@ import { getErrorMessage } from './message-formatter';
  * }
  * ```
  */
-export function isSolanaError<TErrorCode extends SolanaErrorCode>(
+export function isTrezoaError<TErrorCode extends TrezoaErrorCode>(
     e: unknown,
     /**
-     * When supplied, this function will require that the input is a {@link SolanaError} _and_ that
+     * When supplied, this function will require that the input is a {@link TrezoaError} _and_ that
      * its error code is exactly this value.
      */
     code?: TErrorCode,
-): e is SolanaError<TErrorCode> {
-    const isSolanaError = e instanceof Error && e.name === 'SolanaError';
-    if (isSolanaError) {
+): e is TrezoaError<TErrorCode> {
+    const isTrezoaError = e instanceof Error && e.name === 'TrezoaError';
+    if (isTrezoaError) {
         if (code !== undefined) {
-            return (e as SolanaError<TErrorCode>).context.__code === code;
+            return (e as TrezoaError<TErrorCode>).context.__code === code;
         }
         return true;
     }
     return false;
 }
 
-type SolanaErrorCodedContext = {
-    [P in SolanaErrorCode]: Readonly<{
+type TrezoaErrorCodedContext = {
+    [P in TrezoaErrorCode]: Readonly<{
         __code: P;
     }> &
-        (SolanaErrorContext[P] extends undefined ? object : SolanaErrorContext[P]);
+        (TrezoaErrorContext[P] extends undefined ? object : TrezoaErrorContext[P]);
 };
 
 /**
- * Encapsulates an error's stacktrace, a Solana-specific numeric code that indicates what went
+ * Encapsulates an error's stacktrace, a Trezoa-specific numeric code that indicates what went
  * wrong, and optional context if the type of error indicated by the code supports it.
  */
-export class SolanaError<TErrorCode extends SolanaErrorCode = SolanaErrorCode> extends Error {
+export class TrezoaError<TErrorCode extends TrezoaErrorCode = TrezoaErrorCode> extends Error {
     /**
-     * Indicates the root cause of this {@link SolanaError}, if any.
+     * Indicates the root cause of this {@link TrezoaError}, if any.
      *
      * For example, a transaction error might have an instruction error as its root cause. In this
      * case, you will be able to access the instruction error on the transaction error as `cause`.
      */
-    readonly cause?: TErrorCode extends SolanaErrorCodeWithCause ? SolanaError : unknown = this.cause;
+    readonly cause?: TErrorCode extends TrezoaErrorCodeWithCause ? TrezoaError : unknown = this.cause;
     /**
-     * Contains context that can assist in understanding or recovering from a {@link SolanaError}.
+     * Contains context that can assist in understanding or recovering from a {@link TrezoaError}.
      */
-    readonly context: SolanaErrorCodedContext[TErrorCode];
+    readonly context: TrezoaErrorCodedContext[TErrorCode];
     constructor(
-        ...[code, contextAndErrorOptions]: SolanaErrorContext[TErrorCode] extends undefined
+        ...[code, contextAndErrorOptions]: TrezoaErrorContext[TErrorCode] extends undefined
             ? [code: TErrorCode, errorOptions?: ErrorOptions | undefined]
-            : [code: TErrorCode, contextAndErrorOptions: SolanaErrorContext[TErrorCode] & (ErrorOptions | undefined)]
+            : [code: TErrorCode, contextAndErrorOptions: TrezoaErrorContext[TErrorCode] & (ErrorOptions | undefined)]
     ) {
-        let context: SolanaErrorContext[TErrorCode] | undefined;
+        let context: TrezoaErrorContext[TErrorCode] | undefined;
         let errorOptions: ErrorOptions | undefined;
         if (contextAndErrorOptions) {
             Object.entries(Object.getOwnPropertyDescriptors(contextAndErrorOptions)).forEach(([name, descriptor]) => {
@@ -101,7 +101,7 @@ export class SolanaError<TErrorCode extends SolanaErrorCode = SolanaErrorCode> e
                     if (context === undefined) {
                         context = {
                             __code: code,
-                        } as unknown as SolanaErrorContext[TErrorCode];
+                        } as unknown as TrezoaErrorContext[TErrorCode];
                     }
                     Object.defineProperty(context, name, descriptor);
                 }
@@ -115,9 +115,9 @@ export class SolanaError<TErrorCode extends SolanaErrorCode = SolanaErrorCode> e
                       __code: code,
                   }
                 : context,
-        ) as SolanaErrorCodedContext[TErrorCode];
-        // This is necessary so that `isSolanaError()` can identify a `SolanaError` without having
+        ) as TrezoaErrorCodedContext[TErrorCode];
+        // This is necessary so that `isTrezoaError()` can identify a `TrezoaError` without having
         // to import the class for use in an `instanceof` check.
-        this.name = 'SolanaError';
+        this.name = 'TrezoaError';
     }
 }

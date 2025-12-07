@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, TrezoaError } from '@trezoa/errors';
 
 import { createSubscriptionRpc, type RpcSubscriptions } from '../rpc-subscriptions';
 
@@ -21,7 +21,7 @@ describe('createSubscriptionRpc', () => {
         expect(() => {
             rpcSubscriptions.thingNotifications();
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, {
+            new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CANNOT_CREATE_SUBSCRIPTION_PLAN, {
                 notificationName: 'thingNotifications',
             }),
         );

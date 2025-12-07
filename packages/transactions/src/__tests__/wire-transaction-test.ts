@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { SignatureBytes } from '@solana/keys';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { Transaction, TransactionMessageBytes } from '../transaction';
 import { getBase64EncodedWireTransaction } from '../wire-transaction';
@@ -63,7 +63,7 @@ describe('getBase64EncodedWireTransaction', () => {
         };
 
         expect(getBase64EncodedWireTransaction(transaction))
-            // Copy and paste this string into the Solana Explorer at https://explorer.solana.com/tx/inspector
+            // Copy and paste this string into the Trezoa Explorer at https://explorer.trezoa.com/tx/inspector
             .toBe(
                 'AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlyfqJ5qvbi2J5r1hDgkimf7xAsjcGduDtpu9zfTn8MGyAgMBmLTJ6VrW508Eg1xWkND+TiiPuCPuCPuCPuCPugAIBAQMPHmsUIcBKBwQxJlwZxbvuGZK66K/RzQeO+K9wR9wR9y1bQTxlQN4VDJNzFE1RM8pMuDC6D3VnFqzqDlDXlDXlPHmsUIcBKBwQxJlwZxbvuGZK66K/RzQeO+K9wR9wR9wePNYoQ4CUDghiTLgzi3fcMyV10V+jmg8d8V7gj7gj7gECAQEAAA==',
             );

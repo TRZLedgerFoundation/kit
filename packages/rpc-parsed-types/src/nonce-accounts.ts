@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import type { Blockhash, StringifiedBigInt } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import type { Blockhash, StringifiedBigInt } from '@trezoa/rpc-types';
 
 import { RpcParsedInfo } from './rpc-parsed-type';
 

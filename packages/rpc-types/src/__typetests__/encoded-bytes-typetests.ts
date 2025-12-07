@@ -1,4 +1,4 @@
-import { CompressedData, EncodedString } from '@solana/nominal-types';
+import { CompressedData, EncodedString } from '@trezoa/nominal-types';
 
 import { Base58EncodedBytes, Base64EncodedBytes, Base64EncodedZStdCompressedBytes } from '../encoded-bytes';
 

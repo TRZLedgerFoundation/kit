@@ -1,10 +1,10 @@
-import { assertKeyGenerationIsAvailable, assertPRNGIsAvailable } from '@solana/assertions';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { assertKeyGenerationIsAvailable, assertPRNGIsAvailable } from '@trezoa/assertions';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH,
-    SOLANA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH,
+    TREZOA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { ED25519_ALGORITHM_IDENTIFIER } from './algorithm';
 import { createPrivateKeyFromBytes } from './private-key';
@@ -17,7 +17,7 @@ import { signBytes, verifySignature } from './signatures';
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
+ * import { generateKeyPair } from '@trezoa/keys';
  *
  * const { privateKey, publicKey } = await generateKeyPair();
  * ```
@@ -46,7 +46,7 @@ export async function generateKeyPair(): Promise<CryptoKeyPair> {
  * @example
  * ```ts
  * import fs from 'fs';
- * import { createKeyPairFromBytes } from '@solana/keys';
+ * import { createKeyPairFromBytes } from '@trezoa/keys';
  *
  * // Get bytes from local keypair file.
  * const keypairFile = fs.readFileSync('~/.config/solana/id.json');
@@ -63,7 +63,7 @@ export async function createKeyPairFromBytes(
     assertPRNGIsAvailable();
 
     if (bytes.byteLength !== 64) {
-        throw new SolanaError(SOLANA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH, { byteLength: bytes.byteLength });
+        throw new TrezoaError(TREZOA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH, { byteLength: bytes.byteLength });
     }
     const [publicKey, privateKey] = await Promise.all([
         crypto.subtle.importKey('raw', bytes.slice(32), ED25519_ALGORITHM_IDENTIFIER, /* extractable */ true, [
@@ -78,7 +78,7 @@ export async function createKeyPairFromBytes(
     const signedData = await signBytes(privateKey, randomBytes);
     const isValid = await verifySignature(publicKey, signedData, randomBytes);
     if (!isValid) {
-        throw new SolanaError(SOLANA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY);
+        throw new TrezoaError(TREZOA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY);
     }
 
     return { privateKey, publicKey } as CryptoKeyPair;
@@ -96,7 +96,7 @@ export async function createKeyPairFromBytes(
  *
  * @example
  * ```ts
- * import { createKeyPairFromPrivateKeyBytes } from '@solana/keys';
+ * import { createKeyPairFromPrivateKeyBytes } from '@trezoa/keys';
  *
  * const { privateKey, publicKey } = await createKeyPairFromPrivateKeyBytes(new Uint8Array([...]));
  * ```
@@ -106,8 +106,8 @@ export async function createKeyPairFromBytes(
  * from the hash of a message.
  *
  * ```ts
- * import { getUtf8Encoder } from '@solana/codecs-strings';
- * import { createKeyPairFromPrivateKeyBytes } from '@solana/keys';
+ * import { getUtf8Encoder } from '@trezoa/codecs-strings';
+ * import { createKeyPairFromPrivateKeyBytes } from '@trezoa/keys';
  *
  * const message = getUtf8Encoder().encode('Hello, World!');
  * const seed = new Uint8Array(await crypto.subtle.digest('SHA-256', message));

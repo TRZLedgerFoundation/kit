@@ -1,7 +1,7 @@
-import { AbortController } from '@solana/event-target-impl';
-import fastStableStringify from '@solana/fast-stable-stringify';
-import { RpcSubscriptionsTransport } from '@solana/rpc-subscriptions-spec';
-import { DataPublisher } from '@solana/subscribable';
+import { AbortController } from '@trezoa/event-target-impl';
+import fastStableStringify from '@trezoa/fast-stable-stringify';
+import { RpcSubscriptionsTransport } from '@trezoa/rpc-subscriptions-spec';
+import { DataPublisher } from '@trezoa/subscribable';
 
 type CacheEntry = {
     readonly abortController: AbortController;

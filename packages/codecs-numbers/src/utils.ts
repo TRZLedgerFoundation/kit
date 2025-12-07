@@ -7,7 +7,7 @@ import {
     FixedSizeEncoder,
     Offset,
     ReadonlyUint8Array,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { assertNumberIsBetweenForCodec } from './assertions';
 import { Endian, NumberCodecConfig } from './common';

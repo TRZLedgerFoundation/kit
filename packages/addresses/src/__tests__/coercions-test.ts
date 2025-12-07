@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Address, address } from '../address';
 
@@ -18,7 +18,7 @@ describe('coercions', () => {
         it.each([31, 45])('throws given an address with length %s', actualLength => {
             const thisThrows = () => address('3'.repeat(actualLength));
             expect(thisThrows).toThrow(
-                new SolanaError(SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE, {
                     actualLength,
                 }),
             );
@@ -29,7 +29,7 @@ describe('coercions', () => {
         ])('throws given an address that decodes to have %s bytes', (actualLength, badAddress) => {
             const thisThrows = () => address(badAddress);
             expect(thisThrows).toThrow(
-                new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
+                new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH, {
                     actualLength,
                 }),
             );

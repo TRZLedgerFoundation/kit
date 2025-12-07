@@ -1,8 +1,8 @@
-import { SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, SolanaError } from '@solana/errors';
-import { AbortController } from '@solana/event-target-impl';
-import type { GetEpochInfoApi, Rpc } from '@solana/rpc';
-import type { RpcSubscriptions, SlotNotificationsApi } from '@solana/rpc-subscriptions';
-import type { Commitment } from '@solana/rpc-types';
+import { TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, TrezoaError } from '@trezoa/errors';
+import { AbortController } from '@trezoa/event-target-impl';
+import type { GetEpochInfoApi, Rpc } from '@trezoa/rpc';
+import type { RpcSubscriptions, SlotNotificationsApi } from '@trezoa/rpc-subscriptions';
+import type { Commitment } from '@trezoa/rpc-types';
 
 type GetBlockHeightExceedencePromiseFn = (config: {
     abortSignal: AbortSignal;
@@ -10,7 +10,7 @@ type GetBlockHeightExceedencePromiseFn = (config: {
      * Fetch the block height as of the highest slot that has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -36,8 +36,8 @@ type CreateBlockHeightExceedencePromiseFactoryConfig<TCluster> = {
  *
  * @example
  * ```ts
- * import { isSolanaError, SolanaError } from '@solana/errors';
- * import { createBlockHeightExceedencePromiseFactory } from '@solana/transaction-confirmation';
+ * import { isTrezoaError, TrezoaError } from '@trezoa/errors';
+ * import { createBlockHeightExceedencePromiseFactory } from '@trezoa/transaction-confirmation';
  *
  * const getBlockHeightExceedencePromise = createBlockHeightExceedencePromiseFactory({
  *     rpc,
@@ -46,7 +46,7 @@ type CreateBlockHeightExceedencePromiseFactoryConfig<TCluster> = {
  * try {
  *     await getBlockHeightExceedencePromise({ lastValidBlockHeight });
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
  *         console.error(
  *             `The block height of the network has exceeded ${e.context.lastValidBlockHeight}. ` +
  *                 `It is now ${e.context.currentBlockHeight}`,
@@ -130,7 +130,7 @@ export function createBlockHeightExceedencePromiseFactory<
                 }
             }
             callerAbortSignal.throwIfAborted();
-            throw new SolanaError(SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
+            throw new TrezoaError(TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
                 currentBlockHeight,
                 lastValidBlockHeight,
             });

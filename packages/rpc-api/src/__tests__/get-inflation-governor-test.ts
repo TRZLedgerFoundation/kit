@@ -1,13 +1,13 @@
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetInflationGovernorApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getInflationGovernor', () => {
     let rpc: Rpc<GetInflationGovernorApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     // TODO: I honestly have no clue how to test this
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {

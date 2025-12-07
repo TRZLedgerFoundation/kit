@@ -5,35 +5,35 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/kit?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/kit?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/kit
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/kit?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/kit?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/kit
 
 # Kit
 
-This is the JavaScript SDK for building Solana apps for Node, web, and React Native.
+This is the JavaScript SDK for building Trezoa apps for Node, web, and React Native.
 
 > [!NOTE]
-> Did you expect to find `@solana/web3.js` here? You're in the right place! We have renamed the 2.x line of `@solana/web3.js` to `@solana/kit`.
+> Did you expect to find `@trezoa/web3.js` here? You're in the right place! We have renamed the 2.x line of `@trezoa/web3.js` to `@trezoa/kit`.
 >
-> The code for the 1.x line of `@solana/web3.js` can be found [here](https://github.com/solana-labs/solana-web3.js/tree/maintenance/v1.x) and the documentation [here](https://solana-foundation.github.io/solana-web3.js/).
+> The code for the 1.x line of `@trezoa/web3.js` can be found [here](https://github.com/trezoa-team/trezoa-web3.js/tree/maintenance/v1.x) and the documentation [here](https://trezoa-foundation.github.io/trezoa-web3.js/).
 
 # Installation
 
 For use in a Node.js or web application:
 
 ```shell
-npm install --save @solana/kit
+npm install --save @trezoa/kit
 ```
 
 For use in a browser, without a build system:
 
 ```html
 <!-- Development (debug mode, unminified) -->
-<script src="https://unpkg.com/@solana/kit/dist/index.development.js"></script>
+<script src="https://unpkg.com/@trezoa/kit/dist/index.development.js"></script>
 
 <!-- Production (minified) -->
-<script src="https://unpkg.com/@solana/kit/dist/index.production.min.js"></script>
+<script src="https://unpkg.com/@trezoa/kit/dist/index.production.min.js"></script>
 ```
 
 # Quick Start
@@ -42,7 +42,7 @@ To get a feel for the API, run and modify the live examples in the `examples/` d
 
 # What's New in Kit
 
-Kit is a response to many of the pain points you have communicated to us when developing Solana applications with web3.js.
+Kit is a response to many of the pain points you have communicated to us when developing Trezoa applications with web3.js.
 
 ## Tree-Shakability
 
@@ -60,22 +60,22 @@ Needlessly large JavaScript bundles can cause issues with deployments to cloud c
 
 Kit is fully tree-shakable and will remain so, enforced by build-time checks. Optimizing compilers can now eliminate those parts of the library that your application does not use.
 
-Kit is comprised of several smaller, modular packages under the `@solana` organization, including:
+Kit is comprised of several smaller, modular packages under the `@trezoa` organization, including:
 
-- `@solana/accounts`: For fetching and decoding accounts
-- `@solana/codecs`: For composing data (de)serializers from a set of primitives or building custom ones
-- `@solana/errors`: For identifying and refining coded errors thrown in the `@solana` namespace
-- `@solana/rpc`: For sending RPC requests
-- `@solana/rpc-subscriptions`: For subscribing to RPC notifications
-- `@solana/signers`: For building message and/or transaction signer objects
-- `@solana/sysvars`: For fetching and decoding sysvar accounts
-- `@solana/transaction-messages`: For building and transforming Solana transaction message objects
-- `@solana/transactions`: For compiling and signing transactions for submission to the network
+- `@trezoa/accounts`: For fetching and decoding accounts
+- `@trezoa/codecs`: For composing data (de)serializers from a set of primitives or building custom ones
+- `@trezoa/errors`: For identifying and refining coded errors thrown in the `@trezoa` namespace
+- `@trezoa/rpc`: For sending RPC requests
+- `@trezoa/rpc-subscriptions`: For subscribing to RPC notifications
+- `@trezoa/signers`: For building message and/or transaction signer objects
+- `@trezoa/sysvars`: For fetching and decoding sysvar accounts
+- `@trezoa/transaction-messages`: For building and transforming Trezoa transaction message objects
+- `@trezoa/transactions`: For compiling and signing transactions for submission to the network
 - And many more!
 
-Some of these packages are themselves composed of smaller packages. For instance, `@solana/rpc` is composed of `@solana/rpc-spec` (for core JSON RPC specification types), `@solana/rpc-api` (for the Solana-specific RPC methods), `@solana/rpc-transport-http` (for the default HTTP transport) and so on.
+Some of these packages are themselves composed of smaller packages. For instance, `@trezoa/rpc` is composed of `@trezoa/rpc-spec` (for core JSON RPC specification types), `@trezoa/rpc-api` (for the Trezoa-specific RPC methods), `@trezoa/rpc-transport-http` (for the default HTTP transport) and so on.
 
-Developers can use the default configurations within the main library (`@solana/kit`) or import any of its subpackages where customization-through-composition is desired.
+Developers can use the default configurations within the main library (`@trezoa/kit`) or import any of its subpackages where customization-through-composition is desired.
 
 ## Composable Internals
 
@@ -83,14 +83,14 @@ Depending on your use case and your tolerance for certain application behaviours
 
 The inability to customize web3.js up until now has been a source of frustration:
 
-- The Mango team wanted to customize the transaction confirmation strategy, but all of that functionality is hidden away behind `confirmTransaction` – a static method of `Connection`. [Here’s the code for `confirmTransaction` on GitHub](https://github.com/solana-labs/solana-web3.js/blob/69a8ad25ef09f9e6d5bff1ffa8428d9be0bd32ac/packages/library-legacy/src/connection.ts#L3734).
-- Solana developer ‘mPaella’ [wanted us to add a feature in the RPC](https://github.com/solana-labs/solana-web3.js/issues/1143#issuecomment-1435927152) that would failover to a set of backup URLs in case the primary one failed.
-- Solana developer ‘epicfaace’ wanted first-class support for automatic time-windowed batching in the RPC transport. [Here’s their pull request](https://github.com/solana-labs/solana/pull/23628).
-- Multiple folks have expressed the need for custom retry logic for failed requests or transactions. [Here’s a pull request from ‘dafyddd’](https://github.com/solana-labs/solana/pull/11811) and [another from ‘abrkn’](https://github.com/solana-labs/solana-web3.js/issues/1041) attempting to modify retry logic to suit their individual use cases.
+- The Mango team wanted to customize the transaction confirmation strategy, but all of that functionality is hidden away behind `confirmTransaction` – a static method of `Connection`. [Here’s the code for `confirmTransaction` on GitHub](https://github.com/trezoa-team/trezoa-web3.js/blob/69a8ad25ef09f9e6d5bff1ffa8428d9be0bd32ac/packages/library-legacy/src/connection.ts#L3734).
+- Trezoa developer ‘mPaella’ [wanted us to add a feature in the RPC](https://github.com/trezoa-team/trezoa-web3.js/issues/1143#issuecomment-1435927152) that would failover to a set of backup URLs in case the primary one failed.
+- Trezoa developer ‘epicfaace’ wanted first-class support for automatic time-windowed batching in the RPC transport. [Here’s their pull request](https://github.com/trezoa-team/trezoa/pull/23628).
+- Multiple folks have expressed the need for custom retry logic for failed requests or transactions. [Here’s a pull request from ‘dafyddd’](https://github.com/trezoa-team/trezoa/pull/11811) and [another from ‘abrkn’](https://github.com/trezoa-team/trezoa-web3.js/issues/1041) attempting to modify retry logic to suit their individual use cases.
 
 Kit exposes far more of its internals, particularly where communication with an RPC is concerned, and allows willing developers the ability to compose new implementations from the default ones that manifest a nearly limitless array of customizations.
 
-The individual modules that make up Kit are assembled in a **default** configuration reminiscent of the legacy library as part of the npm package `@solana/kit`, but those who wish to assemble them in different configurations may do so.
+The individual modules that make up Kit are assembled in a **default** configuration reminiscent of the legacy library as part of the npm package `@trezoa/kit`, but those who wish to assemble them in different configurations may do so.
 
 Generic types are offered in numerous places, allowing you to specify new functionality, to make extensions to each API via composition and supertypes, and to encourage you to create higher-level opinionated abstractions of your own.
 
@@ -116,7 +116,7 @@ Read more about dual-package hazard:
 
 - [NodeJS: Dual Package Hazard](https://nodejs.org/api/packages.html#dual-package-hazard)
 
-Kit implements no classes (with the notable exception of the `SolanaError` class) and implements the thinnest possible interfaces at function boundaries.
+Kit implements no classes (with the notable exception of the `TrezoaError` class) and implements the thinnest possible interfaces at function boundaries.
 
 ## Statistics
 
@@ -129,11 +129,11 @@ Consider these statistical comparisons between Kit and the legacy web3.js 1.x.
 | Bundled size of a web application that executes a transfer of lamports                                 | 111 KB       | 23.9 KB    | -78%  |
 | Bundled size of a web application that executes a transfer of lamports (when runtime supports Ed25519) | 111 KB       | 18.2 KB    | -83%  |
 | Performance of key generation, signing, and verifying signatures (Brave with Experimental API flag)    | 700 ops/s    | 7000 ops/s | +900% |
-| First-load size for Solana Explorer                                                                    | 311 KB       | 228 KB     | -26%  |
+| First-load size for Trezoa Explorer                                                                    | 311 KB       | 228 KB     | -26%  |
 
 The re-engineered library achieves these speedups and reductions in bundle size in large part through use of modern JavaScript APIs.
 
-To validate our work, we replaced the legacy 1.x library with Kit on the homepage of the Solana Explorer. Total first-load bundle size dropped by 26% without removing a single feature. [Here’s an X thread](https://twitter.com/callum_codes/status/1679124485218226176) by Callum McIntyre if you would like to dig deeper.
+To validate our work, we replaced the legacy 1.x library with Kit on the homepage of the Trezoa Explorer. Total first-load bundle size dropped by 26% without removing a single feature. [Here’s an X thread](https://twitter.com/callum_codes/status/1679124485218226176) by Callum McIntyre if you would like to dig deeper.
 
 # A Tour of the Kit API
 
@@ -141,29 +141,29 @@ Here’s an overview of how to use the new library to interact with the RPC, con
 
 ## RPC
 
-Kit ships with an implementation of the [JSON RPC specification](https://www.jsonrpc.org/specification) and a type spec for the [Solana JSON RPC](https://docs.solana.com/api).
+Kit ships with an implementation of the [JSON RPC specification](https://www.jsonrpc.org/specification) and a type spec for the [trezoa JSON RPC](https://docs.trezoa.com/api).
 
-The main package responsible for managing communication with an RPC is `@solana/rpc`. However, this package makes use of more granular packages to break down the RPC logic into smaller pieces. Namely, these packages are:
+The main package responsible for managing communication with an RPC is `@trezoa/rpc`. However, this package makes use of more granular packages to break down the RPC logic into smaller pieces. Namely, these packages are:
 
-- `@solana/rpc`: Contains all logic related to sending Solana RPC calls.
-- `@solana/rpc-api`: Describes all Solana RPC methods using types.
-- `@solana/rpc-transport-http`: Provides a concrete implementation of an RPC transport using HTTP requests.
-- `@solana/rpc-spec`: Defines the JSON RPC spec for sending RPC requests.
-- `@solana/rpc-spec-types`: Shared JSON RPC specifications types and helpers that are used by both `@solana/rpc` and `@solana/rpc-subscriptions` (described in the next section).
-- `@solana/rpc-types`: Shared Solana RPC types and helpers that are used by both `@solana/rpc` and `@solana/rpc-subscriptions`.
+- `@trezoa/rpc`: Contains all logic related to sending Trezoa RPC calls.
+- `@trezoa/rpc-api`: Describes all Trezoa RPC methods using types.
+- `@trezoa/rpc-transport-http`: Provides a concrete implementation of an RPC transport using HTTP requests.
+- `@trezoa/rpc-spec`: Defines the JSON RPC spec for sending RPC requests.
+- `@trezoa/rpc-spec-types`: Shared JSON RPC specifications types and helpers that are used by both `@trezoa/rpc` and `@trezoa/rpc-subscriptions` (described in the next section).
+- `@trezoa/rpc-types`: Shared Trezoa RPC types and helpers that are used by both `@trezoa/rpc` and `@trezoa/rpc-subscriptions`.
 
-The main `@solana/kit` package re-exports the `@solana/rpc` package so, going forward, we will import RPC types and functions from the library directly.
+The main `@trezoa/kit` package re-exports the `@trezoa/rpc` package so, going forward, we will import RPC types and functions from the library directly.
 
 ### RPC Calls
 
-You can use the `createSolanaRpc` function by providing the URL of a Solana JSON RPC server. This will create a default client for interacting with the Solana JSON RPC API.
+You can use the `createTrezoaRpc` function by providing the URL of a Trezoa JSON RPC server. This will create a default client for interacting with the Trezoa JSON RPC API.
 
 ```ts
-import { createSolanaRpc } from '@solana/kit';
+import { createTrezoaRpc } from '@trezoa/kit';
 
 // Create an RPC client.
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
-//    ^? Rpc<SolanaRpcApi>
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
+//    ^? Rpc<TrezoaRpcApi>
 
 // Send a request.
 const slot = await rpc.getSlot().send();
@@ -171,17 +171,17 @@ const slot = await rpc.getSlot().send();
 
 ### Custom RPC Transports
 
-The `createSolanaRpc` function communicates with the RPC server using a default HTTP transport that should satisfy most use cases. You can provide your own transport or wrap an existing one to communicate with RPC servers in any way you see fit. In the example below, we explicitly create a transport and use it to create a new RPC client via the `createSolanaRpcFromTransport` function.
+The `createTrezoaRpc` function communicates with the RPC server using a default HTTP transport that should satisfy most use cases. You can provide your own transport or wrap an existing one to communicate with RPC servers in any way you see fit. In the example below, we explicitly create a transport and use it to create a new RPC client via the `createTrezoaRpcFromTransport` function.
 
 ```ts
-import { createSolanaRpcFromTransport, createDefaultRpcTransport } from '@solana/kit';
+import { createTrezoaRpcFromTransport, createDefaultRpcTransport } from '@trezoa/kit';
 
 // Create an HTTP transport or any custom transport of your choice.
-const transport = createDefaultRpcTransport({ url: 'https://api.devnet.solana.com' });
+const transport = createDefaultRpcTransport({ url: 'https://api.devnet.trezoa.com' });
 
 // Create an RPC client using that transport.
-const rpc = createSolanaRpcFromTransport(transport);
-//    ^? Rpc<SolanaRpcApi>
+const rpc = createTrezoaRpcFromTransport(transport);
+//    ^? Rpc<TrezoaRpcApi>
 
 // Send a request.
 const slot = await rpc.getSlot().send();
@@ -194,7 +194,7 @@ A custom transport can implement specialized functionality such as coordinating 
 A ‘round robin’ transport is one that distributes requests to a list of endpoints in sequence.
 
 ```ts
-import { createDefaultRpcTransport, createSolanaRpcFromTransport, type RpcTransport } from '@solana/kit';
+import { createDefaultRpcTransport, createTrezoaRpcFromTransport, type RpcTransport } from '@trezoa/kit';
 
 // Create an HTTP transport for each RPC server.
 const transports = [
@@ -212,7 +212,7 @@ async function roundRobinTransport<TResponse>(...args: Parameters<RpcTransport>)
 }
 
 // Create an RPC client using the round-robin transport.
-const rpc = createSolanaRpcFromTransport(roundRobinTransport);
+const rpc = createTrezoaRpcFromTransport(roundRobinTransport);
 ```
 
 #### Sharding
@@ -220,7 +220,7 @@ const rpc = createSolanaRpcFromTransport(roundRobinTransport);
 A sharding transport is a kind of distributing transport that sends requests to a particular server based on something about the request itself. Here’s an example that sends requests to different servers depending on the name of the method:
 
 ```ts
-import { createDefaultRpcTransport, createSolanaRpcFromTransport, type RpcTransport } from '@solana/kit';
+import { createDefaultRpcTransport, createTrezoaRpcFromTransport, type RpcTransport } from '@trezoa/kit';
 
 // Create multiple transports.
 const transportA = createDefaultRpcTransport({ url: 'https://mainnet-beta.my-server-1.com' });
@@ -252,7 +252,7 @@ async function shardingTransport<TResponse>(...args: Parameters<RpcTransport>): 
 }
 
 // Create an RPC client using the sharding transport.
-const rpc = createSolanaRpcFromTransport(shardingTransport);
+const rpc = createTrezoaRpcFromTransport(shardingTransport);
 ```
 
 #### Retry
@@ -260,7 +260,7 @@ const rpc = createSolanaRpcFromTransport(shardingTransport);
 A custom transport is a good place to implement global retry logic for every request:
 
 ```ts
-import { createDefaultRpcTransport, createSolanaRpcFromTransport, type RpcTransport } from '@solana/kit';
+import { createDefaultRpcTransport, createTrezoaRpcFromTransport, type RpcTransport } from '@trezoa/kit';
 
 // Set the maximum number of attempts to retry a request.
 const MAX_ATTEMPTS = 4;
@@ -298,7 +298,7 @@ async function retryingTransport<TResponse>(...args: Parameters<RpcTransport>): 
 }
 
 // Create the RPC client using the retrying transport.
-const rpc = createSolanaRpcFromTransport(retryingTransport);
+const rpc = createTrezoaRpcFromTransport(retryingTransport);
 ```
 
 #### Failover
@@ -306,7 +306,7 @@ const rpc = createSolanaRpcFromTransport(retryingTransport);
 Support for handling network failures can be implemented in the transport itself. Here’s an example of some failover logic integrated into a transport:
 
 ```ts
-import { createDefaultRpcTransport, createSolanaRpcFromTransport, type RpcTransport } from '@solana/kit';
+import { createDefaultRpcTransport, createTrezoaRpcFromTransport, type RpcTransport } from '@trezoa/kit';
 
 // List of RPC endpoints for failover.
 const rpcEndpoints = [
@@ -335,12 +335,12 @@ async function failoverTransport<TResponse>(...args: Parameters<RpcTransport>): 
 }
 
 // Create the RPC client using the failover transport.
-const rpc = createSolanaRpcFromTransport(failoverTransport);
+const rpc = createTrezoaRpcFromTransport(failoverTransport);
 ```
 
 ### Augmenting/Constraining the RPC API
 
-Using the `createSolanaRpc` or `createSolanaRpcFromTransport` methods, we always get the same API that includes the Solana RPC API methods. Since the RPC API is described using types only, it is possible to augment those types to add your own methods.
+Using the `createTrezoaRpc` or `createTrezoaRpcFromTransport` methods, we always get the same API that includes the Trezoa RPC API methods. Since the RPC API is described using types only, it is possible to augment those types to add your own methods.
 
 When constraining the API scope, keep in mind that types don’t affect bundle size. You may still like to constrain the type-spec for a variety of reasons, including reducing TypeScript noise.
 
@@ -349,13 +349,13 @@ When constraining the API scope, keep in mind that types don’t affect bundle s
 If you're using a specific cluster, you may wrap your RPC URL inside a helper function like `mainnet` or `devnet` to inject that information into the RPC type system.
 
 ```ts
-import { createSolanaRpc, mainnet, devnet } from '@solana/kit';
+import { createTrezoaRpc, mainnet, devnet } from '@trezoa/kit';
 
-const mainnetRpc = createSolanaRpc(mainnet('https://api.mainnet-beta.solana.com'));
-//    ^? RpcMainnet<SolanaRpcApiMainnet>
+const mainnetRpc = createTrezoaRpc(mainnet('https://api.mainnet-beta.trezoa.com'));
+//    ^? RpcMainnet<TrezoaRpcApiMainnet>
 
-const devnetRpc = createSolanaRpc(devnet('https://api.devnet.solana.com'));
-//    ^? RpcDevnet<SolanaRpcApiDevnet>
+const devnetRpc = createTrezoaRpc(devnet('https://api.devnet.trezoa.com'));
+//    ^? RpcDevnet<TrezoaRpcApiDevnet>
 ```
 
 In the example above, `devnetRpc.requestAirdrop(..)` will work, but `mainnetRpc.requestAirdrop(..)` will raise a TypeScript error since `requestAirdrop` is not a valid method of the mainnet cluster.
@@ -365,36 +365,36 @@ In the example above, `devnetRpc.requestAirdrop(..)` will work, but `mainnetRpc.
 You can constrain the API’s type-spec even further so you are left only with the methods you need. The simplest way to do this is to cast the created RPC client to a type that only includes the required methods.
 
 ```ts
-import { createSolanaRpc, type Rpc, type GetAccountInfoApi, type GetMultipleAccountsApi } from '@solana/kit';
+import { createTrezoaRpc, type Rpc, type GetAccountInfoApi, type GetMultipleAccountsApi } from '@trezoa/kit';
 
-const rpc = createSolanaRpc('http://127.0.0.1:8899') as Rpc<GetAccountInfoApi & GetMultipleAccountsApi>;
+const rpc = createTrezoaRpc('http://127.0.0.1:8899') as Rpc<GetAccountInfoApi & GetMultipleAccountsApi>;
 ```
 
-Alternatively, you can explicitly create the RPC API using the `createSolanaRpcApi` function. You will need to create your own transport and bind the two together using the `createRpc` function.
+Alternatively, you can explicitly create the RPC API using the `createTrezoaRpcApi` function. You will need to create your own transport and bind the two together using the `createRpc` function.
 
 ```ts
 import {
     createDefaultRpcTransport,
     createRpc,
-    createSolanaRpcApi,
+    createTrezoaRpcApi,
     DEFAULT_RPC_CONFIG,
     type GetAccountInfoApi,
     type GetMultipleAccountsApi,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
-const api = createSolanaRpcApi<GetAccountInfoApi & GetMultipleAccountsApi>(DEFAULT_RPC_CONFIG);
+const api = createTrezoaRpcApi<GetAccountInfoApi & GetMultipleAccountsApi>(DEFAULT_RPC_CONFIG);
 const transport = createDefaultRpcTransport({ url: 'http://127.0.0.1:8899' });
 
 const rpc = createRpc({ api, transport });
 ```
 
-Note that the `createSolanaRpcApi` function is a wrapper on top of the `createJsonRpcApi` function which adds some Solana-specific transformers such as setting a default commitment on all methods or throwing an error when an integer overflow is detected.
+Note that the `createTrezoaRpcApi` function is a wrapper on top of the `createJsonRpcApi` function which adds some Trezoa-specific transformers such as setting a default commitment on all methods or throwing an error when an integer overflow is detected.
 
 #### Creating Your Own API Methods
 
 The new library’s RPC specification supports an _infinite_ number of JSON-RPC methods with **zero increase** in bundle size.
 
-This means the library can support future additions to the official [Solana JSON RPC](https://docs.solana.com/api), or [custom RPC methods](https://docs.helius.dev/compression-and-das-api/digital-asset-standard-das-api/get-asset) defined by some RPC provider.
+This means the library can support future additions to the official [Trezoa JSON RPC](https://docs.trezoa.com/api), or [custom RPC methods](https://docs.helius.dev/compression-and-das-api/digital-asset-standard-das-api/get-asset) defined by some RPC provider.
 
 Here’s an example of how a developer at might build a custom RPC type-spec for an RPC provider's implementation of the Metaplex Digital Asset Standard's `getAsset` method:
 
@@ -431,7 +431,7 @@ export type MetaplexDASApi = GetAssetApi;
 Here’s how a developer might use it:
 
 ```ts
-import { createDefaultRpcTransport, createRpc, createJsonRpcApi } from '@solana/kit';
+import { createDefaultRpcTransport, createRpc, createJsonRpcApi } from '@trezoa/kit';
 
 // Create the custom API.
 const api = createJsonRpcApi<MetaplexDASApi>();
@@ -463,9 +463,9 @@ The arguments of the `getSlot` method are reserved for the request payload, but 
 Aborting RPC requests can be useful for a variety of things such as setting a timeout on a request or cancelling a request when a user navigates away from a page.
 
 ```ts
-import { createSolanaRpc } from '@solana/kit';
+import { createTrezoaRpc } from '@trezoa/kit';
 
-const rpc = createSolanaRpc('http://127.0.0.1:8900');
+const rpc = createTrezoaRpc('http://127.0.0.1:8900');
 
 // Create a new AbortController.
 const abortController = new AbortController();
@@ -489,27 +489,27 @@ Read more about `AbortController` here:
 
 Subscriptions in the legacy library do not allow custom retry logic and do not allow you to recover from potentially missed messages. The new version does away with silent retries, surfaces transport errors to your application, and gives you the opportunity to recover from gap events.
 
-The main package responsible for managing communication with RPC subscriptions is `@solana/rpc-subscriptions`. However, similarly to `@solana/rpc`, this package also makes use of more granular packages. These packages are:
+The main package responsible for managing communication with RPC subscriptions is `@trezoa/rpc-subscriptions`. However, similarly to `@trezoa/rpc`, this package also makes use of more granular packages. These packages are:
 
-- `@solana/rpc-subscriptions`: Contains all logic related to subscribing to Solana RPC notifications.
-- `@solana/rpc-subscriptions-api`: Describes all Solana RPC subscriptions using types.
-- `@solana/rpc-subscriptions-channel-websocket`: Provides a concrete implementation of an RPC Subscriptions channel using WebSockets.
-- `@solana/rpc-subscriptions-spec`: Defines the JSON RPC spec for subscribing to RPC notifications.
-- `@solana/rpc-spec-types`: Shared JSON RPC specifications types and helpers that are used by both `@solana/rpc` and `@solana/rpc-subscriptions`.
-- `@solana/rpc-types`: Shared Solana RPC types and helpers that are used by both `@solana/rpc` and `@solana/rpc-subscriptions`.
+- `@trezoa/rpc-subscriptions`: Contains all logic related to subscribing to Trezoa RPC notifications.
+- `@trezoa/rpc-subscriptions-api`: Describes all Trezoa RPC subscriptions using types.
+- `@trezoa/rpc-subscriptions-channel-websocket`: Provides a concrete implementation of an RPC Subscriptions channel using WebSockets.
+- `@trezoa/rpc-subscriptions-spec`: Defines the JSON RPC spec for subscribing to RPC notifications.
+- `@trezoa/rpc-spec-types`: Shared JSON RPC specifications types and helpers that are used by both `@trezoa/rpc` and `@trezoa/rpc-subscriptions`.
+- `@trezoa/rpc-types`: Shared Trezoa RPC types and helpers that are used by both `@trezoa/rpc` and `@trezoa/rpc-subscriptions`.
 
-Since the main `@solana/kit` library also re-exports the `@solana/rpc-subscriptions` package we will import RPC Subscriptions types and functions directly from the main library going forward.
+Since the main `@trezoa/kit` library also re-exports the `@trezoa/rpc-subscriptions` package we will import RPC Subscriptions types and functions directly from the main library going forward.
 
 ### Getting Started with RPC Subscriptions
 
-To get started with RPC Subscriptions, you may use the `createSolanaRpcSubscriptions` function by providing the WebSocket URL of a Solana JSON RPC server. This will create a default client for interacting with Solana RPC Subscriptions.
+To get started with RPC Subscriptions, you may use the `createTrezoaRpcSubscriptions` function by providing the WebSocket URL of a Trezoa JSON RPC server. This will create a default client for interacting with Trezoa RPC Subscriptions.
 
 ```ts
-import { createSolanaRpcSubscriptions } from '@solana/kit';
+import { createTrezoaRpcSubscriptions } from '@trezoa/kit';
 
 // Create an RPC Subscriptions client.
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
-//    ^? RpcSubscriptions<SolanaRpcSubscriptionsApi>
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
+//    ^? RpcSubscriptions<TrezoaRpcSubscriptionsApi>
 ```
 
 ### Subscriptions as `AsyncIterators`
@@ -519,10 +519,10 @@ The new subscriptions API vends subscription notifications as an `AsyncIterator`
 Here’s an example of working with a subscription in the new library:
 
 ```ts
-import { address, createSolanaRpcSubscriptions, createDefaultRpcSubscriptionsTransport } from '@solana/kit';
+import { address, createTrezoaRpcSubscriptions, createDefaultRpcSubscriptionsTransport } from '@trezoa/kit';
 
 // Create the RPC Subscriptions client.
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
 
 // Set up an abort controller.
 const abortController = new AbortController();
@@ -560,9 +560,9 @@ Let's take a look at some concrete examples that demonstrate how to abort subscr
 Here's an example of an `AbortController` used to abort a subscription after a 5-second timeout:
 
 ```ts
-import { createSolanaRpcSubscriptions } from '@solana/kit';
+import { createTrezoaRpcSubscriptions } from '@trezoa/kit';
 
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
 
 // Subscribe for slot notifications using an AbortSignal that times out after 5 seconds.
 const slotNotifications = await rpcSubscriptions
@@ -653,10 +653,10 @@ try {
 
 ### Using Custom RPC Subscriptions Transports
 
-The `createSolanaRpcSubscriptions` function communicates with the RPC server using a default `WebSocket` channel that should satisfy most use cases. However, you may here as well provide your own channel creator or decorate existing ones to communicate with RPC servers in any way you see fit. In the example below, we supply a custom `WebSocket` channel creator and use it to create a new RPC Subscriptions client via the `createSolanaRpcSubscriptionsFromTransport` function.
+The `createTrezoaRpcSubscriptions` function communicates with the RPC server using a default `WebSocket` channel that should satisfy most use cases. However, you may here as well provide your own channel creator or decorate existing ones to communicate with RPC servers in any way you see fit. In the example below, we supply a custom `WebSocket` channel creator and use it to create a new RPC Subscriptions client via the `createTrezoaRpcSubscriptionsFromTransport` function.
 
 ```ts
-import { createDefaultRpcSubscriptionsTransport, createSolanaRpcSubscriptionsFromTransport } from '@solana/kit';
+import { createDefaultRpcSubscriptionsTransport, createTrezoaRpcSubscriptionsFromTransport } from '@trezoa/kit';
 
 // Create a transport with a custom channel creator of your choice.
 const transport = createDefaultRpcSubscriptionsTransport({
@@ -672,52 +672,52 @@ const transport = createDefaultRpcSubscriptionsTransport({
 });
 
 // Create an RPC client using that transport.
-const rpcSubscriptions = createSolanaRpcSubscriptionsFromTransport(transport);
-//    ^? RpcSubscriptions<SolanaRpcSubscriptionsApi>
+const rpcSubscriptions = createTrezoaRpcSubscriptionsFromTransport(transport);
+//    ^? RpcSubscriptions<TrezoaRpcSubscriptionsApi>
 ```
 
 ### Augmenting/Constraining the RPC Subscriptions API
 
-Using the `createSolanaRpcSubscriptions` or `createSolanaRpcSubscriptionsFromTransport` functions, we always get the same RPC Subscriptions API, including all Solana RPC stable subscriptions. However, since the RPC Subscriptions API is described using types only, it is possible to constrain the API to a specific set of subscriptions or even add your own custom subscriptions.
+Using the `createTrezoaRpcSubscriptions` or `createTrezoaRpcSubscriptionsFromTransport` functions, we always get the same RPC Subscriptions API, including all Trezoa RPC stable subscriptions. However, since the RPC Subscriptions API is described using types only, it is possible to constrain the API to a specific set of subscriptions or even add your own custom subscriptions.
 
 #### Constraining by Cluster
 
 If you're using a specific cluster, you may wrap your RPC URL inside a helper function like `mainnet` or `devnet` to inject that information into the RPC type system.
 
 ```ts
-import { createSolanaRpcSubscriptions, mainnet, devnet } from '@solana/kit';
+import { createTrezoaRpcSubscriptions, mainnet, devnet } from '@trezoa/kit';
 
-const mainnetRpc = createSolanaRpcSubscriptions(mainnet('https://api.mainnet-beta.solana.com'));
-//    ^? RpcSubscriptionsMainnet<SolanaRpcSubscriptionsApi>
+const mainnetRpc = createTrezoaRpcSubscriptions(mainnet('https://api.mainnet-beta.trezoa.com'));
+//    ^? RpcSubscriptionsMainnet<TrezoaRpcSubscriptionsApi>
 
-const devnetRpc = createSolanaRpcSubscriptions(devnet('https://api.devnet.solana.com'));
-//    ^? RpcSubscriptionsDevnet<SolanaRpcSubscriptionsApi>
+const devnetRpc = createTrezoaRpcSubscriptions(devnet('https://api.devnet.trezoa.com'));
+//    ^? RpcSubscriptionsDevnet<TrezoaRpcSubscriptionsApi>
 ```
 
 #### Including Unstable Subscriptions
 
-If your app needs access to [unstable RPC Subscriptions](https://docs.solana.com/api/websocket#blocksubscribe) — e.g. `BlockNotificationsApi` or `SlotsUpdatesNotificationsApi` — and your RPC server supports them, you may use the `createSolanaRpcSubscriptions_UNSTABLE` and `createSolanaRpcSubscriptionsFromTransport_UNSTABLE` functions to create an RPC Subscriptions client that includes those subscriptions.
+If your app needs access to [unstable RPC Subscriptions](https://docs.trezoa.com/api/websocket#blocksubscribe) — e.g. `BlockNotificationsApi` or `SlotsUpdatesNotificationsApi` — and your RPC server supports them, you may use the `createTrezoaRpcSubscriptions_UNSTABLE` and `createTrezoaRpcSubscriptionsFromTransport_UNSTABLE` functions to create an RPC Subscriptions client that includes those subscriptions.
 
 ```ts
 import {
-    createDefaultSolanaRpcSubscriptionsChannelCreator,
+    createDefaultTrezoaRpcSubscriptionsChannelCreator,
     createDefaultRpcSubscriptionsTransport,
-    createSolanaRpcSubscriptions_UNSTABLE,
-    createSolanaRpcSubscriptionsFromTransport_UNSTABLE,
-} from '@solana/kit';
+    createTrezoaRpcSubscriptions_UNSTABLE,
+    createTrezoaRpcSubscriptionsFromTransport_UNSTABLE,
+} from '@trezoa/kit';
 
 // Using the default WebSocket channel.
-const rpcSubscriptions = createSolanaRpcSubscriptions_UNSTABLE('ws://127.0.0.1:8900');
-//    ^? RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>
+const rpcSubscriptions = createTrezoaRpcSubscriptions_UNSTABLE('ws://127.0.0.1:8900');
+//    ^? RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>
 
 // Using a custom transport.
 const transport = createDefaultRpcSubscriptionsTransport({
-    createChannel: createDefaultSolanaRpcSubscriptionsChannelCreator({
+    createChannel: createDefaultTrezoaRpcSubscriptionsChannelCreator({
         url: 'ws://127.0.0.1:8900',
     }),
 });
-const rpcSubscriptions = createSolanaRpcSubscriptionsFromTransport_UNSTABLE(transport);
-//    ^? RpcSubscriptions<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>
+const rpcSubscriptions = createTrezoaRpcSubscriptionsFromTransport_UNSTABLE(transport);
+//    ^? RpcSubscriptions<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>
 ```
 
 #### Cherry-Picking API Methods
@@ -726,44 +726,44 @@ You may constrain the scope of the Subscription API even further so you are left
 
 ```ts
 import {
-    createSolanaRpcSubscriptions,
+    createTrezoaRpcSubscriptions,
     type RpcSubscriptions,
     type AccountNotificationsApi,
     type SlotNotificationsApi,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
-const rpc = createSolanaRpcSubscriptions('ws://127.0.0.1:8900') as RpcSubscriptions<
+const rpc = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900') as RpcSubscriptions<
     AccountNotificationsApi & SlotNotificationsApi
 >;
 ```
 
-Alternatively, you may explicitly create the RPC Subscriptions API using the `createSolanaRpcSubscriptionsApi` function. You will then need to create your own transport explicitly and bind the two together using the `createSubscriptionRpc` function.
+Alternatively, you may explicitly create the RPC Subscriptions API using the `createTrezoaRpcSubscriptionsApi` function. You will then need to create your own transport explicitly and bind the two together using the `createSubscriptionRpc` function.
 
 ```ts
 import {
-    createDefaultSolanaRpcSubscriptionsChannelCreator,
+    createDefaultTrezoaRpcSubscriptionsChannelCreator,
     createDefaultRpcSubscriptionsTransport,
     createSubscriptionRpc,
-    createSolanaRpcSubscriptionsApi,
+    createTrezoaRpcSubscriptionsApi,
     DEFAULT_RPC_CONFIG,
     type AccountNotificationsApi,
     type SlotNotificationsApi,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
-const api = createSolanaRpcSubscriptionsApi<AccountNotificationsApi & SlotNotificationsApi>(DEFAULT_RPC_CONFIG);
+const api = createTrezoaRpcSubscriptionsApi<AccountNotificationsApi & SlotNotificationsApi>(DEFAULT_RPC_CONFIG);
 const transport = createDefaultRpcSubscriptionsTransport({
-    createChannel: createDefaultSolanaRpcSubscriptionsChannelCreator({
+    createChannel: createDefaultTrezoaRpcSubscriptionsChannelCreator({
         url: 'ws://127.0.0.1:8900',
     }),
 });
 const rpcSubscriptions = createSubscriptionRpc({ api, transport });
 ```
 
-Note that the `createSolanaRpcSubscriptionsApi` function is a wrapper on top of the `createRpcSubscriptionsApi` function which adds some Solana-specific transformers such as setting a default commitment on all methods or throwing an error when an integer overflow is detected.
+Note that the `createTrezoaRpcSubscriptionsApi` function is a wrapper on top of the `createRpcSubscriptionsApi` function which adds some Trezoa-specific transformers such as setting a default commitment on all methods or throwing an error when an integer overflow is detected.
 
 ## Keys
 
-The new library takes a brand-new approach to Solana key pairs and addresses, which will feel quite different from the classes `PublicKey` and `Keypair` from version 1.x.
+The new library takes a brand-new approach to Trezoa key pairs and addresses, which will feel quite different from the classes `PublicKey` and `Keypair` from version 1.x.
 
 ### Web Crypto API
 
@@ -776,7 +776,7 @@ One thing to note is that many operations from Web Crypto – such as importing,
 Here’s an example of generating a `CryptoKeyPair` using the Web Crypto API and signing a message:
 
 ```ts
-import { generateKeyPair, signBytes, verifySignature } from '@solana/kit';
+import { generateKeyPair, signBytes, verifySignature } from '@trezoa/kit';
 
 const keyPair: CryptoKeyPair = await generateKeyPair();
 
@@ -792,13 +792,13 @@ const verified = await verifySignature(keyPair.publicKey, signedMessage, message
 
 Wherever Ed25519 is not supported, we offer a polyfill for Web Crypto’s Ed25519 API.
 
-This polyfill can be found at `@solana/webcrypto-ed25519-polyfill` and mimics the functionality of the Web Crypto API for Ed25519 key pairs using the same userspace implementation we used in web3.js 1.x. It does not polyfill other algorithms.
+This polyfill can be found at `@trezoa/webcrypto-ed25519-polyfill` and mimics the functionality of the Web Crypto API for Ed25519 key pairs using the same userspace implementation we used in web3.js 1.x. It does not polyfill other algorithms.
 
 Determine if your target runtime supports Ed25519, and install the polyfill if it does not:
 
 ```ts
-import { install } from '@solana/webcrypto-ed25519-polyfill';
-import { generateKeyPair, signBytes, verifySignature } from '@solana/kit';
+import { install } from '@trezoa/webcrypto-ed25519-polyfill';
+import { generateKeyPair, signBytes, verifySignature } from '@trezoa/kit';
 
 install();
 const keyPair: CryptoKeyPair = await generateKeyPair();
@@ -808,18 +808,18 @@ const keyPair: CryptoKeyPair = await generateKeyPair();
 
 You can see where Ed25519 is currently supported in [this GitHub issue](https://github.com/WICG/webcrypto-secure-curves/issues/20) on the Web Crypto repository. Consider sniffing the user-agent when deciding whether or not to deliver the polyfill to browsers.
 
-Operations on `CryptoKey` objects using the Web Crypto API _or_ the polyfill are mostly handled by the `@solana/keys` package.
+Operations on `CryptoKey` objects using the Web Crypto API _or_ the polyfill are mostly handled by the `@trezoa/keys` package.
 
 ### String Addresses
 
-All addresses are now JavaScript strings. They are represented by the opaque type `Address`, which describes exactly what a Solana address actually is.
+All addresses are now JavaScript strings. They are represented by the opaque type `Address`, which describes exactly what a Trezoa address actually is.
 
 Consequently, that means no more `PublicKey`.
 
 Here’s what they look like in development:
 
 ```ts
-import { Address, address, getAddressFromPublicKey, generateKeyPair } from '@solana/kit';
+import { Address, address, getAddressFromPublicKey, generateKeyPair } from '@trezoa/kit';
 
 // Coerce a string to an `Address`
 const myOtherAddress = address('AxZfZWeqztBCL37Mkjkd4b8Hf6J13WCcfozrBY6vZzv3');
@@ -833,7 +833,7 @@ const keyPair = await generateKeyPair();
 const myPublicKeyAsAddress = await getAddressFromPublicKey(keyPair.publicKey);
 ```
 
-Some tooling for working with base58-encoded addresses can be found in the `@solana/addresses` package.
+Some tooling for working with base58-encoded addresses can be found in the `@trezoa/addresses` package.
 
 ## Transactions
 
@@ -854,7 +854,7 @@ import {
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
     Blockhash,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const recentBlockhash = {
     blockhash: '4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY' as Blockhash,
@@ -906,11 +906,11 @@ Since validators have an incentive to pack as many transactions into each block 
 Use this utility to estimate the actual compute unit cost of a given transaction message.
 
 ```ts
-import { getSetComputeUnitLimitInstruction } from '@solana-program/compute-budget';
-import { createSolanaRpc, getComputeUnitEstimateForTransactionMessageFactory, pipe } from '@solana/kit';
+import { getSetComputeUnitLimitInstruction } from '@trezoa-program/compute-budget';
+import { createTrezoaRpc, getComputeUnitEstimateForTransactionMessageFactory, pipe } from '@trezoa/kit';
 
 // Create an estimator function.
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
 const getComputeUnitEstimateForTransactionMessage = getComputeUnitEstimateForTransactionMessageFactory({
     rpc,
 });
@@ -939,17 +939,17 @@ const transactionMessageWithComputeUnitLimit = prependTransactionMessageInstruct
 
 ### Helpers For Building Transaction Messages
 
-Building transaction messages in this manner might feel different from what you’re used to. Also, we certainly wouldn’t want you to have to bind transformed transaction messages to a new variable at each step, so we have released a functional programming library dubbed `@solana/functional` that lets you build transaction messages in **pipelines**. Here’s how it can be used:
+Building transaction messages in this manner might feel different from what you’re used to. Also, we certainly wouldn’t want you to have to bind transformed transaction messages to a new variable at each step, so we have released a functional programming library dubbed `@trezoa/functional` that lets you build transaction messages in **pipelines**. Here’s how it can be used:
 
 ```ts
-import { pipe } from '@solana/functional';
+import { pipe } from '@trezoa/functional';
 import {
     address,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
     Blockhash,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 // Use `pipe(..)` to create a pipeline of transaction message transformation operations
 const transactionMessage = pipe(
@@ -965,23 +965,23 @@ Note that `pipe(..)` is general-purpose, so it can be used to pipeline any funct
 
 We have taken steps to make it easier to write data (de)serializers, especially as they pertain to Rust datatypes and byte buffers.
 
-Solana’s codecs libraries are broken up into modular components so you only need to import the ones you need. They are:
+Trezoa’s codecs libraries are broken up into modular components so you only need to import the ones you need. They are:
 
-- `@solana/codecs-core`: The core codecs library for working with codecs serializers and creating custom ones
-- `@solana/codecs-numbers`: Used for serialization of numbers (little-endian and big-endian bytes, etc.)
-- `@solana/codecs-strings`: Used for serialization of strings
-- `@solana/codecs-data-structures`: Codecs and serializers for structs
-- `@solana/options`: Designed to build codecs and serializers for types that mimic Rust’s enums, which can include embedded data within their variants such as values, tuples, and structs
+- `@trezoa/codecs-core`: The core codecs library for working with codecs serializers and creating custom ones
+- `@trezoa/codecs-numbers`: Used for serialization of numbers (little-endian and big-endian bytes, etc.)
+- `@trezoa/codecs-strings`: Used for serialization of strings
+- `@trezoa/codecs-data-structures`: Codecs and serializers for structs
+- `@trezoa/options`: Designed to build codecs and serializers for types that mimic Rust’s enums, which can include embedded data within their variants such as values, tuples, and structs
 
-These packages are included in the main `@solana/kit` library but you may also import them from `@solana/codecs` if you only need the codecs.
+These packages are included in the main `@trezoa/kit` library but you may also import them from `@trezoa/codecs` if you only need the codecs.
 
 Here’s an example of encoding and decoding a custom struct with some strings and numbers:
 
 ```ts
-import { addCodecSizePrefix } from '@solana/codecs-core';
-import { getStructCodec } from '@solana/codecs-data-structures';
-import { getU32Codec, getU64Codec, getU8Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
+import { addCodecSizePrefix } from '@trezoa/codecs-core';
+import { getStructCodec } from '@trezoa/codecs-data-structures';
+import { getU32Codec, getU64Codec, getU8Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
 
 // Equivalent in Rust:
 // struct {
@@ -1014,8 +1014,8 @@ myDecodedToken satisfies {
 You may only need to encode or decode data, but not both. Importing one or the other allows your optimizing compiler to tree-shake the other implementation away:
 
 ```ts
-import { Codec, combineCodec, Decoder, Encoder, addDecoderSizePrefix, addEncoderSizePrefix } from '@solana/codecs-core';
-import { getStructDecoder, getStructEncoder } from '@solana/codecs-data-structures';
+import { Codec, combineCodec, Decoder, Encoder, addDecoderSizePrefix, addEncoderSizePrefix } from '@trezoa/codecs-core';
+import { getStructDecoder, getStructEncoder } from '@trezoa/codecs-data-structures';
 import {
     getU8Decoder,
     getU8Encoder,
@@ -1023,8 +1023,8 @@ import {
     getU32Encoder,
     getU64Decoder,
     getU64Encoder,
-} from '@solana/codecs-numbers';
-import { getUtf8Decoder, getUtf8Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-numbers';
+import { getUtf8Decoder, getUtf8Encoder } from '@trezoa/codecs-strings';
 
 export type MyToken = {
     amount: bigint;
@@ -1056,7 +1056,7 @@ export const getMyTokenCodec = (): Codec<MyTokenArgs, MyToken> =>
     combineCodec(getMyTokenEncoder(), getMyTokenDecoder());
 ```
 
-You can read more about codecs in [the official Codec documentation](https://github.com/anza-xyz/kit/blob/main/packages/codecs/README.md).
+You can read more about codecs in [the official Codec documentation](https://github.com/trezoa-xyz/kit/blob/main/packages/codecs/README.md).
 
 ## Type-Safety
 
@@ -1179,10 +1179,10 @@ const validNonceTransactionMessage = pipe(
 validNonceTransactionMessage satisfies TransactionMessageWithDurableNonceLifetime; // OK
 ```
 
-The library’s type-checking can even catch you using lamports instead of SOL for a value:
+The library’s type-checking can even catch you using lamports instead of TRZ for a value:
 
 ```ts
-const airdropAmount = 1n; // SOL
+const airdropAmount = 1n; // TRZ
 const signature = rpc.requestAirdrop(myAddress, airdropAmount).send();
 ```
 
@@ -1197,12 +1197,12 @@ const signature = rpc.requestAirdrop(myAddress, airdropAmount).send();
 
 You will have noticed by now that Kit is a complete and total breaking change from the web3.js 1.x line. We want to provide you with a strategy for interacting with web3.js 1.x APIs while building your application using Kit. You need a tool for converting between web3.js 1.x and Kit data types.
 
-The `@solana/compat` library allows for interoperability between functions and class objects from the legacy library - such as `VersionedTransaction`, `PublicKey`, and `Keypair` - and functions and types of the new library - such as `Address`, `Transaction`, and `CryptoKeyPair`.
+The `@trezoa/compat` library allows for interoperability between functions and class objects from the legacy library - such as `VersionedTransaction`, `PublicKey`, and `Keypair` - and functions and types of the new library - such as `Address`, `Transaction`, and `CryptoKeyPair`.
 
-Here’s how you can use `@solana/compat` to convert from a legacy `PublicKey` to an `Address`:
+Here’s how you can use `@trezoa/compat` to convert from a legacy `PublicKey` to an `Address`:
 
 ```ts
-import { fromLegacyPublicKey } from '@solana/compat';
+import { fromLegacyPublicKey } from '@trezoa/compat';
 
 const publicKey = new PublicKey('B3piXWBQLLRuk56XG5VihxR4oe2PSsDM8nTF6s1DeVF5');
 const address: Address = fromLegacyPublicKey(publicKey);
@@ -1211,7 +1211,7 @@ const address: Address = fromLegacyPublicKey(publicKey);
 Here’s how to convert from a legacy `Keypair` to a `CryptoKeyPair`:
 
 ```ts
-import { fromLegacyKeypair } from '@solana/compat';
+import { fromLegacyKeypair } from '@trezoa/compat';
 
 const keypairLegacy = Keypair.generate();
 const cryptoKeyPair: CryptoKeyPair = fromLegacyKeypair(keypair);
@@ -1224,7 +1224,7 @@ Here’s how to convert legacy transaction objects to the new library’s transa
 const modernTransaction = fromVersionedTransaction(classicTransaction);
 ```
 
-To see more conversions supported by `@solana/compat`, you can check out the package’s [README on GitHub](https://github.com/anza-xyz/kit/blob/main/packages/compat/README.md).
+To see more conversions supported by `@trezoa/compat`, you can check out the package’s [README on GitHub](https://github.com/trezoa-xyz/kit/blob/main/packages/compat/README.md).
 
 ## Program Clients
 
@@ -1232,18 +1232,18 @@ Writing JavaScript clients for on-chain programs has been done manually up until
 
 We think that program clients should be _generated_ rather than written. Developers should be able to write Rust programs, compile the program code, and generate all of the JavaScript client-side code to interact with the program.
 
-We use [Codama](https://github.com/codama-idl/codama) to represent Solana programs and generate clients for them. This includes a JavaScript client compatible with this library. For instance, here is how you’d construct a transaction message composed of instructions from three different core programs.
+We use [Codama](https://github.com/codama-idl/codama) to represent Trezoa programs and generate clients for them. This includes a JavaScript client compatible with this library. For instance, here is how you’d construct a transaction message composed of instructions from three different core programs.
 
 ```ts
-import { appendTransactionMessageInstructions, createTransactionMessage, pipe } from '@solana/kit';
-import { getAddMemoInstruction } from '@solana-program/memo';
-import { getSetComputeUnitLimitInstruction } from '@solana-program/compute-budget';
-import { getTransferSolInstruction } from '@solana-program/system';
+import { appendTransactionMessageInstructions, createTransactionMessage, pipe } from '@trezoa/kit';
+import { getAddMemoInstruction } from '@trezoa-program/memo';
+import { getSetComputeUnitLimitInstruction } from '@trezoa-program/compute-budget';
+import { getTransferSolInstruction } from '@trezoa-program/system';
 
 const instructions = [
     getSetComputeUnitLimitInstruction({ units: 600_000 }),
     getTransferSolInstruction({ source, destination, amount: 1_000_000_000 }),
-    getAddMemoInstruction({ memo: "I'm transferring some SOL!" }),
+    getAddMemoInstruction({ memo: "I'm transferring some TRZ!" }),
 ];
 
 // Creates a V0 transaction message with 3 instructions inside.
@@ -1257,7 +1257,7 @@ As you can see, each program now generates its own library allowing you to cherr
 Note that asynchronous versions may be available for some instructions which allows them to resolve more inputs on your behalf — such as PDA derivation. For instance, the `CreateLookupTable` instruction offers an asynchronous builder that derives the `address` account and the `bump` argument for us.
 
 ```ts
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
 const [authority, recentSlot] = await Promise.all([
     generateKeyPairSigner(),
     rpc.getSlot({ commitment: 'finalized' }).send(),
@@ -1321,15 +1321,15 @@ Codama allows us to hydrate our tree of nodes from IDLs which are typically gene
 
 Currently, there is one other renderer that generates Rust clients but this is only the beginning. In the future, you can expect renderers for auto-generated Python clients, documentation, CLIs, etc.
 
-## Create Solana Program
+## Create Trezoa Program
 
-We believe the whole ecosystem could benefit from generated program clients. That’s why we introduced a new NPM binary that allows you to create your Solana program — and generate clients for it — in no time. Simply run the following and follow the prompts to get started.
+We believe the whole ecosystem could benefit from generated program clients. That’s why we introduced a new NPM binary that allows you to create your Trezoa program — and generate clients for it — in no time. Simply run the following and follow the prompts to get started.
 
 ```sh
-pnpm create solana-program
+pnpm create trezoa-program
 ```
 
-This [`create-solana-program`](https://github.com/solana-program/create-solana-program) installer will create a new repository including:
+This [`create-trezoa-program`](https://github.com/trezoa-program/create-trezoa-program) installer will create a new repository including:
 
 - An example program using the framework of your choice (Anchor coming soon).
 - Generated clients for any of the selected clients.
@@ -1341,13 +1341,13 @@ This [`create-solana-program`](https://github.com/solana-program/create-solana-p
     - Build and test each of your clients.
 - GitHub Actions pipelines to test your program, test your clients, and even manually publish new packages or crates for your clients. (Coming soon).
 
-When selecting the JavaScript client, you will get a fully generated library compatible with Kit much like the `@solana-program` packages showcased above.
+When selecting the JavaScript client, you will get a fully generated library compatible with Kit much like the `@trezoa-program` packages showcased above.
 
 ## GraphQL
 
 Though not directly related to web3.js, we wanted to hijack your attention to show you something else that we’re working on, of particular interest to frontend developers. It’s a new API for interacting with the RPC: a GraphQL API.
 
-The `@solana/rpc-graphql` package can be used to make GraphQL queries to Solana RPC endpoints, using the same transports described above (including any customizations).
+The `@trezoa/rpc-graphql` package can be used to make GraphQL queries to Trezoa RPC endpoints, using the same transports described above (including any customizations).
 
 Here’s an example of retrieving account data with GraphQL:
 
@@ -1448,20 +1448,20 @@ expect(result).toMatchObject({
 });
 ```
 
-See more in the package’s [README on GitHub](https://github.com/anza-xyz/kit/tree/main/packages/rpc-graphql).
+See more in the package’s [README on GitHub](https://github.com/trezoa-xyz/kit/tree/main/packages/rpc-graphql).
 
 ## Development
 
 You can see all development of this library and associated GraphQL tooling in the Kit repository on GitHub.
 
-- https://github.com/anza-xyz/kit
+- https://github.com/trezoa-xyz/kit
 
-You can follow along with program client generator development in the `@solana-program` org and the `@codama-idl/codama` repository.
+You can follow along with program client generator development in the `@trezoa-program` org and the `@codama-idl/codama` repository.
 
-- https://github.com/solana-program/
+- https://github.com/trezoa-program/
 - https://github.com/codama-idl/codama
 
-Solana Labs develops these tools in public, as open source. We encourage any and all developers who would like to work on these tools to contribute to the codebase.
+Trezoa-team develops these tools in public, as open source. We encourage any and all developers who would like to work on these tools to contribute to the codebase.
 
 ## Thank you
 

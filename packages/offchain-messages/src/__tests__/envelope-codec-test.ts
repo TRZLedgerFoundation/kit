@@ -1,16 +1,16 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { getOffchainMessageEnvelopeDecoder, getOffchainMessageEnvelopeEncoder } from '../codecs/envelope';
 import { OffchainMessageEnvelope } from '../envelope';
@@ -186,7 +186,7 @@ describe('getOffchainMessageEnvelopeDecoder()', () => {
             ]);
         expect(() => {
             decoder.decode(encodedMessageEnvelope);
-        }).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO));
     });
     it('throws when the envelope has no signatures', () => {
         const encodedMessage =
@@ -216,7 +216,7 @@ describe('getOffchainMessageEnvelopeDecoder()', () => {
             ]);
         expect(() => {
             decoder.decode(encodedMessageEnvelope);
-        }).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO));
     });
     it('throws when the number of required signatures specified by the message and the number of signatures in the envelope mismatch', () => {
         const encodedMessage =
@@ -252,7 +252,7 @@ describe('getOffchainMessageEnvelopeDecoder()', () => {
         expect(() => {
             decoder.decode(encodedMessageEnvelope);
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH, {
                 numRequiredSignatures: 2,
                 signatoryAddresses: [SIGNER_A, SIGNER_B],
                 signaturesLength: 1,
@@ -284,7 +284,7 @@ describe('getOffchainMessageEnvelopeDecoder()', () => {
         expect(() => {
             decoder.decode(encodedMessageEnvelope);
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: putativeVersion,
             }),
         );
@@ -407,7 +407,7 @@ describe('getOffchainMessageEnvelopeEncoder()', () => {
         };
         expect(() => {
             encoder.encode(envelope);
-        }).toThrow(new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO));
+        }).toThrow(new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO));
     });
     it('throws when the signature addresses in the envelope do not match the required signatures in the preamble', () => {
         const encodedMessage =
@@ -444,7 +444,7 @@ describe('getOffchainMessageEnvelopeEncoder()', () => {
         expect(() => {
             encoder.encode(envelope);
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH, {
                 missingRequiredSigners: [SIGNER_B],
                 unexpectedSigners: [SIGNER_C],
             }),
@@ -471,7 +471,7 @@ describe('getOffchainMessageEnvelopeEncoder()', () => {
                 },
             });
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: putativeVersion,
             }),
         );

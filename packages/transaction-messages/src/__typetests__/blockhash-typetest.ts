@@ -1,4 +1,4 @@
-import { Blockhash } from '@solana/rpc-types';
+import { Blockhash } from '@trezoa/rpc-types';
 
 import {
     assertIsTransactionMessageWithBlockhashLifetime,

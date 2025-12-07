@@ -1,15 +1,15 @@
-import { fixEncoderSize, transformEncoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { getArrayEncoder, getBytesEncoder } from '@solana/codecs-data-structures';
-import { getShortU16Encoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+import { fixEncoderSize, transformEncoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getArrayEncoder, getBytesEncoder } from '@trezoa/codecs-data-structures';
+import { getShortU16Encoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { SignaturesMap } from '../transaction';
 
 function getSignaturesToEncode(signaturesMap: SignaturesMap): SignatureBytes[] {
     const signatures = Object.values(signaturesMap);
     if (signatures.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES);
     }
 
     return signatures.map(signature => {

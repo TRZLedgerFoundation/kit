@@ -1,6 +1,6 @@
-import { pipe } from '@solana/functional';
-import { RpcRequest, RpcRequestTransformer } from '@solana/rpc-spec-types';
-import { Commitment } from '@solana/rpc-types';
+import { pipe } from '@trezoa/functional';
+import { RpcRequest, RpcRequestTransformer } from '@trezoa/rpc-spec-types';
+import { Commitment } from '@trezoa/rpc-types';
 
 import { getBigIntDowncastRequestTransformer } from './request-transformer-bigint-downcast';
 import { getDefaultCommitmentRequestTransformer } from './request-transformer-default-commitment';
@@ -17,14 +17,14 @@ export type RequestTransformerConfig = Readonly<{
      * An optional function that will be called whenever a `bigint` input exceeds that which can be
      * expressed using JavaScript numbers.
      *
-     * This is used in the default {@link SolanaRpcSubscriptionsApi} to throw an exception rather
+     * This is used in the default {@link TrezoaRpcSubscriptionsApi} to throw an exception rather
      * than to allow truncated values to propagate through a program.
      */
     onIntegerOverflow?: IntegerOverflowHandler;
 }>;
 
 /**
- * Returns the default request transformer for the Solana RPC API.
+ * Returns the default request transformer for the Trezoa RPC API.
  *
  * Under the hood, this function composes multiple
  * {@link RpcRequestTransformer | RpcRequestTransformers} together such as the
@@ -33,9 +33,9 @@ export type RequestTransformerConfig = Readonly<{
  *
  * @example
  * ```ts
- * import { getDefaultRequestTransformerForSolanaRpc } from '@solana/rpc-transformers';
+ * import { getDefaultRequestTransformerForTrezoaRpc } from '@trezoa/rpc-transformers';
  *
- * const requestTransformer = getDefaultRequestTransformerForSolanaRpc({
+ * const requestTransformer = getDefaultRequestTransformerForTrezoaRpc({
  *     defaultCommitment: 'confirmed',
  *     onIntegerOverflow: (request, keyPath, value) => {
  *         throw new Error(`Integer overflow at ${keyPath.join('.')}: ${value}`);
@@ -43,7 +43,7 @@ export type RequestTransformerConfig = Readonly<{
  * });
  * ```
  */
-export function getDefaultRequestTransformerForSolanaRpc(config?: RequestTransformerConfig): RpcRequestTransformer {
+export function getDefaultRequestTransformerForTrezoaRpc(config?: RequestTransformerConfig): RpcRequestTransformer {
     const handleIntegerOverflow = config?.onIntegerOverflow;
     return (request: RpcRequest): RpcRequest => {
         return pipe(

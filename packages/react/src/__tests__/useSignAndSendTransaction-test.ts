@@ -19,8 +19,8 @@ describe('useSignAndSendTransaction', () => {
     let mockSignAndSendTransaction: jest.Mock;
     let mockUiWalletAccount: {
         address: 'abc';
-        chains: ['solana:danknet'];
-        features: ['solana:signAndSendTransaction'];
+        chains: ['trezoa:danknet'];
+        features: ['trezoa:signAndSendTransaction'];
         publicKey: Uint8Array;
         '~uiWalletHandle': UiWalletAccount['~uiWalletHandle'];
     };
@@ -29,22 +29,22 @@ describe('useSignAndSendTransaction', () => {
         mockSignAndSendTransaction = jest.fn().mockResolvedValue([{ signature: 'abc' }]);
         mockUiWalletAccount = {
             address: 'abc',
-            chains: ['solana:danknet'] as const,
-            features: ['solana:signAndSendTransaction'] as const,
+            chains: ['trezoa:danknet'] as const,
+            features: ['trezoa:signAndSendTransaction'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
             '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
         };
         mockWalletAccount = {
             address: 'abc',
-            chains: ['solana:danknet'] as const,
-            features: ['solana:signAndSendTransaction'] as const,
+            chains: ['trezoa:danknet'] as const,
+            features: ['trezoa:signAndSendTransaction'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
         };
         const mockWallet: Wallet = {
             accounts: [mockWalletAccount],
-            chains: ['solana:danknet'],
+            chains: ['trezoa:danknet'],
             features: {
-                ['solana:signAndSendTransaction']: {
+                ['trezoa:signAndSendTransaction']: {
                     signAndSendTransaction: mockSignAndSendTransaction,
                 },
             },
@@ -61,32 +61,32 @@ describe('useSignAndSendTransaction', () => {
         jest.spyOn(console, 'error').mockImplementation();
         jest.spyOn(console, 'warn').mockImplementation();
     });
-    it('fatals when passed a wallet account that does not support the `solana:signAndSendTransaction` feature', () => {
+    it('fatals when passed a wallet account that does not support the `trezoa:signAndSendTransaction` feature', () => {
         const { result } = renderHook(() =>
-            useSignAndSendTransaction({ ...mockUiWalletAccount, features: ['other:feature'] }, 'solana:danknet'),
+            useSignAndSendTransaction({ ...mockUiWalletAccount, features: ['other:feature'] }, 'trezoa:danknet'),
         );
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(
             new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_FEATURE_UNIMPLEMENTED, {
                 address: 'abc',
-                featureName: 'solana:signAndSendTransaction',
-                supportedChains: ['solana:danknet'],
+                featureName: 'trezoa:signAndSendTransaction',
+                supportedChains: ['trezoa:danknet'],
                 supportedFeatures: ['other:feature'],
             }),
         );
     });
     it('fatals when passed a wallet account that does not support the specified chain', () => {
         const { result } = renderHook(() =>
-            useSignAndSendTransaction({ ...mockUiWalletAccount, chains: ['solana:basednet'] }, 'solana:danknet'),
+            useSignAndSendTransaction({ ...mockUiWalletAccount, chains: ['trezoa:basednet'] }, 'trezoa:danknet'),
         );
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(
             new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED, {
                 address: 'abc',
-                chain: 'solana:danknet',
-                featureName: 'solana:signAndSendTransaction',
-                supportedChains: ['solana:basednet'],
-                supportedFeatures: ['solana:signAndSendTransaction'],
+                chain: 'trezoa:danknet',
+                featureName: 'trezoa:signAndSendTransaction',
+                supportedChains: ['trezoa:basednet'],
+                supportedFeatures: ['trezoa:signAndSendTransaction'],
             }),
         );
     });
@@ -94,14 +94,14 @@ describe('useSignAndSendTransaction', () => {
         jest.mocked(getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED).mockImplementation(() => {
             throw 'o no';
         });
-        const { result } = renderHook(() => useSignAndSendTransaction(mockUiWalletAccount, 'solana:danknet'));
+        const { result } = renderHook(() => useSignAndSendTransaction(mockUiWalletAccount, 'trezoa:danknet'));
         expect(result.__type).toBe('error');
         expect(result.current).toBe('o no');
     });
     describe('the function returned', () => {
         it("calls the wallet's `signAndSendTransaction` implementation", async () => {
             expect.assertions(2);
-            const { result } = renderHook(() => useSignAndSendTransaction(mockUiWalletAccount, 'solana:danknet'));
+            const { result } = renderHook(() => useSignAndSendTransaction(mockUiWalletAccount, 'trezoa:danknet'));
             // eslint-disable-next-line jest/no-conditional-in-test
             if (result.__type === 'error' || !result.current) {
                 throw result.current;
@@ -121,7 +121,7 @@ describe('useSignAndSendTransaction', () => {
                 // eslint-disable-next-line jest/no-conditional-expect
                 expect(mockSignAndSendTransaction).toHaveBeenCalledWith({
                     account: mockWalletAccount,
-                    chain: 'solana:danknet',
+                    chain: 'trezoa:danknet',
                     options: { minContextSlot: 123 },
                     transaction: new Uint8Array([1, 2, 3]),
                 });

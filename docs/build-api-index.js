@@ -173,7 +173,7 @@ title: API Reference
 description: Explore packages, functions, types, and more
 ---
 
-Welcome to the Solana Kit API Reference! It covers a total of **${totalPackages} packages** most of which are available via the main \`@solana/kit\` package.
+Welcome to the Trezoa Kit API Reference! It covers a total of **${totalPackages} packages** most of which are available via the main \`@trezoa/kit\` package.
 
 
 ## Need Help?
@@ -185,10 +185,10 @@ Welcome to the Solana Kit API Reference! It covers a total of **${totalPackages}
 
 `;
 
-    // Sort packages by name but with `@solana/kit` first.
+    // Sort packages by name but with `@trezoa/kit` first.
     const sortedPackages = packages.sort((a, b) => {
-        if (a.name === '@solana/kit') return -1;
-        if (b.name === '@solana/kit') return 1;
+        if (a.name === '@trezoa/kit') return -1;
+        if (b.name === '@trezoa/kit') return 1;
         return a.name.localeCompare(b.name);
     });
 

@@ -1,7 +1,7 @@
-import { addCodecSizePrefix, fixCodecSize, offsetCodec, resizeCodec } from '@solana/codecs-core';
-import { getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
-import { SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, SolanaError } from '@solana/errors';
+import { addCodecSizePrefix, fixCodecSize, offsetCodec, resizeCodec } from '@trezoa/codecs-core';
+import { getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, TrezoaError } from '@trezoa/errors';
 
 import { getArrayCodec } from '../array';
 import { b } from './__setup__';
@@ -61,14 +61,14 @@ describe('getArrayCodec', () => {
 
         // It fails if the array has a different size.
         expect(() => array(u32String, { size: 1 }).encode([])).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
                 actual: 0,
                 codecDescription: 'array',
                 expected: 1,
             }),
         );
         expect(() => array(u32String, { size: 2 }).encode(['a', 'b', 'c'])).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
                 actual: 3,
                 codecDescription: 'array',
                 expected: 2,

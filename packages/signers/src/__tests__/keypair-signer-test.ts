@@ -1,14 +1,14 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { address, getAddressFromPublicKey } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, SolanaError } from '@solana/errors';
-import { generateKeyPair, SignatureBytes, signBytes } from '@solana/keys';
+import { address, getAddressFromPublicKey } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, TrezoaError } from '@trezoa/errors';
+import { generateKeyPair, SignatureBytes, signBytes } from '@trezoa/keys';
 import {
     partiallySignTransaction,
     Transaction,
     TransactionWithinSizeLimit,
     TransactionWithLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import {
     assertIsKeyPairSigner,
@@ -22,17 +22,17 @@ import { createSignableMessage } from '../signable-message';
 const getMockCryptoKeyPair = () => ({ privateKey: {}, publicKey: {} }) as CryptoKeyPair;
 
 // Partial mocks.
-jest.mock('@solana/addresses', () => ({
-    ...jest.requireActual('@solana/addresses'),
+jest.mock('@trezoa/addresses', () => ({
+    ...jest.requireActual('@trezoa/addresses'),
     getAddressFromPublicKey: jest.fn(),
 }));
-jest.mock('@solana/keys', () => ({
-    ...jest.requireActual('@solana/keys'),
+jest.mock('@trezoa/keys', () => ({
+    ...jest.requireActual('@trezoa/keys'),
     generateKeyPair: jest.fn(),
     signBytes: jest.fn(),
 }));
-jest.mock('@solana/transactions', () => ({
-    ...jest.requireActual('@solana/transactions'),
+jest.mock('@trezoa/transactions', () => ({
+    ...jest.requireActual('@trezoa/transactions'),
     partiallySignTransaction: jest.fn(),
 }));
 
@@ -64,7 +64,7 @@ describe('assertIsKeyPairSigner', () => {
             signTransactions: () => Promise.resolve([]),
         } satisfies KeyPairSigner<'Gp7YgHcJciP4px5FdFnywUiMG4UcfMZV9UagSAZzDxdy'>;
 
-        const expectedError = new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, {
+        const expectedError = new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_KEY_PAIR_SIGNER, {
             address: myAddress,
         });
         expect(() => assertIsKeyPairSigner(mySigner)).not.toThrow();

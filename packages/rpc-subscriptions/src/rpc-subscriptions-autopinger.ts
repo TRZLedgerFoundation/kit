@@ -1,6 +1,6 @@
-import { isSolanaError, SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED } from '@solana/errors';
-import { AbortController } from '@solana/event-target-impl';
-import type { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+import { isTrezoaError, TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED } from '@trezoa/errors';
+import { AbortController } from '@trezoa/event-target-impl';
+import type { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 
 type Config<TChannel extends RpcSubscriptionsChannel<unknown, unknown>> = Readonly<{
     abortSignal: AbortSignal;
@@ -27,7 +27,7 @@ export function getRpcSubscriptionsChannelWithAutoping<TChannel extends RpcSubsc
     let intervalId: ReturnType<typeof setInterval> | undefined;
     function sendPing() {
         channel.send(PING_PAYLOAD).catch((e: unknown) => {
-            if (isSolanaError(e, SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED)) {
+            if (isTrezoaError(e, TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED)) {
                 pingerAbortController.abort();
             }
         });

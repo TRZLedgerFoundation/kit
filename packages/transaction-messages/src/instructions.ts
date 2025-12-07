@@ -1,4 +1,4 @@
-import { Instruction } from '@solana/instructions';
+import { Instruction } from '@trezoa/instructions';
 
 import { ExcludeTransactionMessageDurableNonceLifetime } from './durable-nonce';
 import { BaseTransactionMessage } from './transaction-message';
@@ -38,9 +38,9 @@ type PrependTransactionMessageInstructions<
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { getUtf8Encoder } from '@solana/codecs-strings';
- * import { appendTransactionMessageInstruction } from '@solana/transaction-messages';
+ * import { address } from '@trezoa/addresses';
+ * import { getUtf8Encoder } from '@trezoa/codecs-strings';
+ * import { appendTransactionMessageInstruction } from '@trezoa/transaction-messages';
  *
  * const memoTransactionMessage = appendTransactionMessageInstruction(
  *     {
@@ -70,8 +70,8 @@ export function appendTransactionMessageInstruction<
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { appendTransactionMessageInstructions } from '@solana/transaction-messages';
+ * import { address } from '@trezoa/addresses';
+ * import { appendTransactionMessageInstructions } from '@trezoa/transaction-messages';
  *
  * const memoTransaction = appendTransactionMessageInstructions(
  *     [
@@ -113,8 +113,8 @@ export function appendTransactionMessageInstructions<
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { prependTransactionMessageInstruction } from '@solana/transaction-messages';
+ * import { address } from '@trezoa/addresses';
+ * import { prependTransactionMessageInstruction } from '@trezoa/transaction-messages';
  *
  * const memoTransaction = prependTransactionMessageInstruction(
  *     {
@@ -144,8 +144,8 @@ export function prependTransactionMessageInstruction<
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { prependTransactionMessageInstructions } from '@solana/transaction-messages';
+ * import { address } from '@trezoa/addresses';
+ * import { prependTransactionMessageInstructions } from '@trezoa/transaction-messages';
  *
  * const memoTransaction = prependTransactionMessageInstructions(
  *     [

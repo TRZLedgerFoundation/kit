@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/promises?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/promises?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/promises
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/promises?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/promises?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/promises
 
-# @solana/promises
+# @trezoa/promises
 
 This package contains helpers for using JavaScript promises.
 

@@ -1,9 +1,9 @@
-import { Address, address } from '@solana/addresses';
-import { bytesEqual } from '@solana/codecs-core';
-import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { getAbortablePromise } from '@solana/promises';
-import { MessageModifyingSigner, SignableMessage } from '@solana/signers';
+import { Address, address } from '@trezoa/addresses';
+import { bytesEqual } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { getAbortablePromise } from '@trezoa/promises';
+import { MessageModifyingSigner, SignableMessage } from '@trezoa/signers';
 import type { UiWalletAccount } from '@wallet-standard/ui';
 import { useMemo } from 'react';
 
@@ -20,8 +20,8 @@ import { useSignMessage } from './useSignMessage';
  *
  * @example
  * ```tsx
- * import { useWalletAccountMessageSigner } from '@solana/react';
- * import { createSignableMessage } from '@solana/signers';
+ * import { useWalletAccountMessageSigner } from '@trezoa/react';
+ * import { createSignableMessage } from '@trezoa/signers';
  *
  * function SignMessageButton({ account, text }) {
  *     const messageSigner = useWalletAccountMessageSigner(account);
@@ -59,7 +59,7 @@ export function useWalletAccountMessageSigner<TWalletAccount extends UiWalletAcc
             async modifyAndSignMessages(messages, config) {
                 config?.abortSignal?.throwIfAborted();
                 if (messages.length > 1) {
-                    throw new SolanaError(SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
+                    throw new TrezoaError(TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
                 }
                 if (messages.length === 0) {
                     return messages;

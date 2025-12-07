@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { GetEpochInfoApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@solana/rpc';
+import { GetEpochInfoApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@trezoa/rpc';
 import {
     RpcSubscriptions,
     RpcSubscriptionsDevnet,
     RpcSubscriptionsMainnet,
     RpcSubscriptionsTestnet,
     SlotNotificationsApi,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { createBlockHeightExceedencePromiseFactory } from '../confirmation-strategy-blockheight';
 

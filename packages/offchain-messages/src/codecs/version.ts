@@ -5,15 +5,15 @@ import {
     FixedSizeEncoder,
     transformDecoder,
     transformEncoder,
-} from '@solana/codecs-core';
-import { getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, TrezoaError } from '@trezoa/errors';
 
 import { OffchainMessageVersion } from '../version';
 
 function assertOffchainMessageVersion(putativeVersion: number): asserts putativeVersion is OffchainMessageVersion {
     if (putativeVersion !== 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
             unsupportedVersion: putativeVersion,
         });
     }

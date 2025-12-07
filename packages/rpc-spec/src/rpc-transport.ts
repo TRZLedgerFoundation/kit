@@ -1,4 +1,4 @@
-import { RpcResponse } from '@solana/rpc-spec-types';
+import { RpcResponse } from '@trezoa/rpc-spec-types';
 
 type Config = Readonly<{
     /** A value of arbitrary type to be sent to a RPC server */
@@ -29,7 +29,7 @@ export type RpcTransport = {
  *
  * @example
  * ```ts
- * import { isJsonRpcPayload } from '@solana/rpc-spec';
+ * import { isJsonRpcPayload } from '@trezoa/rpc-spec';
  *
  * if (isJsonRpcPayload(payload)) {
  *     const payloadMethod: string = payload.method;

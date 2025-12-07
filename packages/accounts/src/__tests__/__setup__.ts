@@ -1,13 +1,13 @@
-import type { Address } from '@solana/addresses';
-import type { Decoder } from '@solana/codecs-core';
-import type { PendingRpcRequest, Rpc } from '@solana/rpc-spec';
+import type { Address } from '@trezoa/addresses';
+import type { Decoder } from '@trezoa/codecs-core';
+import type { PendingRpcRequest, Rpc } from '@trezoa/rpc-spec';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
     AccountInfoWithBase58EncodedData,
     AccountInfoWithBase64EncodedData,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 import type { GetAccountInfoApi, GetMultipleAccountsApi, JsonParsedDataResponse } from '../rpc-api';
 
@@ -18,7 +18,7 @@ export type JsonParsedRpcAccount = AccountInfoBase & { readonly data: JsonParsed
 export function getMockRpc(
     accounts: Record<Address, Base64RpcAccount | JsonParsedRpcAccount>,
 ): Rpc<GetAccountInfoApi | GetMultipleAccountsApi> & { getAccountInfo: jest.Mock; getMultipleAccounts: jest.Mock } {
-    const wrapInPendingResponse = <T>(value: T): PendingRpcRequest<SolanaRpcResponse<T>> => {
+    const wrapInPendingResponse = <T>(value: T): PendingRpcRequest<TrezoaRpcResponse<T>> => {
         const send = jest.fn().mockResolvedValue({ context: { slot: 0n }, value });
         return { send };
     };

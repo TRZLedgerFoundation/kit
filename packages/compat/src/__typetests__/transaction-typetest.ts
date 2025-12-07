@@ -1,5 +1,5 @@
-import { Transaction } from '@solana/transactions';
-import { VersionedTransaction } from '@solana/web3.js';
+import { Transaction } from '@trezoa/transactions';
+import { VersionedTransaction } from '@trezoa/web3.js';
 
 import { fromVersionedTransaction } from '../transaction';
 

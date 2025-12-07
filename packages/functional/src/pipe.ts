@@ -31,7 +31,7 @@
  * sum === 111; // true
  * ```
  *
- * @example Building a Solana transaction message
+ * @example Building a Trezoa transaction message
  * ```ts
  * const transferTransactionMessage = pipe(
  *     // The result of the first expression...

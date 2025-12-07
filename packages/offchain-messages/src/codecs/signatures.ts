@@ -1,15 +1,15 @@
-import { fixEncoderSize, transformEncoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { getArrayEncoder, getBytesEncoder } from '@solana/codecs-data-structures';
-import { getU8Encoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+import { fixEncoderSize, transformEncoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getArrayEncoder, getBytesEncoder } from '@trezoa/codecs-data-structures';
+import { getU8Encoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { OffchainMessageEnvelope } from '../envelope';
 
 function getSignaturesToEncode(signaturesMap: OffchainMessageEnvelope['signatures']): SignatureBytes[] {
     const signatures = Object.values(signaturesMap);
     if (signatures.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
     }
 
     return signatures.map(signature => {

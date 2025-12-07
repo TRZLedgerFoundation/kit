@@ -1,4 +1,4 @@
-import { combineCodec, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
+import { combineCodec, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
 
 import { numberDecoderFactory, numberEncoderFactory } from './utils';
 

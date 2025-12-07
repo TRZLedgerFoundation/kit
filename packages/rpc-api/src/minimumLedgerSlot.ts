@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type MinimumLedgerSlotApiResponse = Slot;
 
@@ -10,7 +10,7 @@ export type MinimumLedgerSlotApi = {
      * configuration. An appropriately configured node should be able to access all slots, from
      * genesis onward. When it is not, this method will tell you the lowest slot available.
      *
-     * @see https://solana.com/docs/rpc/http/minimumledgerslot
+     * @see https://trezoa.com/docs/rpc/http/minimumledgerslot
      */
     minimumLedgerSlot(): MinimumLedgerSlotApiResponse;
 };

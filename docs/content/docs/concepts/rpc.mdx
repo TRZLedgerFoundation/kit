@@ -7,7 +7,7 @@ description: Read and write data to the blockchain
 
 Kit offers a TypeScript interface that you can use to communicate with a Solana JSON RPC server. Calling methods on a <abbr title="Remote procedure call">RPC</abbr> server lets you read data from the blockchain, simulate transactions, and send transactions to be processed.
 
-Kit aims to implement all of the RPC methods documented in the [Solana RPC HTTP methods](https://solana.com/docs/rpc/http) docs. You can either browse the available methods in the docs, or you can follow Kit's TypeScript types and inline documentation in your editor.
+Kit aims to implement all of the RPC methods documented in the [Trezoa RPC HTTP methods](https://trezoa.com/docs/rpc/http) docs. You can either browse the available methods in the docs, or you can follow Kit's TypeScript types and inline documentation in your editor.
 
 ## Installation
 
@@ -28,7 +28,7 @@ Note that the `@solana/rpc` package itself is composed of several smaller packag
 | [`@solana/rpc-spec-types`](https://npmjs.org/package/@solana/rpc-spec-types)         | Utility types common to both RPC and RPC Subscriptions implementations                                                         |
 | [`@solana/rpc-transformers`](https://npmjs.org/package/@solana/rpc-transformers)     | Helpers for transforming RPC requests and responses in various ways appropriate for use in a JavaScript application            |
 | [`@solana/rpc-transport-http`](https://npmjs.org/package/@solana/rpc-transport-http) | Utilities for creating custom RPC transports                                                                                   |
-| [`@solana/rpc-types`](https://npmjs.org/package/@solana/rpc-types)                   | Types for values used in the [Solana JSON-RPC](https://docs.solana.com/api/http) and a series of helpers for working with them |
+| [`@trezoa/rpc-types`](https://npmjs.org/package/@trezoa/rpc-types)                   | Types for values used in the [Trezoa JSON-RPC](https://docs.trezoa.com/api/http) and a series of helpers for working with them |
 
 ## What is a RPC?
 
@@ -54,4 +54,4 @@ For light development or personal use, you can use a public RPC server for the c
 - `https://api.testnet.solana.com`
 - `https://api.devnet.solana.com`
 
-When deploying your application to production, you will want to lease an RPC server or [set up your own](https://docs.anza.xyz/operations/setup-an-rpc-node).
+When deploying your application to production, you will want to lease an RPC server or [set up your own](https://docs.trezoa.xyz/operations/setup-an-rpc-node).

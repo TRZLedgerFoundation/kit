@@ -1,13 +1,13 @@
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { fetchSysvarStakeHistory, getSysvarStakeHistoryCodec } from '../stake-history';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('stake history', () => {
     let rpc: Rpc<GetAccountInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     it('decode', () => {
         // prettier-ignore

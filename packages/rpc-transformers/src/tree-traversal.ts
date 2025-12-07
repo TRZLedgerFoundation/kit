@@ -1,6 +1,6 @@
-import { RpcRequest, RpcRequestTransformer, RpcResponseTransformer } from '@solana/rpc-spec-types';
+import { RpcRequest, RpcRequestTransformer, RpcResponseTransformer } from '@trezoa/rpc-spec-types';
 
-export type KeyPathWildcard = { readonly ['__keyPathWildcard:@solana/kit']: unique symbol };
+export type KeyPathWildcard = { readonly ['__keyPathWildcard:@trezoa/kit']: unique symbol };
 export type KeyPath = ReadonlyArray<KeyPath | KeyPathWildcard | number | string>;
 
 export const KEYPATH_WILDCARD = {} as KeyPathWildcard;
@@ -45,7 +45,7 @@ function getTreeWalker(visitors: NodeVisitor[]) {
  *
  * @example
  * ```ts
- * import { getTreeWalkerRequestTransformer } from '@solana/rpc-transformers';
+ * import { getTreeWalkerRequestTransformer } from '@trezoa/rpc-transformers';
  *
  * const requestTransformer = getTreeWalkerRequestTransformer(
  *     [

@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { MessageModifyingSigner } from '../message-modifying-signer';
 import { MessagePartialSigner } from '../message-partial-signer';

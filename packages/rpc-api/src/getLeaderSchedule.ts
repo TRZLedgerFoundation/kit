@@ -1,12 +1,12 @@
-import type { Address } from '@solana/addresses';
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 
 type GetLeaderScheduleApiConfigBase = Readonly<{
     /**
      * Fetch the leader schedule as of the highest slot that has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -43,7 +43,7 @@ export type GetLeaderScheduleApi = {
      * @returns A dictionary having a single key representing the specified validator identity, and
      * its corresponding leader slot indices as values relative to the first slot in the requested
      * epoch, or `null` if there is no epoch that corresponds to the given slot.
-     * @see https://solana.com/docs/rpc/http/getleaderschedule
+     * @see https://trezoa.com/docs/rpc/http/getleaderschedule
      */
     getLeaderSchedule<TIdentity extends Address>(
         slot: Slot,
@@ -62,7 +62,7 @@ export type GetLeaderScheduleApi = {
      * @returns A dictionary of validator identities as base-58 encoded strings, and their
      * corresponding leader slot indices as values relative to the first slot in the requested
      * epoch, or `null` if there is no epoch that corresponds to the given slot.
-     * @see https://solana.com/docs/rpc/http/getleaderschedule
+     * @see https://trezoa.com/docs/rpc/http/getleaderschedule
      */
     getLeaderSchedule(
         slot: Slot,
@@ -76,7 +76,7 @@ export type GetLeaderScheduleApi = {
      * @returns A dictionary having a single key representing the specified validator identity, and
      * its corresponding leader slot indices as values relative to the first slot in the current
      * epoch.
-     * @see https://solana.com/docs/rpc/http/getleaderschedule
+     * @see https://trezoa.com/docs/rpc/http/getleaderschedule
      */
     getLeaderSchedule<TIdentity extends Address>(
         slot: null,
@@ -94,7 +94,7 @@ export type GetLeaderScheduleApi = {
      * @returns A dictionary of validator identities as base-58 encoded strings, and their
      * corresponding leader slot indices as values relative to the first slot in the current
      * epoch.
-     * @see https://solana.com/docs/rpc/http/getleaderschedule
+     * @see https://trezoa.com/docs/rpc/http/getleaderschedule
      */
     getLeaderSchedule(
         slot?: null,

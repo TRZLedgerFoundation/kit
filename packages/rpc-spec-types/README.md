@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-spec-types?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-spec-types?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-spec-types
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-spec-types?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-spec-types?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-spec-types
 
-# @solana/rpc-spec-types
+# @trezoa/rpc-spec-types
 
-This package contains core types that can be used on both RPC and RPC Subscriptions specifications. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains core types that can be used on both RPC and RPC Subscriptions specifications. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Types
 

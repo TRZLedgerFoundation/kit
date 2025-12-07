@@ -1,5 +1,5 @@
-import { SolanaError } from '@solana/errors';
-import { DataPublisher } from '@solana/subscribable';
+import { TrezoaError } from '@trezoa/errors';
+import { DataPublisher } from '@trezoa/subscribable';
 
 import { RpcSubscriptionsPlan } from './rpc-subscriptions-api';
 
@@ -8,7 +8,7 @@ export type RpcSubscriptionsTransportDataEvents<TNotification> = {
      * Fires when there is an error with the subscription or the channel.
      * @eventProperty
      */
-    error: SolanaError;
+    error: TrezoaError;
     /**
      * Fires on every notification received.
      * @eventProperty

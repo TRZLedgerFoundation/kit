@@ -1,4 +1,4 @@
-import { AccountMeta, Instruction } from '@solana/instructions';
+import { AccountMeta, Instruction } from '@trezoa/instructions';
 
 export type BaseTransactionMessage<
     TVersion extends TransactionVersion = TransactionVersion,

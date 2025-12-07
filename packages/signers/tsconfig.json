@@ -3,7 +3,7 @@
     "compilerOptions": {
         "lib": ["DOM", "ES2017", "ES2019.Array"]
     },
-    "display": "@solana/signers",
+    "display": "@trezoa/signers",
     "extends": "../tsconfig/base.json",
     "include": ["../build-scripts/build-time-constants.d.ts", "src"]
 }

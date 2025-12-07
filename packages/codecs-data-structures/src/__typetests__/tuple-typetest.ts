@@ -8,9 +8,9 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getU8Codec, getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
-import { getUtf8Codec, getUtf8Decoder, getUtf8Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-core';
+import { getU8Codec, getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
+import { getUtf8Codec, getUtf8Decoder, getUtf8Encoder } from '@trezoa/codecs-strings';
 
 import { getTupleCodec, getTupleDecoder, getTupleEncoder } from '../tuple';
 

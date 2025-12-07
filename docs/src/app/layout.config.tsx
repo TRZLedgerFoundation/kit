@@ -6,7 +6,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { BookTextIcon, LibraryBigIcon } from 'lucide-react';
-import { Logo, LogoWithSolana } from './logo';
+import { Logo, LogoWithTrezoa } from './logo';
 import { MDXComponents } from 'mdx/types';
 
 /**
@@ -20,7 +20,7 @@ export const baseOptions: BaseLayoutProps = {
     nav: {
         title: (
             <div className="flex">
-                <LogoWithSolana className="h-12 max-md:hidden" />
+                <LogoWithTrezoa className="h-12 max-md:hidden" />
                 <Logo className="h-10 md:hidden" />
             </div>
         ),

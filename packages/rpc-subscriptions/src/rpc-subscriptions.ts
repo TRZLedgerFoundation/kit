@@ -1,15 +1,15 @@
-import type { SolanaRpcSubscriptionsApi, SolanaRpcSubscriptionsApiUnstable } from '@solana/rpc-subscriptions-api';
-import { createSolanaRpcSubscriptionsApi } from '@solana/rpc-subscriptions-api';
+import type { TrezoaRpcSubscriptionsApi, TrezoaRpcSubscriptionsApiUnstable } from '@trezoa/rpc-subscriptions-api';
+import { createTrezoaRpcSubscriptionsApi } from '@trezoa/rpc-subscriptions-api';
 import {
     createSubscriptionRpc,
     RpcSubscriptionsApiMethods,
     type RpcSubscriptionsTransport,
-} from '@solana/rpc-subscriptions-spec';
-import { ClusterUrl } from '@solana/rpc-types';
+} from '@trezoa/rpc-subscriptions-spec';
+import { ClusterUrl } from '@trezoa/rpc-types';
 
 import { DEFAULT_RPC_SUBSCRIPTIONS_CONFIG } from './rpc-default-config';
 import {
-    createDefaultSolanaRpcSubscriptionsChannelCreator,
+    createDefaultTrezoaRpcSubscriptionsChannelCreator,
     DefaultRpcSubscriptionsChannelConfig,
 } from './rpc-subscriptions-channel';
 import type { RpcSubscriptionsFromTransport } from './rpc-subscriptions-clusters';
@@ -17,53 +17,53 @@ import { createDefaultRpcSubscriptionsTransport } from './rpc-subscriptions-tran
 
 type Config<TClusterUrl extends ClusterUrl> = DefaultRpcSubscriptionsChannelConfig<TClusterUrl>;
 
-function createSolanaRpcSubscriptionsImpl<TClusterUrl extends ClusterUrl, TApi extends RpcSubscriptionsApiMethods>(
+function createTrezoaRpcSubscriptionsImpl<TClusterUrl extends ClusterUrl, TApi extends RpcSubscriptionsApiMethods>(
     clusterUrl: TClusterUrl,
     config?: Omit<Config<TClusterUrl>, 'url'>,
 ) {
     const transport = createDefaultRpcSubscriptionsTransport({
-        createChannel: createDefaultSolanaRpcSubscriptionsChannelCreator({ ...config, url: clusterUrl }),
+        createChannel: createDefaultTrezoaRpcSubscriptionsChannelCreator({ ...config, url: clusterUrl }),
     });
-    return createSolanaRpcSubscriptionsFromTransport<typeof transport, TApi>(transport);
+    return createTrezoaRpcSubscriptionsFromTransport<typeof transport, TApi>(transport);
 }
 
 /**
- * Creates a {@link RpcSubscriptions} instance that exposes the Solana JSON RPC WebSocket API given
+ * Creates a {@link RpcSubscriptions} instance that exposes the Trezoa JSON RPC WebSocket API given
  * a cluster URL and some optional channel config. See
  * {@link createDefaultRpcSubscriptionsChannelCreator} for the shape of the channel config.
  */
-export function createSolanaRpcSubscriptions<TClusterUrl extends ClusterUrl>(
+export function createTrezoaRpcSubscriptions<TClusterUrl extends ClusterUrl>(
     clusterUrl: TClusterUrl,
     config?: Omit<Config<TClusterUrl>, 'url'>,
 ) {
-    return createSolanaRpcSubscriptionsImpl<TClusterUrl, SolanaRpcSubscriptionsApi>(clusterUrl, config);
+    return createTrezoaRpcSubscriptionsImpl<TClusterUrl, TrezoaRpcSubscriptionsApi>(clusterUrl, config);
 }
 
 /**
- * Creates a {@link RpcSubscriptions} instance that exposes the Solana JSON RPC WebSocket API,
+ * Creates a {@link RpcSubscriptions} instance that exposes the Trezoa JSON RPC WebSocket API,
  * including its unstable methods, given a cluster URL and some optional channel config. See
  * {@link createDefaultRpcSubscriptionsChannelCreator} for the shape of the channel config.
  */
-export function createSolanaRpcSubscriptions_UNSTABLE<TClusterUrl extends ClusterUrl>(
+export function createTrezoaRpcSubscriptions_UNSTABLE<TClusterUrl extends ClusterUrl>(
     clusterUrl: TClusterUrl,
     config?: Omit<Config<TClusterUrl>, 'url'>,
 ) {
-    return createSolanaRpcSubscriptionsImpl<TClusterUrl, SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>(
+    return createTrezoaRpcSubscriptionsImpl<TClusterUrl, TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>(
         clusterUrl,
         config,
     );
 }
 
 /**
- * Creates a {@link RpcSubscriptions} instance that exposes the Solana JSON RPC WebSocket API given
+ * Creates a {@link RpcSubscriptions} instance that exposes the Trezoa JSON RPC WebSocket API given
  * the supplied {@link RpcSubscriptionsTransport}.
  */
-export function createSolanaRpcSubscriptionsFromTransport<
+export function createTrezoaRpcSubscriptionsFromTransport<
     TTransport extends RpcSubscriptionsTransport,
-    TApi extends RpcSubscriptionsApiMethods = SolanaRpcSubscriptionsApi,
+    TApi extends RpcSubscriptionsApiMethods = TrezoaRpcSubscriptionsApi,
 >(transport: TTransport) {
     return createSubscriptionRpc({
-        api: createSolanaRpcSubscriptionsApi<TApi>(DEFAULT_RPC_SUBSCRIPTIONS_CONFIG),
+        api: createTrezoaRpcSubscriptionsApi<TApi>(DEFAULT_RPC_SUBSCRIPTIONS_CONFIG),
         transport,
     }) as RpcSubscriptionsFromTransport<TApi, TTransport>;
 }

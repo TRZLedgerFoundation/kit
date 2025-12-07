@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { compileOffchainMessageV0Envelope } from './envelope-v0';
 import { compileOffchainMessageV1Envelope } from './envelope-v1';
@@ -39,7 +39,7 @@ export function compileOffchainMessageEnvelope(offchainMessage: OffchainMessage)
         case 1:
             return compileOffchainMessageV1Envelope(offchainMessage);
         default:
-            throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
+            throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
                 unexpectedValue: version satisfies never,
             });
     }

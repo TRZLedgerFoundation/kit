@@ -1,5 +1,5 @@
-import { Instruction } from '@solana/instructions';
-import { TransactionMessage } from '@solana/transaction-messages';
+import { Instruction } from '@trezoa/instructions';
+import { TransactionMessage } from '@trezoa/transaction-messages';
 
 import { InstructionWithSigners, TransactionMessageWithSigners } from '../account-signer-meta';
 import { addSignersToInstruction, addSignersToTransactionMessage } from '../add-signers';

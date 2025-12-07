@@ -7,7 +7,7 @@ import {
     RpcMainnet,
     RpcTestnet,
     SendTransactionApi,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 import {
     RpcSubscriptions,
     RpcSubscriptionsDevnet,
@@ -15,7 +15,7 @@ import {
     RpcSubscriptionsTestnet,
     SignatureNotificationsApi,
     SlotNotificationsApi,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { sendAndConfirmTransactionFactory } from '../send-and-confirm-transaction';
 

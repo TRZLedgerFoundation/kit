@@ -1,10 +1,10 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
 import { ImplicitArrayBuffer } from 'node:buffer';
 
-import { address } from '@solana/addresses';
-import { AccountRole, Instruction } from '@solana/instructions';
-import { PublicKey, TransactionInstruction } from '@solana/web3.js';
+import { address } from '@trezoa/addresses';
+import { AccountRole, Instruction } from '@trezoa/instructions';
+import { PublicKey, TransactionInstruction } from '@trezoa/web3.js';
 
 import { fromLegacyPublicKey } from '../address';
 import { fromLegacyTransactionInstruction } from '../instruction';

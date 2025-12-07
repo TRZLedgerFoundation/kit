@@ -1,5 +1,5 @@
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { SOLANA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, SolanaError } from '@solana/errors';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { ED25519_ALGORITHM_IDENTIFIER } from './algorithm';
 
@@ -52,7 +52,7 @@ function addPkcs8Header(bytes: ReadonlyUint8Array): ReadonlyUint8Array {
  *
  * @example
  * ```ts
- * import { createPrivateKeyFromBytes } from '@solana/keys';
+ * import { createPrivateKeyFromBytes } from '@trezoa/keys';
  *
  * const privateKey = await createPrivateKeyFromBytes(new Uint8Array([...]));
  * const extractablePrivateKey = await createPrivateKeyFromBytes(new Uint8Array([...]), true);
@@ -64,7 +64,7 @@ export async function createPrivateKeyFromBytes(
 ): Promise<CryptoKey> {
     const actualLength = bytes.byteLength;
     if (actualLength !== 32) {
-        throw new SolanaError(SOLANA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, {
+        throw new TrezoaError(TREZOA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, {
             actualLength,
         });
     }

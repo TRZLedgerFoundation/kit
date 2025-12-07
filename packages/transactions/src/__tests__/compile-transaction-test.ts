@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { Blockhash } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Blockhash } from '@trezoa/rpc-types';
 import {
     CompiledTransactionMessage,
     CompiledTransactionMessageWithLifetime,
@@ -10,12 +10,12 @@ import {
     Nonce,
     setTransactionMessageLifetimeUsingDurableNonce,
     TransactionMessageWithBlockhashLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { compileTransaction } from '../compile-transaction';
 
-jest.mock('@solana/transaction-messages', () => ({
-    ...jest.requireActual('@solana/transaction-messages'),
+jest.mock('@trezoa/transaction-messages', () => ({
+    ...jest.requireActual('@trezoa/transaction-messages'),
     compileTransactionMessage: jest.fn(),
     getCompiledTransactionMessageEncoder: jest.fn(),
 }));

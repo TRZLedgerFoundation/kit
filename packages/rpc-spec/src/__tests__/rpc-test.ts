@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, SolanaError } from '@solana/errors';
-import { createRpcMessage } from '@solana/rpc-spec-types';
+import { TREZOA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, TrezoaError } from '@trezoa/errors';
+import { createRpcMessage } from '@trezoa/rpc-spec-types';
 
 import { createRpc, Rpc } from '../rpc';
 import { RpcApi, RpcPlan } from '../rpc-api';
@@ -29,7 +29,7 @@ describe('JSON-RPC 2.0', () => {
         });
         it('throws an error', () => {
             expect(() => rpc.someMethod('some', 'params', 123)).toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, {
+                new TrezoaError(TREZOA_ERROR__RPC__API_PLAN_MISSING_FOR_RPC_METHOD, {
                     method: 'someMethod',
                     params: ['some', 'params', 123],
                 }),

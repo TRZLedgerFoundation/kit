@@ -1,4 +1,4 @@
-import type { Commitment } from '@solana/rpc-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
 describe('programNotifications', () => {
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {

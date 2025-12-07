@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import { isSolanaError, SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, SolanaError } from '@solana/errors';
+import type { Address } from '@trezoa/addresses';
+import { isTrezoaError, TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, TrezoaError } from '@trezoa/errors';
 
 /**
  * Identifies whether an error -- typically caused by a transaction failure -- is a custom program
@@ -34,8 +34,8 @@ export function isProgramError<TProgramErrorCode extends number>(
     programAddress: Address,
     code?: TProgramErrorCode,
 ): error is Readonly<{ context: Readonly<{ code: TProgramErrorCode }> }> &
-    SolanaError<typeof SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM> {
-    if (!isSolanaError(error, SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM)) {
+    TrezoaError<typeof TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM> {
+    if (!isTrezoaError(error, TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM)) {
         return false;
     }
     const instructionProgramAddress = transactionMessage.instructions[error.context.index]?.programAddress;

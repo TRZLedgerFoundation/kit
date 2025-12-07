@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import type {
     GetAccountInfoApi,
     GetBlockApi,
@@ -6,9 +6,9 @@ import type {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../../index';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../../index';
 
 const FOREVER_PROMISE = new Promise(() => {
     /* never resolve */
@@ -43,7 +43,7 @@ describe('account resolver', () => {
             getProgramAccounts: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
             getTransaction: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
         };
-        rpcGraphQL = createSolanaRpcGraphQL(rpc);
+        rpcGraphQL = createTrezoaRpcGraphQL(rpc);
     });
     describe('address-only requests', () => {
         describe('in the first level', () => {

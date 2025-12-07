@@ -75,23 +75,23 @@ function getBaseConfig(platform, formats, _options) {
         },
         esbuildPlugins: [DevFlagPlugin],
         external: [
-          // Despite inlining `@solana/text-encoding-impl`, do not recursively inline `fastestsmallesttextencoderdecoder`.
+          // Despite inlining `@trezoa/text-encoding-impl`, do not recursively inline `fastestsmallesttextencoderdecoder`.
           "fastestsmallesttextencoderdecoder",
-          // Despite inlining `@solana/ws-impl`, do not recursively inline `ws`.
+          // Despite inlining `@trezoa/ws-impl`, do not recursively inline `ws`.
           "ws"
         ],
         format,
-        globalName: "globalThis.solanaWeb3",
+        globalName: "globalThis.trezoaWeb3",
         name: platform,
         // Inline private, non-published packages.
         // WARNING: This inlines packages recursively. Make sure these don't have deep dep trees.
         noExternal: [
           // @noble/ed25519 is an ESM-only module, so we have to inline it in CJS builds.
           ...format === "cjs" ? ["@noble/ed25519"] : [],
-          "@solana/crypto-impl",
-          "@solana/event-target-impl",
-          "@solana/text-encoding-impl",
-          "@solana/ws-impl"
+          "@trezoa/crypto-impl",
+          "@trezoa/event-target-impl",
+          "@trezoa/text-encoding-impl",
+          "@trezoa/ws-impl"
         ],
         outExtension({ format: format2 }) {
           let extension;

@@ -3,7 +3,7 @@
     "compilerOptions": {
         "lib": []
     },
-    "display": "@solana/transaction-messages",
+    "display": "@trezoa/transaction-messages",
     "extends": "../tsconfig/base.json",
     "include": ["../build-scripts/build-time-constants.d.ts", "src"]
 }

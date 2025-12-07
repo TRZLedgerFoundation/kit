@@ -1,14 +1,14 @@
-import { SOLANA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY, SolanaError } from '@solana/errors';
-import { createRpc, type Rpc } from '@solana/rpc-spec';
+import { TREZOA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY, TrezoaError } from '@trezoa/errors';
+import { createRpc, type Rpc } from '@trezoa/rpc-spec';
 
-import { createSolanaRpcApi, GetHealthApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createTrezoaRpcApi, GetHealthApi } from '../index';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getHealth', () => {
     describe('when the node is healthy', () => {
         let rpc: Rpc<GetHealthApi>;
         beforeEach(() => {
-            rpc = createLocalhostSolanaRpc();
+            rpc = createLocalhostTrezoaRpc();
         });
         it('returns "ok"', async () => {
             expect.assertions(1);
@@ -20,7 +20,7 @@ describe('getHealth', () => {
     describe('when the node is unhealthy', () => {
         let rpc: Rpc<GetHealthApi>;
         const errorMessage = 'Node is unhealthy';
-        const errorCode = SOLANA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY;
+        const errorCode = TREZOA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY;
         const errorObject = {
             code: errorCode,
             data: { numSlotsBehind: 123 },
@@ -28,7 +28,7 @@ describe('getHealth', () => {
         };
         beforeEach(() => {
             rpc = createRpc({
-                api: createSolanaRpcApi(),
+                api: createTrezoaRpcApi(),
                 transport: jest.fn().mockResolvedValue({ error: errorObject }),
             });
         });
@@ -36,7 +36,7 @@ describe('getHealth', () => {
             expect.assertions(1);
             const healthPromise = rpc.getHealth().send();
             await expect(healthPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__SERVER_ERROR_NODE_UNHEALTHY, {
                     numSlotsBehind: 123,
                 }),
             );

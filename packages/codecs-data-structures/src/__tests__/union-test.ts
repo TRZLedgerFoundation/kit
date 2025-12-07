@@ -1,7 +1,7 @@
-import { assertIsFixedSize, assertIsVariableSize, fixCodecSize, transformCodec } from '@solana/codecs-core';
-import { getU8Codec, getU16Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
-import { SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+import { assertIsFixedSize, assertIsVariableSize, fixCodecSize, transformCodec } from '@trezoa/codecs-core';
+import { getU8Codec, getU16Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 import { getBooleanCodec } from '../boolean';
 import { getStructCodec } from '../struct';
@@ -60,7 +60,7 @@ describe('getUnionCodec', () => {
 
     it('throws when encoding an invalid variant', () => {
         expect(() => codec.encode(999)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
+            new TrezoaError(TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
                 maxRange: 3,
                 minRange: 0,
                 variant: 999,
@@ -70,7 +70,7 @@ describe('getUnionCodec', () => {
 
     it('throws when decoding an invalid variant', () => {
         expect(() => codec.decode(b('ffffff'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
+            new TrezoaError(TREZOA_ERROR__CODECS__UNION_VARIANT_OUT_OF_RANGE, {
                 maxRange: 3,
                 minRange: 0,
                 variant: 999,

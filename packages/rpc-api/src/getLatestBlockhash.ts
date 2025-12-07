@@ -1,4 +1,4 @@
-import type { Blockhash, Commitment, Slot, SolanaRpcResponse } from '@solana/rpc-types';
+import type { Blockhash, Commitment, Slot, TrezoaRpcResponse } from '@trezoa/rpc-types';
 
 type GetLatestBlockhashApiResponse = Readonly<{
     /** A SHA-256 hash as base-58 encoded string */
@@ -16,7 +16,7 @@ export type GetLatestBlockhashApi = {
     /**
      * Returns the blockhash of the latest block.
      *
-     * @see https://solana.com/docs/rpc/http/getlatestblockhash
+     * @see https://trezoa.com/docs/rpc/http/getlatestblockhash
      */
     getLatestBlockhash(
         config?: Readonly<{
@@ -25,7 +25,7 @@ export type GetLatestBlockhashApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */
@@ -36,5 +36,5 @@ export type GetLatestBlockhashApi = {
              */
             minContextSlot?: Slot;
         }>,
-    ): SolanaRpcResponse<GetLatestBlockhashApiResponse>;
+    ): TrezoaRpcResponse<GetLatestBlockhashApiResponse>;
 };

@@ -1,10 +1,10 @@
-import { Signature } from '@solana/keys';
+import { Signature } from '@trezoa/keys';
 import {
     getSignatureFromTransaction,
     Transaction,
     TransactionWithBlockhashLifetime,
     TransactionWithDurableNonceLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import { createBlockHeightExceedencePromiseFactory } from './confirmation-strategy-blockheight';
 import { createNonceInvalidationPromiseFactory } from './confirmation-strategy-nonce';
@@ -42,7 +42,7 @@ interface WaitForRecentTransactionWithTimeBasedLifetimeConfirmationConfig
  *
  * @example
  * ```ts
- * import { waitForDurableNonceTransactionConfirmation } from '@solana/transaction-confirmation';
+ * import { waitForDurableNonceTransactionConfirmation } from '@trezoa/transaction-confirmation';
  *
  * try {
  *     await waitForDurableNonceTransactionConfirmation({
@@ -83,7 +83,7 @@ export async function waitForDurableNonceTransactionConfirmation(
  *
  * @example
  * ```ts
- * import { waitForRecentTransactionConfirmation } from '@solana/transaction-confirmation';
+ * import { waitForRecentTransactionConfirmation } from '@trezoa/transaction-confirmation';
  *
  * try {
  *     await waitForRecentTransactionConfirmation({

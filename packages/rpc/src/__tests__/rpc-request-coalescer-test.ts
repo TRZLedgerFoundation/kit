@@ -1,5 +1,5 @@
-import type { RpcTransport } from '@solana/rpc-spec';
-import type { RpcResponse } from '@solana/rpc-spec-types';
+import type { RpcTransport } from '@trezoa/rpc-spec';
+import type { RpcResponse } from '@trezoa/rpc-spec-types';
 
 import { getRpcTransportWithRequestCoalescing } from '../rpc-request-coalescer';
 
@@ -218,7 +218,7 @@ describe('RPC request coalescer', () => {
             });
         });
     });
-    // https://github.com/solana-labs/solana-web3.js/pull/2910
+    // https://github.com/trezoa-team/solana-web3.js/pull/2910
     describe('regression test #2910', () => {
         beforeEach(() => {
             // Necessary to prevent the coalescer from bailing out.

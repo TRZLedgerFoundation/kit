@@ -11,7 +11,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { getTupleDecoder, getTupleEncoder } from './tuple';
 

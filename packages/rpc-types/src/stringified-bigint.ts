@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__MALFORMED_BIGINT_STRING, SolanaError } from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
+import { TREZOA_ERROR__MALFORMED_BIGINT_STRING, TrezoaError } from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
 
 /**
  * This type represents a `bigint` which has been encoded as a string for transit over a transport
@@ -13,7 +13,7 @@ export type StringifiedBigInt = Brand<string, 'StringifiedBigInt'>;
  *
  * @example
  * ```ts
- * import { isStringifiedBigInt } from '@solana/rpc-types';
+ * import { isStringifiedBigInt } from '@trezoa/rpc-types';
  *
  * if (isStringifiedBigInt(bigintString)) {
  *     // At this point, `bigintString` has been refined to a `StringifiedBigInt`
@@ -39,7 +39,7 @@ export function isStringifiedBigInt(putativeBigInt: string): putativeBigInt is S
  *
  * @example
  * ```ts
- * import { assertIsStringifiedBigInt } from '@solana/rpc-types';
+ * import { assertIsStringifiedBigInt } from '@trezoa/rpc-types';
  *
  * // Imagine having received a value that you presume represents the supply of some token.
  * // At this point we know only that it conforms to the `string` type.
@@ -58,7 +58,7 @@ export function assertIsStringifiedBigInt(putativeBigInt: string): asserts putat
     try {
         BigInt(putativeBigInt);
     } catch {
-        throw new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+        throw new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
             value: putativeBigInt,
         });
     }
@@ -70,7 +70,7 @@ export function assertIsStringifiedBigInt(putativeBigInt: string): asserts putat
  *
  * @example
  * ```ts
- * import { stringifiedBigInt } from '@solana/rpc-types';
+ * import { stringifiedBigInt } from '@trezoa/rpc-types';
  *
  * const supplyString = stringifiedBigInt('1000000000');
  * ```

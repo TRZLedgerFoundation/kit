@@ -1,4 +1,4 @@
-import type { Blockhash, Commitment, Slot, SolanaRpcResponse } from '@solana/rpc-types';
+import type { Blockhash, Commitment, Slot, TrezoaRpcResponse } from '@trezoa/rpc-types';
 
 type IsBlockhashValidApiResponse = boolean;
 
@@ -10,7 +10,7 @@ export type IsBlockhashValidApi = {
      *
      * @param blockhash A SHA-256 hash as base-58 encoded string
      *
-     * @see https://solana.com/docs/rpc/http/isblockhashvalid
+     * @see https://trezoa.com/docs/rpc/http/isblockhashvalid
      */
     isBlockhashValid(
         blockhash: Blockhash,
@@ -20,7 +20,7 @@ export type IsBlockhashValidApi = {
              * level of commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */
@@ -31,5 +31,5 @@ export type IsBlockhashValidApi = {
              */
             minContextSlot?: Slot;
         }>,
-    ): SolanaRpcResponse<IsBlockhashValidApiResponse>;
+    ): TrezoaRpcResponse<IsBlockhashValidApiResponse>;
 };

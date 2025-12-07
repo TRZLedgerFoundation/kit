@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Slot } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Slot } from '@trezoa/rpc-types';
 
 /** array of Node identity public keys as base-58 encoded strings */
 type GetSlotLeadersApiResponse = Address[];
@@ -10,7 +10,7 @@ export type GetSlotLeadersApi = {
      *
      * @returns The addresses of the validators that have been granted the opportunity to create the
      * blocks for each slot in the range provided
-     * @see https://solana.com/docs/rpc/http/getslotleaders
+     * @see https://trezoa.com/docs/rpc/http/getslotleaders
      */
     getSlotLeaders(
         /** Start slot, as u64 integer */

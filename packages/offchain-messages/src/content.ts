@@ -1,12 +1,12 @@
-import { getUtf8Encoder } from '@solana/codecs-strings';
+import { getUtf8Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
 
 const MAX_BODY_BYTES =
     // Largest 16-bit unsigned integer
@@ -76,20 +76,20 @@ export function assertIsOffchainMessageContentRestrictedAsciiOf1232BytesMax(puta
     text: string;
 }): asserts putativeContent is OffchainMessageContentRestrictedAsciiOf1232BytesMax {
     if (putativeContent.format !== OffchainMessageContentFormat.RESTRICTED_ASCII_1232_BYTES_MAX) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
             actualMessageFormat: putativeContent.format,
             expectedMessageFormat: OffchainMessageContentFormat.RESTRICTED_ASCII_1232_BYTES_MAX,
         });
     }
     if (putativeContent.text.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
     }
     if (isTextRestrictedAscii(putativeContent.text) === false) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__RESTRICTED_ASCII_BODY_CHARACTER_OUT_OF_RANGE);
     }
     const length = getUtf8Encoder().getSizeFromValue(putativeContent.text);
     if (length > MAX_BODY_BYTES_HARDWARE_WALLET_SIGNABLE) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
             actualBytes: length,
             maxBytes: MAX_BODY_BYTES_HARDWARE_WALLET_SIGNABLE,
         });
@@ -125,7 +125,7 @@ export function isOffchainMessageContentRestrictedAsciiOf1232BytesMax(putativeCo
  *
  * @example
  * ```ts
- * import { offchainMessageContentRestrictedAsciiOf1232BytesMax, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { offchainMessageContentRestrictedAsciiOf1232BytesMax, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * function handleSubmit() {
  *     // We know only that what the user typed conforms to the `string` type.
@@ -148,7 +148,7 @@ export function isOffchainMessageContentRestrictedAsciiOf1232BytesMax(putativeCo
  * > because the helper unconditionally performs validation on its input.
  * >
  * > ```ts
- * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@solana/offchain-messages';
+ * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@trezoa/offchain-messages';
  * >
  * > const offchainMessage: OffchainMessageV0 = {
  * >     /* ... *\/
@@ -181,17 +181,17 @@ export function assertIsOffchainMessageContentUtf8Of1232BytesMax(putativeContent
     text: string;
 }): asserts putativeContent is OffchainMessageContentUtf8Of1232BytesMax {
     if (putativeContent.text.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
     }
     if (putativeContent.format !== OffchainMessageContentFormat.UTF8_1232_BYTES_MAX) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
             actualMessageFormat: putativeContent.format,
             expectedMessageFormat: OffchainMessageContentFormat.UTF8_1232_BYTES_MAX,
         });
     }
     const length = getUtf8Encoder().getSizeFromValue(putativeContent.text);
     if (length > MAX_BODY_BYTES_HARDWARE_WALLET_SIGNABLE) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
             actualBytes: length,
             maxBytes: MAX_BODY_BYTES_HARDWARE_WALLET_SIGNABLE,
         });
@@ -226,7 +226,7 @@ export function isOffchainMessageContentUtf8Of1232BytesMax(putativeContent: {
  *
  * @example
  * ```ts
- * import { OffchainMessageContentUtf8Of1232BytesMax, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { OffchainMessageContentUtf8Of1232BytesMax, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * function handleSubmit() {
  *     // We know only that what the user typed conforms to the `string` type.
@@ -249,7 +249,7 @@ export function isOffchainMessageContentUtf8Of1232BytesMax(putativeContent: {
  * > because the helper unconditionally performs validation on its input.
  * >
  * > ```ts
- * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@solana/offchain-messages';
+ * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@trezoa/offchain-messages';
  * >
  * > const offchainMessage: OffchainMessageV0 = {
  * >     /* ... *\/
@@ -283,17 +283,17 @@ export function assertIsOffchainMessageContentUtf8Of65535BytesMax(putativeConten
     text: string;
 }): asserts putativeContent is OffchainMessageContentUtf8Of65535BytesMax {
     if (putativeContent.format !== OffchainMessageContentFormat.UTF8_65535_BYTES_MAX) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_FORMAT_MISMATCH, {
             actualMessageFormat: putativeContent.format,
             expectedMessageFormat: OffchainMessageContentFormat.UTF8_65535_BYTES_MAX,
         });
     }
     if (putativeContent.text.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
     }
     const length = getUtf8Encoder().getSizeFromValue(putativeContent.text);
     if (length > MAX_BODY_BYTES) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MAXIMUM_LENGTH_EXCEEDED, {
             actualBytes: length,
             maxBytes: MAX_BODY_BYTES,
         });
@@ -328,7 +328,7 @@ export function isOffchainMessageContentUtf8Of65535BytesMax(putativeContent: {
  *
  * @example
  * ```ts
- * import { OffchainMessageContentUtf8Of65535BytesMax, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { OffchainMessageContentUtf8Of65535BytesMax, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * function handleSubmit() {
  *     // We know only that what the user typed conforms to the `string` type.
@@ -351,7 +351,7 @@ export function isOffchainMessageContentUtf8Of65535BytesMax(putativeContent: {
  * > because the helper unconditionally performs validation on its input.
  * >
  * > ```ts
- * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@solana/offchain-messages';
+ * > import { OffchainMessageContentFormat, OffchainMessageV0 } from '@trezoa/offchain-messages';
  * >
  * > const offchainMessage: OffchainMessageV0 = {
  * >     /* ... *\/

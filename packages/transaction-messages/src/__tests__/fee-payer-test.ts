@@ -1,6 +1,6 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { setTransactionMessageFeePayer, TransactionMessageWithFeePayer } from '../fee-payer';
 import { BaseTransactionMessage } from '../transaction-message';

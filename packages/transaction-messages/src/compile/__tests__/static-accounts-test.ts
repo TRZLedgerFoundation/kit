@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { AccountRole } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { AccountRole } from '@trezoa/instructions';
 
 import { OrderedAccounts } from '../../compile/accounts';
 import { getCompiledStaticAccounts } from '../../compile/static-accounts';

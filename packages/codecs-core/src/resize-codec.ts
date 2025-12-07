@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import {
     Codec,
@@ -71,7 +71,7 @@ export function resizeEncoder<TEncoder extends AnyEncoder>(
     if (isFixedSize(encoder)) {
         const fixedSize = resize(encoder.fixedSize);
         if (fixedSize < 0) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
                 bytesLength: fixedSize,
                 codecDescription: 'resizeEncoder',
             });
@@ -83,7 +83,7 @@ export function resizeEncoder<TEncoder extends AnyEncoder>(
         getSizeFromValue: value => {
             const newSize = resize(encoder.getSizeFromValue(value));
             if (newSize < 0) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
                     bytesLength: newSize,
                     codecDescription: 'resizeEncoder',
                 });
@@ -144,7 +144,7 @@ export function resizeDecoder<TDecoder extends AnyDecoder>(
     if (isFixedSize(decoder)) {
         const fixedSize = resize(decoder.fixedSize);
         if (fixedSize < 0) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
                 bytesLength: fixedSize,
                 codecDescription: 'resizeDecoder',
             });

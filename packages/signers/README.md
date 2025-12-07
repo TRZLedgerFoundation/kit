@@ -5,21 +5,21 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/signers?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/signers?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/signers
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/signers?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/signers?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/signers
 
-# @solana/signers
+# @trezoa/signers
 
-This package provides an abstraction layer over signing messages and transactions in Solana. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package provides an abstraction layer over signing messages and transactions in Trezoa. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 You can think of signers as an abstract way to sign messages and transactions. This could be using a Crypto KeyPair, a wallet adapter in the browser, a Noop signer for testing purposes, or anything you want. Here's an example using a `CryptoKeyPair` signer:
 
 ```ts
-import { pipe } from '@solana/functional';
-import { generateKeyPairSigner } from '@solana/signers';
-import { createTransactionMessage } from '@solana/transaction-messages';
-import { compileTransaction } from '@solana/transactions';
+import { pipe } from '@trezoa/functional';
+import { generateKeyPairSigner } from '@trezoa/signers';
+import { createTransactionMessage } from '@trezoa/transaction-messages';
+import { compileTransaction } from '@trezoa/transactions';
 
 // Generate a key pair signer.
 const mySigner = await generateKeyPairSigner();
@@ -280,7 +280,7 @@ assertIsTransactionSigner({ address: myAddress, signAndSignTransaction: async ()
 Defines a signer that uses a `CryptoKeyPair` to sign messages and transactions. It implements both the `MessagePartialSigner` and `TransactionPartialSigner` interfaces and keeps track of the `CryptoKeyPair` instance used to sign messages and transactions.
 
 ```ts
-import { generateKeyPairSigner } from '@solana/signers';
+import { generateKeyPairSigner } from '@trezoa/signers';
 
 const myKeyPairSigner = generateKeyPairSigner();
 myKeyPairSigner.address; // Address;
@@ -296,8 +296,8 @@ const [myTransactionSignatures] = await myKeyPairSigner.signTransactions([myTran
 Creates a `KeyPairSigner` from a provided Crypto KeyPair. The `signMessages` and `signTransactions` functions of the returned signer will use the private key of the provided key pair to sign messages and transactions. Note that both the `signMessages` and `signTransactions` implementations are parallelized, meaning that they will sign all provided messages and transactions in parallel.
 
 ```ts
-import { generateKeyPair } from '@solana/keys';
-import { createSignerFromKeyPair, KeyPairSigner } from '@solana/signers';
+import { generateKeyPair } from '@trezoa/keys';
+import { createSignerFromKeyPair, KeyPairSigner } from '@trezoa/signers';
 
 const myKeyPair: CryptoKeyPair = await generateKeyPair();
 const myKeyPairSigner: KeyPairSigner = await createSignerFromKeyPair(myKeyPair);
@@ -308,7 +308,7 @@ const myKeyPairSigner: KeyPairSigner = await createSignerFromKeyPair(myKeyPair);
 A convenience function that generates a new Crypto KeyPair and immediately creates a `KeyPairSigner` from it.
 
 ```ts
-import { generateKeyPairSigner } from '@solana/signers';
+import { generateKeyPairSigner } from '@trezoa/signers';
 
 const myKeyPairSigner = await generateKeyPairSigner();
 ```
@@ -319,7 +319,7 @@ A convenience function that creates a new KeyPair from a 64-bytes `Uint8Array` s
 
 ```ts
 import fs from 'fs';
-import { createKeyPairSignerFromBytes } from '@solana/signers';
+import { createKeyPairSignerFromBytes } from '@trezoa/signers';
 
 // Get bytes from local keypair file.
 const keypairFile = fs.readFileSync('~/.config/solana/id.json');
@@ -334,8 +334,8 @@ const signer = await createKeyPairSignerFromBytes(keypairBytes);
 A convenience function that creates a new KeyPair from a 32-bytes `Uint8Array` private key and immediately creates a `KeyPairSigner` from it.
 
 ```ts
-import { getUtf8Encoder } from '@solana/codecs-strings';
-import { createKeyPairSignerFromPrivateKeyBytes } from '@solana/signers';
+import { getUtf8Encoder } from '@trezoa/codecs-strings';
+import { createKeyPairSignerFromPrivateKeyBytes } from '@trezoa/signers';
 
 const message = getUtf8Encoder().encode('Hello, World!');
 const seed = new Uint8Array(await crypto.subtle.digest('SHA-256', message));
@@ -391,7 +391,7 @@ myNoopSigner satisfies TransactionPartialSigner;
 Creates a Noop (No-Operation) signer from a given address.
 
 ```ts
-import { createNoopSigner } from '@solana/signers';
+import { createNoopSigner } from '@trezoa/signers';
 
 const myNoopSigner = createNoopSigner(address('1234..5678'));
 const [myMessageSignatures] = await myNoopSigner.signMessages([myMessage]); // <- Empty signature dictionary.

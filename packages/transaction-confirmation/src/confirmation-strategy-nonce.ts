@@ -1,12 +1,12 @@
-import type { Address } from '@solana/addresses';
-import { getBase58Decoder, getBase64Encoder } from '@solana/codecs-strings';
-import { SOLANA_ERROR__INVALID_NONCE, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND, SolanaError } from '@solana/errors';
-import { AbortController } from '@solana/event-target-impl';
-import { safeRace } from '@solana/promises';
-import type { GetAccountInfoApi, Rpc } from '@solana/rpc';
-import type { AccountNotificationsApi, RpcSubscriptions } from '@solana/rpc-subscriptions';
-import type { Base64EncodedDataResponse, Commitment } from '@solana/rpc-types';
-import { Nonce } from '@solana/transaction-messages';
+import type { Address } from '@trezoa/addresses';
+import { getBase58Decoder, getBase64Encoder } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__INVALID_NONCE, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND, TrezoaError } from '@trezoa/errors';
+import { AbortController } from '@trezoa/event-target-impl';
+import { safeRace } from '@trezoa/promises';
+import type { GetAccountInfoApi, Rpc } from '@trezoa/rpc';
+import type { AccountNotificationsApi, RpcSubscriptions } from '@trezoa/rpc-subscriptions';
+import type { Base64EncodedDataResponse, Commitment } from '@trezoa/rpc-types';
+import { Nonce } from '@trezoa/transaction-messages';
 
 type GetNonceInvalidationPromiseFn = (config: {
     abortSignal: AbortSignal;
@@ -45,8 +45,8 @@ const NONCE_VALUE_OFFSET =
  *
  * @example
  * ```ts
- * import { isSolanaError, SolanaError } from '@solana/errors';
- * import { createNonceInvalidationPromiseFactory } from '@solana/transaction-confirmation';
+ * import { isTrezoaError, TrezoaError } from '@trezoa/errors';
+ * import { createNonceInvalidationPromiseFactory } from '@trezoa/transaction-confirmation';
  *
  * const getNonceInvalidationPromise = createNonceInvalidationPromiseFactory({
  *     rpc,
@@ -58,11 +58,11 @@ const NONCE_VALUE_OFFSET =
  *         nonceAccountAddress,
  *     });
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__NONCE_INVALID)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__NONCE_INVALID)) {
  *         console.error(`The nonce has advanced to ${e.context.actualNonceValue}`);
  *         // Re-sign and retry the transaction.
  *         return;
- *     } else if (isSolanaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+ *     } else if (isTrezoaError(e, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
  *         console.error(`No nonce account was found at ${nonceAccountAddress}`);
  *     }
  *     throw e;
@@ -113,7 +113,7 @@ export function createNonceInvalidationPromiseFactory<TCluster extends 'devnet' 
             for await (const accountNotification of accountNotifications) {
                 const nonceValue = getNonceFromAccountData(accountNotification.value.data);
                 if (nonceValue !== expectedNonceValue) {
-                    throw new SolanaError(SOLANA_ERROR__INVALID_NONCE, {
+                    throw new TrezoaError(TREZOA_ERROR__INVALID_NONCE, {
                         actualNonceValue: nonceValue,
                         expectedNonceValue,
                     });
@@ -133,7 +133,7 @@ export function createNonceInvalidationPromiseFactory<TCluster extends 'devnet' 
                 })
                 .send({ abortSignal: abortController.signal });
             if (!nonceAccount) {
-                throw new SolanaError(SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND, {
+                throw new TrezoaError(TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND, {
                     nonceAccountAddress,
                 });
             }
@@ -142,7 +142,7 @@ export function createNonceInvalidationPromiseFactory<TCluster extends 'devnet' 
                 // value, and furthermore asked for it in `base58` encoding.
                 nonceAccount.data[0] as unknown as Nonce;
             if (nonceValue !== expectedNonceValue) {
-                throw new SolanaError(SOLANA_ERROR__INVALID_NONCE, {
+                throw new TrezoaError(TREZOA_ERROR__INVALID_NONCE, {
                     actualNonceValue: nonceValue,
                     expectedNonceValue,
                 });

@@ -1,34 +1,34 @@
 /**
  * EXAMPLE
- * Transfer Lamports from one account to another with @solana/kit.
+ * Transfer Lamports from one account to another with @trezoa/kit.
  *
  * Before running any of the examples in this monorepo, make sure to set up a test validator by
  * running `pnpm test:setup` in the root directory.
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLogger } from '@solana/example-utils/createLogger.js';
-import pressAnyKeyPrompt from '@solana/example-utils/pressAnyKeyPrompt.js';
+import { createLogger } from '@trezoa/example-utils/createLogger.js';
+import pressAnyKeyPrompt from '@trezoa/example-utils/pressAnyKeyPrompt.js';
 import {
     address,
     appendTransactionMessageInstruction,
     assertIsSendableTransaction,
     assertIsTransactionWithBlockhashLifetime,
     createKeyPairSignerFromBytes,
-    createSolanaRpc,
-    createSolanaRpcSubscriptions,
+    createTrezoaRpc,
+    createTrezoaRpcSubscriptions,
     createTransactionMessage,
     getSignatureFromTransaction,
-    isSolanaError,
+    isTrezoaError,
     lamports,
     pipe,
     sendAndConfirmTransactionFactory,
     setTransactionMessageFeePayer,
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
-} from '@solana/kit';
-import { getSystemErrorMessage, getTransferSolInstruction, isSystemError } from '@solana-program/system';
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+} from '@trezoa/kit';
+import { getSystemErrorMessage, getTransferTrzInstruction, isSystemError } from '@trezoa-program/system';
 
 const log = createLogger('Transfer');
 
@@ -61,12 +61,12 @@ log.info({ address: DESTINATION_ACCOUNT_ADDRESS }, '[setup] Setting destination 
 
 /**
  * SETUP: RPC CONNECTION
- * When it comes time to send our transaction to the Solana network for execution, we will do so
+ * When it comes time to send our transaction to the Trezoa network for execution, we will do so
  * through a remote procedure call (RPC) server. This example uses your local test validator which
  * must be running before you run this script.
  */
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
 
 /**
  * SETUP: TRANSACTION SENDER
@@ -130,7 +130,7 @@ const transactionMessage = pipe(
         appendTransactionMessageInstruction(
             /**
              * The system program has the exclusive right to transfer Lamports from one account to
-             * another. Here we use an instruction creator from the `@solana-program/system` package
+             * another. Here we use an instruction creator from the `@trezoa-program/system` package
              * to create a transfer instruction for the system program.
              */
             (log.info(
@@ -138,7 +138,7 @@ const transactionMessage = pipe(
                 SOURCE_ACCOUNT_SIGNER.address,
                 DESTINATION_ACCOUNT_ADDRESS,
             ),
-            getTransferSolInstruction({
+            getTransferTrzInstruction({
                 amount: lamports(1_000_000n),
                 destination: DESTINATION_ACCOUNT_ADDRESS,
                 /**
@@ -168,7 +168,7 @@ log.info({ signature: getSignatureFromTransaction(signedTransaction) }, '[step 2
 
 /**
  * STEP 3: SEND AND CONFIRM THE TRANSACTION
- * Now that the transaction is signed, we send it to an RPC. The RPC will relay it to the Solana
+ * Now that the transaction is signed, we send it to an RPC. The RPC will relay it to the Trezoa
  * network for execution. The `sendAndConfirmTransaction` method will resolve when the transaction
  * is reported to have been confirmed. It will reject in the event of an error (eg. a failure to
  * simulate the transaction), or may timeout if the transaction lifetime is thought to have expired
@@ -176,7 +176,7 @@ log.info({ signature: getSignatureFromTransaction(signedTransaction) }, '[step 2
  * lifetime constraint).
  */
 log.info(
-    '[step 3] Sending transaction: https://explorer.solana.com/tx/%s?cluster=custom&customUrl=127.0.0.1:8899',
+    '[step 3] Sending transaction: https://explorer.trezoa.com/tx/%s?cluster=custom&customUrl=127.0.0.1:8899',
     getSignatureFromTransaction(signedTransaction),
 );
 log.warn(
@@ -190,7 +190,7 @@ try {
     log.info('[success] Transfer confirmed');
     await pressAnyKeyPrompt('Press any key to quit');
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
+    if (isTrezoaError(e, TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
         const preflightErrorContext = e.context;
         const preflightErrorMessage = e.message;
         const errorDetailMessage = isSystemError(e.cause, transactionMessage)

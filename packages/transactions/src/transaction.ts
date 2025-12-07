@@ -1,8 +1,8 @@
-import type { Address } from '@solana/addresses';
-import type { ReadonlyUint8Array } from '@solana/codecs-core';
-import type { SignatureBytes } from '@solana/keys';
-import type { Brand, EncodedString } from '@solana/nominal-types';
-import type { BaseTransactionMessage } from '@solana/transaction-messages';
+import type { Address } from '@trezoa/addresses';
+import type { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import type { SignatureBytes } from '@trezoa/keys';
+import type { Brand, EncodedString } from '@trezoa/nominal-types';
+import type { BaseTransactionMessage } from '@trezoa/transaction-messages';
 
 import type { SetTransactionLifetimeFromTransactionMessage } from './lifetime';
 import type { SetTransactionWithinSizeLimitFromTransactionMessage } from './transaction-size';

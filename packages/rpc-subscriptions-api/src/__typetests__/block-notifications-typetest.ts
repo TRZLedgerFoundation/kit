@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { Address } from '@solana/addresses';
-import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
+import type { Address } from '@trezoa/addresses';
+import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
 import type {
     Base58EncodedBytes,
     Base58EncodedDataResponse,
@@ -9,16 +9,16 @@ import type {
     Lamports,
     Reward,
     Slot,
-    SolanaRpcResponse,
+    TrezoaRpcResponse,
     TokenBalance,
     TransactionError,
     TransactionStatus,
-} from '@solana/rpc-types';
-import type { TransactionVersion } from '@solana/transaction-messages';
+} from '@trezoa/rpc-types';
+import type { TransactionVersion } from '@trezoa/transaction-messages';
 
 import type { BlockNotificationsApi } from '../block-notifications';
 
-type BlockNotificationsApiNotificationBase = SolanaRpcResponse<
+type BlockNotificationsApiNotificationBase = TrezoaRpcResponse<
     Readonly<{
         block: {
             blockHeight: bigint;
@@ -31,21 +31,21 @@ type BlockNotificationsApiNotificationBase = SolanaRpcResponse<
         slot: Slot;
     }>
 >;
-type BlockNotificationsApiNotificationWithRewards = SolanaRpcResponse<
+type BlockNotificationsApiNotificationWithRewards = TrezoaRpcResponse<
     Readonly<{
         block: {
             rewards: readonly Reward[];
         } | null;
     }>
 >;
-type BlockNotificationsApiNotificationWithSignatures = SolanaRpcResponse<
+type BlockNotificationsApiNotificationWithSignatures = TrezoaRpcResponse<
     Readonly<{
         block: {
             signatures: readonly Base58EncodedBytes[];
         } | null;
     }>
 >;
-type BlockNotificationsApiNotificationWithTransactions<TTransactionType> = SolanaRpcResponse<
+type BlockNotificationsApiNotificationWithTransactions<TTransactionType> = TrezoaRpcResponse<
     Readonly<{
         block: {
             transactions: readonly TTransactionType[];

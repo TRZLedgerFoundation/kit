@@ -9,7 +9,7 @@ async function getTestContext() {
         e: [1, ["'2a'", '"2b"', '2c'], 3],
         f: Symbol('hi'),
         g: { foo: 'bar' },
-        h: new URL('http://anza.xyz'),
+        h: new URL('http://trezoa.xyz'),
         i: (await crypto.subtle.generateKey('Ed25519', false /* extractable */, ['sign', 'verify'])).privateKey,
         j: Object.create(null),
         k: null,
@@ -31,7 +31,7 @@ const EXPECTED_URL_ENCODED_CONTEXT =
     "e=%5B1%2C%20%5B'2a'%2C%20%222b%22%2C%202c%5D%2C%203%5D&" +
     'f=Symbol(hi)&' +
     'g=%5Bobject%20Object%5D&' +
-    'h=http%3A%2F%2Fanza.xyz%2F&' +
+    'h=http%3A%2F%2Ftrezoa.xyz%2F&' +
     'i=%5Bobject%20CryptoKey%5D&' +
     'j=%5Bobject%20Object%5D&' +
     'k=null&' +
@@ -55,7 +55,7 @@ describe('decodeEncodedContext', () => {
             e: '[1, [\'2a\', "2b", 2c], 3]',
             f: 'Symbol(hi)',
             g: '[object Object]',
-            h: 'http://anza.xyz/',
+            h: 'http://trezoa.xyz/',
             i: '[object CryptoKey]',
             j: '[object Object]',
             k: 'null',

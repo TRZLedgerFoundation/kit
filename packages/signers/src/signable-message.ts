@@ -1,4 +1,4 @@
-import { TextEncoder } from '@solana/text-encoding-impl';
+import { TextEncoder } from '@trezoa/text-encoding-impl';
 
 import { SignatureDictionary } from './types';
 
@@ -14,7 +14,7 @@ import { SignatureDictionary } from './types';
  *
  * @example
  * ```ts
- * import { createSignableMessage } from '@solana/signers';
+ * import { createSignableMessage } from '@trezoa/signers';
  *
  * const message = createSignableMessage(new Uint8Array([1, 2, 3]));
  * message.content; // The content of the message as bytes.

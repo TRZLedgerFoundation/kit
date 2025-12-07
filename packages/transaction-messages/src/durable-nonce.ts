@@ -1,7 +1,7 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME, SolanaError } from '@solana/errors';
-import { Instruction } from '@solana/instructions';
-import { Brand } from '@solana/nominal-types';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME, TrezoaError } from '@trezoa/errors';
+import { Instruction } from '@trezoa/instructions';
+import { Brand } from '@trezoa/nominal-types';
 
 import {
     AdvanceNonceAccountInstruction,
@@ -77,8 +77,8 @@ export type ExcludeTransactionMessageDurableNonceLifetime<TTransactionMessage ex
  *
  * @example
  * ```ts
- * import { isTransactionMessageWithDurableNonceLifetime } from '@solana/transaction-messages';
- * import { fetchNonce } from "@solana-program/system";
+ * import { isTransactionMessageWithDurableNonceLifetime } from '@trezoa/transaction-messages';
+ * import { fetchNonce } from "@trezoa-program/system";
  *
  * if (isTransactionMessageWithDurableNonceLifetime(message)) {
  *     // At this point, `message` has been refined to a
@@ -111,7 +111,7 @@ export function isTransactionMessageWithDurableNonceLifetime(
  *
  * @example
  * ```ts
- * import { assertIsTransactionMessageWithDurableNonceLifetime } from '@solana/transaction-messages';
+ * import { assertIsTransactionMessageWithDurableNonceLifetime } from '@trezoa/transaction-messages';
  *
  * try {
  *     // If this type assertion function doesn't throw, then
@@ -130,7 +130,7 @@ export function assertIsTransactionMessageWithDurableNonceLifetime(
     transactionMessage: BaseTransactionMessage | (BaseTransactionMessage & TransactionMessageWithDurableNonceLifetime),
 ): asserts transactionMessage is BaseTransactionMessage & TransactionMessageWithDurableNonceLifetime {
     if (!isTransactionMessageWithDurableNonceLifetime(transactionMessage)) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME);
     }
 }
 
@@ -160,8 +160,8 @@ function isAdvanceNonceAccountInstructionForNonce<
  *
  * @example
  * ```ts
- * import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@solana/transaction-messages';
- * import { fetchNonce } from '@solana-program/system';
+ * import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@trezoa/transaction-messages';
+ * import { fetchNonce } from '@trezoa-program/system';
  *
  * const nonceAccountAddress = address('EGtMh4yvXswwHhwVhyPxGrVV2TkLTgUqGodbATEPvojZ');
  * const nonceAuthorityAddress = address('4KD1Rdrd89NG7XbzW3xsX9Aqnx2EExJvExiNme6g9iAT');

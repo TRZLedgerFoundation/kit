@@ -1,11 +1,11 @@
-import { Address, getAddressDecoder, getAddressEncoder } from '@solana/addresses';
+import { Address, getAddressDecoder, getAddressEncoder } from '@trezoa/addresses';
 import {
     combineCodec,
     FixedSizeCodec,
     FixedSizeDecoder,
     FixedSizeEncoder,
     transformEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { OffchainMessageApplicationDomain, offchainMessageApplicationDomain } from '../application-domain';
 
@@ -15,7 +15,7 @@ import { OffchainMessageApplicationDomain, offchainMessageApplicationDomain } fr
  *
  * @example
  * ```ts
- * import { getOffchainMessageApplicationDomainEncoder } from '@solana/offchain-messages';
+ * import { getOffchainMessageApplicationDomainEncoder } from '@trezoa/offchain-messages';
  *
  * const offchainMessageApplicationDomain =
  *     'HgHLLXT3BVA5m7x66tEp3YNatXLth1hJwVeCva2T9RNx' as OffchainMessageApplicationDomain;
@@ -43,7 +43,7 @@ export function getOffchainMessageApplicationDomainEncoder(): FixedSizeEncoder<O
  *
  * @example
  * ```ts
- * import { getOffchainMessageApplicationDomainDecoder } from '@solana/offchain-messages';
+ * import { getOffchainMessageApplicationDomainDecoder } from '@trezoa/offchain-messages';
  *
  * const offchainMessageApplicationDomainBytes = new Uint8Array([
  *     247, 203,  28,  80,  52, 240, 169,  19,

@@ -1,4 +1,4 @@
-import { getAddressDecoder, getAddressEncoder } from '@solana/addresses';
+import { getAddressDecoder, getAddressEncoder } from '@trezoa/addresses';
 import {
     combineCodec,
     fixDecoderSize,
@@ -8,15 +8,15 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getArrayDecoder, getArrayEncoder, getBytesDecoder, getBytesEncoder } from '@solana/codecs-data-structures';
-import { getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-core';
+import { getArrayDecoder, getArrayEncoder, getBytesDecoder, getBytesEncoder } from '@trezoa/codecs-data-structures';
+import { getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_SORTED,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_SORTED,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { OffchainMessagePreambleV1 } from '../preamble-v1';
 import {
@@ -32,15 +32,15 @@ export function getOffchainMessageV1PreambleDecoder(): VariableSizeDecoder<Offch
             getArrayDecoder(fixDecoderSize(getBytesDecoder(), 32), { size: getU8Decoder() }),
             signatoryAddressesBytes => {
                 if (signatoryAddressesBytes.length === 0) {
-                    throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
+                    throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
                 }
                 const comparator = getSignatoriesComparator();
                 for (let ii = 0; ii < signatoryAddressesBytes.length - 1; ii++) {
                     switch (comparator(signatoryAddressesBytes[ii], signatoryAddressesBytes[ii + 1])) {
                         case 0:
-                            throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE);
+                            throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE);
                         case 1:
-                            throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_SORTED);
+                            throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_SORTED);
                     }
                 }
                 const addressDecoder = getAddressDecoder();
@@ -66,12 +66,12 @@ export function getOffchainMessageV1PreambleEncoder(): VariableSizeEncoder<Offch
             ),
             (signatoryAddresses: OffchainMessagePreambleV1['requiredSignatories']) => {
                 if (signatoryAddresses.length === 0) {
-                    throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
+                    throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
                 }
                 const seenSignatories = new Set();
                 for (const { address } of signatoryAddresses) {
                     if (seenSignatories.has(address)) {
-                        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE);
+                        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE);
                     }
                     seenSignatories.add(address);
                 }

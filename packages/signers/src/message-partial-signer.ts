@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import { SignableMessage } from './signable-message';
 import { BaseSignerConfig, SignatureDictionary } from './types';
@@ -62,8 +62,8 @@ export type MessagePartialSigner<TAddress extends string = string> = Readonly<{
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isMessagePartialSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isMessagePartialSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isMessagePartialSigner({ address, signMessages: async () => {} }); // true
@@ -86,8 +86,8 @@ export function isMessagePartialSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsMessagePartialSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsMessagePartialSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsMessagePartialSigner({ address, signMessages: async () => {} }); // void
@@ -101,7 +101,7 @@ export function assertIsMessagePartialSigner<TAddress extends string>(value: {
     address: Address<TAddress>;
 }): asserts value is MessagePartialSigner<TAddress> {
     if (!isMessagePartialSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, {
             address: value.address,
         });
     }

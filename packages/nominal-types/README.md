@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/nominal-types?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/nominal-types?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/nominal-types
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/nominal-types?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/nominal-types?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/nominal-types
 
-# @solana/nominal-types
+# @trezoa/nominal-types
 
 This package contains type utilities for creating nominal types in TypeScript.
 

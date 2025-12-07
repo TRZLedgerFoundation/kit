@@ -1,4 +1,4 @@
-import { getAddressDecoder, getAddressEncoder } from '@solana/addresses';
+import { getAddressDecoder, getAddressEncoder } from '@trezoa/addresses';
 import {
     combineCodec,
     createEncoder,
@@ -10,7 +10,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getArrayDecoder,
     getArrayEncoder,
@@ -18,9 +18,9 @@ import {
     getStructDecoder,
     getStructEncoder,
     getUnionEncoder,
-} from '@solana/codecs-data-structures';
-import { getShortU16Decoder, getShortU16Encoder } from '@solana/codecs-numbers';
-import { getBase58Decoder, getBase58Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-data-structures';
+import { getShortU16Decoder, getShortU16Encoder } from '@trezoa/codecs-numbers';
+import { getBase58Decoder, getBase58Encoder } from '@trezoa/codecs-strings';
 
 import { getCompiledAddressTableLookups } from '../compile/address-table-lookups';
 import { CompiledTransactionMessage, CompiledTransactionMessageWithLifetime } from '../compile/message';
@@ -102,7 +102,7 @@ function getAddressTableLookupArrayDecoder() {
  * Returns an encoder that you can use to encode a {@link CompiledTransactionMessage} to a byte
  * array.
  *
- * The wire format of a Solana transaction consists of signatures followed by a compiled transaction
+ * The wire format of a Trezoa transaction consists of signatures followed by a compiled transaction
  * message. The byte array produced by this encoder is the message part.
  */
 export function getCompiledTransactionMessageEncoder(): VariableSizeEncoder<
@@ -130,7 +130,7 @@ export function getCompiledTransactionMessageEncoder(): VariableSizeEncoder<
  * Returns a decoder that you can use to decode a byte array representing a
  * {@link CompiledTransactionMessage}.
  *
- * The wire format of a Solana transaction consists of signatures followed by a compiled transaction
+ * The wire format of a Trezoa transaction consists of signatures followed by a compiled transaction
  * message. You can use this decoder to decode the message part.
  */
 export function getCompiledTransactionMessageDecoder(): VariableSizeDecoder<

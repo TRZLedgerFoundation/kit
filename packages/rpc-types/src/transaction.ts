@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 
 import type { Blockhash } from './blockhash';
 import type { Base58EncodedBytes, Base58EncodedDataResponse, Base64EncodedDataResponse } from './encoded-bytes';
@@ -28,7 +28,7 @@ type InstructionWithStackHeight = Readonly<{
      * will have a height of 2, an instruction called by that instruction using a CPI will have a
      * depth of 3, and so on.
      */
-    stackHeight: number; // FIXME(https://github.com/anza-xyz/agave/issues/5732) Should be `1` instead of `null` at base of stack
+    stackHeight: number; // FIXME(https://github.com/trezoa-xyz/agave/issues/5732) Should be `1` instead of `null` at base of stack
 }>;
 
 type InstructionWithData = Readonly<{

@@ -1,6 +1,6 @@
 // *Note: Any integer value inside a transaction instruction must be `BigInt`
 // until the following issue is resolved:
-// <https://github.com/solana-labs/solana-web3.js/issues/1828>
+// <https://github.com/trezoa-team/solana-web3.js/issues/1828>
 export const instructionTypeDefs = /* GraphQL */ `
     """
     Transaction instruction interface

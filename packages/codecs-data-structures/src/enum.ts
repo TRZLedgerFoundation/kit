@@ -11,7 +11,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     FixedSizeNumberCodec,
     FixedSizeNumberDecoder,
@@ -21,13 +21,13 @@ import {
     NumberCodec,
     NumberDecoder,
     NumberEncoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS,
-    SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
-    SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS,
+    TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
+    TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import {
     EnumLookupObject,
@@ -114,14 +114,14 @@ export function getEnumEncoder<TEnum extends EnumLookupObject>(
     const useValuesAsDiscriminators = config.useValuesAsDiscriminators ?? false;
     const { enumKeys, enumValues, numericalValues, stringValues } = getEnumStats(constructor);
     if (useValuesAsDiscriminators && enumValues.some(value => typeof value === 'string')) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
             stringValues: enumValues.filter((v): v is string => typeof v === 'string'),
         });
     }
     return transformEncoder(prefix, (variant: GetEnumFrom<TEnum>): number => {
         const index = getEnumIndexFromVariant({ enumKeys, enumValues, variant });
         if (index < 0) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                 formattedNumericalValues: formatNumericalValues(numericalValues),
                 numericalValues,
                 stringValues,
@@ -180,7 +180,7 @@ export function getEnumDecoder<TEnum extends EnumLookupObject>(
     const useValuesAsDiscriminators = config.useValuesAsDiscriminators ?? false;
     const { enumKeys, enumValues, numericalValues } = getEnumStats(constructor);
     if (useValuesAsDiscriminators && enumValues.some(value => typeof value === 'string')) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
             stringValues: enumValues.filter((v): v is string => typeof v === 'string'),
         });
     }
@@ -196,7 +196,7 @@ export function getEnumDecoder<TEnum extends EnumLookupObject>(
             const validDiscriminators = useValuesAsDiscriminators
                 ? numericalValues
                 : [...Array(enumKeys.length).keys()];
-            throw new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                 discriminator,
                 formattedValidDiscriminators: formatNumericalValues(validDiscriminators),
                 validDiscriminators,

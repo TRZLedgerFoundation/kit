@@ -1,5 +1,5 @@
-import { combineCodec, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
-import { getEnumDecoder, getEnumEncoder } from '@solana/codecs-data-structures';
+import { combineCodec, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
+import { getEnumDecoder, getEnumEncoder } from '@trezoa/codecs-data-structures';
 
 import { OffchainMessageContentFormat } from '../content';
 

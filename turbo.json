@@ -161,7 +161,7 @@
                 "compile:js"
             ]
         },
-        "@solana/example-react-app#compile:js": {
+        "@trezoa/example-react-app#compile:js": {
             "dependsOn": [
                 "^compile:js",
                 "^compile:typedefs"

@@ -13,8 +13,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getU32Decoder, getU32Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-core';
+import { getU32Decoder, getU32Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@trezoa/codecs-numbers';
 
 import { assertValidNumberOfItemsForCodec } from './assertions';
 import { getFixedSize, getMaxSize } from './utils';

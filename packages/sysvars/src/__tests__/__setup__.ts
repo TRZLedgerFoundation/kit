@@ -1,10 +1,10 @@
-import { createSolanaRpcApi, type SolanaRpcApi } from '@solana/rpc-api';
-import { createRpc, type Rpc } from '@solana/rpc-spec';
-import { createHttpTransport } from '@solana/rpc-transport-http';
+import { createTrezoaRpcApi, type TrezoaRpcApi } from '@trezoa/rpc-api';
+import { createRpc, type Rpc } from '@trezoa/rpc-spec';
+import { createHttpTransport } from '@trezoa/rpc-transport-http';
 
-export function createLocalhostSolanaRpc(): Rpc<SolanaRpcApi> {
+export function createLocalhostTrezoaRpc(): Rpc<TrezoaRpcApi> {
     return createRpc({
-        api: createSolanaRpcApi(),
+        api: createTrezoaRpcApi(),
         transport: createHttpTransport({ url: 'http://127.0.0.1:8899' }),
     });
 }

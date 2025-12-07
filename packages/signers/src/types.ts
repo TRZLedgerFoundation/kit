@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { SignatureBytes } from '@solana/keys';
-import { Slot } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { SignatureBytes } from '@trezoa/keys';
+import { Slot } from '@trezoa/rpc-types';
 
 export type SignatureDictionary = Readonly<Record<Address, SignatureBytes>>;
 
@@ -13,7 +13,7 @@ export type BaseSignerConfig = Readonly<{
      *
      * @example
      * ```ts
-     * import { generateKeyPairSigner } from '@solana/signers';
+     * import { generateKeyPairSigner } from '@trezoa/signers';
      *
      * const abortController = new AbortController();
      * const signer = await generateKeyPairSigner();

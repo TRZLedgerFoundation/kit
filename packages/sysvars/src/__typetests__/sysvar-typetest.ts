@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { MaybeAccount, MaybeEncodedAccount } from '@solana/accounts';
-import type { Address } from '@solana/addresses';
-import type { JsonParsedSysvarAccount } from '@solana/rpc-parsed-types';
+import type { MaybeAccount, MaybeEncodedAccount } from '@trezoa/accounts';
+import type { Address } from '@trezoa/addresses';
+import type { JsonParsedSysvarAccount } from '@trezoa/rpc-parsed-types';
 
 import { fetchSysvarClock, type SysvarClock } from '../clock';
 import { fetchSysvarEpochRewards, type SysvarEpochRewards } from '../epoch-rewards';

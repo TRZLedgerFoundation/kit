@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/programs?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/programs?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/programs
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/programs?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/programs?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/programs
 
-# @solana/programs
+# @trezoa/programs
 
-This package contains helpers for identifying custom program errors. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains helpers for identifying custom program errors. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Functions
 

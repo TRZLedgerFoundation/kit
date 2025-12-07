@@ -1,4 +1,4 @@
-import type { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import type { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import {
     getAllSingleTransactionPlans,

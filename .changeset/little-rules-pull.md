@@ -1,7 +1,7 @@
 ---
-'@solana/offchain-messages': minor
-'@solana/errors': minor
-'@solana/kit': minor
+'@trezoa/offchain-messages': minor
+'@trezoa/errors': minor
+'@trezoa/kit': minor
 ---
 
-Added the capability to sign Solana Offchain Messages using a `CryptoKey`
+Added the capability to sign Trezoa Offchain Messages using a `CryptoKey`

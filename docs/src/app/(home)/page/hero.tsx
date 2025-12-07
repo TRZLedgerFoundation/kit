@@ -7,7 +7,7 @@ export default function HeroSection() {
     return (
         <section className="relative border-b border-mauve-400 dark:border-mauve-700">
             <ThemedImage
-                alt="Home illustration for the Kit library. A cute fox jumps towards a UI element with the Solana logo on it. It is surrounded by other UI elements such as buttons, sliders, browser windows and diagrams."
+                alt="Home illustration for the Kit library. A cute fox jumps towards a UI element with the Trezoa logo on it. It is surrounded by other UI elements such as buttons, sliders, browser windows and diagrams."
                 className="w-full h-full min-h-96 md:min-h-none 2xl:max-h-[calc(100vh-calc(var(--spacing)*50))] object-cover object-[60%_50%] md:object-center"
                 placeholder="blur"
                 sizes="100vw"
@@ -21,7 +21,7 @@ export default function HeroSection() {
                     <h1 className="text-linen-900 text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl mb-4 lg:mb-6 xl:mb-8">
                         Your JavaScript
                         <br />
-                        SDK for Solana
+                        SDK for Trezoa
                     </h1>
                     <Link
                         href="/docs"

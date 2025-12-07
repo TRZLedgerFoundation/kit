@@ -1,17 +1,17 @@
-import { Address, getAddressDecoder } from '@solana/addresses';
-import { fixEncoderSize, getBase58Encoder, getUtf8Encoder } from '@solana/codecs';
-import { SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, SolanaError } from '@solana/errors';
-import { pipe } from '@solana/functional';
-import type { Instruction } from '@solana/instructions';
-import { SignatureBytes } from '@solana/keys';
+import { Address, getAddressDecoder } from '@trezoa/addresses';
+import { fixEncoderSize, getBase58Encoder, getUtf8Encoder } from '@trezoa/codecs';
+import { TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, TrezoaError } from '@trezoa/errors';
+import { pipe } from '@trezoa/functional';
+import type { Instruction } from '@trezoa/instructions';
+import { SignatureBytes } from '@trezoa/keys';
 import {
     appendTransactionMessageInstruction,
     type BaseTransactionMessage,
     createTransactionMessage,
     setTransactionMessageFeePayer,
     type TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { getTransactionMessageSize, SignaturesMap, Transaction, TRANSACTION_SIZE_LIMIT } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { getTransactionMessageSize, SignaturesMap, Transaction, TRANSACTION_SIZE_LIMIT } from '@trezoa/transactions';
 
 import { MessagePackerInstructionPlan } from '../instruction-plan';
 
@@ -94,7 +94,7 @@ export function createMessagePackerInstructionPlan(
 
                     if (freeSpace <= 0) {
                         const messageSize = getTransactionMessageSize(message);
-                        throw new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+                        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                             // (+1) We need to pack at least one byte of data otherwise
                             // there is no point packing the base instruction alone.
                             numBytesRequired: messageSizeWithBaseInstruction - messageSize + 1,

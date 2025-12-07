@@ -1,10 +1,10 @@
-import { getShortU16Codec, getU32Codec } from '@solana/codecs-numbers';
+import { getShortU16Codec, getU32Codec } from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS,
-    SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
-    SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS,
+    TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
+    TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { getEnumCodec } from '../enum';
 import { b } from './__setup__';
@@ -43,7 +43,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => getEnumCodec(Feedback).encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '0-1',
                     numericalValues: [0, 1],
                     stringValues: ['Bad', 'Good'],
@@ -54,7 +54,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('02'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 2,
                     formattedValidDiscriminators: '0-1',
                     validDiscriminators: [0, 1],
@@ -131,7 +131,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => codec.encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '0, 5-6, 9',
                     numericalValues: [0, 5, 6, 9],
                     stringValues: ['Zero', 'Five', 'Six', 'Nine'],
@@ -142,7 +142,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('04'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 4,
                     formattedValidDiscriminators: '0-3',
                     validDiscriminators: [0, 1, 2, 3],
@@ -223,7 +223,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => codec.encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '0, 5-6, 9',
                     numericalValues: [0, 5, 6, 9],
                     stringValues: ['Zero', 'Five', 'Six', 'Nine'],
@@ -234,7 +234,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('01'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 1,
                     formattedValidDiscriminators: '0, 5-6, 9',
                     validDiscriminators: [0, 5, 6, 9],
@@ -300,7 +300,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => codec.encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '42',
                     numericalValues: [42],
                     stringValues: ['A', 'B'],
@@ -311,7 +311,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('02'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 2,
                     formattedValidDiscriminators: '0-1',
                     validDiscriminators: [0, 1],
@@ -345,7 +345,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => codec.encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '42',
                     numericalValues: [42],
                     stringValues: ['A', 'B'],
@@ -356,7 +356,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('01'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 1,
                     formattedValidDiscriminators: '42',
                     validDiscriminators: [42],
@@ -410,7 +410,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => getEnumCodec(Direction).encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '',
                     numericalValues: [],
                     stringValues: ['Up', 'Down', 'Left', 'Right', '↑', '↓', '←', '→'],
@@ -421,7 +421,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('04'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 4,
                     formattedValidDiscriminators: '0-3',
                     validDiscriminators: [0, 1, 2, 3],
@@ -506,7 +506,7 @@ describe('getEnumCodec', () => {
         it('throws an error when trying to encode a missing variant', () => {
             // @ts-expect-error Invalid enum variant.
             expect(() => codec.encode('Missing')).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
+                new TrezoaError(TREZOA_ERROR__CODECS__INVALID_ENUM_VARIANT, {
                     formattedNumericalValues: '0, 5-6',
                     numericalValues: [0, 5, 6],
                     stringValues: ['Zero', 'Five', 'Six', 'Seven', 'seven'],
@@ -517,7 +517,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to decode a out-of-range discriminator', () => {
             expect(() => codec.decode(b('04'))).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     discriminator: 4,
                     formattedValidDiscriminators: '0-3',
                     validDiscriminators: [0, 1, 2, 3],
@@ -558,7 +558,7 @@ describe('getEnumCodec', () => {
 
         it('throws an error when trying to use values as discriminators', () => {
             expect(() => getEnumCodec(Hybrid, { useValuesAsDiscriminators: true })).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
+                new TrezoaError(TREZOA_ERROR__CODECS__CANNOT_USE_LEXICAL_VALUES_AS_ENUM_DISCRIMINATORS, {
                     stringValues: ['seven'],
                 }),
             );

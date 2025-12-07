@@ -5,9 +5,9 @@ import type {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../../index';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../../index';
 
 const FOREVER_PROMISE = new Promise(() => {
     /* never resolve */
@@ -34,7 +34,7 @@ describe('account loader', () => {
             getProgramAccounts: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
             getTransaction: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
         };
-        rpcGraphQL = createSolanaRpcGraphQL(
+        rpcGraphQL = createTrezoaRpcGraphQL(
             rpc as unknown as Rpc<
                 GetAccountInfoApi & GetBlockApi & GetMultipleAccountsApi & GetProgramAccountsApi & GetTransactionApi
             >,
@@ -556,7 +556,7 @@ describe('account loader', () => {
             it('breaks multiple account requests into multiple `getMultipleAccounts` requests if the batch limit is exceeded', async () => {
                 expect.assertions(3);
 
-                rpcGraphQL = createSolanaRpcGraphQL(
+                rpcGraphQL = createTrezoaRpcGraphQL(
                     rpc as unknown as Rpc<
                         GetAccountInfoApi &
                             GetBlockApi &
@@ -1265,7 +1265,7 @@ describe('account loader', () => {
                 it('splits multiple data slice requests beyond a provided byte limit into two requests', async () => {
                     expect.assertions(3);
                     const maxDataSliceByteRange = 100;
-                    rpcGraphQL = createSolanaRpcGraphQL(
+                    rpcGraphQL = createTrezoaRpcGraphQL(
                         rpc as unknown as Rpc<
                             GetAccountInfoApi &
                                 GetBlockApi &
@@ -1427,7 +1427,7 @@ describe('account loader', () => {
                 it('honors a provided byte limit across encodings', async () => {
                     expect.assertions(5);
                     const maxDataSliceByteRange = 100;
-                    rpcGraphQL = createSolanaRpcGraphQL(
+                    rpcGraphQL = createTrezoaRpcGraphQL(
                         rpc as unknown as Rpc<
                             GetAccountInfoApi &
                                 GetBlockApi &

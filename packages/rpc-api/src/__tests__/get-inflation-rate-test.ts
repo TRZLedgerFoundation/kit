@@ -1,12 +1,12 @@
-import type { Rpc } from '@solana/rpc-spec';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { GetInflationRateApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getInflationRate', () => {
     let rpc: Rpc<GetInflationRateApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     // TODO: I honestly have no clue how to test this
     describe(`when called`, () => {

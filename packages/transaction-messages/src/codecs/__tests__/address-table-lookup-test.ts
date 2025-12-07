@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 
 import type { getCompiledAddressTableLookups } from '../../compile/address-table-lookups';
 import {

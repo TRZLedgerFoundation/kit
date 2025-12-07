@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/functional?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/functional?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/functional
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/functional?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/functional?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/functional
 
-# @solana/functional
+# @trezoa/functional
 
-This package contains generalized functional helpers and functional helpers specific to Solana application components. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains generalized functional helpers and functional helpers specific to Trezoa application components. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Functions
 

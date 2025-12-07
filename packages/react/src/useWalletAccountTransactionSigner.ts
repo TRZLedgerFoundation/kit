@@ -1,9 +1,9 @@
-import { address } from '@solana/addresses';
-import { bytesEqual } from '@solana/codecs-core';
-import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/errors';
-import { getAbortablePromise } from '@solana/promises';
-import { TransactionModifyingSigner } from '@solana/signers';
-import { getCompiledTransactionMessageDecoder } from '@solana/transaction-messages';
+import { address } from '@trezoa/addresses';
+import { bytesEqual } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
+import { getAbortablePromise } from '@trezoa/promises';
+import { TransactionModifyingSigner } from '@trezoa/signers';
+import { getCompiledTransactionMessageDecoder } from '@trezoa/transaction-messages';
 import {
     assertIsTransactionWithinSizeLimit,
     getTransactionCodec,
@@ -11,11 +11,11 @@ import {
     Transaction,
     TransactionWithinSizeLimit,
     TransactionWithLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 import { UiWalletAccount } from '@wallet-standard/ui';
 import { useMemo, useRef } from 'react';
 
-import { OnlySolanaChains } from './chain';
+import { OnlyTrezoaChains } from './chain';
 import { useSignTransaction } from './useSignTransaction';
 
 /**
@@ -30,10 +30,10 @@ import { useSignTransaction } from './useSignTransaction';
  *
  * @example
  * ```tsx
- * import { useWalletAccountTransactionSigner } from '@solana/react';
+ * import { useWalletAccountTransactionSigner } from '@trezoa/react';
  *
  * function SignTransactionButton({ account, transaction }) {
- *     const transactionSigner = useWalletAccountTransactionSigner(account, 'solana:devnet');
+ *     const transactionSigner = useWalletAccountTransactionSigner(account, 'trezoa:devnet');
  *     return (
  *         <button
  *             onClick={async () => {
@@ -54,15 +54,15 @@ import { useSignTransaction } from './useSignTransaction';
  */
 export function useWalletAccountTransactionSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: OnlySolanaChains<TWalletAccount['chains']>,
+    chain: OnlyTrezoaChains<TWalletAccount['chains']>,
 ): TransactionModifyingSigner<TWalletAccount['address']>;
 export function useWalletAccountTransactionSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): TransactionModifyingSigner<TWalletAccount['address']>;
 export function useWalletAccountTransactionSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): TransactionModifyingSigner<TWalletAccount['address']> {
     const encoderRef = useRef<ReturnType<typeof getTransactionCodec> | null>(null);
     const signTransaction = useSignTransaction(uiWalletAccount, chain);
@@ -74,7 +74,7 @@ export function useWalletAccountTransactionSigner<TWalletAccount extends UiWalle
                 abortSignal?.throwIfAborted();
                 const transactionCodec = (encoderRef.current ||= getTransactionCodec());
                 if (transactions.length > 1) {
-                    throw new SolanaError(SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
+                    throw new TrezoaError(TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
                 }
                 if (transactions.length === 0) {
                     return transactions as readonly (Transaction &

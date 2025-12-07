@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 
 import { AccountLookupMeta, AccountMeta } from '../accounts';
 import {

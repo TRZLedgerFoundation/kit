@@ -1,13 +1,13 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, SolanaError } from '@solana/errors';
-import { Instruction } from '@solana/instructions';
+import { TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, TrezoaError } from '@trezoa/errors';
+import { Instruction } from '@trezoa/instructions';
 import {
     appendTransactionMessageInstructions,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { getTransactionMessageSize, TRANSACTION_SIZE_LIMIT } from '@trezoa/transactions';
 
 import {
     InstructionPlan,
@@ -83,7 +83,7 @@ describe('createTransactionPlanner', () => {
             );
 
             await expect(planner(instructionPlan)).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
+                new TrezoaError(TREZOA_ERROR__INSTRUCTION_PLANS__MESSAGE_CANNOT_ACCOMMODATE_PLAN, {
                     numBytesRequired: impossibleMessageSize - newMessageSize,
                     numFreeBytes: TRANSACTION_SIZE_LIMIT - newMessageSize,
                 }),

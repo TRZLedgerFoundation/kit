@@ -1,6 +1,6 @@
-import type { Address } from '@solana/addresses';
-import { pipe } from '@solana/functional';
-import { Instruction } from '@solana/instructions';
+import type { Address } from '@trezoa/addresses';
+import { pipe } from '@trezoa/functional';
+import { Instruction } from '@trezoa/instructions';
 
 import { TransactionMessageWithBlockhashLifetime } from '../blockhash';
 import { createTransactionMessage } from '../create-transaction-message';

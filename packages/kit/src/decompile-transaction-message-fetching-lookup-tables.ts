@@ -1,5 +1,5 @@
-import { type FetchAccountsConfig } from '@solana/accounts';
-import type { GetMultipleAccountsApi, Rpc } from '@solana/rpc';
+import { type FetchAccountsConfig } from '@trezoa/accounts';
+import type { GetMultipleAccountsApi, Rpc } from '@trezoa/rpc';
 import {
     BaseTransactionMessage,
     CompiledTransactionMessage,
@@ -7,7 +7,7 @@ import {
     decompileTransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionMessageWithLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import { fetchAddressesForLookupTables } from './fetch-lookup-tables';
 
@@ -21,7 +21,7 @@ type DecompileTransactionMessageFetchingLookupTablesConfig = FetchAccountsConfig
  * function will use the supplied RPC instance to fetch the contents of the address lookup table
  * from the network.
  *
- * @param rpc An object that supports the {@link GetMultipleAccountsApi} of the Solana RPC API
+ * @param rpc An object that supports the {@link GetMultipleAccountsApi} of the Trezoa RPC API
  * @param config
  */
 export async function decompileTransactionMessageFetchingLookupTables(

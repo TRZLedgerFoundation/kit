@@ -1,4 +1,4 @@
-import { TransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { TransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { setTransactionMessageFeePayerSigner, TransactionMessageWithFeePayerSigner } from '../fee-payer-signer';
 import { TransactionSigner } from '../transaction-signer';

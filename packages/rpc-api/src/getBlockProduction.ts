@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Commitment, Slot, SolanaRpcResponse } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Commitment, Slot, TrezoaRpcResponse } from '@trezoa/rpc-types';
 
 type NumberOfLeaderSlots = bigint;
 type NumberOfBlocksProduced = bigint;
@@ -20,7 +20,7 @@ type GetBlockProductionApiConfigBase = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -58,7 +58,7 @@ export type GetBlockProductionApi = {
      * slot range
      *
      * {@label specific-validator}
-     * @see https://solana.com/docs/rpc/http/getblockproduction
+     * @see https://trezoa.com/docs/rpc/http/getblockproduction
      */
     getBlockProduction<TIdentity extends Address>(
         config: GetBlockProductionApiConfigBase &
@@ -69,15 +69,15 @@ export type GetBlockProductionApi = {
                  */
                 identity: TIdentity;
             }>,
-    ): SolanaRpcResponse<GetBlockProductionApiResponse<BlockProductionWithSingleIdentity<TIdentity>>>;
+    ): TrezoaRpcResponse<GetBlockProductionApiResponse<BlockProductionWithSingleIdentity<TIdentity>>>;
     /**
      * Returns each validator's leader slot count and the number of blocks they produced, in the
      * given slot range
      *
      * {@label all-validators}
-     * @see https://solana.com/docs/rpc/http/getblockproduction
+     * @see https://trezoa.com/docs/rpc/http/getblockproduction
      */
     getBlockProduction(
         config?: GetBlockProductionApiConfigBase,
-    ): SolanaRpcResponse<GetBlockProductionApiResponse<BlockProductionWithAllIdentities>>;
+    ): TrezoaRpcResponse<GetBlockProductionApiResponse<BlockProductionWithAllIdentities>>;
 };

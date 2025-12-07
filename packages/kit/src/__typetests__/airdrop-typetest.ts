@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { GetSignatureStatusesApi, RequestAirdropApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@solana/rpc';
+import { GetSignatureStatusesApi, RequestAirdropApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@trezoa/rpc';
 import {
     RpcSubscriptions,
     RpcSubscriptionsDevnet,
     RpcSubscriptionsMainnet,
     RpcSubscriptionsTestnet,
     SignatureNotificationsApi,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { airdropFactory } from '../airdrop';
 

@@ -1,17 +1,17 @@
 import {
-    SOLANA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT,
-    SOLANA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED,
-    SOLANA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT,
+    TREZOA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED,
+    TREZOA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED,
+    TrezoaError,
+} from '@trezoa/errors';
 
 function assertIsSecureContext() {
     if (__BROWSER__ && !globalThis.isSecureContext) {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DISALLOWED_IN_INSECURE_CONTEXT);
     }
 }
 
@@ -43,7 +43,7 @@ async function isEd25519CurveSupported(subtle: SubtleCrypto): Promise<boolean> {
 export function assertDigestCapabilityIsAvailable() {
     assertIsSecureContext();
     if (typeof globalThis.crypto === 'undefined' || typeof globalThis.crypto.subtle?.digest !== 'function') {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__DIGEST_UNIMPLEMENTED);
     }
 }
 
@@ -54,10 +54,10 @@ export function assertDigestCapabilityIsAvailable() {
 export async function assertKeyGenerationIsAvailable() {
     assertIsSecureContext();
     if (typeof globalThis.crypto === 'undefined' || typeof globalThis.crypto.subtle?.generateKey !== 'function') {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__GENERATE_FUNCTION_UNIMPLEMENTED);
     }
     if (!(await isEd25519CurveSupported(globalThis.crypto.subtle))) {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__ED25519_ALGORITHM_UNIMPLEMENTED);
     }
 }
 
@@ -68,7 +68,7 @@ export async function assertKeyGenerationIsAvailable() {
 export function assertKeyExporterIsAvailable() {
     assertIsSecureContext();
     if (typeof globalThis.crypto === 'undefined' || typeof globalThis.crypto.subtle?.exportKey !== 'function') {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__EXPORT_FUNCTION_UNIMPLEMENTED);
     }
 }
 
@@ -79,7 +79,7 @@ export function assertKeyExporterIsAvailable() {
 export function assertSigningCapabilityIsAvailable() {
     assertIsSecureContext();
     if (typeof globalThis.crypto === 'undefined' || typeof globalThis.crypto.subtle?.sign !== 'function') {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__SIGN_FUNCTION_UNIMPLEMENTED);
     }
 }
 /**
@@ -89,6 +89,6 @@ export function assertSigningCapabilityIsAvailable() {
 export function assertVerificationCapabilityIsAvailable() {
     assertIsSecureContext();
     if (typeof globalThis.crypto === 'undefined' || typeof globalThis.crypto.subtle?.verify !== 'function') {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED);
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__VERIFY_FUNCTION_UNIMPLEMENTED);
     }
 }

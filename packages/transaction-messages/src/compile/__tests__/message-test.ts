@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { TransactionMessageWithBlockhashLifetime } from '../../blockhash';
 import { TransactionMessageWithFeePayer } from '../../fee-payer';

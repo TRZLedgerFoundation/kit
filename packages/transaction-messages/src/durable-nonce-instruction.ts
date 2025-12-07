@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
     AccountRole,
     Instruction,
@@ -10,8 +10,8 @@ import {
     ReadonlySignerAccount,
     WritableAccount,
     WritableSignerAccount,
-} from '@solana/instructions';
-import { Brand } from '@solana/nominal-types';
+} from '@trezoa/instructions';
+import { Brand } from '@trezoa/nominal-types';
 
 export type AdvanceNonceAccountInstruction<
     TNonceAccountAddress extends string = string,
@@ -43,7 +43,7 @@ const SYSTEM_PROGRAM_ADDRESS = '11111111111111111111111111111111' as Address<'11
  *    to {@link NonceLifetimeConstraint.nonce} at the time the transaction is landed.
  * 3. The first instruction in that transaction message must be the one returned by this function.
  *
- * You could also use the `getAdvanceNonceAccountInstruction` method of `@solana-program/system`.
+ * You could also use the `getAdvanceNonceAccountInstruction` method of `@trezoa-program/system`.
  */
 export function createAdvanceNonceAccountInstruction<
     TNonceAccountAddress extends string = string,
@@ -72,7 +72,7 @@ export function createAdvanceNonceAccountInstruction<
  *
  * @example
  * ```ts
- * import { isAdvanceNonceAccountInstruction } from '@solana/transaction-messages';
+ * import { isAdvanceNonceAccountInstruction } from '@trezoa/transaction-messages';
  *
  * if (isAdvanceNonceAccountInstruction(message.instructions[0])) {
  *     // At this point, the first instruction in the message has been refined to a

@@ -1,15 +1,15 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address, getAddressFromPublicKey, getPublicKeyFromAddress } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address, getAddressFromPublicKey, getPublicKeyFromAddress } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__CODECS__INVALID_CONSTANT,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes, signBytes, verifySignature } from '@solana/keys';
+    TREZOA_ERROR__CODECS__INVALID_CONSTANT,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes, signBytes, verifySignature } from '@trezoa/keys';
 
 import { OffchainMessageEnvelope } from '../envelope';
 import { OffchainMessageBytes } from '../message';
@@ -21,13 +21,13 @@ import {
     verifyOffchainMessageEnvelope,
 } from '../signatures';
 
-jest.mock('@solana/addresses', () => ({
-    ...jest.requireActual('@solana/addresses'),
+jest.mock('@trezoa/addresses', () => ({
+    ...jest.requireActual('@trezoa/addresses'),
     __esModule: true,
     getAddressFromPublicKey: jest.fn(),
     getPublicKeyFromAddress: jest.fn(),
 }));
-jest.mock('@solana/keys');
+jest.mock('@trezoa/keys');
 
 // The string `'\xffsolana offchain'`
 const OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES: ReadonlyUint8Array = new Uint8Array([
@@ -140,7 +140,7 @@ describe('partiallySignOffchainMessageEnvelope', () => {
             },
         };
         await expect(partiallySignOffchainMessageEnvelope([mockKeyPairD], offchainMessageEnvelope)).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_CONSTANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_CONSTANT, {
                 constant: OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES,
                 data: offchainMessageEnvelope.content,
                 hexConstant: 'ff736f6c616e61206f6666636861696e',
@@ -372,7 +372,7 @@ describe('partiallySignOffchainMessageEnvelope', () => {
             },
         };
         await expect(partiallySignOffchainMessageEnvelope([mockKeyPairD], offchainMessageEnvelope)).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
                 expectedAddresses: [mockPublicKeyAddressA],
                 unexpectedAddresses: [mockPublicKeyAddressD],
             }),
@@ -389,7 +389,7 @@ describe('partiallySignOffchainMessageEnvelope', () => {
         await expect(
             partiallySignOffchainMessageEnvelope([mockKeyPairD, mockKeyPairE], offchainMessageEnvelope),
         ).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__ADDRESSES_CANNOT_SIGN_OFFCHAIN_MESSAGE, {
                 expectedAddresses: [mockPublicKeyAddressA],
                 unexpectedAddresses: [mockPublicKeyAddressD, mockPublicKeyAddressE],
             }),
@@ -459,7 +459,7 @@ describe('signOffchainMessageEnvelope', () => {
             offchainMessageEnvelope,
         );
         await expect(signedOffchainMessageEnvelopePromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
                 addresses: [mockPublicKeyAddressB],
             }),
         );
@@ -587,7 +587,7 @@ describe('assertIsFullySignedOffchainMessageEnvelope', () => {
         };
 
         expect(() => assertIsFullySignedOffchainMessageEnvelope(offchainMessageEnvelope)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
                 addresses: [mockPublicKeyAddressA, mockPublicKeyAddressB],
             }),
         );
@@ -733,7 +733,7 @@ describe('verifyOffchainMessageEnvelope', () => {
                 },
             });
             await expect(valid).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE, {
+                new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURE_VERIFICATION_FAILURE, {
                     signatoriesWithInvalidSignatures: [mockPublicKeyAddressA],
                     signatoriesWithMissingSignatures: [mockPublicKeyAddressB, mockPublicKeyAddressC],
                 }),

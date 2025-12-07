@@ -1,13 +1,13 @@
 /**
  * EXAMPLE
- * Create and use signers with @solana/kit.
+ * Create and use signers with @trezoa/kit.
  *
  * Before running any of the examples in this monorepo, make sure to set up a test validator by
  * running `pnpm test:setup` in the root directory.
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLogger } from '@solana/example-utils/createLogger.js';
+import { createLogger } from '@trezoa/example-utils/createLogger.js';
 import {
     address,
     appendTransactionMessageInstruction,
@@ -31,8 +31,8 @@ import {
     TransactionMessageWithLifetime,
     TransactionPartialSigner,
     TransactionSigner,
-} from '@solana/kit';
-import { getTransferSolInstruction } from '@solana-program/system';
+} from '@trezoa/kit';
+import { getTransferTrzInstruction } from '@trezoa-program/system';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
@@ -43,14 +43,14 @@ const log = createLogger('Signers');
  * This helper function creates a new transaction message for us such that:
  * - Its lifetime is set to the latest blockhash.
  * - Its fee payer is set to the given signer.
- * - It contains a single instruction to transfer 1 SOL to some other address.
+ * - It contains a single instruction to transfer 1 TRZ to some other address.
  *
  * You can read more about this transaction and how to send it
  * in the `examples/transfer-lamports` example.
  */
 function getTransferSolTransactionMessage(signer: TransactionSigner) {
-    // Create the transfer SOL instruction by passing the signer as the source.
-    const instruction = getTransferSolInstruction({
+    // Create the transfer TRZ instruction by passing the signer as the source.
+    const instruction = getTransferTrzInstruction({
         amount: 1n,
         destination: address('ED1WqT2hWJLSZtj4TtTdoovmpMrr7zpkUdbfxmcJR1Fq'),
         source: signer, // <- We pass the signer here, not just the address.
@@ -98,7 +98,7 @@ async function signTransaction(
     const signature = signatureDictionary[signer.address];
     log.info(
         { signature: signature ? getBase58Decoder().decode(signature) : null },
-        '>>  Signing a transfer SOL transaction',
+        '>>  Signing a transfer TRZ transaction',
     );
 }
 
@@ -106,7 +106,7 @@ async function signTransaction(
  * SETUP: SIGN A TRANSACTION USING REGISTERED SIGNERS
  * This helper function signs a transaction message by retrieving
  * the signers registered within the transaction message.
- * For instance, in our transfer SOL transaction message, we can
+ * For instance, in our transfer TRZ transaction message, we can
  * extract the fee payer and the transfer source as signers.
  */
 async function signTransactionWithSigners(
@@ -116,7 +116,7 @@ async function signTransactionWithSigners(
     const signature = signedTransaction.signatures[transactionMessage.feePayer.address];
     log.info(
         { signature: signature ? getBase58Decoder().decode(signature) : null },
-        '>>  Signing a transfer SOL transaction using its registered signers',
+        '>>  Signing a transfer TRZ transaction using its registered signers',
     );
 }
 

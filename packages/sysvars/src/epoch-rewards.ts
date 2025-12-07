@@ -1,4 +1,4 @@
-import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@solana/accounts';
+import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@trezoa/accounts';
 import {
     combineCodec,
     type FixedSizeCodec,
@@ -12,9 +12,9 @@ import {
     getU64Encoder,
     getU128Decoder,
     getU128Encoder,
-} from '@solana/codecs';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+} from '@trezoa/codecs';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 import {
     Blockhash,
     getBlockhashDecoder,
@@ -22,7 +22,7 @@ import {
     getDefaultLamportsDecoder,
     getDefaultLamportsEncoder,
     Lamports,
-} from '@solana/rpc-types';
+} from '@trezoa/rpc-types';
 
 import { fetchEncodedSysvarAccount, SYSVAR_EPOCH_REWARDS_ADDRESS } from './sysvar';
 

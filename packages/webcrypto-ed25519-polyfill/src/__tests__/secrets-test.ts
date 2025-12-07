@@ -1,5 +1,5 @@
-import '@solana/test-matchers/toBeFrozenObject';
-import '@solana/test-matchers/toEqualArrayBuffer';
+import '@trezoa/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toEqualArrayBuffer';
 
 import {
     exportKeyPolyfill,

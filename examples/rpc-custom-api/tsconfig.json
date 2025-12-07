@@ -6,7 +6,7 @@
         "noEmit": true,
         "target": "ESNext"
     },
-    "display": "@solana/example-rpc-custom-api",
+    "display": "@trezoa/example-rpc-custom-api",
     "extends": "../../packages/tsconfig/base.json",
     "include": ["src"]
 }

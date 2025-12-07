@@ -1,13 +1,13 @@
 import { open } from 'node:fs/promises';
 
-import type { Address } from '@solana/addresses';
-import { getBase58Decoder } from '@solana/codecs-strings';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { getBase58Decoder } from '@trezoa/codecs-strings';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 import path from 'path';
 
 import { GetLargestAccountsApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -39,7 +39,7 @@ async function getNodeAddress(path: string) {
 describe('getLargestAccounts', () => {
     let rpc: Rpc<GetLargestAccountsApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {

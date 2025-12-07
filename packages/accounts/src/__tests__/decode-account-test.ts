@@ -1,12 +1,12 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
-    SOLANA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
+    TREZOA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { Account, EncodedAccount } from '../account';
 import { assertAccountDecoded, assertAccountsDecoded, decodeAccount } from '../decode-account';
@@ -96,7 +96,7 @@ describe('assertDecodedAccount', () => {
 
         // Then we expect an error to be thrown
         expect(fn).toThrow(
-            new SolanaError(SOLANA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT, {
+            new TrezoaError(TREZOA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT, {
                 address: account.address,
             }),
         );
@@ -156,7 +156,7 @@ describe('assertDecodedAccounts', () => {
 
         // Then we expect an error to be thrown
         expect(fn).toThrow(
-            new SolanaError(SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
+            new TrezoaError(TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
                 addresses: [accounts[0].address, accounts[1].address],
             }),
         );

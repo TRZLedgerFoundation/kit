@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { PublicKey } from '@solana/web3.js';
+import { Address } from '@trezoa/addresses';
+import { PublicKey } from '@trezoa/web3.js';
 
 import { fromLegacyPublicKey } from '../address';
 

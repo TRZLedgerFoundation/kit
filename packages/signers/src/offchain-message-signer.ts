@@ -1,4 +1,4 @@
-import { OffchainMessageWithRequiredSignatories } from '@solana/offchain-messages';
+import { OffchainMessageWithRequiredSignatories } from '@trezoa/offchain-messages';
 
 import { deduplicateSigners } from './deduplicate-signers';
 import { isMessageSigner, MessageSigner } from './message-signer';
@@ -20,7 +20,7 @@ export type OffchainMessageSignatorySigner<TAddress extends string = string> = M
  *
  * @example
  * ```ts
- * import { OffchainMessageWithSigners, getSignersFromOffchainMessage } from '@solana/signers';
+ * import { OffchainMessageWithSigners, getSignersFromOffchainMessage } from '@trezoa/signers';
  *
  * const signerA = { address: address('1111..1111'), signMessages: async () => {} };
  * const signerB = { address: address('2222..2222'), modifyAndSignMessages: async () => {} };

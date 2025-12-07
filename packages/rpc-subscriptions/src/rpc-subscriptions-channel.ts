@@ -1,6 +1,6 @@
-import { createWebSocketChannel } from '@solana/rpc-subscriptions-channel-websocket';
-import type { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
-import type { ClusterUrl } from '@solana/rpc-types';
+import { createWebSocketChannel } from '@trezoa/rpc-subscriptions-channel-websocket';
+import type { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
+import type { ClusterUrl } from '@trezoa/rpc-types';
 
 import { getRpcSubscriptionsChannelWithAutoping } from './rpc-subscriptions-autopinger';
 import { getChannelPoolingChannelCreator } from './rpc-subscriptions-channel-pool';
@@ -37,13 +37,13 @@ export type DefaultRpcSubscriptionsChannelConfig<TClusterUrl extends ClusterUrl>
 }>;
 
 /**
- * Similar to {@link createDefaultRpcSubscriptionsChannelCreator} with some Solana-specific
+ * Similar to {@link createDefaultRpcSubscriptionsChannelCreator} with some Trezoa-specific
  * defaults.
  *
- * For instance, it safely handles `BigInt` values in JSON messages since Solana RPC servers accept
+ * For instance, it safely handles `BigInt` values in JSON messages since Trezoa RPC servers accept
  * and return integers larger than [`Number.MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER).
  */
-export function createDefaultSolanaRpcSubscriptionsChannelCreator<TClusterUrl extends ClusterUrl>(
+export function createDefaultTrezoaRpcSubscriptionsChannelCreator<TClusterUrl extends ClusterUrl>(
     config: DefaultRpcSubscriptionsChannelConfig<TClusterUrl>,
 ): RpcSubscriptionsChannelCreatorFromClusterUrl<TClusterUrl, unknown, unknown> {
     return createDefaultRpcSubscriptionsChannelCreatorImpl({
@@ -106,7 +106,7 @@ function createDefaultRpcSubscriptionsChannelCreatorImpl<TClusterUrl extends Clu
              * choose a number low enough to avoid hitting that limit. Without knowing what provider
              * a given person is using, or what their limit is, we have to choose the lowest of all
              * known limits. As of this writing (October 2024) that is the public mainnet RPC node
-             * (api.mainnet-beta.solana.com) at 100 subscriptions.
+             * (api.mainnet-beta.trezoa.com) at 100 subscriptions.
              */
             100,
         minChannels: config.minChannels ?? 1,

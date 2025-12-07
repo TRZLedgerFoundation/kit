@@ -1,12 +1,12 @@
-import type { GetEpochInfoApi, GetSignatureStatusesApi, Rpc, SendTransactionApi } from '@solana/rpc';
-import type { RpcSubscriptions, SignatureNotificationsApi, SlotNotificationsApi } from '@solana/rpc-subscriptions';
+import type { GetEpochInfoApi, GetSignatureStatusesApi, Rpc, SendTransactionApi } from '@trezoa/rpc';
+import type { RpcSubscriptions, SignatureNotificationsApi, SlotNotificationsApi } from '@trezoa/rpc-subscriptions';
 import {
     createBlockHeightExceedencePromiseFactory,
     createRecentSignatureConfirmationPromiseFactory,
     TransactionWithLastValidBlockHeight,
     waitForRecentTransactionConfirmation,
-} from '@solana/transaction-confirmation';
-import { SendableTransaction, Transaction } from '@solana/transactions';
+} from '@trezoa/transaction-confirmation';
+import { SendableTransaction, Transaction } from '@trezoa/transactions';
 
 import { sendAndConfirmTransactionWithBlockhashLifetime_INTERNAL_ONLY_DO_NOT_EXPORT } from './send-transaction-internal';
 
@@ -19,9 +19,9 @@ type SendAndConfirmTransactionWithBlockhashLifetimeFunction = (
 ) => Promise<void>;
 
 type SendAndConfirmTransactionWithBlockhashLifetimeFactoryConfig<TCluster> = {
-    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link SendTransactionApi} of the Solana RPC API */
+    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link SendTransactionApi} of the Trezoa RPC API */
     rpc: Rpc<GetEpochInfoApi & GetSignatureStatusesApi & SendTransactionApi> & { '~cluster'?: TCluster };
-    /** An object that supports the {@link SignatureNotificationsApi} and the {@link SlotNotificationsApi} of the Solana RPC Subscriptions API */
+    /** An object that supports the {@link SignatureNotificationsApi} and the {@link SlotNotificationsApi} of the Trezoa RPC Subscriptions API */
     rpcSubscriptions: RpcSubscriptions<SignatureNotificationsApi & SlotNotificationsApi> & { '~cluster'?: TCluster };
 };
 
@@ -33,14 +33,14 @@ type SendAndConfirmTransactionWithBlockhashLifetimeFactoryConfig<TCluster> = {
  *
  * @example
  * ```ts
- * import { isSolanaError, sendAndConfirmTransactionFactory, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED } from '@solana/kit';
+ * import { isTrezoaError, sendAndConfirmTransactionFactory, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED } from '@trezoa/kit';
  *
  * const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
  *
  * try {
  *     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
  * } catch (e) {
- *     if (isSolanaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
  *         console.error('This transaction depends on a blockhash that has expired');
  *     } else {
  *         throw e;

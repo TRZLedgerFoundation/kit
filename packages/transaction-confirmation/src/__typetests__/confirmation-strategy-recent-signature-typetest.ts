@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { GetSignatureStatusesApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@solana/rpc';
+import { GetSignatureStatusesApi, Rpc, RpcDevnet, RpcMainnet, RpcTestnet } from '@trezoa/rpc';
 import {
     RpcSubscriptions,
     RpcSubscriptionsDevnet,
     RpcSubscriptionsMainnet,
     RpcSubscriptionsTestnet,
     SignatureNotificationsApi,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { createRecentSignatureConfirmationPromiseFactory } from '../confirmation-strategy-recent-signature';
 

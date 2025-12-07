@@ -1,5 +1,5 @@
-import { Instruction } from '@solana/instructions';
-import { TransactionInstruction } from '@solana/web3.js';
+import { Instruction } from '@trezoa/instructions';
+import { TransactionInstruction } from '@trezoa/web3.js';
 
 import { fromLegacyTransactionInstruction } from '../instruction';
 

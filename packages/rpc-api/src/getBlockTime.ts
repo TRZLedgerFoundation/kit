@@ -1,4 +1,4 @@
-import type { Slot, UnixTimestamp } from '@solana/rpc-types';
+import type { Slot, UnixTimestamp } from '@trezoa/rpc-types';
 
 type GetBlockTimeApiResponse = UnixTimestamp;
 
@@ -12,7 +12,7 @@ export type GetBlockTimeApi = {
      * ledger.
      *
      * @returns Estimated production time, as Unix timestamp (seconds since the Unix epoch)
-     * @see https://solana.com/docs/rpc/http/getblocktime
+     * @see https://trezoa.com/docs/rpc/http/getblocktime
      */
     getBlockTime(
         /** Block number, identified by slot */

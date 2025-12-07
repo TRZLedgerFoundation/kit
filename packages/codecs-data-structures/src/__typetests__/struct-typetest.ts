@@ -5,9 +5,9 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getU32Codec, getU32Decoder, getU32Encoder } from '@solana/codecs-numbers';
-import { getUtf8Codec, getUtf8Decoder, getUtf8Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-core';
+import { getU32Codec, getU32Decoder, getU32Encoder } from '@trezoa/codecs-numbers';
+import { getUtf8Codec, getUtf8Decoder, getUtf8Encoder } from '@trezoa/codecs-strings';
 
 import { getStructCodec, getStructDecoder, getStructEncoder } from '../struct';
 

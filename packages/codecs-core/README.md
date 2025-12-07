@@ -5,19 +5,19 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/codecs-core?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/codecs-core?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/codecs-core
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/codecs-core?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/codecs-core?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/codecs-core
 
-# @solana/codecs-core
+# @trezoa/codecs-core
 
-This package contains the core types and functions for encoding and decoding data structures on Solana. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains the core types and functions for encoding and decoding data structures on Trezoa. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
-This package is also part of the [`@solana/codecs` package](https://github.com/anza-xyz/kit/tree/main/packages/codecs) which acts as an entry point for all codec packages as well as for their documentation.
+This package is also part of the [`@trezoa/codecs` package](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs) which acts as an entry point for all codec packages as well as for their documentation.
 
 ## Composing codecs
 
-The easiest way to create your own codecs is to compose the [various codecs](https://github.com/anza-xyz/kit/tree/main/packages/codecs) offered by this library. For instance, here’s how you would define a codec for a `Person` object that contains a `name` string attribute and an `age` number stored in 4 bytes.
+The easiest way to create your own codecs is to compose the [various codecs](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs) offered by this library. For instance, here’s how you would define a codec for a `Person` object that contains a `name` string attribute and an `age` number stored in 4 bytes.
 
 ```ts
 type Person = { name: string; age: number };
@@ -38,14 +38,14 @@ const person = personCodec.decode(bytes);
 
 There is a significant library of composable codecs at your disposal, enabling you to compose complex types. You may be interested in the documentation of these other packages to learn more about them:
 
-- [`@solana/codecs-numbers`](https://github.com/anza-xyz/kit/tree/main/packages/codecs-numbers) for number codecs.
-- [`@solana/codecs-strings`](https://github.com/anza-xyz/kit/tree/main/packages/codecs-strings) for string codecs.
-- [`@solana/codecs-data-structures`](https://github.com/anza-xyz/kit/tree/main/packages/codecs-data-structures) for many data structure codecs such as objects, arrays, tuples, sets, maps, enums, discriminated unions, booleans, etc.
-- [`@solana/options`](https://github.com/anza-xyz/kit/tree/main/packages/options) for a Rust-like `Option` type and associated codec.
+- [`@trezoa/codecs-numbers`](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs-numbers) for number codecs.
+- [`@trezoa/codecs-strings`](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs-strings) for string codecs.
+- [`@trezoa/codecs-data-structures`](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs-data-structures) for many data structure codecs such as objects, arrays, tuples, sets, maps, enums, discriminated unions, booleans, etc.
+- [`@trezoa/options`](https://github.com/trezoa-xyz/kit/tree/main/packages/options) for a Rust-like `Option` type and associated codec.
 
-You may also be interested in some of the helpers of this `@solana/codecs-core` library such as `transformCodec`, `fixCodecSize` or `reverseCodec` that create new codecs from existing ones.
+You may also be interested in some of the helpers of this `@trezoa/codecs-core` library such as `transformCodec`, `fixCodecSize` or `reverseCodec` that create new codecs from existing ones.
 
-Note that all of these libraries are included in the [`@solana/codecs` package](https://github.com/anza-xyz/kit/tree/main/packages/codecs) as well as the main `@solana/kit` package for your convenience.
+Note that all of these libraries are included in the [`@trezoa/codecs` package](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs) as well as the main `@trezoa/kit` package for your convenience.
 
 ## Composing encoders and decoders
 
@@ -553,12 +553,12 @@ u32InTheMiddleCodec.encode(0xffffffff);
 // 0x0000ffffffff0000
 ```
 
-Also note that any negative offset or offset that exceeds the size of the byte array will throw a `SolanaError` of code `SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE`.
+Also note that any negative offset or offset that exceeds the size of the byte array will throw a `TrezoaError` of code `SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE`.
 
 ```ts
 const u32InTheEndCodec = offsetCodec(biggerU32Codec, { preOffset: () => -4 });
 u32InTheEndCodec.encode(0xffffffff);
-// throws new SolanaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE)
+// throws new TrezoaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE)
 ```
 
 To avoid this, you may use the `wrapBytes` function to wrap the offset around the byte array length. For instance, here's how we can use the `wrapBytes` function to move the pre-offset 4 bytes from the end of the byte array.
@@ -659,4 +659,4 @@ containsBytes(new Uint8Array([1, 2, 3, 4]), new Uint8Array([2, 3]), 2); // false
 
 ---
 
-To read more about the available codecs and how to use them, check out the documentation of the main [`@solana/codecs` package](https://github.com/anza-xyz/kit/tree/main/packages/codecs).
+To read more about the available codecs and how to use them, check out the documentation of the main [`@trezoa/codecs` package](https://github.com/trezoa-xyz/kit/tree/main/packages/codecs).

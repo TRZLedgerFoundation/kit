@@ -1,11 +1,11 @@
-import type { Signature } from '@solana/keys';
-import type { GetSignatureStatusesApi, RequestAirdropApi, Rpc } from '@solana/rpc';
-import type { RpcSubscriptions, SignatureNotificationsApi } from '@solana/rpc-subscriptions';
+import type { Signature } from '@trezoa/keys';
+import type { GetSignatureStatusesApi, RequestAirdropApi, Rpc } from '@trezoa/rpc';
+import type { RpcSubscriptions, SignatureNotificationsApi } from '@trezoa/rpc-subscriptions';
 import {
     createRecentSignatureConfirmationPromiseFactory,
     getTimeoutPromise,
     waitForRecentTransactionConfirmationUntilTimeout,
-} from '@solana/transaction-confirmation';
+} from '@trezoa/transaction-confirmation';
 
 import { requestAndConfirmAirdrop_INTERNAL_ONLY_DO_NOT_EXPORT } from './airdrop-internal';
 
@@ -17,14 +17,14 @@ type AirdropFunction = (
 ) => Promise<Signature>;
 
 type AirdropFactoryConfig<TCluster> = {
-    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link RequestAirdropApi} of the Solana RPC API */
+    /** An object that supports the {@link GetSignatureStatusesApi} and the {@link RequestAirdropApi} of the Trezoa RPC API */
     rpc: Rpc<GetSignatureStatusesApi & RequestAirdropApi> & { '~cluster'?: TCluster };
-    /** An object that supports the {@link SignatureNotificationsApi} of the Solana RPC Subscriptions API */
+    /** An object that supports the {@link SignatureNotificationsApi} of the Trezoa RPC Subscriptions API */
     rpcSubscriptions: RpcSubscriptions<SignatureNotificationsApi> & { '~cluster'?: TCluster };
 };
 
 /**
- * Returns a function that you can call to airdrop a certain amount of {@link Lamports} to a Solana
+ * Returns a function that you can call to airdrop a certain amount of {@link Lamports} to a Trezoa
  * address.
  *
  * > [!NOTE] This only works on test clusters.
@@ -33,10 +33,10 @@ type AirdropFactoryConfig<TCluster> = {
  *
  * @example
  * ```ts
- * import { address, airdropFactory, createSolanaRpc, createSolanaRpcSubscriptions, devnet, lamports } from '@solana/kit';
+ * import { address, airdropFactory, createTrezoaRpc, createTrezoaRpcSubscriptions, devnet, lamports } from '@trezoa/kit';
  *
- * const rpc = createSolanaRpc(devnet('http://127.0.0.1:8899'));
- * const rpcSubscriptions = createSolanaRpcSubscriptions(devnet('ws://127.0.0.1:8900'));
+ * const rpc = createTrezoaRpc(devnet('http://127.0.0.1:8899'));
+ * const rpcSubscriptions = createTrezoaRpcSubscriptions(devnet('ws://127.0.0.1:8900'));
  *
  * const airdrop = airdropFactory({ rpc, rpcSubscriptions });
  *

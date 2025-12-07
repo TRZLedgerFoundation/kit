@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 import { UiWalletAccount } from '@wallet-standard/ui';
 
 import { useSignTransaction } from '../useSignTransaction';
 
 const mockWalletAccount = {
     address: address('123'),
-    chains: ['solana:danknet', 'bitcoin:mainnet'] as const,
+    chains: ['trezoa:danknet', 'bitcoin:mainnet'] as const,
     features: [],
     publicKey: new Uint8Array([1, 2, 3]),
     '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
@@ -16,16 +16,16 @@ const mockWalletAccount = {
 // [DESCRIBE] useSignTransaction.
 {
     // It accepts any chain in the solana namespace
-    useSignTransaction(mockWalletAccount, 'solana:danknet');
-    useSignTransaction(mockWalletAccount, 'solana:basednet');
+    useSignTransaction(mockWalletAccount, 'trezoa:danknet');
+    useSignTransaction(mockWalletAccount, 'trezoa:basednet');
 
     // It accepts one of the chains actually supported by the wallet account
-    useSignTransaction(mockWalletAccount, 'solana:danknet');
+    useSignTransaction(mockWalletAccount, 'trezoa:danknet');
 
-    // It rejects a chain in a non-Solana namespace
+    // It rejects a chain in a non-Trezoa namespace
     useSignTransaction(
         mockWalletAccount,
-        // @ts-expect-error Non-Solana chain
+        // @ts-expect-error Non-Trezoa chain
         'bitcoin:mainnet',
     );
 }

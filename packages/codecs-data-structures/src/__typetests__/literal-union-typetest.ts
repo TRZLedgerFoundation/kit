@@ -5,8 +5,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getU32Codec, getU32Decoder, getU32Encoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-core';
+import { getU32Codec, getU32Decoder, getU32Encoder } from '@trezoa/codecs-numbers';
 
 import { getLiteralUnionCodec, getLiteralUnionDecoder, getLiteralUnionEncoder } from '../literal-union';
 

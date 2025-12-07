@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/webcrypto-ed25519-polyfill?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/webcrypto-ed25519-polyfill?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/webcrypto-ed25519-polyfill
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/webcrypto-ed25519-polyfill?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/webcrypto-ed25519-polyfill?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/webcrypto-ed25519-polyfill
 
-# @solana/webcrypto-ed25519-polyfill
+# @trezoa/webcrypto-ed25519-polyfill
 
 This package contains a polyfill that enables Ed25519 key manipulation in environments where it is not yet implemented. It does so by proxying calls to `SubtleCrypto` instance methods to an Ed25519 implementation in userspace.
 
@@ -26,7 +26,7 @@ Environments that support Ed25519 (see https://github.com/WICG/webcrypto-secure-
 For all others, simply import this polyfill before use.
 
 ```ts
-import { install } from '@solana/webcrypto-ed25519-polyfill';
+import { install } from '@trezoa/webcrypto-ed25519-polyfill';
 
 // Calling this will shim methods on `SubtleCrypto`, adding Ed25519 support.
 install();

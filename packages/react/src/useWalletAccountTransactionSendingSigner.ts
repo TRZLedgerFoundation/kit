@@ -1,13 +1,13 @@
-import { address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { getAbortablePromise } from '@solana/promises';
-import { TransactionSendingSigner } from '@solana/signers';
-import { getTransactionEncoder } from '@solana/transactions';
+import { address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { getAbortablePromise } from '@trezoa/promises';
+import { TransactionSendingSigner } from '@trezoa/signers';
+import { getTransactionEncoder } from '@trezoa/transactions';
 import { UiWalletAccount } from '@wallet-standard/ui';
 import { useMemo, useRef } from 'react';
 
-import { OnlySolanaChains } from './chain';
+import { OnlyTrezoaChains } from './chain';
 import { useSignAndSendTransaction } from './useSignAndSendTransaction';
 
 /**
@@ -19,24 +19,24 @@ import { useSignAndSendTransaction } from './useSignAndSendTransaction';
  *
  * @example
  * ```tsx
- * import { useWalletAccountTransactionSendingSigner } from '@solana/react';
+ * import { useWalletAccountTransactionSendingSigner } from '@trezoa/react';
  * import {
  *     appendTransactionMessageInstruction,
- *     createSolanaRpc,
+ *     createTrezoaRpc,
  *     getBase58Decoder,
  *     pipe,
  *     setTransactionMessageFeePayerSigner,
  *     setTransactionMessageLifetimeUsingBlockhash,
  *     signAndSendTransactionMessageWithSigners,
- * } from '@solana/kit';
+ * } from '@trezoa/kit';
  *
  * function RecordMemoButton({ account, rpc, text }) {
- *     const signer = useWalletAccountTransactionSendingSigner(account, 'solana:devnet');
+ *     const signer = useWalletAccountTransactionSendingSigner(account, 'trezoa:devnet');
  *     return (
  *         <button
  *             onClick={async () => {
  *                 try {
- *                     const { value: latestBlockhash } = await createSolanaRpc('https://api.devnet.solana.com')
+ *                     const { value: latestBlockhash } = await createTrezoaRpc('https://api.devnet.trezoa.com')
  *                         .getLatestBlockhash()
  *                         .send();
  *                     const message = pipe(
@@ -47,7 +47,7 @@ import { useSignAndSendTransaction } from './useSignAndSendTransaction';
  *                     );
  *                     const signatureBytes = await signAndSendTransactionMessageWithSigners(message);
  *                     const base58Signature = getBase58Decoder().decode(signature);
- *                     window.alert(`View transaction: https://explorer.solana.com/tx/${base58Signature}?cluster=devnet`);
+ *                     window.alert(`View transaction: https://explorer.trezoa.com/tx/${base58Signature}?cluster=devnet`);
  *                 } catch (e) {
  *                     console.error('Failed to record memo', e);
  *                 }
@@ -61,15 +61,15 @@ import { useSignAndSendTransaction } from './useSignAndSendTransaction';
  */
 export function useWalletAccountTransactionSendingSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: OnlySolanaChains<TWalletAccount['chains']>,
+    chain: OnlyTrezoaChains<TWalletAccount['chains']>,
 ): TransactionSendingSigner<TWalletAccount['address']>;
 export function useWalletAccountTransactionSendingSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): TransactionSendingSigner<TWalletAccount['address']>;
 export function useWalletAccountTransactionSendingSigner<TWalletAccount extends UiWalletAccount>(
     uiWalletAccount: TWalletAccount,
-    chain: `solana:${string}`,
+    chain: `trezoa:${string}`,
 ): TransactionSendingSigner<TWalletAccount['address']> {
     const encoderRef = useRef<ReturnType<typeof getTransactionEncoder> | null>(null);
     const signAndSendTransaction = useSignAndSendTransaction(uiWalletAccount, chain);
@@ -81,7 +81,7 @@ export function useWalletAccountTransactionSendingSigner<TWalletAccount extends 
                 abortSignal?.throwIfAborted();
                 const transactionEncoder = (encoderRef.current ||= getTransactionEncoder());
                 if (transactions.length > 1) {
-                    throw new SolanaError(SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
+                    throw new TrezoaError(TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED);
                 }
                 if (transactions.length === 0) {
                     return [];

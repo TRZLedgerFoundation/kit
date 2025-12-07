@@ -1,10 +1,10 @@
-import { pipe } from '@solana/functional';
-import { parseJsonWithBigInts, stringifyJsonWithBigInts } from '@solana/rpc-spec-types';
+import { pipe } from '@trezoa/functional';
+import { parseJsonWithBigInts, stringifyJsonWithBigInts } from '@trezoa/rpc-spec-types';
 import {
     RpcSubscriptionsChannel,
     transformChannelInboundMessages,
     transformChannelOutboundMessages,
-} from '@solana/rpc-subscriptions-spec';
+} from '@trezoa/rpc-subscriptions-spec';
 
 /**
  * Similarly, to {@link getRpcSubscriptionsChannelWithJSONSerialization}, this function will

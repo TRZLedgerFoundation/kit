@@ -1,4 +1,4 @@
-import { Keypair } from '@solana/web3.js';
+import { Keypair } from '@trezoa/web3.js';
 
 import { fromLegacyPublicKey } from '../address';
 

@@ -5,10 +5,10 @@ import {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
-import type { Slot } from '@solana/rpc-types';
+} from '@trezoa/rpc';
+import type { Slot } from '@trezoa/rpc-types';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../index';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../index';
 import { mockBlockFull, mockBlockFullBase58, mockBlockFullBase64, mockBlockSignatures } from './__setup__';
 
 type GraphQLCompliantRpc = Rpc<
@@ -38,7 +38,7 @@ describe('block', () => {
                 return target[p as keyof GraphQLCompliantRpc];
             },
         });
-        rpcGraphQL = createSolanaRpcGraphQL(rpc);
+        rpcGraphQL = createTrezoaRpcGraphQL(rpc);
     });
     describe('basic queries', () => {
         it("can query a block's block time", async () => {

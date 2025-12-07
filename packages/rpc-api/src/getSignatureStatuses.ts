@@ -1,5 +1,5 @@
-import type { Signature } from '@solana/keys';
-import type { Commitment, Slot, SolanaRpcResponse, TransactionError } from '@solana/rpc-types';
+import type { Signature } from '@trezoa/keys';
+import type { Commitment, Slot, TrezoaRpcResponse, TransactionError } from '@trezoa/rpc-types';
 
 /** @deprecated */
 type TransactionStatusOk = Readonly<{
@@ -39,7 +39,7 @@ export type GetSignatureStatusesApi = {
      * Each signature uniquely identifies a transaction by virtue of being the first or only
      * signature in its list of signatures.
      *
-     * @see https://solana.com/docs/rpc/http/getsignaturestatuses
+     * @see https://trezoa.com/docs/rpc/http/getsignaturestatuses
      */
     getSignatureStatuses(
         /**
@@ -58,5 +58,5 @@ export type GetSignatureStatusesApi = {
              */
             searchTransactionHistory?: boolean;
         }>,
-    ): SolanaRpcResponse<GetSignatureStatusesApiResponse>;
+    ): TrezoaRpcResponse<GetSignatureStatusesApiResponse>;
 };

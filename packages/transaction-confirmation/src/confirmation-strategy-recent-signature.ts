@@ -1,10 +1,10 @@
-import { getSolanaErrorFromTransactionError } from '@solana/errors';
-import { AbortController } from '@solana/event-target-impl';
-import type { Signature } from '@solana/keys';
-import { safeRace } from '@solana/promises';
-import type { GetSignatureStatusesApi, Rpc } from '@solana/rpc';
-import type { RpcSubscriptions, SignatureNotificationsApi } from '@solana/rpc-subscriptions';
-import { type Commitment, commitmentComparator } from '@solana/rpc-types';
+import { getTrezoaErrorFromTransactionError } from '@trezoa/errors';
+import { AbortController } from '@trezoa/event-target-impl';
+import type { Signature } from '@trezoa/keys';
+import { safeRace } from '@trezoa/promises';
+import type { GetSignatureStatusesApi, Rpc } from '@trezoa/rpc';
+import type { RpcSubscriptions, SignatureNotificationsApi } from '@trezoa/rpc-subscriptions';
+import { type Commitment, commitmentComparator } from '@trezoa/rpc-types';
 
 type GetRecentSignatureConfirmationPromiseFn = (config: {
     abortSignal: AbortSignal;
@@ -39,7 +39,7 @@ type CreateRecentSignatureConfirmationPromiseFactoryConfig<TCluster> = {
  *
  * @example
  * ```ts
- * import { createRecentSignatureConfirmationPromiseFactory } from '@solana/transaction-confirmation';
+ * import { createRecentSignatureConfirmationPromiseFactory } from '@trezoa/transaction-confirmation';
  *
  * const getRecentSignatureConfirmationPromise = createRecentSignatureConfirmationPromiseFactory({
  *     rpc,
@@ -94,7 +94,7 @@ export function createRecentSignatureConfirmationPromiseFactory<
         const signatureDidCommitPromise = (async () => {
             for await (const signatureStatusNotification of signatureStatusNotifications) {
                 if (signatureStatusNotification.value.err) {
-                    throw getSolanaErrorFromTransactionError(signatureStatusNotification.value.err);
+                    throw getTrezoaErrorFromTransactionError(signatureStatusNotification.value.err);
                 } else {
                     return;
                 }
@@ -110,7 +110,7 @@ export function createRecentSignatureConfirmationPromiseFactory<
                 .send({ abortSignal: abortController.signal });
             const signatureStatus = signatureStatusResults[0];
             if (signatureStatus?.err) {
-                throw getSolanaErrorFromTransactionError(signatureStatus.err);
+                throw getTrezoaErrorFromTransactionError(signatureStatus.err);
             } else if (
                 signatureStatus?.confirmationStatus &&
                 commitmentComparator(signatureStatus.confirmationStatus, commitment) >= 0

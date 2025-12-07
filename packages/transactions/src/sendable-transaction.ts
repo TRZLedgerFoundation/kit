@@ -21,7 +21,7 @@ export type SendableTransaction = FullySignedTransaction & TransactionWithinSize
  *
  * @example
  * ```ts
- * import { isSendableTransaction } from '@solana/transactions';
+ * import { isSendableTransaction } from '@trezoa/transactions';
  *
  * const transaction = getTransactionDecoder().decode(transactionBytes);
  * if (isSendableTransaction(transaction)) {
@@ -50,7 +50,7 @@ export function isSendableTransaction<TTransaction extends Transaction>(
  *
  * @example
  * ```ts
- * import { assertIsSendableTransaction } from '@solana/transactions';
+ * import { assertIsSendableTransaction } from '@trezoa/transactions';
  *
  * const transaction = getTransactionDecoder().decode(transactionBytes);
  * try {
@@ -60,9 +60,9 @@ export function isSendableTransaction<TTransaction extends Transaction>(
  *     // At this point we know that the transaction can be sent to the network.
  *     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
  * } catch(e) {
- *     if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
  *         setError(`Missing signatures for ${e.context.addresses.join(', ')}`);
- *     } else if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT)) {
+ *     } else if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT)) {
  *         setError(`Transaction exceeds size limit of ${e.context.transactionSizeLimit} bytes`);
  *     }
  *     throw;

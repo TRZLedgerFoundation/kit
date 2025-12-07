@@ -1,19 +1,19 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import type {
     Base58EncodedBytes,
     Blockhash,
     Commitment,
     Reward,
     Slot,
-    SolanaRpcResponse,
+    TrezoaRpcResponse,
     TransactionForAccounts,
     TransactionForFullBase58,
     TransactionForFullBase64,
     TransactionForFullJson,
     TransactionForFullJsonParsed,
     UnixTimestamp,
-} from '@solana/rpc-types';
-import type { TransactionVersion } from '@solana/transaction-messages';
+} from '@trezoa/rpc-types';
+import type { TransactionVersion } from '@trezoa/transaction-messages';
 
 // Subscription notification types
 
@@ -21,8 +21,8 @@ type BlockNotificationsNotificationBase = Readonly<{
     /**
      * Errors can arise in generating a block notification.
      * If an error is encountered, this field will contain the error, and the `block` field will return null.
-     * @see https://github.com/anza-xyz/agave/blob/6ea51280ddc235ed93e16906c3427efd20cd7ce4/rpc/src/rpc_subscriptions.rs#L1059-L1074
-     * @see https://github.com/anza-xyz/agave/blob/6ea51280ddc235ed93e16906c3427efd20cd7ce4/rpc-client-api/src/response.rs#L507-L514
+     * @see https://github.com/trezoa-xyz/agave/blob/6ea51280ddc235ed93e16906c3427efd20cd7ce4/rpc/src/rpc_subscriptions.rs#L1059-L1074
+     * @see https://github.com/trezoa-xyz/agave/blob/6ea51280ddc235ed93e16906c3427efd20cd7ce4/rpc-client-api/src/response.rs#L507-L514
      */
     err: string | null;
     slot: Slot;
@@ -73,7 +73,7 @@ type BlockNotificationsCommonConfig = Readonly<{
      * Get notified when a new block has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcSubscriptionsApi} in
-     * use. For example, when using an API created by a `createSolanaRpcSubscriptions*()` helper,
+     * use. For example, when using an API created by a `createTrezoaRpcSubscriptions*()` helper,
      * the default commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API
      * layer on the client, the default commitment applied by the server is `"finalized"`.
      */
@@ -106,7 +106,7 @@ type BlockNotificationsCommonConfig = Readonly<{
      * property will be returned in the response.
      *
      * If a block contains any transaction at a version higher than this, the server will throw
-     * {@link SolanaErrorCode.SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
+     * {@link TrezoaErrorCode.TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
      */
     maxSupportedTransactionVersion?: BlockNotificationsMaxSupportedTransactionVersion;
     /**
@@ -145,7 +145,7 @@ export type BlockNotificationsApi = {
      * @param filter Notifications will only be produced for blocks that match this filter.
      *
      * {@label transactions-none--rewards-none}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -157,7 +157,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails: 'none';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block: BlockNotificationsNotificationBlock | null;
@@ -173,7 +173,7 @@ export type BlockNotificationsApi = {
      * @param filter Notifications will only be produced for blocks that match this filter.
      *
      * {@label transactions-none--rewards-included}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -185,7 +185,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails: 'none';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block: (BlockNotificationsNotificationBlock & BlockNotificationsNotificationBlockWithRewards) | null;
@@ -202,7 +202,7 @@ export type BlockNotificationsApi = {
      * signatures of transactions that match this filter will be included in the block.
      *
      * {@label transactions-signatures--rewards-none}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -214,7 +214,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails: 'signatures';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block: (BlockNotificationsNotificationBlock & BlockNotificationsNotificationBlockWithSignatures) | null;
@@ -231,7 +231,7 @@ export type BlockNotificationsApi = {
      * signatures of transactions that match this filter will be included in the block.
      *
      * {@label transactions-signatures--rewards-included}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -243,7 +243,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails: 'signatures';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -264,7 +264,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-accounts--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -276,7 +276,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails: 'accounts';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -298,7 +298,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-accounts--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -309,7 +309,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails: 'accounts';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -329,7 +329,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-accounts--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -341,7 +341,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails: 'accounts';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -364,7 +364,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-accounts--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -375,7 +375,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails: 'accounts';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -396,7 +396,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base58--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -408,7 +408,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -430,7 +430,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base58--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -441,7 +441,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -461,7 +461,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base58--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -473,7 +473,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -496,7 +496,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base58--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -507,7 +507,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -528,7 +528,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base64--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -540,7 +540,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -562,7 +562,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base64--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -573,7 +573,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -593,7 +593,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base64--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -605,7 +605,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -628,7 +628,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-base64--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -639,7 +639,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -660,7 +660,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-parsed--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -672,7 +672,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -694,7 +694,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-parsed--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -705,7 +705,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -725,7 +725,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-parsed--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -737,7 +737,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -760,7 +760,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-parsed--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -771,7 +771,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -792,7 +792,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-json--rewards-none--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -804,7 +804,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -826,7 +826,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-json--rewards-none--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -837,7 +837,7 @@ export type BlockNotificationsApi = {
                 showRewards: false;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -857,7 +857,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-json--rewards-included--version-specified}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -869,7 +869,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:
@@ -892,7 +892,7 @@ export type BlockNotificationsApi = {
      * transactions that match this filter will be included in the block.
      *
      * {@label transactions-json--rewards-included--version-legacy}
-     * @see https://solana.com/docs/rpc/websocket/blocksubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/blocksubscribe
      */
     blockNotifications(
         filter: BlockNotificationsFilter,
@@ -903,7 +903,7 @@ export type BlockNotificationsApi = {
                 showRewards?: true;
                 transactionDetails?: 'full';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         BlockNotificationsNotificationBase &
             Readonly<{
                 block:

@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type GetHighestSnapshotSlotApiResponse = Readonly<{
     /** The highest full snapshot slot */
@@ -17,7 +17,7 @@ export type GetHighestSnapshotSlotApi = {
      * This will find the highest full snapshot slot, and the highest incremental snapshot slot
      * based on the full snapshot slot, if there is one.
      *
-     * @see https://solana.com/docs/rpc/http/gethighestsnapshotslot
+     * @see https://trezoa.com/docs/rpc/http/gethighestsnapshotslot
      */
     getHighestSnapshotSlot(): GetHighestSnapshotSlotApiResponse;
 };

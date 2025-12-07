@@ -1,15 +1,15 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import { SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING, SolanaError } from '@solana/errors';
-import { Signature, SignatureBytes } from '@solana/keys';
-import type { Blockhash } from '@solana/rpc-types';
-import { Nonce } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING, TrezoaError } from '@trezoa/errors';
+import { Signature, SignatureBytes } from '@trezoa/keys';
+import type { Blockhash } from '@trezoa/rpc-types';
+import { Nonce } from '@trezoa/transaction-messages';
 import {
     Transaction,
     TransactionMessageBytes,
     TransactionWithBlockhashLifetime,
     TransactionWithDurableNonceLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import {
     waitForDurableNonceTransactionConfirmation,
@@ -128,7 +128,7 @@ describe('waitForDurableNonceTransactionConfirmation', () => {
             transaction: transactionWithoutFeePayerSignature,
         });
         await expect(commitmentPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING),
         );
     });
     it('resolves when the signature confirmation promise resolves despite the block height exceedence promise having thrown', async () => {
@@ -242,7 +242,7 @@ describe('waitForRecentTransactionConfirmation', () => {
             transaction: transactionWithoutFeePayerSignature,
         });
         await expect(commitmentPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING),
         );
     });
     it('resolves when the signature confirmation promise resolves despite the block height exceedence promise having thrown', async () => {

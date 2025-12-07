@@ -16,7 +16,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getBooleanDecoder,
     getBooleanEncoder,
@@ -28,7 +28,7 @@ import {
     getUnionEncoder,
     getUnitDecoder,
     getUnitEncoder,
-} from '@solana/codecs-data-structures';
+} from '@trezoa/codecs-data-structures';
 import {
     FixedSizeNumberCodec,
     FixedSizeNumberDecoder,
@@ -38,7 +38,7 @@ import {
     NumberCodec,
     NumberDecoder,
     NumberEncoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 
 import { isOption, isSome, None, none, Option, OptionOrNullable, Some, some } from './option';
 import { wrapNullable } from './unwrap-option';

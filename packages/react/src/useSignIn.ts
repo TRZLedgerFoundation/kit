@@ -1,10 +1,10 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SolanaSignIn,
-    SolanaSignInFeature,
-    SolanaSignInInput,
-    SolanaSignInOutput,
-} from '@solana/wallet-standard-features';
+    TrezoaSignIn,
+    TrezoaSignInFeature,
+    TrezoaSignInInput,
+    TrezoaSignInOutput,
+} from '@trezoa/wallet-standard-features';
 import {
     getWalletAccountFeature,
     getWalletFeature,
@@ -19,14 +19,14 @@ import {
 } from '@wallet-standard/ui-registry';
 import { useCallback } from 'react';
 
-type Input = SolanaSignInInput;
-type Output = Omit<SolanaSignInOutput, 'account' | 'signatureType'> &
+type Input = TrezoaSignInInput;
+type Output = Omit<TrezoaSignInOutput, 'account' | 'signatureType'> &
     Readonly<{
         account: UiWalletAccount;
     }>;
 
 /**
- * Use the ['Sign In With Solana'](https://phantom.app/learn/developers/sign-in-with-solana) feature
+ * Use the ['Sign In With Trezoa'](https://phantom.app/learn/developers/sign-in-with-solana) feature
  * of a {@link UiWallet} or {@link UiWalletAccount}.
  *
  * @returns A function that you can call to sign in with the particular wallet and address specified
@@ -34,7 +34,7 @@ type Output = Omit<SolanaSignInOutput, 'account' | 'signatureType'> &
  *
  * @example
  * ```tsx
- * import { useSignIn } from '@solana/react';
+ * import { useSignIn } from '@trezoa/react';
  *
  * function SignInButton({ wallet }) {
  *     const csrfToken = useCsrfToken();
@@ -51,7 +51,7 @@ type Output = Omit<SolanaSignInOutput, 'account' | 'signatureType'> &
  *                     // `account.publicKey`.
  *                     //
  *                     // Authorize the user, also on the server, by decoding `signedMessage` as the
- *                     // text of a Sign In With Solana message, verifying that it was not modified
+ *                     // text of a Sign In With Trezoa message, verifying that it was not modified
  *                     // from the values your application expects, and that its content is sufficient
  *                     // to grant them access.
  *                     window.alert(`You are now signed in with the address ${account.address}`);
@@ -85,15 +85,15 @@ export function useSignIn(uiWalletHandle: UiWalletHandle): (input?: Input) => Pr
 function useSignIns(
     uiWalletHandle: UiWalletHandle,
 ): (...inputs: readonly (Input | undefined)[]) => Promise<readonly Output[]> {
-    let signMessageFeature: SolanaSignInFeature[typeof SolanaSignIn];
+    let signMessageFeature: TrezoaSignInFeature[typeof TrezoaSignIn];
     if ('address' in uiWalletHandle && typeof uiWalletHandle.address === 'string') {
         getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(uiWalletHandle as UiWalletAccount);
         signMessageFeature = getWalletAccountFeature(
             uiWalletHandle as UiWalletAccount,
-            SolanaSignIn,
-        ) as SolanaSignInFeature[typeof SolanaSignIn];
+            TrezoaSignIn,
+        ) as TrezoaSignInFeature[typeof TrezoaSignIn];
     } else {
-        signMessageFeature = getWalletFeature(uiWalletHandle, SolanaSignIn) as SolanaSignInFeature[typeof SolanaSignIn];
+        signMessageFeature = getWalletFeature(uiWalletHandle, TrezoaSignIn) as TrezoaSignInFeature[typeof TrezoaSignIn];
     }
     const wallet = getWalletForHandle_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(uiWalletHandle);
     return useCallback(
@@ -107,7 +107,7 @@ function useSignIns(
             const resultsWithoutSignatureType = results.map(
                 ({
                     account,
-                    signatureType: _, // Solana signatures are always of type `ed25519` so drop this property.
+                    signatureType: _, // Trezoa signatures are always of type `ed25519` so drop this property.
                     ...rest
                 }) => ({
                     ...rest,

@@ -1,5 +1,5 @@
-import { Callable, RpcRequest, RpcRequestTransformer } from '@solana/rpc-spec-types';
-import { DataPublisher } from '@solana/subscribable';
+import { Callable, RpcRequest, RpcRequestTransformer } from '@trezoa/rpc-spec-types';
+import { DataPublisher } from '@trezoa/subscribable';
 
 import { RpcSubscriptionsChannel } from './rpc-subscriptions-channel';
 import { RpcSubscriptionsTransportDataEvents } from './rpc-subscriptions-transport';

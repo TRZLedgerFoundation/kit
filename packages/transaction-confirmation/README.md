@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/transaction-confirmation?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/transaction-confirmation?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/transaction-confirmation
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/transaction-confirmation?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/transaction-confirmation?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/transaction-confirmation
 
-# @solana/transaction-confirmation
+# @trezoa/transaction-confirmation
 
 This package contains utilities for confirming transactions and for building your own transaction confirmation strategies.
 
@@ -20,8 +20,8 @@ This package contains utilities for confirming transactions and for building you
 When a transaction's lifetime is tied to a blockhash, that transaction can be landed on the network until that blockhash expires. All blockhashes have a block height after which they are considered to have expired. A block height exceedence promise throws when the network progresses past that block height.
 
 ```ts
-import { isSolanaError, SolanaError } from '@solana/errors';
-import { createBlockHeightExceedencePromiseFactory } from '@solana/transaction-confirmation';
+import { isTrezoaError, TrezoaError } from '@trezoa/errors';
+import { createBlockHeightExceedencePromiseFactory } from '@trezoa/transaction-confirmation';
 
 const getBlockHeightExceedencePromise = createBlockHeightExceedencePromiseFactory({
     rpc,
@@ -30,7 +30,7 @@ const getBlockHeightExceedencePromise = createBlockHeightExceedencePromiseFactor
 try {
     await getBlockHeightExceedencePromise({ lastValidBlockHeight });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+    if (isTrezoaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
         console.error(
             `The block height of the network has exceeded ${e.context.lastValidBlockHeight}. ` +
                 `It is now ${e.context.currentBlockHeight}`,
@@ -47,8 +47,8 @@ try {
 When a transaction's lifetime is tied to the value stored in a nonce account, that transaction can be landed on the network until the nonce is advanced to a new value. A nonce invalidation promise throws when the value stored in a nonce account is not the expected one.
 
 ```ts
-import { isSolanaError, SolanaError } from '@solana/errors';
-import { createNonceInvalidationPromiseFactory } from '@solana/transaction-confirmation';
+import { isTrezoaError, TrezoaError } from '@trezoa/errors';
+import { createNonceInvalidationPromiseFactory } from '@trezoa/transaction-confirmation';
 
 const getNonceInvalidationPromise = createNonceInvalidationPromiseFactory({
     rpc,
@@ -60,11 +60,11 @@ try {
         nonceAccountAddress,
     });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__NONCE_INVALID)) {
+    if (isTrezoaError(e, SOLANA_ERROR__NONCE_INVALID)) {
         console.error(`The nonce has advanced to ${e.context.actualNonceValue}`);
         // Re-sign and retry the transaction.
         return;
-    } else if (isSolanaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+    } else if (isTrezoaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
         console.error(`No nonce account was found at ${nonceAccountAddress}`);
     }
     throw e;
@@ -76,7 +76,7 @@ try {
 The status of recently-landed transactions is available in the network's status cache. A recent signature confirmation promise resolves when a transaction achieves the target confirmation commitment, and throws when the transaction fails with an error.
 
 ```ts
-import { createRecentSignatureConfirmationPromiseFactory } from '@solana/transaction-confirmation';
+import { createRecentSignatureConfirmationPromiseFactory } from '@trezoa/transaction-confirmation';
 
 const getRecentSignatureConfirmationPromise = createRecentSignatureConfirmationPromiseFactory({
     rpc,
@@ -99,8 +99,8 @@ try {
 When no other heuristic exists to infer that a transaction has expired, you can use this promise factory with a commitment level. It throws after 30 seconds when the commitment is `processed`, and 60 seconds otherwise. You would typically race this with another confirmation strategy.
 
 ```ts
-import { safeRace } from '@solana/promises';
-import { getTimeoutPromise } from '@solana/transaction-confirmation';
+import { safeRace } from '@trezoa/promises';
+import { getTimeoutPromise } from '@trezoa/transaction-confirmation';
 
 try {
     await safeRace([getCustomTransactionConfirmationPromise(/* ... */), getTimeoutPromise({ commitment })]);
@@ -117,7 +117,7 @@ try {
 Supply your own confirmation implementations to this function to create a custom nonce transaction confirmation strategy.
 
 ```ts
-import { waitForDurableNonceTransactionConfirmation } from '@solana/transaction-confirmation';
+import { waitForDurableNonceTransactionConfirmation } from '@trezoa/transaction-confirmation';
 
 try {
     await waitForDurableNonceTransactionConfirmation({
@@ -138,7 +138,7 @@ try {
 Supply your own confirmation implementations to this function to create a custom confirmation strategy for recently-landed transactions.
 
 ```ts
-import { waitForRecentTransactionConfirmation } from '@solana/transaction-confirmation';
+import { waitForRecentTransactionConfirmation } from '@trezoa/transaction-confirmation';
 
 try {
     await waitForRecentTransactionConfirmation({
@@ -159,7 +159,7 @@ try {
 Supply your own confirmation implementations to this function to create a custom nonce transaction confirmation strategy.
 
 ```ts
-import { waitForRecentTransactionConfirmationUntilTimeout } from '@solana/transaction-confirmation';
+import { waitForRecentTransactionConfirmationUntilTimeout } from '@trezoa/transaction-confirmation';
 
 try {
     await waitForRecentTransactionConfirmationUntilTimeout({

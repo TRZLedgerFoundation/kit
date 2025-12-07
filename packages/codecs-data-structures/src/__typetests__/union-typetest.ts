@@ -1,4 +1,4 @@
-import { Codec, Decoder, Encoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
+import { Codec, Decoder, Encoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
 
 import { getUnionCodec, getUnionDecoder, getUnionEncoder } from '../union';
 

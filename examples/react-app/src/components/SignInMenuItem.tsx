@@ -1,5 +1,5 @@
 import { DropdownMenu } from '@radix-ui/themes';
-import { useSignIn } from '@solana/react';
+import { useSignIn } from '@trezoa/react';
 import type { UiWallet, UiWalletAccount } from '@wallet-standard/react';
 import React, { useCallback, useState } from 'react';
 

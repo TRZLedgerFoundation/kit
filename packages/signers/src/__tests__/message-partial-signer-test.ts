@@ -1,5 +1,5 @@
-import { address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, SolanaError } from '@solana/errors';
+import { address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import { assertIsMessagePartialSigner, isMessagePartialSigner, MessagePartialSigner } from '../message-partial-signer';
 
@@ -25,7 +25,7 @@ describe('assertIsMessagePartialSigner', () => {
             signMessages: () => Promise.resolve([]),
         } satisfies MessagePartialSigner<'Gp7YgHcJciP4px5FdFnywUiMG4UcfMZV9UagSAZzDxdy'>;
 
-        const expectedError = new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, {
+        const expectedError = new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_PARTIAL_SIGNER, {
             address: myAddress,
         });
         expect(() => assertIsMessagePartialSigner(mySigner)).not.toThrow();

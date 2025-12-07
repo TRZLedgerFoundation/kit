@@ -6,9 +6,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Balance } from '../components/Balance';
 import { FeatureNotSupportedCallout } from '../components/FeatureNotSupportedCallout';
 import { FeaturePanel } from '../components/FeaturePanel';
-import { SolanaSignAndSendTransactionFeaturePanel } from '../components/SolanaSignAndSendTransactionFeaturePanel';
-import { SolanaSignMessageFeaturePanel } from '../components/SolanaSignMessageFeaturePanel';
-import { SolanaSignTransactionFeaturePanel } from '../components/SolanaSignTransactionFeaturePanel';
+import { TrezoaSignAndSendTransactionFeaturePanel } from '../components/TrezoaSignAndSendTransactionFeaturePanel';
+import { TrezoaSignMessageFeaturePanel } from '../components/TrezoaSignMessageFeaturePanel';
+import { TrezoaSignTransactionFeaturePanel } from '../components/TrezoaSignTransactionFeaturePanel';
 import { WalletAccountIcon } from '../components/WalletAccountIcon';
 import { ChainContext } from '../context/ChainContext';
 import { SelectedWalletAccountContext } from '../context/SelectedWalletAccountContext';
@@ -56,7 +56,7 @@ function Root() {
                                 FallbackComponent={FeatureNotSupportedCallout}
                                 resetKeys={errorBoundaryResetKeys}
                             >
-                                <SolanaSignMessageFeaturePanel account={selectedWalletAccount} />
+                                <TrezoaSignMessageFeaturePanel account={selectedWalletAccount} />
                             </ErrorBoundary>
                         </FeaturePanel>
                         <FeaturePanel label="Sign And Send Transaction">
@@ -64,7 +64,7 @@ function Root() {
                                 FallbackComponent={FeatureNotSupportedCallout}
                                 resetKeys={errorBoundaryResetKeys}
                             >
-                                <SolanaSignAndSendTransactionFeaturePanel account={selectedWalletAccount} />
+                                <TrezoaSignAndSendTransactionFeaturePanel account={selectedWalletAccount} />
                             </ErrorBoundary>
                         </FeaturePanel>
                         <FeaturePanel label="Sign Transaction">
@@ -72,7 +72,7 @@ function Root() {
                                 FallbackComponent={FeatureNotSupportedCallout}
                                 resetKeys={errorBoundaryResetKeys}
                             >
-                                <SolanaSignTransactionFeaturePanel account={selectedWalletAccount} />
+                                <TrezoaSignTransactionFeaturePanel account={selectedWalletAccount} />
                             </ErrorBoundary>
                         </FeaturePanel>
                     </DataList.Root>

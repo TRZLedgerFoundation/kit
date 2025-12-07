@@ -1,6 +1,6 @@
-import type { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
-import type { Lamports } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
+import type { Lamports } from '@trezoa/rpc-types';
 
 /**
  * The number of bytes required to store the {@link BaseAccount} information without its data.
@@ -13,7 +13,7 @@ import type { Lamports } from '@solana/rpc-types';
 export const BASE_ACCOUNT_SIZE = 128;
 
 /**
- * Defines the attributes common to all Solana accounts. Namely, it contains everything stored
+ * Defines the attributes common to all Trezoa accounts. Namely, it contains everything stored
  * on-chain except the account data itself.
  *
  * @interface
@@ -36,7 +36,7 @@ export type BaseAccount = {
 };
 
 /**
- * Contains all the information relevant to a Solana account. It includes the account's address and
+ * Contains all the information relevant to a Trezoa account. It includes the account's address and
  * data, as well as the properties of {@link BaseAccount}.
  *
  * @interface

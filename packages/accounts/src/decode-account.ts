@@ -1,10 +1,10 @@
-import type { Decoder, ReadonlyUint8Array } from '@solana/codecs-core';
+import type { Decoder, ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
-    SOLANA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT,
-    SOLANA_ERROR__ACCOUNTS__FAILED_TO_DECODE_ACCOUNT,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
+    TREZOA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT,
+    TREZOA_ERROR__ACCOUNTS__FAILED_TO_DECODE_ACCOUNT,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import type { Account, EncodedAccount } from './account';
 import type { MaybeAccount, MaybeEncodedAccount } from './maybe-account';
@@ -49,7 +49,7 @@ export function decodeAccount<TData extends object, TAddress extends string = st
         }
         return Object.freeze({ ...encodedAccount, data: decoder.decode(encodedAccount.data) });
     } catch {
-        throw new SolanaError(SOLANA_ERROR__ACCOUNTS__FAILED_TO_DECODE_ACCOUNT, {
+        throw new TrezoaError(TREZOA_ERROR__ACCOUNTS__FAILED_TO_DECODE_ACCOUNT, {
             address: encodedAccount.address,
         });
     }
@@ -102,7 +102,7 @@ export function assertAccountDecoded<TData extends object, TAddress extends stri
     account: Account<TData | Uint8Array, TAddress> | MaybeAccount<TData | Uint8Array, TAddress>,
 ): asserts account is Account<TData, TAddress> | MaybeAccount<TData, TAddress> {
     if (accountExists(account) && account.data instanceof Uint8Array) {
-        throw new SolanaError(SOLANA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT, {
+        throw new TrezoaError(TREZOA_ERROR__ACCOUNTS__EXPECTED_DECODED_ACCOUNT, {
             address: account.address,
         });
     }
@@ -139,7 +139,7 @@ export function assertAccountsDecoded<TData extends object, TAddress extends str
     const encoded = accounts.filter(a => accountExists(a) && a.data instanceof Uint8Array);
     if (encoded.length > 0) {
         const encodedAddresses = encoded.map(a => a.address);
-        throw new SolanaError(SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
+        throw new TrezoaError(TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
             addresses: encodedAddresses,
         });
     }

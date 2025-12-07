@@ -1,9 +1,9 @@
 import {
-    SOLANA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH,
-    SOLANA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH,
-    SOLANA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH,
+    TREZOA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH,
+    TREZOA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { createKeyPairFromBytes, createKeyPairFromPrivateKeyBytes, generateKeyPair } from '../key-pair';
 
@@ -76,13 +76,13 @@ describe('key-pair', () => {
         it('errors when the byte array is not 64 bytes', async () => {
             expect.assertions(1);
             await expect(createKeyPairFromBytes(MOCK_KEY_BYTES.slice(0, 31))).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH, { byteLength: 31 }),
+                new TrezoaError(TREZOA_ERROR__KEYS__INVALID_KEY_PAIR_BYTE_LENGTH, { byteLength: 31 }),
             );
         });
         it('errors when public key fails signature verification', async () => {
             expect.assertions(1);
             await expect(createKeyPairFromBytes(MOCK_INVALID_KEY_BYTES)).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY),
+                new TrezoaError(TREZOA_ERROR__KEYS__PUBLIC_KEY_MUST_MATCH_PRIVATE_KEY),
             );
         });
     });
@@ -114,7 +114,7 @@ describe('key-pair', () => {
         it('errors when the byte array is not 32 bytes', async () => {
             expect.assertions(1);
             await expect(createKeyPairFromPrivateKeyBytes(MOCK_KEY_BYTES.slice(0, 31))).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, { actualLength: 31 }),
+                new TrezoaError(TREZOA_ERROR__KEYS__INVALID_PRIVATE_KEY_BYTE_LENGTH, { actualLength: 31 }),
             );
         });
     });

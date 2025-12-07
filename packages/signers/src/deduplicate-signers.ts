@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, TrezoaError } from '@trezoa/errors';
 
 import { MessageSigner } from './message-signer';
 import { TransactionSigner } from './transaction-signer';
@@ -19,7 +19,7 @@ export function deduplicateSigners<TSigner extends MessageSigner | TransactionSi
         if (!deduplicated[signer.address]) {
             deduplicated[signer.address] = signer;
         } else if (deduplicated[signer.address] !== signer) {
-            throw new SolanaError(SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
+            throw new TrezoaError(TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
                 address: signer.address,
             });
         }

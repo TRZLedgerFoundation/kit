@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { getBase58Encoder } from '@solana/codecs-strings';
-import type { Blockhash } from '@solana/rpc-types';
+import { getBase58Encoder } from '@trezoa/codecs-strings';
+import type { Blockhash } from '@trezoa/rpc-types';
 
 import {
     assertIsTransactionMessageWithBlockhashLifetime,
@@ -10,13 +10,13 @@ import {
 } from '../blockhash';
 import { BaseTransactionMessage } from '../transaction-message';
 
-jest.mock('@solana/codecs-strings', () => ({
-    ...jest.requireActual('@solana/codecs-strings'),
+jest.mock('@trezoa/codecs-strings', () => ({
+    ...jest.requireActual('@trezoa/codecs-strings'),
     getBase58Encoder: jest.fn(),
 }));
 
 // real implementations
-const originalBase58Module = jest.requireActual('@solana/codecs-strings');
+const originalBase58Module = jest.requireActual('@trezoa/codecs-strings');
 const originalGetBase58Encoder = originalBase58Module.getBase58Encoder();
 
 describe('assertIsTransactionMessageWithBlockhashLifetime', () => {

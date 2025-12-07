@@ -1,4 +1,4 @@
-import type { Commitment } from '@solana/rpc-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
 describe('signatureNotifications', () => {
     ([undefined, 'confirmed', 'finalized', 'processed'] as (Commitment | undefined)[]).forEach(commitment => {

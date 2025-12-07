@@ -1,6 +1,6 @@
 import { cn } from 'fumadocs-ui/utils/cn';
 
-export function LogoWithSolana({
+export function LogoWithTrezoa({
     className,
     solanaClassName,
 }: React.ComponentProps<'svg'> & { solanaClassName?: string }) {

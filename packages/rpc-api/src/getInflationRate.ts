@@ -1,4 +1,4 @@
-import type { F64UnsafeSeeDocumentation } from '@solana/rpc-types';
+import type { F64UnsafeSeeDocumentation } from '@trezoa/rpc-types';
 
 type GetInflationRateApiResponse = Readonly<{
     /** Epoch for which these values are valid */
@@ -15,7 +15,7 @@ export type GetInflationRateApi = {
     /**
      * Returns the specific inflation values for the current epoch.
      *
-     * @see https://solana.com/docs/rpc/http/getinflationrate
+     * @see https://trezoa.com/docs/rpc/http/getinflationrate
      */
     getInflationRate(): GetInflationRateApiResponse;
 };

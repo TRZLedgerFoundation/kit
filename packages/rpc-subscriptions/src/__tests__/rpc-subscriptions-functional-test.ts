@@ -1,18 +1,18 @@
-import { Address } from '@solana/addresses';
-import { AccountNotificationsApi, SolanaRpcSubscriptionsApi } from '@solana/rpc-subscriptions-api';
-import { createSubscriptionRpc, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
+import { Address } from '@trezoa/addresses';
+import { AccountNotificationsApi, TrezoaRpcSubscriptionsApi } from '@trezoa/rpc-subscriptions-api';
+import { createSubscriptionRpc, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
 
 import {
     createDefaultRpcSubscriptionsTransport,
-    createDefaultSolanaRpcSubscriptionsChannelCreator,
-    createSolanaRpcSubscriptionsApi,
+    createDefaultTrezoaRpcSubscriptionsChannelCreator,
+    createTrezoaRpcSubscriptionsApi,
 } from '..';
 
-function createLocalhostSolanaRpcSubscriptions(): RpcSubscriptions<SolanaRpcSubscriptionsApi> {
+function createLocalhostTrezoaRpcSubscriptions(): RpcSubscriptions<TrezoaRpcSubscriptionsApi> {
     return createSubscriptionRpc({
-        api: createSolanaRpcSubscriptionsApi(),
+        api: createTrezoaRpcSubscriptionsApi(),
         transport: createDefaultRpcSubscriptionsTransport({
-            createChannel: createDefaultSolanaRpcSubscriptionsChannelCreator({ url: 'ws://localhost:8900' }),
+            createChannel: createDefaultTrezoaRpcSubscriptionsChannelCreator({ url: 'ws://localhost:8900' }),
         }),
     });
 }
@@ -20,7 +20,7 @@ function createLocalhostSolanaRpcSubscriptions(): RpcSubscriptions<SolanaRpcSubs
 describe('accountNotifications', () => {
     let rpcSubscriptions: RpcSubscriptions<AccountNotificationsApi>;
     beforeEach(() => {
-        rpcSubscriptions = createLocalhostSolanaRpcSubscriptions();
+        rpcSubscriptions = createLocalhostTrezoaRpcSubscriptions();
     });
 
     it('can subscribe to account notifications', async () => {

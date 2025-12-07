@@ -1,12 +1,12 @@
-// import { createHttpTransport, createJsonRpc, type Rpc } from '@solana/rpc-types';
+// import { createHttpTransport, createJsonRpc, type Rpc } from '@trezoa/rpc-types';
 
-// import { createSolanaRpcApi, GetTransactionApi } from '../index';
+// import { createTrezoaRpcApi, GetTransactionApi } from '../index';
 
 describe('getTransaction', () => {
     // let rpc: Rpc<GetTransactionApi>;
     beforeEach(() => {
         // rpc = createJsonRpc<GetTransactionApi>({
-        //   api: createSolanaRpcApi(),
+        //   api: createTrezoaRpcApi(),
         //   transport: createHttpTransport({ url: 'http://127.0.0.1:8899' }),
         // });
     });

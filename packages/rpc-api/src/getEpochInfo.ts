@@ -1,4 +1,4 @@
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 
 type GetEpochInfoApiResponse = Readonly<{
     /** The current slot */
@@ -19,7 +19,7 @@ export type GetEpochInfoApi = {
     /**
      * Returns information about the current epoch.
      *
-     * @see https://solana.com/docs/rpc/http/getepochinfo
+     * @see https://trezoa.com/docs/rpc/http/getepochinfo
      */
     getEpochInfo(
         config?: Readonly<{
@@ -28,7 +28,7 @@ export type GetEpochInfoApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */

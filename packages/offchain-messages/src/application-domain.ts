@@ -1,13 +1,13 @@
-import { assertIsAddress, isAddress } from '@solana/addresses';
+import { assertIsAddress, isAddress } from '@trezoa/addresses';
 import {
-    isSolanaError,
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
-    SolanaError,
-} from '@solana/errors';
-import { Brand, EncodedString } from '@solana/nominal-types';
+    isTrezoaError,
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand, EncodedString } from '@trezoa/nominal-types';
 
 /**
  * A 32-byte array identifying the application requesting off-chain message signing.
@@ -29,7 +29,7 @@ export type OffchainMessageApplicationDomain = Brand<
  *
  * @example
  * ```ts
- * import { isOffchainMessageApplicationDomain, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { isOffchainMessageApplicationDomain, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * if (isOffchainMessageApplicationDomain(applicationDomain)) {
  *     // At this point, `applicationDomain` has been refined to an
@@ -57,7 +57,7 @@ export function isOffchainMessageApplicationDomain(
  *
  * @example
  * ```ts
- * import { assertIsOffchainMessageApplicationDomain, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { assertIsOffchainMessageApplicationDomain, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * // Imagine a function that determines whether an application domain is valid.
  * function handleSubmit() {
@@ -86,15 +86,15 @@ export function assertIsOffchainMessageApplicationDomain(
     try {
         assertIsAddress(putativeApplicationDomain);
     } catch (error) {
-        if (isSolanaError(error, SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE)) {
-            throw new SolanaError(
-                SOLANA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
+        if (isTrezoaError(error, TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE)) {
+            throw new TrezoaError(
+                TREZOA_ERROR__OFFCHAIN_MESSAGE__APPLICATION_DOMAIN_STRING_LENGTH_OUT_OF_RANGE,
                 error.context,
             );
         }
-        if (isSolanaError(error, SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH)) {
-            throw new SolanaError(
-                SOLANA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
+        if (isTrezoaError(error, TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH)) {
+            throw new TrezoaError(
+                TREZOA_ERROR__OFFCHAIN_MESSAGE__INVALID_APPLICATION_DOMAIN_BYTE_LENGTH,
                 error.context,
             );
         }
@@ -108,7 +108,7 @@ export function assertIsOffchainMessageApplicationDomain(
  *
  * @example
  * ```ts
- * import { offchainMessageApplicationDomain, OffchainMessageV0 } from '@solana/offchain-messages';
+ * import { offchainMessageApplicationDomain, OffchainMessageV0 } from '@trezoa/offchain-messages';
  *
  * const offchainMessage: OffchainMessageV0 = {
  *     applicationDomain:
@@ -123,7 +123,7 @@ export function assertIsOffchainMessageApplicationDomain(
  * > unconditionally performs validation on its input.
  * >
  * > ```ts
- * > import { OffchainMessageApplicationDomain } from '@solana/offchain-messages';
+ * > import { OffchainMessageApplicationDomain } from '@trezoa/offchain-messages';
  * >
  * > const applicationDomain =
  * >     'HgHLLXT3BVA5m7x66tEp3YNatXLth1hJwVeCva2T9RNx' as OffchainMessageApplicationDomain;

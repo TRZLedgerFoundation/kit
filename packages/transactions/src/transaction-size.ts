@@ -1,6 +1,6 @@
-import { SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, SolanaError } from '@solana/errors';
-import type { NominalType } from '@solana/nominal-types';
-import type { BaseTransactionMessage, TransactionMessageWithinSizeLimit } from '@solana/transaction-messages';
+import { TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, TrezoaError } from '@trezoa/errors';
+import type { NominalType } from '@trezoa/nominal-types';
+import type { BaseTransactionMessage, TransactionMessageWithinSizeLimit } from '@trezoa/transaction-messages';
 
 import { getTransactionEncoder } from './codecs';
 import { Transaction } from './transaction';
@@ -75,7 +75,7 @@ export function isTransactionWithinSizeLimit<TTransaction extends Transaction>(
 /**
  * Asserts that a given transaction is within the size limit.
  *
- * Throws a {@link SolanaError} of code {@link SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT}
+ * Throws a {@link TrezoaError} of code {@link TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT}
  * if the transaction exceeds the size limit.
  *
  * @typeParam TTransaction - The type of the given transaction.
@@ -91,7 +91,7 @@ export function assertIsTransactionWithinSizeLimit<TTransaction extends Transact
 ): asserts transaction is TransactionWithinSizeLimit & TTransaction {
     const transactionSize = getTransactionSize(transaction);
     if (transactionSize > TRANSACTION_SIZE_LIMIT) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT, {
             transactionSize,
             transactionSizeLimit: TRANSACTION_SIZE_LIMIT,
         });

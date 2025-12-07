@@ -1,5 +1,5 @@
-import { Address, getAddressComparator } from '@solana/addresses';
-import { AccountRole } from '@solana/instructions';
+import { Address, getAddressComparator } from '@trezoa/addresses';
+import { AccountRole } from '@trezoa/instructions';
 
 import { OrderedAccounts } from '../compile/accounts';
 

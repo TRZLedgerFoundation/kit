@@ -1,4 +1,4 @@
-import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@solana/accounts';
+import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@trezoa/accounts';
 import {
     combineCodec,
     type FixedSizeCodec,
@@ -10,10 +10,10 @@ import {
     getStructEncoder,
     getU64Decoder,
     getU64Encoder,
-} from '@solana/codecs';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Epoch, Slot } from '@solana/rpc-types';
+} from '@trezoa/codecs';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Epoch, Slot } from '@trezoa/rpc-types';
 
 import { fetchEncodedSysvarAccount, SYSVAR_EPOCH_SCHEDULE_ADDRESS } from './sysvar';
 

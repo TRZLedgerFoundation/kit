@@ -1,20 +1,20 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { Blockhash } from '@solana/rpc-types';
+    TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Blockhash } from '@trezoa/rpc-types';
 import {
     compileTransaction,
     FullySignedTransaction,
     Transaction,
     TransactionMessageBytes,
     TransactionWithLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import {
     partiallySignTransactionMessageWithSigners,
@@ -33,8 +33,8 @@ import {
     createMockTransactionSendingSigner,
 } from './__setup__';
 
-jest.mock('@solana/transactions', () => ({
-    ...jest.requireActual('@solana/transactions'),
+jest.mock('@trezoa/transactions', () => ({
+    ...jest.requireActual('@trezoa/transactions'),
     compileTransaction: jest.fn(),
 }));
 
@@ -474,7 +474,7 @@ describe('signTransactionMessageWithSigners', () => {
         // Then we expect an error letting us know the transaction is not fully signed.
         // This is because sending signers are ignored by signTransactionMessageWithSigners.
         await expect(promise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
                 addresses: ['2222' as Address],
             }),
         );
@@ -595,7 +595,7 @@ describe('signAndSendTransactionMessageWithSigners', () => {
 
         // Then we expect an error letting us know no sending mechanism was provided.
         await expect(promise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING),
+            new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING),
         );
     });
 

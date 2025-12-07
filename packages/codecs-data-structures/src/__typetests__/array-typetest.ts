@@ -8,7 +8,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { getArrayCodec, getArrayDecoder, getArrayEncoder } from '../array';
 

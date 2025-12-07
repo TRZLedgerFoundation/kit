@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { Keypair } from '@solana/web3.js';
+import { Keypair } from '@trezoa/web3.js';
 
 import { fromLegacyKeypair } from '../keypair';
 

@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__TIMESTAMP_OUT_OF_RANGE, SolanaError } from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
+import { TREZOA_ERROR__TIMESTAMP_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
 
 /**
  * This type represents a Unix timestamp in _seconds_.
@@ -18,7 +18,7 @@ const minI64Value = -9223372036854775808n; // -(2n ** 63n)
  *
  * @example
  * ```ts
- * import { isUnixTimestamp } from '@solana/rpc-types';
+ * import { isUnixTimestamp } from '@trezoa/rpc-types';
  *
  * if (isUnixTimestamp(timestamp)) {
  *     // At this point, `timestamp` has been refined to a
@@ -44,7 +44,7 @@ export function isUnixTimestamp(putativeTimestamp: bigint): putativeTimestamp is
  * use this function.
  *
  * ```ts
- * import { assertIsUnixTimestamp } from '@solana/rpc-types';
+ * import { assertIsUnixTimestamp } from '@trezoa/rpc-types';
  *
  * // Imagine having received a value that you presume represents a timestamp.
  * // At this point we know only that it conforms to the `bigint` type.
@@ -61,7 +61,7 @@ export function isUnixTimestamp(putativeTimestamp: bigint): putativeTimestamp is
  */
 export function assertIsUnixTimestamp(putativeTimestamp: bigint): asserts putativeTimestamp is UnixTimestamp {
     if (putativeTimestamp < minI64Value || putativeTimestamp > maxI64Value) {
-        throw new SolanaError(SOLANA_ERROR__TIMESTAMP_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__TIMESTAMP_OUT_OF_RANGE, {
             value: putativeTimestamp,
         });
     }
@@ -73,7 +73,7 @@ export function assertIsUnixTimestamp(putativeTimestamp: bigint): asserts putati
  *
  * @example
  * ```ts
- * import { unixTimestamp } from '@solana/rpc-types';
+ * import { unixTimestamp } from '@trezoa/rpc-types';
  *
  * const timestamp = unixTimestamp(-42n); // Wednesday, December 31, 1969 3:59:18 PM GMT-08:00
  * ```

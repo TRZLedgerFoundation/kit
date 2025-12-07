@@ -1,5 +1,5 @@
 import { Code, Flex, Text } from '@radix-ui/themes';
-import { isSolanaError, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE } from '@solana/kit';
+import { isTrezoaError, TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE } from '@trezoa/kit';
 import {
     isWalletStandardError,
     WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_CHAIN_UNSUPPORTED,
@@ -60,7 +60,7 @@ export function getErrorMessage(err: unknown, fallbackMessage: React.ReactNode):
                 </Text>
             </Flex>
         );
-    } else if (isSolanaError(err, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
+    } else if (isTrezoaError(err, TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
         return (
             <Flex direction="column" gap="4">
                 <Text as="p">{err.message}</Text>

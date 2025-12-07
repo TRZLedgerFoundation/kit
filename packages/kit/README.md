@@ -5,27 +5,27 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/kit?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/kit?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/kit
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/kit?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/kit?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/kit
 
-# @solana/kit
+# @trezoa/kit
 
-This is the JavaScript SDK for building Solana apps for Node, web, and React Native.
+This is the JavaScript SDK for building Trezoa apps for Node, web, and React Native.
 
 ## Functions
 
-In addition to re-exporting functions from packages in the `@solana/*` namespace, this package offers additional helpers for building Solana applications, with sensible defaults.
+In addition to re-exporting functions from packages in the `@trezoa/*` namespace, this package offers additional helpers for building Trezoa applications, with sensible defaults.
 
 ### `airdropFactory({rpc, rpcSubscriptions})`
 
-Returns a function that you can call to airdrop a certain amount of `Lamports` to a Solana address.
+Returns a function that you can call to airdrop a certain amount of `Lamports` to a Trezoa address.
 
 ```ts
-import { address, airdropFactory, createSolanaRpc, createSolanaRpcSubscriptions, devnet, lamports } from '@solana/kit';
+import { address, airdropFactory, createTrezoaRpc, createTrezoaRpcSubscriptions, devnet, lamports } from '@trezoa/kit';
 
-const rpc = createSolanaRpc(devnet('http://127.0.0.1:8899'));
-const rpcSubscriptions = createSolanaRpcSubscriptions(devnet('ws://127.0.0.1:8900'));
+const rpc = createTrezoaRpc(devnet('http://127.0.0.1:8899'));
+const rpcSubscriptions = createTrezoaRpcSubscriptions(devnet('ws://127.0.0.1:8900'));
 
 const airdrop = airdropFactory({ rpc, rpcSubscriptions });
 
@@ -55,11 +55,11 @@ Since validators have an incentive to pack as many transactions into each block 
 Use this utility to estimate the actual compute unit cost of a given transaction message.
 
 ```ts
-import { getSetComputeUnitLimitInstruction } from '@solana-program/compute-budget';
-import { createSolanaRpc, getComputeUnitEstimateForTransactionMessageFactory, pipe } from '@solana/kit';
+import { getSetComputeUnitLimitInstruction } from '@trezoa-program/compute-budget';
+import { createTrezoaRpc, getComputeUnitEstimateForTransactionMessageFactory, pipe } from '@trezoa/kit';
 
 // Create an estimator function.
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
 const getComputeUnitEstimateForTransactionMessage = getComputeUnitEstimateForTransactionMessageFactory({
     rpc,
 });
@@ -95,14 +95,14 @@ const transactionMessageWithComputeUnitLimit = prependTransactionMessageInstruct
 Returns a function that you can call to send a blockhash-based transaction to the network and to wait until it has been confirmed.
 
 ```ts
-import { isSolanaError, sendAndConfirmTransactionFactory, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED } from '@solana/kit';
+import { isTrezoaError, sendAndConfirmTransactionFactory, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED } from '@trezoa/kit';
 
 const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
 
 try {
     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+    if (isTrezoaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
         console.error('This transaction depends on a blockhash that has expired');
     } else {
         throw e;
@@ -116,23 +116,23 @@ Returns a function that you can call to send a nonce-based transaction to the ne
 
 ```ts
 import {
-    isSolanaError,
+    isTrezoaError,
     sendAndConfirmDurableNonceTransactionFactory,
     SOLANA_ERROR__INVALID_NONCE,
     SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const sendAndConfirmNonceTransaction = sendAndConfirmDurableNonceTransactionFactory({ rpc, rpcSubscriptions });
 
 try {
     await sendAndConfirmNonceTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+    if (isTrezoaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
         console.error(
             'The lifetime specified by this transaction refers to a nonce account ' +
                 `\`${e.context.nonceAccountAddress}\` that does not exist`,
         );
-    } else if (isSolanaError(e, SOLANA_ERROR__INVALID_NONCE)) {
+    } else if (isTrezoaError(e, SOLANA_ERROR__INVALID_NONCE)) {
         console.error('This transaction depends on a nonce that is no longer valid');
     } else {
         throw e;
@@ -148,14 +148,14 @@ Returns a function that you can call to send a transaction with any kind of life
 import {
     sendTransactionWithoutConfirmingFactory,
     SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const sendTransaction = sendTransactionWithoutConfirmingFactory({ rpc });
 
 try {
     await sendTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
+    if (isTrezoaError(e, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
         console.error('The transaction failed in simulation', e.cause);
     } else {
         throw e;

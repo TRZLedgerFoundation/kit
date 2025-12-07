@@ -1,11 +1,11 @@
-import type { Commitment, Slot } from '@solana/rpc-types';
+import type { Commitment, Slot } from '@trezoa/rpc-types';
 
 type GetBlockHeightApiResponse = bigint;
 
 export type GetBlockHeightApi = {
     /**
      * Returns the current block height of the node
-     * @see https://solana.com/docs/rpc/http/getblockheight
+     * @see https://trezoa.com/docs/rpc/http/getblockheight
      */
     getBlockHeight(
         config?: Readonly<{
@@ -14,7 +14,7 @@ export type GetBlockHeightApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */

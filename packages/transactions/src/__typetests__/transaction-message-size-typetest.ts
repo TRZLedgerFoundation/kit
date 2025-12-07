@@ -2,7 +2,7 @@ import {
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionMessageWithinSizeLimit,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import {
     assertIsTransactionMessageWithinSizeLimit,

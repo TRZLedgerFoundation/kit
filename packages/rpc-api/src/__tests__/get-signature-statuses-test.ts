@@ -1,9 +1,9 @@
-import { SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, SolanaError } from '@solana/errors';
-import type { Signature } from '@solana/keys';
-import type { Rpc } from '@solana/rpc-spec';
+import { TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, TrezoaError } from '@trezoa/errors';
+import type { Signature } from '@trezoa/keys';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { GetSignatureStatusesApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -12,7 +12,7 @@ const CONTEXT_MATCHER = expect.objectContaining({
 describe('getSignatureStatuses', () => {
     let rpc: Rpc<GetSignatureStatusesApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     describe('when called with a valid transaction signature', () => {
@@ -47,7 +47,7 @@ describe('getSignatureStatuses', () => {
             expect.assertions(1);
             const signatureStatusPromise = rpc.getSignatureStatuses(['invalid_signature' as Signature]).send();
             await expect(signatureStatusPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+                new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                     __serverMessage: 'Invalid param: Invalid',
                 }),
             );

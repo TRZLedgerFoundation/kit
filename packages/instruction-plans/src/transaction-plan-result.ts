@@ -1,6 +1,6 @@
-import { Signature } from '@solana/keys';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
-import { getSignatureFromTransaction, Transaction } from '@solana/transactions';
+import { Signature } from '@trezoa/keys';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
+import { getSignatureFromTransaction, Transaction } from '@trezoa/transactions';
 
 /**
  * The result of executing a transaction plan.
@@ -130,7 +130,7 @@ export type ParallelTransactionPlanResult<
  * ```ts
  * const result = failedSingleTransactionPlanResult(
  *   transactionMessage,
- *   new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
+ *   new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__INSUFFICIENT_FUNDS_FOR_FEE),
  * );
  * result satisfies SingleTransactionPlanResult;
  * ```
@@ -353,7 +353,7 @@ export function successfulSingleTransactionPlanResultFromSignature<
  * ```ts
  * const result = failedSingleTransactionPlanResult(
  *   transactionMessage,
- *   new SolanaError({
+ *   new TrezoaError({
  *     code: 123,
  *     message: 'Transaction simulation failed',
  *   }),

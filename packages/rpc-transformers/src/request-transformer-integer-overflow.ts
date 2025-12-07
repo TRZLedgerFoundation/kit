@@ -1,4 +1,4 @@
-import { RpcRequest } from '@solana/rpc-spec-types';
+import { RpcRequest } from '@trezoa/rpc-spec-types';
 
 import { getIntegerOverflowNodeVisitor } from './request-transformer-integer-overflow-internal';
 import { getTreeWalkerRequestTransformer, KeyPath } from './tree-traversal';
@@ -11,7 +11,7 @@ export type IntegerOverflowHandler = (request: RpcRequest, keyPath: KeyPath, val
  *
  * @example
  * ```ts
- * import { getIntegerOverflowRequestTransformer } from '@solana/rpc-transformers';
+ * import { getIntegerOverflowRequestTransformer } from '@trezoa/rpc-transformers';
  *
  * const requestTransformer = getIntegerOverflowRequestTransformer((request, keyPath, value) => {
  *     throw new Error(`Integer overflow at ${keyPath.join('.')}: ${value}`);

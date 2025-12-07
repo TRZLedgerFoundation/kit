@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Commitment } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Commitment } from '@trezoa/rpc-types';
 
 describe('logsNotifications', () => {
     (

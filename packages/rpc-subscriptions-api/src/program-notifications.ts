@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
@@ -10,17 +10,17 @@ import type {
     Commitment,
     GetProgramAccountsDatasizeFilter,
     GetProgramAccountsMemcmpFilter,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
-type ProgramNotificationsApiNotificationBase<TData> = SolanaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & TData>>;
+type ProgramNotificationsApiNotificationBase<TData> = TrezoaRpcResponse<AccountInfoWithPubkey<AccountInfoBase & TData>>;
 
 type ProgramNotificationsApiCommonConfig = Readonly<{
     /**
      * Get notified when a modification to an account has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcSubscriptionsApi} in
-     * use. For example, when using an API created by a `createSolanaRpcSubscriptions*()` helper,
+     * use. For example, when using an API created by a `createTrezoaRpcSubscriptions*()` helper,
      * the default commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API
      * layer on the client, the default commitment applied by the server is `"finalized"`.
      */
@@ -51,7 +51,7 @@ export type ProgramNotificationsApi = {
      * is a base64-encoded string.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/websocket/programsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/programsubscribe
      */
     programNotifications(
         programId: Address,
@@ -72,7 +72,7 @@ export type ProgramNotificationsApi = {
      * as a tuple whose first element is a base64-encoded string.
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/websocket/programsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/programsubscribe
      */
     programNotifications(
         programId: Address,
@@ -94,7 +94,7 @@ export type ProgramNotificationsApi = {
      * element is a base64-encoded string.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/websocket/programsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/programsubscribe
      */
     programNotifications(
         programId: Address,
@@ -115,7 +115,7 @@ export type ProgramNotificationsApi = {
      * field will materialize as the string `"error: data too large for bs58 encoding"`.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/websocket/programsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/programsubscribe
      */
     programNotifications(
         programId: Address,
@@ -136,7 +136,7 @@ export type ProgramNotificationsApi = {
      * string `"error: data too large for bs58 encoding"`.
      *
      * {@label base58-legacy}
-     * @see https://solana.com/docs/rpc/websocket/programsubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/programsubscribe
      */
     programNotifications(
         programId: Address,

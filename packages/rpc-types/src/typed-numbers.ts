@@ -1,4 +1,4 @@
-import { Brand } from '@solana/nominal-types';
+import { Brand } from '@trezoa/nominal-types';
 
 export type Slot = bigint;
 export type Epoch = bigint;

@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { getSignersFromOffchainMessage } from '../offchain-message-signer';
 import { createMockMessageModifyingSigner, createMockMessagePartialSigner } from './__setup__';

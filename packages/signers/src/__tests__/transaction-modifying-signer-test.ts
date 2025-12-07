@@ -1,5 +1,5 @@
-import { address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, SolanaError } from '@solana/errors';
+import { address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import {
     assertIsTransactionModifyingSigner,
@@ -29,7 +29,7 @@ describe('assertIsTransactionModifyingSigner', () => {
             modifyAndSignTransactions: () => Promise.resolve([]),
         } satisfies TransactionModifyingSigner<'Gp7YgHcJciP4px5FdFnywUiMG4UcfMZV9UagSAZzDxdy'>;
 
-        const expectedError = new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, {
+        const expectedError = new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_MODIFYING_SIGNER, {
             address: myAddress,
         });
         expect(() => assertIsTransactionModifyingSigner(mySigner)).not.toThrow();

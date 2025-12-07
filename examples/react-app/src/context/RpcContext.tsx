@@ -1,11 +1,11 @@
-import type { Rpc, RpcSubscriptions, SolanaRpcApiMainnet, SolanaRpcSubscriptionsApi } from '@solana/kit';
-import { createSolanaRpc, createSolanaRpcSubscriptions, devnet } from '@solana/kit';
+import type { Rpc, RpcSubscriptions, TrezoaRpcApiMainnet, TrezoaRpcSubscriptionsApi } from '@trezoa/kit';
+import { createTrezoaRpc, createTrezoaRpcSubscriptions, devnet } from '@trezoa/kit';
 import { createContext } from 'react';
 
 export const RpcContext = createContext<{
-    rpc: Rpc<SolanaRpcApiMainnet>; // Limit the API to only those methods found on Mainnet (ie. not `requestAirdrop`)
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApiMainnet>; // Limit the API to only those methods found on Mainnet (ie. not `requestAirdrop`)
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 }>({
-    rpc: createSolanaRpc(devnet('https://api.devnet.solana.com')),
-    rpcSubscriptions: createSolanaRpcSubscriptions(devnet('wss://api.devnet.solana.com')),
+    rpc: createTrezoaRpc(devnet('https://api.devnet.trezoa.com')),
+    rpcSubscriptions: createTrezoaRpcSubscriptions(devnet('wss://api.devnet.trezoa.com')),
 });

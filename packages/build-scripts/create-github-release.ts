@@ -165,7 +165,7 @@ const releaseDateString =
     '-' +
     String(releaseDate.getDate()).padStart(2, '0');
 const aggregateReleaseNotes =
-    `# @solana/${REPO_NAME}\n\n` +
+    `# @trezoa/${REPO_NAME}\n\n` +
     `## [${tag}](https://github.com/${ORG_NAME}/${REPO_NAME}/compare/${priorRelease?.tag_name}...${tag}) (${releaseDateString})\n\n` +
     Object.keys(releaseNotesByLevel)
         .toSorted((a, b) =>

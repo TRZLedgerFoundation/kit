@@ -19,7 +19,7 @@ import { getLinks } from 'fumadocs-ui/layouts/shared';
 import { cn } from 'fumadocs-ui/utils/cn';
 import { Languages, SidebarIcon } from 'lucide-react';
 import { useMemo } from 'react';
-import { LogoWithSolana } from '../logo';
+import { LogoWithTrezoa } from '../logo';
 
 export function Sidebar({
     nav = {},
@@ -43,7 +43,7 @@ export function Sidebar({
         <SidebarHeader className="data-[empty=true]:hidden">
             <div className="relative flex justify-center max-md:hidden">
                 <Link href={nav.url ?? '/'} className="inline-flex items-center">
-                    <LogoWithSolana className="h-16 my-4" />
+                    <LogoWithTrezoa className="h-16 my-4" />
                 </Link>
 
                 <SidebarCollapseTrigger

@@ -1,4 +1,4 @@
-import { SolanaSignInInput } from '@solana/wallet-standard-features';
+import { TrezoaSignInInput } from '@trezoa/wallet-standard-features';
 import type { Wallet, WalletAccount, WalletVersion } from '@wallet-standard/base';
 import {
     WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_FEATURE_UNIMPLEMENTED,
@@ -22,7 +22,7 @@ describe('useSignIn', () => {
     let mockUiWalletAccount: {
         address: 'abc';
         chains: [];
-        features: ['solana:signIn'];
+        features: ['trezoa:signIn'];
         publicKey: Uint8Array;
         '~uiWalletHandle': UiWalletAccount['~uiWalletHandle'];
     };
@@ -33,14 +33,14 @@ describe('useSignIn', () => {
         mockUiWalletAccount = {
             address: 'abc',
             chains: [] as const,
-            features: ['solana:signIn'] as const,
+            features: ['trezoa:signIn'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
             '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
         };
         mockUiWallet = {
             accounts: [mockUiWalletAccount] as const,
             chains: [] as const,
-            features: ['solana:signIn'] as const,
+            features: ['trezoa:signIn'] as const,
             icon: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBAAA=',
             name: 'Mock Wallet',
             version: '1.0.0' as WalletVersion,
@@ -49,14 +49,14 @@ describe('useSignIn', () => {
         mockWalletAccount = {
             address: 'abc',
             chains: [] as const,
-            features: ['solana:signIn'] as const,
+            features: ['trezoa:signIn'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
         };
         mockWallet = {
             accounts: [mockWalletAccount],
             chains: [],
             features: {
-                ['solana:signIn']: {
+                ['trezoa:signIn']: {
                     signIn: mockSignIn,
                 },
             },
@@ -73,7 +73,7 @@ describe('useSignIn', () => {
         jest.spyOn(console, 'error').mockImplementation();
         jest.spyOn(console, 'warn').mockImplementation();
     });
-    it('fatals when passed a wallet that does not support the `solana:signIn` feature', () => {
+    it('fatals when passed a wallet that does not support the `trezoa:signIn` feature', () => {
         jest.mocked(getWalletForHandle_DO_NOT_USE_OR_YOU_WILL_BE_FIRED).mockReturnValue({
             ...mockWallet,
             features: { ['other:feature']: {} },
@@ -82,20 +82,20 @@ describe('useSignIn', () => {
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(
             new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_FEATURE_UNIMPLEMENTED, {
-                featureName: 'solana:signIn',
+                featureName: 'trezoa:signIn',
                 supportedChains: [],
                 supportedFeatures: ['other:feature'],
                 walletName: 'Mock Wallet',
             }),
         );
     });
-    it('fatals when passed a wallet account that does not support the `solana:signIn` feature', () => {
+    it('fatals when passed a wallet account that does not support the `trezoa:signIn` feature', () => {
         const { result } = renderHook(() => useSignIn({ ...mockUiWalletAccount, features: ['other:feature'] }));
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(
             new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_FEATURE_UNIMPLEMENTED, {
                 address: 'abc',
-                featureName: 'solana:signIn',
+                featureName: 'trezoa:signIn',
                 supportedChains: [],
                 supportedFeatures: ['other:feature'],
             }),
@@ -136,7 +136,7 @@ describe('useSignIn', () => {
         });
     });
     describe('when configured with a `UiWalletAccount`', () => {
-        let signIn: (input?: Omit<SolanaSignInInput, 'address'>) => Promise<{
+        let signIn: (input?: Omit<TrezoaSignInInput, 'address'>) => Promise<{
             readonly account: WalletAccount;
             readonly signature: Uint8Array;
             readonly signedMessage: Uint8Array;

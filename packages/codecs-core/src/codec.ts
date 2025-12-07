@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH,
-    SOLANA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH,
+    TREZOA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { ReadonlyUint8Array } from './readonly-uint8array';
 
@@ -107,13 +107,13 @@ export type VariableSizeEncoder<TFrom> = BaseEncoder<TFrom> & {
  *
  * @remarks
  * You may create `Encoders` manually using the {@link createEncoder} function but it is more common
- * to compose multiple `Encoders` together using the various helpers of the `@solana/codecs` package.
+ * to compose multiple `Encoders` together using the various helpers of the `@trezoa/codecs` package.
  *
  * For instance, here's how you might create an `Encoder` for a `Person` object type that contains
  * a `name` string and an `age` number:
  *
  * ```ts
- * import { getStructEncoder, addEncoderSizePrefix, getUtf8Encoder, getU32Encoder } from '@solana/codecs';
+ * import { getStructEncoder, addEncoderSizePrefix, getUtf8Encoder, getU32Encoder } from '@trezoa/codecs';
  *
  * type Person = { name: string; age: number };
  * const getPersonEncoder = (): Encoder<Person> =>
@@ -227,13 +227,13 @@ export type VariableSizeDecoder<TTo> = BaseDecoder<TTo> & {
  *
  * @remarks
  * You may create `Decoders` manually using the {@link createDecoder} function but it is more common
- * to compose multiple `Decoders` together using the various helpers of the `@solana/codecs` package.
+ * to compose multiple `Decoders` together using the various helpers of the `@trezoa/codecs` package.
  *
  * For instance, here's how you might create an `Decoder` for a `Person` object type that contains
  * a `name` string and an `age` number:
  *
  * ```ts
- * import { getStructDecoder, addDecoderSizePrefix, getUtf8Decoder, getU32Decoder } from '@solana/codecs';
+ * import { getStructDecoder, addDecoderSizePrefix, getUtf8Decoder, getU32Decoder } from '@trezoa/codecs';
  *
  * type Person = { name: string; age: number };
  * const getPersonDecoder = (): Decoder<Person> =>
@@ -342,13 +342,13 @@ export type VariableSizeCodec<TFrom, TTo extends TFrom = TFrom> = VariableSizeDe
  *
  * Aside from combining encoders and decoders, codecs can also be created from scratch using
  * the {@link createCodec} function but it is more common to compose multiple codecs together
- * using the various helpers of the `@solana/codecs` package.
+ * using the various helpers of the `@trezoa/codecs` package.
  *
  * For instance, here's how you might create a `Codec` for a `Person` object type that contains
  * a `name` string and an `age` number:
  *
  * ```ts
- * import { getStructCodec, addCodecSizePrefix, getUtf8Codec, getU32Codec } from '@solana/codecs';
+ * import { getStructCodec, addCodecSizePrefix, getUtf8Codec, getU32Codec } from '@trezoa/codecs';
  *
  * type Person = { name: string; age: number };
  * const getPersonCodec = (): Codec<Person> =>
@@ -447,7 +447,7 @@ export function getEncodedSize<TFrom>(
  *
  * @remarks
  * Note that, while `createEncoder` is useful for defining more complex encoders, it is more common to compose
- * encoders together using the various helpers and primitives of the `@solana/codecs` package.
+ * encoders together using the various helpers and primitives of the `@trezoa/codecs` package.
  *
  * Here are some alternative examples using codec primitives instead of `createEncoder`.
  *
@@ -550,7 +550,7 @@ export function createEncoder<TFrom>(
  *
  * @remarks
  * Note that, while `createDecoder` is useful for defining more complex decoders, it is more common to compose
- * decoders together using the various helpers and primitives of the `@solana/codecs` package.
+ * decoders together using the various helpers and primitives of the `@trezoa/codecs` package.
  *
  * Here are some alternative examples using codec primitives instead of `createDecoder`.
  *
@@ -785,12 +785,12 @@ export function isFixedSize(codec: { fixedSize: number } | { maxSize?: number })
  * Asserts that the given codec, encoder, or decoder is fixed-size.
  *
  * If the object is not fixed-size (i.e., it lacks a `fixedSize` property),
- * this function throws a {@link SolanaError} with the code `SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH`.
+ * this function throws a {@link TrezoaError} with the code `TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH`.
  *
  * @typeParam TFrom - The type of the value to encode.
  * @typeParam TTo - The type of the decoded value.
  * @typeParam TSize - The fixed size of the encoded value in bytes.
- * @throws {SolanaError} If the object is not fixed-size.
+ * @throws {TrezoaError} If the object is not fixed-size.
  *
  * @example
  * Asserting a fixed-size encoder.
@@ -803,7 +803,7 @@ export function isFixedSize(codec: { fixedSize: number } | { maxSize?: number })
  * Attempting to assert a variable-size encoder.
  * ```ts
  * const encoder = addEncoderSizePrefix(getUtf8Encoder(), getU32Encoder());
- * assertIsFixedSize(encoder); // Throws SolanaError
+ * assertIsFixedSize(encoder); // Throws TrezoaError
  * ```
  *
  * @remarks
@@ -828,7 +828,7 @@ export function assertIsFixedSize(
     codec: { fixedSize: number } | { maxSize?: number },
 ): asserts codec is { fixedSize: number } {
     if (!isFixedSize(codec)) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH);
+        throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH);
     }
 }
 
@@ -878,12 +878,12 @@ export function isVariableSize(codec: { fixedSize: number } | { maxSize?: number
  * Asserts that the given codec, encoder, or decoder is variable-size.
  *
  * If the object is not variable-size (i.e., it has a `fixedSize` property),
- * this function throws a {@link SolanaError} with the code `SOLANA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH`.
+ * this function throws a {@link TrezoaError} with the code `TREZOA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH`.
  *
  * @typeParam TFrom - The type of the value to encode.
  * @typeParam TTo - The type of the decoded value.
  * @typeParam TSize - The fixed size of the encoded value in bytes.
- * @throws {SolanaError} If the object is not variable-size.
+ * @throws {TrezoaError} If the object is not variable-size.
  *
  * @example
  * Asserting a variable-size encoder.
@@ -896,7 +896,7 @@ export function isVariableSize(codec: { fixedSize: number } | { maxSize?: number
  * Attempting to assert a fixed-size encoder.
  * ```ts
  * const encoder = getU32Encoder();
- * assertIsVariableSize(encoder); // Throws SolanaError
+ * assertIsVariableSize(encoder); // Throws TrezoaError
  * ```
  *
  * @remarks
@@ -920,6 +920,6 @@ export function assertIsVariableSize(
     codec: { fixedSize: number } | { maxSize?: number },
 ): asserts codec is { maxSize?: number } {
     if (!isVariableSize(codec)) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH);
+        throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_VARIABLE_LENGTH);
     }
 }

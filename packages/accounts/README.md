@@ -5,15 +5,15 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/accounts?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/accounts?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/accounts
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/accounts?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/accounts?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/accounts
 
-# @solana/accounts
+# @trezoa/accounts
 
-This package contains types and helper methods for representing, fetching and decoding Solana accounts. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types and helper methods for representing, fetching and decoding Trezoa accounts. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
-It provides a unified definition of a Solana account regardless of how it was retrieved and can represent both encoded and decoded accounts. It also introduces the concept of a `MaybeAccount` which represents a fetched account that may or may not exist on-chain whilst keeping track of its address in both cases.
+It provides a unified definition of a Trezoa account regardless of how it was retrieved and can represent both encoded and decoded accounts. It also introduces the concept of a `MaybeAccount` which represents a fetched account that may or may not exist on-chain whilst keeping track of its address in both cases.
 
 Helper functions are provided for fetching, parsing and decoding accounts as well as asserting that an account exists.
 
@@ -41,7 +41,7 @@ myDecodedAccount satisfies Account<MyAccountData, '1234..5678'>;
 
 ### `BaseAccount`
 
-The `BaseAccount` type defines the attributes common to all Solana accounts. Namely, it contains everything stored on-chain except the account data itself.
+The `BaseAccount` type defines the attributes common to all Trezoa accounts. Namely, it contains everything stored on-chain except the account data itself.
 
 ```ts
 const BaseAccount: BaseAccount = {
@@ -60,7 +60,7 @@ const myTotalAccountSize = myAccountDataSize + BASE_ACCOUNT_SIZE;
 
 ### `Account` and `EncodedAccount`
 
-The `Account` type contains all the information relevant to a Solana account. It contains the `BaseAccount` described above as well as the account data and the address of the account.
+The `Account` type contains all the information relevant to a Trezoa account. It contains the `BaseAccount` described above as well as the account data and the address of the account.
 
 The account data can be represented as either a `Uint8Array` — meaning the account is encoded — or a custom data type — meaning the account is decoded.
 

@@ -1,6 +1,6 @@
-import fastStableStringify from '@solana/fast-stable-stringify';
-import { isJsonRpcPayload } from '@solana/rpc-spec';
+import fastStableStringify from '@trezoa/fast-stable-stringify';
+import { isJsonRpcPayload } from '@trezoa/rpc-spec';
 
-export function getSolanaRpcPayloadDeduplicationKey(payload: unknown): string | undefined {
+export function getTrezoaRpcPayloadDeduplicationKey(payload: unknown): string | undefined {
     return isJsonRpcPayload(payload) ? fastStableStringify([payload.method, payload.params]) : undefined;
 }

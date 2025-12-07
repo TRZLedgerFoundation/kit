@@ -5,13 +5,13 @@ import DarkCodecsImage from '@/public/features/dark-codecs.png';
 import DarkRpcSubscriptionsImage from '@/public/features/dark-rpc-subscriptions.png';
 import DarkRpcImage from '@/public/features/dark-rpc.png';
 import DarkSignersImage from '@/public/features/dark-signers.png';
-import DarkSolanaProgramsImage from '@/public/features/dark-solana-programs.png';
+import DarkTrezoaProgramsImage from '@/public/features/dark-solana-programs.png';
 import DarkTransactionsImage from '@/public/features/dark-transactions.png';
 import LightCodecsImage from '@/public/features/light-codecs.png';
 import LightRpcSubscriptionsImage from '@/public/features/light-rpc-subscriptions.png';
 import LightRpcImage from '@/public/features/light-rpc.png';
 import LightSignersImage from '@/public/features/light-signers.png';
-import LightSolanaProgramsImage from '@/public/features/light-solana-programs.png';
+import LightTrezoaProgramsImage from '@/public/features/light-solana-programs.png';
 import LightTransactionsImage from '@/public/features/light-transactions.png';
 import { Link } from 'fumadocs-core/framework';
 import { cn } from 'fumadocs-ui/utils/cn';
@@ -34,7 +34,7 @@ const features: Feature[] = [
     {
         key: 'rpc',
         label: 'RPC',
-        description: 'Configure your Solana RPC and send requests to send transactions or fetch data.',
+        description: 'Configure your Trezoa RPC and send requests to send transactions or fetch data.',
         href: '/docs/concepts/rpc',
         image: {
             dark: DarkRpcImage,
@@ -83,12 +83,12 @@ const features: Feature[] = [
     },
     {
         key: 'solana-programs',
-        label: 'Solana Programs',
-        description: 'Interact with various Solana programs using their Codama-generated SDKs.',
+        label: 'Trezoa Programs',
+        description: 'Interact with various Trezoa programs using their Codama-generated SDKs.',
         href: '/docs/compatible-clients',
         image: {
-            dark: DarkSolanaProgramsImage,
-            light: LightSolanaProgramsImage,
+            dark: DarkTrezoaProgramsImage,
+            light: LightTrezoaProgramsImage,
         },
     },
 ];

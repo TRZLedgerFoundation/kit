@@ -5,8 +5,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { TextDecoder, TextEncoder } from '@solana/text-encoding-impl';
+} from '@trezoa/codecs-core';
+import { TextDecoder, TextEncoder } from '@trezoa/text-encoding-impl';
 
 import { removeNullCharacters } from './null-characters';
 

@@ -1,21 +1,21 @@
 import { Buffer } from 'node:buffer';
 
-import type { Address } from '@solana/addresses';
-import { fixEncoderSize, ReadonlyUint8Array } from '@solana/codecs-core';
-import { getBase58Decoder, getBase58Encoder } from '@solana/codecs-strings';
+import type { Address } from '@trezoa/addresses';
+import { fixEncoderSize, ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { getBase58Decoder, getBase58Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__JSON_RPC__INVALID_PARAMS,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE,
-    SolanaError,
-} from '@solana/errors';
-import { createPrivateKeyFromBytes } from '@solana/keys';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Base58EncodedBytes, Commitment } from '@solana/rpc-types';
-import type { Base64EncodedWireTransaction } from '@solana/transactions';
+    TREZOA_ERROR__JSON_RPC__INVALID_PARAMS,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { createPrivateKeyFromBytes } from '@trezoa/keys';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Base58EncodedBytes, Commitment } from '@trezoa/rpc-types';
+import type { Base64EncodedWireTransaction } from '@trezoa/transactions';
 
 import { GetLatestBlockhashApi, SimulateTransactionApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -131,7 +131,7 @@ async function getSecretKey() {
 describe('simulateTransaction', () => {
     let rpc: Rpc<GetLatestBlockhashApi & SimulateTransactionApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -213,10 +213,10 @@ describe('simulateTransaction', () => {
             )
             .send();
         await Promise.all([
-            expect(resultPromise).rejects.toThrow(SolanaError),
+            expect(resultPromise).rejects.toThrow(TrezoaError),
             expect(resultPromise).rejects.toHaveProperty(
                 'context.__code',
-                SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
             ),
             expect(resultPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
         ]);
@@ -249,7 +249,7 @@ describe('simulateTransaction', () => {
             .send();
 
         await expect(resultPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__JSON_RPC__SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE),
+            new TrezoaError(TREZOA_ERROR__JSON_RPC__SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE),
         );
     });
 
@@ -405,7 +405,7 @@ describe('simulateTransaction', () => {
             )
             .send();
         await expect(resultPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+            new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                 __serverMessage:
                     'failed to deserialize solana_transaction::versioned::VersionedTransaction: ' +
                     'invalid value: integer `126`, expected a valid transaction message version',
@@ -431,7 +431,7 @@ describe('simulateTransaction', () => {
             )
             .send();
         await expect(resultPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__JSON_RPC__INVALID_PARAMS, {
+            new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                 __serverMessage:
                     'failed to deserialize solana_transaction::versioned::VersionedTransaction: ' +
                     'io error: failed to fill whole buffer',

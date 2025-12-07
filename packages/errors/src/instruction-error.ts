@@ -1,9 +1,9 @@
-import { SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM, SOLANA_ERROR__INSTRUCTION_ERROR__UNKNOWN } from './codes';
-import { SolanaError } from './error';
-import { getSolanaErrorFromRpcError } from './rpc-enum-errors';
+import { TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM, TREZOA_ERROR__INSTRUCTION_ERROR__UNKNOWN } from './codes';
+import { TrezoaError } from './error';
+import { getTrezoaErrorFromRpcError } from './rpc-enum-errors';
 
 const ORDERED_ERROR_NAMES = [
-    // Keep synced with RPC source: https://github.com/anza-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
+    // Keep synced with RPC source: https://github.com/trezoa-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
     // If this list ever gets too large, consider implementing a compression strategy like this:
     // https://gist.github.com/steveluscher/aaa7cbbb5433b1197983908a40860c47
     'GenericError',
@@ -62,25 +62,25 @@ const ORDERED_ERROR_NAMES = [
     'BuiltinProgramsMustConsumeComputeUnits',
 ];
 
-export function getSolanaErrorFromInstructionError(
+export function getTrezoaErrorFromInstructionError(
     /**
      * The index of the instruction inside the transaction.
      */
     index: bigint | number,
     instructionError: string | { [key: string]: unknown },
-): SolanaError {
+): TrezoaError {
     const numberIndex = Number(index);
-    return getSolanaErrorFromRpcError(
+    return getTrezoaErrorFromRpcError(
         {
             errorCodeBaseOffset: 4615001,
             getErrorContext(errorCode, rpcErrorName, rpcErrorContext) {
-                if (errorCode === SOLANA_ERROR__INSTRUCTION_ERROR__UNKNOWN) {
+                if (errorCode === TREZOA_ERROR__INSTRUCTION_ERROR__UNKNOWN) {
                     return {
                         errorName: rpcErrorName,
                         index: numberIndex,
                         ...(rpcErrorContext !== undefined ? { instructionErrorContext: rpcErrorContext } : null),
                     };
-                } else if (errorCode === SOLANA_ERROR__INSTRUCTION_ERROR__CUSTOM) {
+                } else if (errorCode === TREZOA_ERROR__INSTRUCTION_ERROR__CUSTOM) {
                     return {
                         code: Number(rpcErrorContext as bigint | number),
                         index: numberIndex,
@@ -91,6 +91,6 @@ export function getSolanaErrorFromInstructionError(
             orderedErrorNames: ORDERED_ERROR_NAMES,
             rpcEnumError: instructionError,
         },
-        getSolanaErrorFromInstructionError,
+        getTrezoaErrorFromInstructionError,
     );
 }

@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { createCodec } from '../codec';
 import { fixCodecSize, fixDecoderSize, fixEncoderSize } from '../fix-codec-size';
@@ -59,7 +59,7 @@ describe('fixCodecSize', () => {
         expect(mockCodec.read).toHaveBeenCalledWith(b('08050c0c0f0000000000'), 0);
 
         expect(() => fixCodecSize(mockCodec, 10).decode(b('08050c0c0f'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
                 bytesLength: 5,
                 codecDescription: 'fixCodecSize',
                 expected: 10,
@@ -147,7 +147,7 @@ describe('fixDecoderSize', () => {
         expect(mockCodec.read).toHaveBeenCalledWith(b('08050c0c0f0000000000'), 0);
 
         expect(() => fixDecoderSize(mockCodec, 10).decode(b('08050c0c0f'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
                 bytesLength: 5,
                 codecDescription: 'fixCodecSize',
                 expected: 10,

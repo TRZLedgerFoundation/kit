@@ -1,4 +1,4 @@
-import { isFixedSize } from '@solana/codecs-core';
+import { isFixedSize } from '@trezoa/codecs-core';
 
 /**
  * Functionally, this type helper is equivalent to the identity type — i.e. `type Identity<T> = T`.

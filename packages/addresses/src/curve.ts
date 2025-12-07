@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__ADDRESSES__INVALID_OFF_CURVE_ADDRESS, SolanaError } from '@solana/errors';
-import type { AffinePoint } from '@solana/nominal-types';
+import { TREZOA_ERROR__ADDRESSES__INVALID_OFF_CURVE_ADDRESS, TrezoaError } from '@trezoa/errors';
+import type { AffinePoint } from '@trezoa/nominal-types';
 
 import { type Address, getAddressCodec } from './address';
 import { compressedPointBytesAreOnCurve } from './curve-internal';
@@ -19,7 +19,7 @@ export type OffCurveAddress<TAddress extends string = string> = AffinePoint<Addr
  *
  * @example
  * ```ts
- * import { isOffCurveAddress } from '@solana/addresses';
+ * import { isOffCurveAddress } from '@trezoa/addresses';
  *
  * if (isOffCurveAddress(accountAddress)) {
  *     // At this point, `accountAddress` has been refined to a
@@ -44,7 +44,7 @@ export function isOffCurveAddress<TAddress extends Address>(
  *
  * @example
  * ```ts
- * import { assertIsOffCurveAddress } from '@solana/addresses';
+ * import { assertIsOffCurveAddress } from '@trezoa/addresses';
  *
  * // Imagine a function that fetches an account's balance when a user submits a form.
  * function handleSubmit() {
@@ -69,7 +69,7 @@ export function assertIsOffCurveAddress<TAddress extends Address>(
     putativeOffCurveAddress: TAddress,
 ): asserts putativeOffCurveAddress is OffCurveAddress<TAddress> {
     if (!isOffCurveAddress(putativeOffCurveAddress)) {
-        throw new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_OFF_CURVE_ADDRESS);
+        throw new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_OFF_CURVE_ADDRESS);
     }
 }
 

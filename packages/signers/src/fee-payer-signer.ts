@@ -1,4 +1,4 @@
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { TransactionSigner } from './transaction-signer';
 
@@ -10,8 +10,8 @@ import { TransactionSigner } from './transaction-signer';
  *
  * @example
  * ```ts
- * import { BaseTransactionMessage } from '@solana/transaction-messages';
- * import { generateKeyPairSigner, TransactionMessageWithFeePayerSigner } from '@solana/signers';
+ * import { BaseTransactionMessage } from '@trezoa/transaction-messages';
+ * import { generateKeyPairSigner, TransactionMessageWithFeePayerSigner } from '@trezoa/signers';
  *
  * const transactionMessage: BaseTransactionMessage & TransactionMessageWithFeePayerSigner = {
  *     feePayer: await generateKeyPairSigner(),
@@ -36,9 +36,9 @@ export interface TransactionMessageWithFeePayerSigner<
  *
  * @example
  * ```ts
- * import { pipe } from '@solana/functional';
- * import { generateKeyPairSigner, setTransactionMessageFeePayerSigner } from '@solana/signers';
- * import { createTransactionMessage } from '@solana/transaction-messages';
+ * import { pipe } from '@trezoa/functional';
+ * import { generateKeyPairSigner, setTransactionMessageFeePayerSigner } from '@trezoa/signers';
+ * import { createTransactionMessage } from '@trezoa/transaction-messages';
  *
  * const feePayer = await generateKeyPairSigner();
  * const transactionMessage = pipe(

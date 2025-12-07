@@ -1,11 +1,11 @@
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_ACCOUNTS,
-    SOLANA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_DATA,
-    SOLANA_ERROR__INSTRUCTION__PROGRAM_ID_MISMATCH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_ACCOUNTS,
+    TREZOA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_DATA,
+    TREZOA_ERROR__INSTRUCTION__PROGRAM_ID_MISMATCH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { AccountLookupMeta, AccountMeta } from './accounts';
 
@@ -56,7 +56,7 @@ export function assertIsInstructionForProgram<TProgramAddress extends string, TI
     programAddress: Address<TProgramAddress>,
 ): asserts instruction is TInstruction & { programAddress: Address<TProgramAddress> } {
     if (instruction.programAddress !== programAddress) {
-        throw new SolanaError(SOLANA_ERROR__INSTRUCTION__PROGRAM_ID_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION__PROGRAM_ID_MISMATCH, {
             actualProgramAddress: instruction.programAddress,
             expectedProgramAddress: programAddress,
         });
@@ -75,7 +75,7 @@ export function assertIsInstructionWithAccounts<
     TInstruction extends Instruction = Instruction,
 >(instruction: TInstruction): asserts instruction is InstructionWithAccounts<TAccounts> & TInstruction {
     if (instruction.accounts === undefined) {
-        throw new SolanaError(SOLANA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_ACCOUNTS, {
+        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_ACCOUNTS, {
             data: instruction.data,
             programAddress: instruction.programAddress,
         });
@@ -120,7 +120,7 @@ export function assertIsInstructionWithData<
     TInstruction extends Instruction = Instruction,
 >(instruction: TInstruction): asserts instruction is InstructionWithData<TData> & TInstruction {
     if (instruction.data === undefined) {
-        throw new SolanaError(SOLANA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_DATA, {
+        throw new TrezoaError(TREZOA_ERROR__INSTRUCTION__EXPECTED_TO_HAVE_DATA, {
             accountAddresses: instruction.accounts?.map(a => a.address),
             programAddress: instruction.programAddress,
         });

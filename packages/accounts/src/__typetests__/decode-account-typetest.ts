@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Decoder, ReadonlyUint8Array } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { Decoder, ReadonlyUint8Array } from '@trezoa/codecs-core';
 
 import { Account, EncodedAccount } from '../account';
 import { assertAccountDecoded, assertAccountsDecoded, decodeAccount } from '../decode-account';

@@ -1,5 +1,5 @@
 /**
- * This package contains React hooks for building Solana apps.
+ * This package contains React hooks for building Trezoa apps.
  *
  * @packageDocumentation
  */

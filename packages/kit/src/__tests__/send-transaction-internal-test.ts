@@ -1,6 +1,6 @@
-import { Signature } from '@solana/keys';
-import type { Rpc, SendTransactionApi } from '@solana/rpc';
-import type { Commitment } from '@solana/rpc-types';
+import { Signature } from '@trezoa/keys';
+import type { Rpc, SendTransactionApi } from '@trezoa/rpc';
+import type { Commitment } from '@trezoa/rpc-types';
 import {
     Base64EncodedWireTransaction,
     getBase64EncodedWireTransaction,
@@ -8,14 +8,14 @@ import {
     Transaction,
     TransactionWithBlockhashLifetime,
     TransactionWithDurableNonceLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import {
     sendAndConfirmDurableNonceTransaction_INTERNAL_ONLY_DO_NOT_EXPORT,
     sendAndConfirmTransactionWithBlockhashLifetime_INTERNAL_ONLY_DO_NOT_EXPORT,
 } from '../send-transaction-internal';
 
-jest.mock('@solana/transactions');
+jest.mock('@trezoa/transactions');
 
 const FOREVER_PROMISE = new Promise(() => {
     /* never resolve */

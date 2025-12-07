@@ -1,13 +1,13 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH,
-    SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+    TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH,
+    TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { Transaction, TransactionMessageBytes } from '../../transaction';
 import { getSignaturesEncoder } from '../signatures-encoder';
@@ -202,7 +202,7 @@ describe.each([getTransactionDecoder, getTransactionCodec])('Transaction decoder
             ]);
 
             expect(() => decoder.decode(encodedTransaction)).toThrow(
-                new SolanaError(SOLANA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, { unsupportedVersion: 1 }),
+                new TrezoaError(TREZOA_ERROR__TRANSACTION__VERSION_NUMBER_NOT_SUPPORTED, { unsupportedVersion: 1 }),
             );
         });
     });
@@ -382,7 +382,7 @@ describe.each([getTransactionDecoder, getTransactionCodec])('Transaction decoder
             ]);
 
             expect(() => decoder.decode(encodedTransaction)).toThrow(
-                new SolanaError(SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
+                new TrezoaError(TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
                     numRequiredSignatures: 3,
                     signaturesLength: 2,
                     signerAddresses: [address1, address2, address3],

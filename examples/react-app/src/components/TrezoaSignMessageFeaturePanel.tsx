@@ -1,5 +1,5 @@
-import type { Address } from '@solana/kit';
-import { useWalletAccountMessageSigner } from '@solana/react';
+import type { Address } from '@trezoa/kit';
+import { useWalletAccountMessageSigner } from '@trezoa/react';
 import type { ReadonlyUint8Array } from '@wallet-standard/core';
 import type { UiWalletAccount } from '@wallet-standard/react';
 import { useCallback } from 'react';
@@ -10,7 +10,7 @@ type Props = Readonly<{
     account: UiWalletAccount;
 }>;
 
-export function SolanaSignMessageFeaturePanel({ account }: Props) {
+export function TrezoaSignMessageFeaturePanel({ account }: Props) {
     const messageSigner = useWalletAccountMessageSigner(account);
     const signMessage = useCallback(
         async (message: ReadonlyUint8Array) => {

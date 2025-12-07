@@ -5,7 +5,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { getNullableCodec, getNullableDecoder, getNullableEncoder } from '../nullable';
 

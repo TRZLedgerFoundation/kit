@@ -1,5 +1,5 @@
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import {
     fetchEncodedSysvarAccount,
@@ -13,12 +13,12 @@ import {
     SYSVAR_SLOT_HISTORY_ADDRESS,
     SYSVAR_STAKE_HISTORY_ADDRESS,
 } from '../sysvar';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('sysvar account', () => {
     let rpc: Rpc<GetAccountInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     const assertValidEncodedSysvarAccount = async (address: Parameters<typeof fetchEncodedSysvarAccount>[1]) => {
         const account = await fetchEncodedSysvarAccount(rpc, address);
@@ -57,7 +57,7 @@ describe('sysvar account', () => {
         });
     });
     // `EpochRewards` will only appear at the start of an epoch, after epoch 0 concludes.
-    // See https://github.com/anza-xyz/agave/blob/e0203f22dc83cb792fa97f91dbe6e924cbd08af1/docs/src/runtime/sysvars.md?plain=1#L155-L168
+    // See https://github.com/trezoa-xyz/agave/blob/e0203f22dc83cb792fa97f91dbe6e924cbd08af1/docs/src/runtime/sysvars.md?plain=1#L155-L168
     describe('epoch schedule', () => {
         it('fetch encoded', async () => {
             expect.assertions(3);

@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 /**
  * Ensures that a given number falls within a specified range.
@@ -11,7 +11,7 @@ import { SOLANA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, SolanaError } from '@solana/
  * @param max - The maximum allowed value (inclusive).
  * @param value - The number to validate.
  *
- * @throws {@link SolanaError} if the value is out of range.
+ * @throws {@link TrezoaError} if the value is out of range.
  *
  * @example
  * Validating a number within range.
@@ -32,7 +32,7 @@ export function assertNumberIsBetweenForCodec(
     value: bigint | number,
 ) {
     if (value < min || value > max) {
-        throw new SolanaError(SOLANA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, {
             codecDescription,
             max,
             min,

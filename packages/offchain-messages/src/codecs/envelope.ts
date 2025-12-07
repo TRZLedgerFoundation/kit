@@ -1,4 +1,4 @@
-import { Address, address } from '@solana/addresses';
+import { Address, address } from '@trezoa/addresses';
 import {
     combineCodec,
     fixDecoderSize,
@@ -7,23 +7,23 @@ import {
     transformEncoder,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getArrayDecoder,
     getBytesDecoder,
     getBytesEncoder,
     getStructDecoder,
     getStructEncoder,
-} from '@solana/codecs-data-structures';
-import { getU8Decoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-data-structures';
+import { getU8Decoder } from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH,
-    SolanaError,
-} from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH,
+    TrezoaError,
+} from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { OffchainMessageEnvelope } from '../envelope';
 import { OffchainMessageBytes } from '../message';
@@ -43,7 +43,7 @@ export function getOffchainMessageEnvelopeEncoder(): VariableSizeEncoder<Offchai
         envelope => {
             const signaturesMapAddresses = Object.keys(envelope.signatures).map(address);
             if (signaturesMapAddresses.length === 0) {
-                throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
+                throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
             }
             const signatoryAddresses = decodeAndValidateRequiredSignatoryAddresses(envelope.content);
             const missingRequiredSigners = [];
@@ -59,7 +59,7 @@ export function getOffchainMessageEnvelopeEncoder(): VariableSizeEncoder<Offchai
                 }
             }
             if (missingRequiredSigners.length || unexpectedSigners.length) {
-                throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH, {
+                throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__ENVELOPE_SIGNERS_MISMATCH, {
                     missingRequiredSigners,
                     unexpectedSigners,
                 });
@@ -77,12 +77,12 @@ export function getOffchainMessageEnvelopeEncoder(): VariableSizeEncoder<Offchai
 }
 
 /**
- * Returns a decoder that you can use to convert a byte array in the Solana offchain message format
+ * Returns a decoder that you can use to convert a byte array in the Trezoa offchain message format
  * to a {@link OffchainMessageEnvelope} object.
  *
  * @example
  * ```ts
- * import { getOffchainMessageEnvelopeDecoder } from '@solana/offchain-messages';
+ * import { getOffchainMessageEnvelopeDecoder } from '@trezoa/offchain-messages';
  *
  * const offchainMessageEnvelopeDecoder = getOffchainMessageEnvelopeDecoder();
  * const offchainMessageEnvelope = offchainMessageEnvelopeDecoder.decode(offchainMessageEnvelopeBytes);
@@ -122,7 +122,7 @@ function decodePartiallyDecodedOffchainMessageEnvelope(
     const { content, signatures } = offchainMessageEnvelope;
 
     if (signatures.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_ENVELOPE_SIGNATURES_CANNOT_BE_ZERO);
     }
 
     const signatoryAddresses = decodeAndValidateRequiredSignatoryAddresses(content);
@@ -130,7 +130,7 @@ function decodePartiallyDecodedOffchainMessageEnvelope(
     // Signer addresses and signatures must be the same length
     // We encode an all-zero signature when the signature is missing
     if (signatoryAddresses.length !== signatures.length) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_SIGNATURES_MISMATCH, {
             numRequiredSignatures: signatoryAddresses.length,
             signatoryAddresses,
             signaturesLength: signatures.length,
@@ -158,7 +158,7 @@ function decodeAndValidateRequiredSignatoryAddresses(bytes: ReadonlyUint8Array):
     const signatoryAddresses = decodeRequiredSignatoryAddresses(bytes);
 
     if (signatoryAddresses.length === 0) {
-        throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
+        throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO);
     }
 
     return signatoryAddresses;

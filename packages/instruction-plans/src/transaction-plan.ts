@@ -1,4 +1,4 @@
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 /**
  * A set of transaction messages with constraints on how they can be executed.

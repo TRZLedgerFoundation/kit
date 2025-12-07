@@ -5,10 +5,10 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getTupleDecoder, getTupleEncoder } from '@solana/codecs-data-structures';
-import { getUtf8Decoder, getUtf8Encoder } from '@solana/codecs-strings';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { getTupleDecoder, getTupleEncoder } from '@trezoa/codecs-data-structures';
+import { getUtf8Decoder, getUtf8Encoder } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY, TrezoaError } from '@trezoa/errors';
 
 import { OffchainMessageV1 } from '../message-v1';
 import { getOffchainMessageV1PreambleDecoder, getOffchainMessageV1PreambleEncoder } from './preamble-v1';
@@ -19,7 +19,7 @@ import { getOffchainMessageV1PreambleDecoder, getOffchainMessageV1PreambleEncode
  *
  * @example
  * ```ts
- * import { getOffchainMessageV1Decoder } from '@solana/offchain-messages';
+ * import { getOffchainMessageV1Decoder } from '@trezoa/offchain-messages';
  *
  * const offchainMessageDecoder = getOffchainMessageV1Decoder();
  * const offchainMessage = offchainMessageDecoder.decode(
@@ -35,7 +35,7 @@ export function getOffchainMessageV1Decoder(): VariableSizeDecoder<OffchainMessa
         getTupleDecoder([getOffchainMessageV1PreambleDecoder(), getUtf8Decoder()]),
         ([{ requiredSignatories, ...preambleRest }, text]) => {
             if (text.length === 0) {
-                throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
+                throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
             }
             return Object.freeze({
                 ...preambleRest,
@@ -56,7 +56,7 @@ export function getOffchainMessageV1Encoder(): VariableSizeEncoder<OffchainMessa
         offchainMessage => {
             const { content, ...compiledPreamble } = offchainMessage;
             if (content.length === 0) {
-                throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
+                throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY);
             }
             return [compiledPreamble, content] as const;
         },

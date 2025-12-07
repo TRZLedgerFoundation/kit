@@ -1,9 +1,9 @@
-import type { PendingRpcRequest, Rpc } from '@solana/rpc-spec';
+import type { PendingRpcRequest, Rpc } from '@trezoa/rpc-spec';
 import {
     TransactionForFullMetaInnerInstructionsParsed,
     TransactionForFullMetaInnerInstructionsUnparsed,
-} from '@solana/rpc-types';
-import { Base64EncodedWireTransaction, TransactionBlockhashLifetime } from '@solana/transactions';
+} from '@trezoa/rpc-types';
+import { Base64EncodedWireTransaction, TransactionBlockhashLifetime } from '@trezoa/transactions';
 
 import type { SimulateTransactionApi } from '../simulateTransaction';
 

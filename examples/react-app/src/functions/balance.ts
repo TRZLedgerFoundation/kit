@@ -1,4 +1,4 @@
-import { AccountNotificationsApi, Address, GetBalanceApi, Lamports, Rpc, RpcSubscriptions } from '@solana/kit';
+import { AccountNotificationsApi, Address, GetBalanceApi, Lamports, Rpc, RpcSubscriptions } from '@trezoa/kit';
 import { SWRSubscription } from 'swr/subscription';
 
 const EXPLICIT_ABORT_TOKEN = Symbol();

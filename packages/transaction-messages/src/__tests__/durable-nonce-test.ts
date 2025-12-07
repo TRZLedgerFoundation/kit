@@ -1,8 +1,8 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { AccountRole, Instruction, ReadonlySignerAccount, WritableAccount } from '@solana/instructions';
-import type { Blockhash } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { AccountRole, Instruction, ReadonlySignerAccount, WritableAccount } from '@trezoa/instructions';
+import type { Blockhash } from '@trezoa/rpc-types';
 
 import { TransactionMessageWithBlockhashLifetime } from '../blockhash';
 import {

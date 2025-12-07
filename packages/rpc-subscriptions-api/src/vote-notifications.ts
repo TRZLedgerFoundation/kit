@@ -1,6 +1,6 @@
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { Blockhash, Slot, UnixTimestamp } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { Blockhash, Slot, UnixTimestamp } from '@trezoa/rpc-types';
 
 type VoteNotificationsApiNotification = Readonly<{
     /** The vote hash */
@@ -26,7 +26,7 @@ export type VoteNotificationsApi = {
      * `--rpc-pubsub-enable-vote-subscription` flag. The format of this subscription may change in
      * the future.
      *
-     * @see https://solana.com/docs/rpc/websocket/votesubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/votesubscribe
      */
     voteNotifications(): VoteNotificationsApiNotification;
 };

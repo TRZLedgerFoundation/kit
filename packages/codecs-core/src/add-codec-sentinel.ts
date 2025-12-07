@@ -1,8 +1,8 @@
 import {
-    SOLANA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL,
-    SOLANA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL,
+    TREZOA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { containsBytes } from './bytes';
 import {
@@ -47,7 +47,7 @@ export function addEncoderSentinel<TFrom>(encoder: Encoder<TFrom>, sentinel: Rea
         // and to avoid writing the sentinel as part of the encoded value.
         const encoderBytes = encoder.encode(value);
         if (findSentinelIndex(encoderBytes, sentinel) >= 0) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__ENCODED_BYTES_MUST_NOT_INCLUDE_SENTINEL, {
                 encodedBytes: encoderBytes,
                 hexEncodedBytes: hexBytes(encoderBytes),
                 hexSentinel: hexBytes(sentinel),
@@ -93,7 +93,7 @@ export function addDecoderSentinel<TTo>(decoder: Decoder<TTo>, sentinel: Readonl
         const candidateBytes = offset === 0 ? bytes : bytes.slice(offset);
         const sentinelIndex = findSentinelIndex(candidateBytes, sentinel);
         if (sentinelIndex === -1) {
-            throw new SolanaError(SOLANA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES, {
+            throw new TrezoaError(TREZOA_ERROR__CODECS__SENTINEL_MISSING_IN_DECODED_BYTES, {
                 decodedBytes: candidateBytes,
                 hexDecodedBytes: hexBytes(candidateBytes),
                 hexSentinel: hexBytes(sentinel),

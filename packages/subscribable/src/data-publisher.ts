@@ -8,7 +8,7 @@ type UnsubscribeFn = () => void;
  *
  * @example
  * ```ts
- * let dataPublisher: DataPublisher<{ error: SolanaError }>;
+ * let dataPublisher: DataPublisher<{ error: TrezoaError }>;
  * dataPublisher.on('data', handleData); // ERROR. `data` is not a known channel name.
  * dataPublisher.on('error', e => {
  *     console.error(e);
@@ -40,7 +40,7 @@ export interface DataPublisher<TDataByChannelName extends Record<string, unknown
  *
  * @example
  * ```ts
- * const socketDataPublisher = getDataPublisherFromEventEmitter(new WebSocket('wss://api.devnet.solana.com'));
+ * const socketDataPublisher = getDataPublisherFromEventEmitter(new WebSocket('wss://api.devnet.trezoa.com'));
  * const unsubscribe = socketDataPublisher.on('message', message => {
  *     if (JSON.parse(message.data).id === 42) {
  *         console.log('Got response 42');

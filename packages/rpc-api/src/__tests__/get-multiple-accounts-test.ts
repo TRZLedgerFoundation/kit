@@ -1,10 +1,10 @@
-import type { Address } from '@solana/addresses';
-import { SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Commitment } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { GetMultipleAccountsApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 const CONTEXT_MATCHER = expect.objectContaining({
     slot: expect.any(BigInt),
@@ -13,7 +13,7 @@ const CONTEXT_MATCHER = expect.objectContaining({
 describe('getMultipleAccounts', () => {
     let rpc: Rpc<GetMultipleAccountsApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
@@ -71,10 +71,10 @@ describe('getMultipleAccounts', () => {
                 })
                 .send();
             await Promise.all([
-                expect(sendPromise).rejects.toThrow(SolanaError),
+                expect(sendPromise).rejects.toThrow(TrezoaError),
                 expect(sendPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
                 ),
                 expect(sendPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
             ]);

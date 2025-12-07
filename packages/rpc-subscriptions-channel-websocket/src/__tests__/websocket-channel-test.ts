@@ -1,10 +1,10 @@
 import {
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
-    SolanaError,
-} from '@solana/errors';
-import { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
+    TrezoaError,
+} from '@trezoa/errors';
+import { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 import WS from 'jest-websocket-mock';
 import { Client } from 'mock-socket';
 
@@ -46,7 +46,7 @@ describe('createWebSocketChannel', () => {
             url: 'ws://fake', // Wrong URL!
         });
         await expect(channelPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT, {
+            new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT, {
                 errorEvent: {} as Event,
             }),
         );
@@ -132,7 +132,7 @@ describe('a websocket channel', () => {
             };
             ws.close(closeOptions);
             expect(errorListener).toHaveBeenCalledWith(
-                new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
+                new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
                     cause: expect.objectContaining(closeOptions),
                 }),
             );
@@ -148,7 +148,7 @@ describe('a websocket channel', () => {
             };
             ws.server.close(closeOptions);
             expect(errorListener).toHaveBeenCalledWith(
-                new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
+                new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
                     cause: expect.objectContaining(closeOptions),
                 }),
             );
@@ -188,7 +188,7 @@ describe('a websocket channel', () => {
             abortController.abort();
             expect(client).toHaveProperty('readyState', WebSocket.CLOSING);
             await expect(channel.send('message')).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED),
+                new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED),
             );
         });
         it('throws when sending a message to a closed channel', async () => {
@@ -198,7 +198,7 @@ describe('a websocket channel', () => {
             await ws.closed;
             expect(client).toHaveProperty('readyState', WebSocket.CLOSED);
             await expect(channel.send('message')).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED),
+                new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED),
             );
         });
         describe('given the send buffer is filled past the high watermark', () => {
@@ -244,7 +244,7 @@ describe('a websocket channel', () => {
                 const sendPromise = channel.send('message');
                 abortController.abort();
                 await expect(sendPromise).rejects.toThrow(
-                    new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED),
+                    new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED),
                 );
             });
             it('fatals when the channel encounters an error while a message is queued', async () => {
@@ -256,7 +256,7 @@ describe('a websocket channel', () => {
                     wasClean: false,
                 });
                 await expect(sendPromise).rejects.toThrow(
-                    new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED),
+                    new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED),
                 );
             });
         });

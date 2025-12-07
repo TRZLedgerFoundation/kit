@@ -5,9 +5,9 @@ import {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../..';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../..';
 import { mockBlockFull } from '../../__tests__/__setup__';
 
 type GraphQLCompliantRpc = Rpc<
@@ -35,7 +35,7 @@ describe('block inputs', () => {
                 return target[p as keyof GraphQLCompliantRpc];
             },
         });
-        rpcGraphQL = createSolanaRpcGraphQL(rpc);
+        rpcGraphQL = createTrezoaRpcGraphQL(rpc);
     });
     // Does not accept raw bigint, ie. 511226n
     it('can accept a bigint parameter as variable', async () => {

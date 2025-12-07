@@ -1,5 +1,5 @@
-import { assertKeyExporterIsAvailable } from '@solana/assertions';
-import { SOLANA_ERROR__ADDRESSES__INVALID_ED25519_PUBLIC_KEY, SolanaError } from '@solana/errors';
+import { assertKeyExporterIsAvailable } from '@trezoa/assertions';
+import { TREZOA_ERROR__ADDRESSES__INVALID_ED25519_PUBLIC_KEY, TrezoaError } from '@trezoa/errors';
 
 import { Address, getAddressDecoder, getAddressEncoder } from './address';
 
@@ -8,7 +8,7 @@ import { Address, getAddressDecoder, getAddressEncoder } from './address';
  *
  * @example
  * ```ts
- * import { getAddressFromPublicKey } from '@solana/addresses';
+ * import { getAddressFromPublicKey } from '@trezoa/addresses';
  *
  * const address = await getAddressFromPublicKey(publicKey);
  * ```
@@ -16,7 +16,7 @@ import { Address, getAddressDecoder, getAddressEncoder } from './address';
 export async function getAddressFromPublicKey(publicKey: CryptoKey): Promise<Address> {
     assertKeyExporterIsAvailable();
     if (publicKey.type !== 'public' || publicKey.algorithm.name !== 'Ed25519') {
-        throw new SolanaError(SOLANA_ERROR__ADDRESSES__INVALID_ED25519_PUBLIC_KEY);
+        throw new TrezoaError(TREZOA_ERROR__ADDRESSES__INVALID_ED25519_PUBLIC_KEY);
     }
     const publicKeyBytes = await crypto.subtle.exportKey('raw', publicKey);
     return getAddressDecoder().decode(new Uint8Array(publicKeyBytes));
@@ -27,7 +27,7 @@ export async function getAddressFromPublicKey(publicKey: CryptoKey): Promise<Add
  *
  * @example
  * ```ts
- * import { getAddressFromPublicKey } from '@solana/addresses';
+ * import { getAddressFromPublicKey } from '@trezoa/addresses';
  *
  * const publicKey = await getPublicKeyFromAddress(address);
  * ```

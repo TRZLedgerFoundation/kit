@@ -5,9 +5,9 @@ import type {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../../index';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../../index';
 
 const FOREVER_PROMISE = new Promise(() => {
     /* never resolve */
@@ -25,7 +25,7 @@ describe('program accounts resolver', () => {
             getProgramAccounts: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
             getTransaction: jest.fn().mockReturnValue({ send: jest.fn().mockReturnValue(FOREVER_PROMISE) }),
         };
-        rpcGraphQL = createSolanaRpcGraphQL(rpc);
+        rpcGraphQL = createTrezoaRpcGraphQL(rpc);
     });
     describe('inline fragments', () => {
         it('will resolve inline fragments with `jsonParsed` when `jsonParsed` fields are requested', async () => {

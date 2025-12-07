@@ -1,14 +1,14 @@
-import { Address, assertIsAddress, getAddressDecoder, getAddressEncoder, isAddress } from '@solana/addresses';
-import { combineCodec, createEncoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
+import { Address, assertIsAddress, getAddressDecoder, getAddressEncoder, isAddress } from '@trezoa/addresses';
+import { combineCodec, createEncoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
 import {
-    isSolanaError,
-    SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__BLOCKHASH_STRING_LENGTH_OUT_OF_RANGE,
-    SOLANA_ERROR__INVALID_BLOCKHASH_BYTE_LENGTH,
-    SolanaError,
-} from '@solana/errors';
-import { Brand, EncodedString } from '@solana/nominal-types';
+    isTrezoaError,
+    TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__BLOCKHASH_STRING_LENGTH_OUT_OF_RANGE,
+    TREZOA_ERROR__INVALID_BLOCKHASH_BYTE_LENGTH,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand, EncodedString } from '@trezoa/nominal-types';
 
 export type Blockhash = Brand<EncodedString<string, 'base58'>, 'Blockhash'>;
 
@@ -18,7 +18,7 @@ export type Blockhash = Brand<EncodedString<string, 'base58'>, 'Blockhash'>;
  *
  * @example
  * ```ts
- * import { isBlockhash } from '@solana/rpc-types';
+ * import { isBlockhash } from '@trezoa/rpc-types';
  *
  * if (isBlockhash(blockhash)) {
  *     // At this point, `blockhash` has been refined to a
@@ -41,7 +41,7 @@ export function isBlockhash(putativeBlockhash: string): putativeBlockhash is Blo
  *
  * @example
  * ```ts
- * import { assertIsBlockhash } from '@solana/rpc-types';
+ * import { assertIsBlockhash } from '@trezoa/rpc-types';
  *
  * // Imagine a function that determines whether a blockhash is fresh when a user submits a form.
  * function handleSubmit() {
@@ -63,11 +63,11 @@ export function assertIsBlockhash(putativeBlockhash: string): asserts putativeBl
     try {
         assertIsAddress(putativeBlockhash);
     } catch (error) {
-        if (isSolanaError(error, SOLANA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE)) {
-            throw new SolanaError(SOLANA_ERROR__BLOCKHASH_STRING_LENGTH_OUT_OF_RANGE, error.context);
+        if (isTrezoaError(error, TREZOA_ERROR__ADDRESSES__STRING_LENGTH_OUT_OF_RANGE)) {
+            throw new TrezoaError(TREZOA_ERROR__BLOCKHASH_STRING_LENGTH_OUT_OF_RANGE, error.context);
         }
-        if (isSolanaError(error, SOLANA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH)) {
-            throw new SolanaError(SOLANA_ERROR__INVALID_BLOCKHASH_BYTE_LENGTH, error.context);
+        if (isTrezoaError(error, TREZOA_ERROR__ADDRESSES__INVALID_BYTE_LENGTH)) {
+            throw new TrezoaError(TREZOA_ERROR__INVALID_BLOCKHASH_BYTE_LENGTH, error.context);
         }
         throw error;
     }
@@ -79,7 +79,7 @@ export function assertIsBlockhash(putativeBlockhash: string): asserts putativeBl
  *
  * @example
  * ```ts
- * import { blockhash } from '@solana/rpc-types';
+ * import { blockhash } from '@trezoa/rpc-types';
  *
  * const { value: isValid } = await rpc.isBlockhashValid(blockhash(blockhashFromUserInput)).send();
  * ```
@@ -90,7 +90,7 @@ export function assertIsBlockhash(putativeBlockhash: string): asserts putativeBl
  * validation on its input.
  * >
  * > ```ts
- * > import { Blockhash } from '@solana/rpc-types';
+ * > import { Blockhash } from '@trezoa/rpc-types';
  * >
  * > const blockhash = 'ABmPH5KDXX99u6woqFS5vfBGSNyKG42SzpvBMWWqAy48' as Blockhash;
  * > ```
@@ -105,7 +105,7 @@ export function blockhash(putativeBlockhash: string): Blockhash {
  *
  * @example
  * ```ts
- * import { getBlockhashEncoder } from '@solana/rpc-types';
+ * import { getBlockhashEncoder } from '@trezoa/rpc-types';
  *
  * const blockhash = 'ABmPH5KDXX99u6woqFS5vfBGSNyKG42SzpvBMWWqAy48' as Blockhash;
  * const blockhashEncoder = getBlockhashEncoder();
@@ -135,7 +135,7 @@ export function getBlockhashEncoder(): FixedSizeEncoder<Blockhash, 32> {
  *
  * @example
  * ```ts
- * import { getBlockhashDecoder } from '@solana/rpc-types';
+ * import { getBlockhashDecoder } from '@trezoa/rpc-types';
  *
  * const blockhashBytes = new Uint8Array([
  *     136, 123,  44, 249,  43,  19,  60,  14,

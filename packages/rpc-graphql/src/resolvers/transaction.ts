@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { Signature } from '@solana/keys';
-import { Commitment } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Signature } from '@trezoa/keys';
+import { Commitment } from '@trezoa/rpc-types';
 import type { GraphQLResolveInfo } from 'graphql';
 
 import { RpcGraphQLContext } from '../context';

@@ -5,8 +5,8 @@ import {
     setTransactionMessageLifetimeUsingBlockhash,
     TransactionMessageWithBlockhashLifetime,
     TransactionMessageWithFeePayer,
-} from '@solana/transaction-messages';
-import { compileTransaction, Transaction, TransactionWithBlockhashLifetime } from '@solana/transactions';
+} from '@trezoa/transaction-messages';
+import { compileTransaction, Transaction, TransactionWithBlockhashLifetime } from '@trezoa/transactions';
 
 import type { TransactionPlan } from '../transaction-plan';
 import { createTransactionPlanExecutor, type TransactionPlanExecutor } from '../transaction-plan-executor';

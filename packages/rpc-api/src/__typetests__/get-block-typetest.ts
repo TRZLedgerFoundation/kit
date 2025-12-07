@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Rpc } from '@solana/rpc-spec';
+import { Address } from '@trezoa/addresses';
+import { Rpc } from '@trezoa/rpc-spec';
 import type {
     Base58EncodedBytes,
     Base58EncodedDataResponse,
@@ -10,8 +10,8 @@ import type {
     TokenBalance,
     TransactionError,
     TransactionStatus,
-} from '@solana/rpc-types';
-import { TransactionVersion } from '@solana/transaction-messages';
+} from '@trezoa/rpc-types';
+import { TransactionVersion } from '@trezoa/transaction-messages';
 
 import { GetBlockApi } from '../getBlock';
 

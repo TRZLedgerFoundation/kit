@@ -1,4 +1,4 @@
-import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@solana/accounts';
+import { assertAccountExists, decodeAccount, type FetchAccountConfig } from '@trezoa/accounts';
 import {
     combineCodec,
     createDecoder,
@@ -11,25 +11,25 @@ import {
     getU64Decoder,
     getU64Encoder,
     ReadonlyUint8Array,
-} from '@solana/codecs';
+} from '@trezoa/codecs';
 import {
-    SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
-    SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH,
-    SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS,
-    SolanaError,
-} from '@solana/errors';
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Slot } from '@solana/rpc-types';
+    TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE,
+    TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH,
+    TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS,
+    TrezoaError,
+} from '@trezoa/errors';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Slot } from '@trezoa/rpc-types';
 
 import { fetchEncodedSysvarAccount, SYSVAR_SLOT_HISTORY_ADDRESS } from './sysvar';
 
 const BITVEC_DISCRIMINATOR = 1;
 // Max number of bits in the bitvector.
-// The Solana SDK defines a constant `MAX_ENTRIES` representing the maximum
+// The Trezoa SDK defines a constant `MAX_ENTRIES` representing the maximum
 // number of bits that can be represented by the bitvector in the `SlotHistory`
 // sysvar. This value is 1024 * 1024 = 1_048_576.
-// See https://github.com/anza-xyz/agave/blob/e0203f22dc83cb792fa97f91dbe6e924cbd08af1/sdk/program/src/slot_history.rs#L43
+// See https://github.com/trezoa-xyz/agave/blob/e0203f22dc83cb792fa97f91dbe6e924cbd08af1/sdk/program/src/slot_history.rs#L43
 const BITVEC_NUM_BITS = 1024 * 1024;
 // The length of the bitvector in blocks.
 // At 64 bits per block, this is 1024 * 1024 / 64 = 16_384.
@@ -120,7 +120,7 @@ export function getSysvarSlotHistoryDecoder(): FixedSizeDecoder<SysvarSlotHistor
         read: (bytes: ReadonlyUint8Array | Uint8Array, offset) => {
             // Byte length should be exact.
             if (bytes.length != SLOT_HISTORY_ACCOUNT_DATA_STATIC_SIZE) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
                     actual: bytes.length,
                     expected: SLOT_HISTORY_ACCOUNT_DATA_STATIC_SIZE,
                 });
@@ -129,7 +129,7 @@ export function getSysvarSlotHistoryDecoder(): FixedSizeDecoder<SysvarSlotHistor
             const discriminator = bytes[offset];
             offset += 1;
             if (discriminator !== BITVEC_DISCRIMINATOR) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__ENUM_DISCRIMINATOR_OUT_OF_RANGE, {
                     actual: discriminator,
                     expected: BITVEC_DISCRIMINATOR,
                 });
@@ -138,7 +138,7 @@ export function getSysvarSlotHistoryDecoder(): FixedSizeDecoder<SysvarSlotHistor
             const bitVecLength = getMemoizedU64Decoder().read(bytes, offset)[0];
             offset += 8;
             if (bitVecLength !== BigInt(BITVEC_LENGTH)) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
                     actual: bitVecLength,
                     codecDescription: 'SysvarSlotHistoryCodec',
                     expected: BITVEC_LENGTH,
@@ -151,7 +151,7 @@ export function getSysvarSlotHistoryDecoder(): FixedSizeDecoder<SysvarSlotHistor
             const numBits = getMemoizedU64Decoder().read(bytes, offset)[0];
             offset += 8;
             if (numBits !== BigInt(BITVEC_NUM_BITS)) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
                     actual: numBits,
                     codecDescription: 'SysvarSlotHistoryCodec',
                     expected: BITVEC_NUM_BITS,

@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TrezoaError } from '@trezoa/errors';
 
 import {
     assertIsInstructionForProgram,
@@ -46,7 +46,7 @@ describe('assertIsInstructionForProgram', () => {
         };
         const address = 'abc' as Address;
         const assert = () => assertIsInstructionForProgram(instruction, address);
-        expect(assert).toThrow(SolanaError);
+        expect(assert).toThrow(TrezoaError);
     });
 });
 
@@ -109,7 +109,7 @@ describe('assertIsInstructionWithAccounts', () => {
             programAddress,
         };
         const assert = () => assertIsInstructionWithAccounts(instruction);
-        expect(assert).toThrow(SolanaError);
+        expect(assert).toThrow(TrezoaError);
     });
 });
 
@@ -162,6 +162,6 @@ describe('assertIsInstructionWithData', () => {
             programAddress,
         };
         const assert = () => assertIsInstructionWithData(instruction);
-        expect(assert).toThrow(SolanaError);
+        expect(assert).toThrow(TrezoaError);
     });
 });

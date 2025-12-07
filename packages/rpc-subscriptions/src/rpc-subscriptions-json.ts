@@ -1,9 +1,9 @@
-import { pipe } from '@solana/functional';
+import { pipe } from '@trezoa/functional';
 import {
     RpcSubscriptionsChannel,
     transformChannelInboundMessages,
     transformChannelOutboundMessages,
-} from '@solana/rpc-subscriptions-spec';
+} from '@trezoa/rpc-subscriptions-spec';
 
 /**
  * Given a {@link RpcSubscriptionsChannel}, will return a new channel that parses data published to

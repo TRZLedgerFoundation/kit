@@ -1,13 +1,13 @@
-import type { Rpc } from '@solana/rpc-spec';
-import type { Blockhash, Commitment } from '@solana/rpc-types';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Blockhash, Commitment } from '@trezoa/rpc-types';
 
 import { IsBlockhashValidApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('isBlockhashValid', () => {
     let rpc: Rpc<IsBlockhashValidApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     (['confirmed', 'finalized', 'processed'] as Commitment[]).forEach(commitment => {
         describe(`when called with \`${commitment}\` commitment`, () => {

@@ -1,4 +1,4 @@
-import { Signature } from '@solana/keys';
+import { Signature } from '@trezoa/keys';
 import {
     GetAccountInfoApi,
     GetBlockApi,
@@ -6,9 +6,9 @@ import {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
-import { createSolanaRpcGraphQL, RpcGraphQL } from '../index';
+import { createTrezoaRpcGraphQL, RpcGraphQL } from '../index';
 import {
     mockTransactionAddressLookup,
     mockTransactionBase58,
@@ -49,7 +49,7 @@ describe('transaction', () => {
                 return target[p as keyof GraphQLCompliantRpc];
             },
         });
-        rpcGraphQL = createSolanaRpcGraphQL(mockRpc);
+        rpcGraphQL = createTrezoaRpcGraphQL(mockRpc);
     });
 
     describe('basic queries', () => {

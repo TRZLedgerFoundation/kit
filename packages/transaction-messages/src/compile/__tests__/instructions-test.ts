@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { AccountRole, Instruction } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { AccountRole, Instruction } from '@trezoa/instructions';
 
 import { OrderedAccounts } from '../../compile/accounts';
 import { getCompiledInstructions } from '../../compile/instructions';

@@ -1,6 +1,6 @@
-import { SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 import {
     assertIsFullySignedTransaction,
     compileTransaction,
@@ -8,7 +8,7 @@ import {
     Transaction,
     TransactionWithinSizeLimit,
     TransactionWithLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 import { getSignersFromTransactionMessage, TransactionMessageWithSigners } from './account-signer-meta';
 import { deduplicateSigners } from './deduplicate-signers';
@@ -120,7 +120,7 @@ export async function signTransactionMessageWithSigners(
  *
  * @example
  * ```ts
- * import { signAndSendTransactionMessageWithSigners } from '@solana/signers';
+ * import { signAndSendTransactionMessageWithSigners } from '@trezoa/signers';
  *
  * const transactionSignature = await signAndSendTransactionMessageWithSigners(transactionMessage);
  *
@@ -180,7 +180,7 @@ export async function signAndSendTransactionMessageWithSigners(
     );
 
     if (!sendingSigner) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING);
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__TRANSACTION_SENDING_SIGNER_MISSING);
     }
 
     abortSignal?.throwIfAborted();

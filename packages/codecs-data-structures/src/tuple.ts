@@ -14,7 +14,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { assertValidNumberOfItemsForCodec } from './assertions';
 import { DrainOuterGeneric, getFixedSize, getMaxSize, sumCodecSizes } from './utils';

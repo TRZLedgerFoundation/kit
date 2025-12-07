@@ -1,13 +1,13 @@
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { fetchSysvarEpochSchedule, getSysvarEpochScheduleCodec } from '../epoch-schedule';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('epoch rewards', () => {
     let rpc: Rpc<GetAccountInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     it('decode', () => {
         // prettier-ignore

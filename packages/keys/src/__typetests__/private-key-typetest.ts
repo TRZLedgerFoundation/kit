@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 
 import { createPrivateKeyFromBytes } from '../private-key';
 

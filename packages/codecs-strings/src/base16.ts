@@ -5,8 +5,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, TrezoaError } from '@trezoa/errors';
 
 const enum HexC {
     ZERO = 48, // 0
@@ -57,7 +57,7 @@ export const getBase16Encoder = (): VariableSizeEncoder<string> =>
                 const c = value.charCodeAt(0);
                 const n = charCodeToBase16(c);
                 if (n === undefined) {
-                    throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+                    throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                         ...INVALID_STRING_ERROR_BASE_CONFIG,
                         value,
                     });
@@ -73,7 +73,7 @@ export const getBase16Encoder = (): VariableSizeEncoder<string> =>
                 const n1 = charCodeToBase16(c1);
                 const n2 = charCodeToBase16(c2);
                 if (n1 === undefined || (n2 === undefined && !Number.isNaN(c2))) {
-                    throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+                    throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                         ...INVALID_STRING_ERROR_BASE_CONFIG,
                         value,
                     });

@@ -7,14 +7,14 @@
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLoggerWithTimestamp } from '@solana/example-utils/createLogger.js';
+import { createLoggerWithTimestamp } from '@trezoa/example-utils/createLogger.js';
 import {
     ClusterUrl,
     createDefaultRpcTransport,
-    createSolanaRpcFromTransport,
+    createTrezoaRpcFromTransport,
     mainnet,
     RpcTransportFromClusterUrl,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const log = createLoggerWithTimestamp('Throttling transport');
 
@@ -105,14 +105,14 @@ function getThrottledTransport<TClusterUrl extends ClusterUrl>(
 
 /**
  * STEP 2: RPC CONNECTION WITH CUSTOM TRANSPORT
- * Create a default RPC transport, wrap it in a throttled transport, then create a Solana RPC
+ * Create a default RPC transport, wrap it in a throttled transport, then create a Trezoa RPC
  * instance from the resulting transport.
  */
 const defaultTransport = createDefaultRpcTransport({
-    url: mainnet('https://api.mainnet-beta.solana.com'),
+    url: mainnet('https://api.mainnet-beta.trezoa.com'),
 });
 const throttledTransport = getThrottledTransport(defaultTransport);
-const throttledRpc = createSolanaRpcFromTransport(throttledTransport);
+const throttledRpc = createTrezoaRpcFromTransport(throttledTransport);
 
 /**
  * STEP 3: MAKE 11 REQUESTS AT THE SAME TIME; CANCEL THE 8TH BEFORE IT STARTS

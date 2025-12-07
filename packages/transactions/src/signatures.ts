@@ -1,14 +1,14 @@
-import { Address, getAddressFromPublicKey } from '@solana/addresses';
-import { bytesEqual, Decoder } from '@solana/codecs-core';
-import { getBase58Decoder } from '@solana/codecs-strings';
+import { Address, getAddressFromPublicKey } from '@trezoa/addresses';
+import { bytesEqual, Decoder } from '@trezoa/codecs-core';
+import { getBase58Decoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION,
-    SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { Signature, SignatureBytes, signBytes } from '@solana/keys';
-import { NominalType } from '@solana/nominal-types';
+    TREZOA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION,
+    TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Signature, SignatureBytes, signBytes } from '@trezoa/keys';
+import { NominalType } from '@trezoa/nominal-types';
 
 import { Transaction } from './transaction';
 
@@ -23,14 +23,14 @@ let base58Decoder: Decoder<string> | undefined;
 /**
  * Given a transaction signed by its fee payer, this method will return the {@link Signature} that
  * uniquely identifies it. This string can be used to look up transactions at a later date, for
- * example on a Solana block explorer.
+ * example on a Trezoa block explorer.
  *
  * @example
  * ```ts
- * import { getSignatureFromTransaction } from '@solana/transactions';
+ * import { getSignatureFromTransaction } from '@trezoa/transactions';
  *
  * const signature = getSignatureFromTransaction(tx);
- * console.debug(`Inspect this transaction at https://explorer.solana.com/tx/${signature}`);
+ * console.debug(`Inspect this transaction at https://explorer.trezoa.com/tx/${signature}`);
  * ```
  */
 export function getSignatureFromTransaction(transaction: Transaction): Signature {
@@ -40,7 +40,7 @@ export function getSignatureFromTransaction(transaction: Transaction): Signature
     // first signature is the fee payer
     const signatureBytes = Object.values(transaction.signatures)[0];
     if (!signatureBytes) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING);
     }
     const transactionSignature = base58Decoder.decode(signatureBytes);
     return transactionSignature as Signature;
@@ -57,8 +57,8 @@ export function getSignatureFromTransaction(transaction: Transaction): Signature
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
- * import { partiallySignTransaction } from '@solana/transactions';
+ * import { generateKeyPair } from '@trezoa/keys';
+ * import { partiallySignTransaction } from '@trezoa/transactions';
  *
  * const partiallySignedTransaction = await partiallySignTransaction([myPrivateKey], tx);
  * ```
@@ -105,7 +105,7 @@ export async function partiallySignTransaction<TTransaction extends Transaction>
 
     if (unexpectedSigners && unexpectedSigners.size > 0) {
         const expectedSigners = Object.keys(transaction.signatures);
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__ADDRESSES_CANNOT_SIGN_TRANSACTION, {
             expectedAddresses: expectedSigners,
             unexpectedAddresses: [...unexpectedSigners],
         });
@@ -133,8 +133,8 @@ export async function partiallySignTransaction<TTransaction extends Transaction>
  *
  * @example
  * ```ts
- * import { generateKeyPair } from '@solana/keys';
- * import { signTransaction } from '@solana/transactions';
+ * import { generateKeyPair } from '@trezoa/keys';
+ * import { signTransaction } from '@trezoa/transactions';
  *
  * const signedTransaction = await signTransaction([myPrivateKey], tx);
  * ```
@@ -157,7 +157,7 @@ export async function signTransaction<TTransaction extends Transaction>(
  *
  * @example
  * ```ts
- * import { isFullySignedTransaction } from '@solana/transactions';
+ * import { isFullySignedTransaction } from '@trezoa/transactions';
  *
  * const transaction = getTransactionDecoder().decode(transactionBytes);
  * if (isFullySignedTransaction(transaction)) {
@@ -178,7 +178,7 @@ export function isFullySignedTransaction<TTransaction extends Transaction>(
  *
  * @example
  * ```ts
- * import { assertIsFullySignedTransaction } from '@solana/transactions';
+ * import { assertIsFullySignedTransaction } from '@trezoa/transactions';
  *
  * const transaction = getTransactionDecoder().decode(transactionBytes);
  * try {
@@ -188,7 +188,7 @@ export function isFullySignedTransaction<TTransaction extends Transaction>(
  *     // At this point we know that the transaction is signed and can be sent to the network.
  *     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
  * } catch(e) {
- *     if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+ *     if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
  *         setError(`Missing signatures for ${e.context.addresses.join(', ')}`);
  *     }
  *     throw;
@@ -206,7 +206,7 @@ export function assertIsFullySignedTransaction<TTransaction extends Transaction>
     });
 
     if (missingSigs.length > 0) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING, {
             addresses: missingSigs,
         });
     }

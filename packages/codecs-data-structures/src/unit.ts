@@ -6,7 +6,7 @@ import {
     FixedSizeDecoder,
     FixedSizeEncoder,
     ReadonlyUint8Array,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 /**
  * Returns an encoder for `void` values.

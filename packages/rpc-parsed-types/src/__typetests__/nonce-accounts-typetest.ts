@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { Blockhash, StringifiedBigInt } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Blockhash, StringifiedBigInt } from '@trezoa/rpc-types';
 
 import { JsonParsedNonceAccount } from '../nonce-accounts';
 

@@ -1,5 +1,5 @@
-import type { Commitment, Lamports, Slot, SolanaRpcResponse } from '@solana/rpc-types';
-import type { TransactionMessageBytesBase64 } from '@solana/transactions';
+import type { Commitment, Lamports, Slot, TrezoaRpcResponse } from '@trezoa/rpc-types';
+import type { TransactionMessageBytesBase64 } from '@trezoa/transactions';
 
 type GetFeeForMessageApiResponse = Lamports | null;
 
@@ -9,7 +9,7 @@ export type GetFeeForMessageApi = {
      *
      * @returns The fee that the network will charge to process the message, in {@link Lamports}, as
      * computed at the specified blockhash.
-     * @see https://solana.com/docs/rpc/http/getfeeformessage
+     * @see https://trezoa.com/docs/rpc/http/getfeeformessage
      */
     getFeeForMessage(
         /** A transaction message encoded as a base64 string */
@@ -20,7 +20,7 @@ export type GetFeeForMessageApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */
@@ -31,5 +31,5 @@ export type GetFeeForMessageApi = {
              */
             minContextSlot?: Slot;
         }>,
-    ): SolanaRpcResponse<GetFeeForMessageApiResponse>;
+    ): TrezoaRpcResponse<GetFeeForMessageApiResponse>;
 };

@@ -1,16 +1,16 @@
-# @solana/rpc-graphql
+# @trezoa/rpc-graphql
 
 This package defines a GraphQL client resolver built on top of the
-[Solana JSON-RPC](https://docs.solana.com/api/http).
+[Trezoa JSON-RPC](https://docs.trezoa.com/api/http).
 
 A client resolver in this context is simply a client-side RPC interface
 designed to give application developers the ability to use GraphQL to interact
-with data on the Solana blockchain.
+with data on the Trezoa blockchain.
 
-The resolver presents developers with a new schema for working with Solana data
+The resolver presents developers with a new schema for working with Trezoa data
 (see [Schema](#schema)), as well as new features only possible with GraphQL.
 Additionally, the resolver is designed to make highly-optimized use of the
-Solana JSON RPC, balancing RPC requests, batch loading, and caching
+Trezoa JSON RPC, balancing RPC requests, batch loading, and caching
 (see [RPC Optimizations](#rpc-optimizations)).
 
 GraphQL is a query language for your API, and a server-side runtime for
@@ -21,7 +21,7 @@ executing queries using a type system you define for your data.
 # Quick Start
 
 The RPC-GraphQL client requires an RPC client, as defined by the package
-`@solana/rpc-spec`. Such a client is available in `@solana/kit:2.0` or
+`@trezoa/rpc-spec`. Such a client is available in `@trezoa/kit:2.0` or
 can be created manually with a custom implementation.
 
 ```ts
@@ -35,16 +35,16 @@ for use in order to properly execute all queries.
 Rpc<GetAccountInfoApi & GetBlockApi & GetMultipleAccountsApi & GetProgramAccountsApi & GetTransactionApi>;
 ```
 
-To initialize the RPC-GraphQL client, simple use `createSolanaRpcGraphQL`.
+To initialize the RPC-GraphQL client, simple use `createTrezoaRpcGraphQL`.
 
 ```ts
-import { createSolanaRpc } from '@solana/rpc';
+import { createTrezoaRpc } from '@trezoa/rpc';
 
 // Create the RPC client
-const rpc = createSolanaRpc('https://api.devnet.solana.com');
+const rpc = createTrezoaRpc('https://api.devnet.trezoa.com');
 
 // Create the RPC-GraphQL client
-const rpcGraphQL = createSolanaRpcGraphQL(rpc);
+const rpcGraphQL = createTrezoaRpcGraphQL(rpc);
 ```
 
 The `RpcGraphQL` type supports one method `query` which accepts a string
@@ -121,13 +121,13 @@ const lamportsAccountB = await rpcGraphQL.query(source, {
 
 # Schema
 
-Solana data can be categorized into three main types:
+Trezoa data can be categorized into three main types:
 
 - Accounts
 - Transactions
 - Blocks
 
-These types encompass everything that can be queried from the Solana ledger.
+These types encompass everything that can be queried from the Trezoa ledger.
 
 ## Accounts
 
@@ -928,7 +928,7 @@ data: {
 
 # RPC Optimizations
 
-RPC-GraphQL ships highly-optimized use of the Solana JSON RPC out of the box,
+RPC-GraphQL ships highly-optimized use of the Trezoa JSON RPC out of the box,
 so developers can focus on building dynamic web applications without worrying
 about abusing their RPC endpoint.
 
@@ -946,7 +946,7 @@ This results in four main benefits:
 ## Caching
 
 Caching is a fairly standard part of any good GraphQL library, and
-`@solana/rpc-graphql` makes no exception.
+`@trezoa/rpc-graphql` makes no exception.
 
 If a query contains fetches for the same resource, the resolver can simply
 fetch this information from the cache, ensuring no duplicate RPC requests
@@ -1052,7 +1052,7 @@ response to serve the requested query.
 
 ## Batch Loading
 
-In some cases, the Solana JSON RPC offers batch loading for certain data types.
+In some cases, the Trezoa JSON RPC offers batch loading for certain data types.
 One such example is the RPC methods `getAccountInfo` and `getMultipleAccounts`.
 
 As one might predict, whenever multiple accounts are requested with parameters

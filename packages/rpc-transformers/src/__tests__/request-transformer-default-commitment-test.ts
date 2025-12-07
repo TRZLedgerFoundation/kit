@@ -1,4 +1,4 @@
-import type { Commitment } from '@solana/rpc-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
 import { applyDefaultCommitment } from '../request-transformer-default-commitment-internal';
 

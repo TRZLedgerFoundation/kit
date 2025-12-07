@@ -8,7 +8,7 @@ import { Agent, Dispatcher, fetch } from 'undici';
 
 const NUM_CONCURRENT_REQUESTS = 1024;
 const URL = process.argv[2];
-ok(URL, 'You must supply the URL of a rate-limit-free Solana JSON-RPC server as the first argument to this script');
+ok(URL, 'You must supply the URL of a rate-limit-free Trezoa JSON-RPC server as the first argument to this script');
 
 const bench = new Bench({
     throws: true,
@@ -18,8 +18,8 @@ let dispatcher: Dispatcher | undefined;
 function createDispatcher(options: Agent.Options) {
     dispatcher = new Agent({
         ...options,
-        // One second fewer than the Solana RPC's keepalive timeout.
-        // Read more: https://github.com/solana-labs/solana/issues/27859#issuecomment-1340097889
+        // One second fewer than the Trezoa RPC's keepalive timeout.
+        // Read more: https://github.com/trezoa-team/solana/issues/27859#issuecomment-1340097889
         keepAliveTimeout: 19000,
     });
 }

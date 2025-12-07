@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, TrezoaError } from '@trezoa/errors';
 
 import { getBase16Codec } from '../base16';
 
@@ -27,7 +27,7 @@ describe('getBase16Codec', () => {
         expect(base16.read(new Uint8Array([255, 255]), 0)).toStrictEqual(['ffff', 2]);
 
         expect(() => base16.encode('INVALID_INPUT')).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                 alphabet: '0123456789abcdef',
                 base: 16,
                 value: 'INVALID_INPUT',

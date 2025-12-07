@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { setTransactionMessageFeePayerSigner, TransactionMessageWithFeePayerSigner } from '../fee-payer-signer';
 import { TransactionSigner } from '../transaction-signer';

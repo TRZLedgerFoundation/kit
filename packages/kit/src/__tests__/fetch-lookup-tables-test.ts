@@ -1,10 +1,10 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
-    SOLANA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND,
-    SolanaError,
-} from '@solana/errors';
-import { GetMultipleAccountsApi, Rpc } from '@solana/rpc';
+    TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED,
+    TREZOA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND,
+    TrezoaError,
+} from '@trezoa/errors';
+import { GetMultipleAccountsApi, Rpc } from '@trezoa/rpc';
 
 import { fetchAddressesForLookupTables } from '../fetch-lookup-tables';
 
@@ -99,7 +99,7 @@ describe('fetchAddressesForLookupTables', () => {
 
             const lookupTableAddresses: Address[] = ['abc' as Address, 'def' as Address];
             await expect(fetchAddressesForLookupTables(lookupTableAddresses, rpc)).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
+                new TrezoaError(TREZOA_ERROR__ACCOUNTS__EXPECTED_ALL_ACCOUNTS_TO_BE_DECODED, {
                     addresses: ['def'],
                 }),
             );
@@ -130,7 +130,7 @@ describe('fetchAddressesForLookupTables', () => {
 
             const lookupTableAddresses: Address[] = ['abc' as Address, 'def' as Address];
             await expect(fetchAddressesForLookupTables(lookupTableAddresses, rpc)).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND, { addresses: ['def'] }),
+                new TrezoaError(TREZOA_ERROR__ACCOUNTS__ONE_OR_MORE_ACCOUNTS_NOT_FOUND, { addresses: ['def'] }),
             );
         });
     });

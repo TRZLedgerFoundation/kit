@@ -1,4 +1,4 @@
-import { RpcTransport } from '@solana/rpc-spec';
+import { RpcTransport } from '@trezoa/rpc-spec';
 
 describe('createHttpTransport and `toJson` function', () => {
     let toJson: jest.Mock;

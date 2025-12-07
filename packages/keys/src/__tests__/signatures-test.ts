@@ -1,11 +1,11 @@
-import { createEncoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { getBase58Encoder } from '@solana/codecs-strings';
+import { createEncoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getBase58Encoder } from '@trezoa/codecs-strings';
 
 import { createPrivateKeyFromBytes } from '../private-key';
 import { assertIsSignatureBytes, SignatureBytes, signBytes, verifySignature } from '../signatures';
 
-jest.mock('@solana/codecs-strings', () => ({
-    ...jest.requireActual('@solana/codecs-strings'),
+jest.mock('@trezoa/codecs-strings', () => ({
+    ...jest.requireActual('@trezoa/codecs-strings'),
     getBase58Encoder: jest.fn(),
 }));
 
@@ -25,7 +25,7 @@ const MOCK_PUBLIC_KEY_BYTES = new Uint8Array([
 ]);
 
 // real implementations
-const originalBase58Module = jest.requireActual('@solana/codecs-strings');
+const originalBase58Module = jest.requireActual('@trezoa/codecs-strings');
 const originalGetBase58Encoder = originalBase58Module.getBase58Encoder();
 
 describe('assertIsSignature()', () => {

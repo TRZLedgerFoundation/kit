@@ -1,9 +1,9 @@
 import {
-    SOLANA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_MUST_NOT_POLL_BEFORE_RESOLVING_EXISTING_MESSAGE_PROMISE,
-    SOLANA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_STATE_MISSING,
-    SolanaError,
-} from '@solana/errors';
-import { AbortController } from '@solana/event-target-impl';
+    TREZOA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_MUST_NOT_POLL_BEFORE_RESOLVING_EXISTING_MESSAGE_PROMISE,
+    TREZOA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_STATE_MISSING,
+    TrezoaError,
+} from '@trezoa/errors';
+import { AbortController } from '@trezoa/event-target-impl';
 
 import { DataPublisher } from './data-publisher';
 
@@ -187,12 +187,12 @@ export function createAsyncIterableFromDataPublisher<TData>({
                     const state = iteratorState.get(iteratorKey);
                     if (!state) {
                         // There should always be state by now.
-                        throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_STATE_MISSING);
+                        throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_STATE_MISSING);
                     }
                     if (state.__hasPolled) {
                         // You should never be able to poll twice in a row.
-                        throw new SolanaError(
-                            SOLANA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_MUST_NOT_POLL_BEFORE_RESOLVING_EXISTING_MESSAGE_PROMISE,
+                        throw new TrezoaError(
+                            TREZOA_ERROR__INVARIANT_VIOLATION__SUBSCRIPTION_ITERATOR_MUST_NOT_POLL_BEFORE_RESOLVING_EXISTING_MESSAGE_PROMISE,
                         );
                     }
                     const publishQueue = state.publishQueue;

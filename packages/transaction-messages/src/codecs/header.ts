@@ -1,6 +1,6 @@
-import { FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
-import { getStructCodec, getStructDecoder, getStructEncoder } from '@solana/codecs-data-structures';
-import { getU8Codec, getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
+import { FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
+import { getStructCodec, getStructDecoder, getStructEncoder } from '@trezoa/codecs-data-structures';
+import { getU8Codec, getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
 
 import { getCompiledMessageHeader } from '../compile/header';
 

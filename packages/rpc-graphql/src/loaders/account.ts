@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { getBase58Codec, getBase64Codec } from '@solana/codecs-strings';
-import type { GetAccountInfoApi, GetMultipleAccountsApi, Rpc } from '@solana/rpc';
+import { Address } from '@trezoa/addresses';
+import { getBase58Codec, getBase64Codec } from '@trezoa/codecs-strings';
+import type { GetAccountInfoApi, GetMultipleAccountsApi, Rpc } from '@trezoa/rpc';
 import DataLoader from 'dataloader';
 
 import { buildCoalescedFetchesByArgsHashWithDataSlice, ToFetchMap } from './coalescer';

@@ -1,5 +1,5 @@
-import type { RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
-import type { Slot } from '@solana/rpc-types';
+import type { RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
+import type { Slot } from '@trezoa/rpc-types';
 
 import type { SlotNotificationsApi } from '../slot-notifications';
 

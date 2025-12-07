@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, SolanaError } from '@solana/errors';
-import { Commitment } from '@solana/rpc-types';
+import { TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, TrezoaError } from '@trezoa/errors';
+import { Commitment } from '@trezoa/rpc-types';
 
 import { createBlockHeightExceedencePromiseFactory } from '../confirmation-strategy-blockheight';
 
@@ -46,7 +46,7 @@ describe('createBlockHeightExceedencePromiseFactory', () => {
             lastValidBlockHeight: 100n,
         });
         await expect(exceedencePromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
                 currentBlockHeight: 101n,
                 lastValidBlockHeight: 100n,
             }),
@@ -79,7 +79,7 @@ describe('createBlockHeightExceedencePromiseFactory', () => {
             lastValidBlockHeight: 100n,
         });
         await expect(exceedencePromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
                 currentBlockHeight: 101n,
                 lastValidBlockHeight: 100n,
             }),
@@ -123,7 +123,7 @@ describe('createBlockHeightExceedencePromiseFactory', () => {
             lastValidBlockHeight: 100n,
         });
         await expect(exceedencePromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
+            new TrezoaError(TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED, {
                 currentBlockHeight: 101n,
                 lastValidBlockHeight: 100n,
             }),

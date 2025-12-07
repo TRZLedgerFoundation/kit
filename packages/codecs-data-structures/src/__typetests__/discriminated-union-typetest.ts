@@ -1,5 +1,5 @@
-import { Codec, Decoder, Encoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@solana/codecs-core';
-import { getU64Codec } from '@solana/codecs-numbers';
+import { Codec, Decoder, Encoder, FixedSizeCodec, FixedSizeDecoder, FixedSizeEncoder } from '@trezoa/codecs-core';
+import { getU64Codec } from '@trezoa/codecs-numbers';
 
 import {
     getDiscriminatedUnionCodec,

@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase64EncodedData,
@@ -8,19 +8,19 @@ import type {
     Base64EncodedDataResponse,
     Commitment,
     Slot,
-    SolanaRpcResponse,
+    TrezoaRpcResponse,
     TransactionError,
     TransactionForFullMetaInnerInstructionsParsed,
     TransactionForFullMetaInnerInstructionsUnparsed,
-} from '@solana/rpc-types';
-import type { Base64EncodedWireTransaction, TransactionBlockhashLifetime } from '@solana/transactions';
+} from '@trezoa/rpc-types';
+import type { Base64EncodedWireTransaction, TransactionBlockhashLifetime } from '@trezoa/transactions';
 
 type SimulateTransactionConfigBase = Readonly<{
     /**
      * Simulate the transaction as of the highest slot that has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -140,7 +140,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithInnerInstructions &
@@ -153,7 +153,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithBase64Encoding &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -166,7 +166,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -181,7 +181,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithBase64EncodingZstdCompression &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -195,7 +195,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithJsonParsedEncoding &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData> &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -207,7 +207,7 @@ export type SimulateTransactionApi = {
         config?: SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithInnerInstructions &
@@ -218,7 +218,7 @@ export type SimulateTransactionApi = {
     simulateTransaction(
         base58EncodedWireTransaction: Base58EncodedBytes,
         config?: SigVerifyAndReplaceRecentBlockhashConfig<true> & SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -239,7 +239,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64--with-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -247,7 +247,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithInnerInstructions &
@@ -268,14 +268,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64--no-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithBase64Encoding &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -297,7 +297,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64-zstd-compressed--with-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -305,7 +305,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -329,14 +329,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64-zstd-compressed--no-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithBase64EncodingZstdCompression &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -361,7 +361,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-parsed--with-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -369,7 +369,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData> &
             SimulateTransactionApiResponseWithInnerInstructions &
@@ -392,14 +392,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-parsed--no-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithJsonParsedEncoding &
             SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData> &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -416,14 +416,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label no-accounts--with-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: SigVerifyAndReplaceRecentBlockhashConfig<true> &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithInnerInstructions &
@@ -441,12 +441,12 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label no-accounts--no-inner-instructions--with-replacement-blockhash}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: SigVerifyAndReplaceRecentBlockhashConfig<true> & SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithReplacementBlockhash
@@ -459,7 +459,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -471,7 +471,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithBase64Encoding &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData>
     >;
@@ -483,7 +483,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -497,7 +497,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithBase64EncodingZstdCompression &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>
     >;
@@ -509,7 +509,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData> &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -521,7 +521,7 @@ export type SimulateTransactionApi = {
         config: AccountsConfigWithJsonParsedEncoding &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData>
     >;
@@ -530,7 +530,7 @@ export type SimulateTransactionApi = {
     simulateTransaction(
         base58EncodedWireTransaction: Base58EncodedBytes,
         config?: SigVerifyAndReplaceRecentBlockhashConfig & SimulateTransactionConfigBase & WithInnerInstructionsConfig,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -540,7 +540,7 @@ export type SimulateTransactionApi = {
     simulateTransaction(
         base58EncodedWireTransaction: Base58EncodedBytes,
         config?: SigVerifyAndReplaceRecentBlockhashConfig & SimulateTransactionConfigBase,
-    ): SolanaRpcResponse<Readonly<{ readonly accounts: null }> & SimulateTransactionApiResponseBase>;
+    ): TrezoaRpcResponse<Readonly<{ readonly accounts: null }> & SimulateTransactionApiResponseBase>;
 
     /**
      * Simulate sending a transaction, fetch a list of accounts in their post-simulation state, and
@@ -553,7 +553,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64--with-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -561,7 +561,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData> &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -577,14 +577,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64--no-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithBase64Encoding &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedData>
     >;
@@ -601,7 +601,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64-zstd-compressed--with-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -609,7 +609,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<
                 AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData
@@ -628,14 +628,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-base64-zstd-compressed--no-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithBase64EncodingZstdCompression &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithBase64EncodedZStdCompressedData>
     >;
@@ -653,7 +653,7 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-parsed--with-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
@@ -661,7 +661,7 @@ export type SimulateTransactionApi = {
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData> &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -679,14 +679,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label accounts-parsed--no-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: AccountsConfigWithJsonParsedEncoding &
             SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithAccounts<AccountInfoBase & AccountInfoWithJsonData>
     >;
@@ -698,14 +698,14 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label no-accounts--with-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: SigVerifyAndReplaceRecentBlockhashConfig &
             SimulateTransactionConfigBase &
             WithInnerInstructionsConfig & { encoding: 'base64' },
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         Readonly<{ readonly accounts: null }> &
             SimulateTransactionApiResponseBase &
             SimulateTransactionApiResponseWithInnerInstructions
@@ -718,10 +718,10 @@ export type SimulateTransactionApi = {
      * encoded string. Use {@link getBase64EncodedWireTransaction} to obtain this.
      *
      * {@label no-accounts--no-inner-instructions}
-     * @see https://solana.com/docs/rpc/http/simulatetransaction
+     * @see https://trezoa.com/docs/rpc/http/simulatetransaction
      */
     simulateTransaction(
         base64EncodedWireTransaction: Base64EncodedWireTransaction,
         config: SigVerifyAndReplaceRecentBlockhashConfig & SimulateTransactionConfigBase & { encoding: 'base64' },
-    ): SolanaRpcResponse<Readonly<{ readonly accounts: null }> & SimulateTransactionApiResponseBase>;
+    ): TrezoaRpcResponse<Readonly<{ readonly accounts: null }> & SimulateTransactionApiResponseBase>;
 };

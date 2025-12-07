@@ -1,6 +1,6 @@
-import { addCodecSentinel, addCodecSizePrefix, fixCodecSize, offsetCodec, resizeCodec } from '@solana/codecs-core';
-import { getU8Codec, getU32Codec, getU64Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
+import { addCodecSentinel, addCodecSizePrefix, fixCodecSize, offsetCodec, resizeCodec } from '@trezoa/codecs-core';
+import { getU8Codec, getU32Codec, getU64Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
 
 import { getNullableCodec } from '../nullable';
 import { getStructCodec } from '../struct';

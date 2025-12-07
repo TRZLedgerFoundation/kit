@@ -5,7 +5,7 @@ import type {
     GetProgramAccountsApi,
     GetTransactionApi,
     Rpc,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 
 import {
     createAccountLoader,
@@ -23,7 +23,7 @@ type Config = {
     maxDataSliceByteRange: number;
     /**
      * Maximum number of accounts to fetch in a single batch.
-     * See https://docs.solana.com/api/http#getmultipleaccounts.
+     * See https://docs.trezoa.com/api/http#getmultipleaccounts.
      */
     maxMultipleAccountsBatchSize: number;
 };
@@ -32,7 +32,7 @@ export interface RpcGraphQLContext {
     loaders: RpcGraphQLLoaders;
 }
 
-export function createSolanaGraphQLContext(
+export function createTrezoaGraphQLContext(
     rpc: Rpc<GetAccountInfoApi & GetBlockApi & GetMultipleAccountsApi & GetProgramAccountsApi & GetTransactionApi>,
     config: Config,
 ): RpcGraphQLContext {

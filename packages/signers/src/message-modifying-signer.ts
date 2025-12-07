@@ -1,5 +1,5 @@
-import { Address, isAddress } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_MODIFYING_SIGNER, SolanaError } from '@solana/errors';
+import { Address, isAddress } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_MODIFYING_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import { SignableMessage } from './signable-message';
 import { BaseSignerConfig } from './types';
@@ -67,8 +67,8 @@ export type MessageModifyingSigner<TAddress extends string = string> = Readonly<
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isMessageModifyingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isMessageModifyingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isMessageModifyingSigner({ address, modifyAndSignMessages: async () => {} }); // true
@@ -95,8 +95,8 @@ export function isMessageModifyingSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsMessageModifyingSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsMessageModifyingSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsMessageModifyingSigner({ address, modifyAndSignMessages: async () => {} }); // void
@@ -110,7 +110,7 @@ export function assertIsMessageModifyingSigner<TAddress extends string>(value: {
     address: Address<TAddress>;
 }): asserts value is MessageModifyingSigner<TAddress> {
     if (!isMessageModifyingSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_MODIFYING_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_MODIFYING_SIGNER, {
             address: value.address,
         });
     }

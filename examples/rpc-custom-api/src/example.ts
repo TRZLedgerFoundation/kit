@@ -1,23 +1,23 @@
 /**
  * EXAMPLE
- * Add a custom JSON RPC method to the base Solana JSON RPC API using @solana/kit.
+ * Add a custom JSON RPC method to the base Trezoa JSON RPC API using @trezoa/kit.
  *
  * To run this example, execute `pnpm start` in this directory.
  */
-import { createLogger } from '@solana/example-utils/createLogger.js';
+import { createLogger } from '@trezoa/example-utils/createLogger.js';
 import {
     Address,
     address,
     createDefaultRpcTransport,
     createRpc,
     createRpcMessage,
-    createSolanaRpcApi,
+    createTrezoaRpcApi,
     DEFAULT_RPC_CONFIG,
     mainnet,
     RpcApi,
     RpcPlan,
-    SolanaRpcApiMainnet,
-} from '@solana/kit';
+    TrezoaRpcApiMainnet,
+} from '@trezoa/kit';
 
 const log = createLogger('Custom JSON RPC API');
 
@@ -46,11 +46,11 @@ type TritonGetAssetApi = {
  * calls for custom API methods. The wrapper should format the inputs to satisfy the API of the JSON
  * RPC server, and post-process the server response to satisfy the call signature defined above.
  */
-const solanaRpcApi = createSolanaRpcApi<SolanaRpcApiMainnet>(DEFAULT_RPC_CONFIG);
+const trezoaRpcApi = createTrezoaRpcApi<TrezoaRpcApiMainnet>(DEFAULT_RPC_CONFIG);
 /**
- * Create a proxy that wraps the Solana RPC API and adds extra functionality.
+ * Create a proxy that wraps the Trezoa RPC API and adds extra functionality.
  */
-const customizedRpcApi = new Proxy(solanaRpcApi, {
+const customizedRpcApi = new Proxy(trezoaRpcApi, {
     defineProperty() {
         return false;
     },
@@ -97,7 +97,7 @@ const customizedRpcApi = new Proxy(solanaRpcApi, {
             return Reflect.get(target, p, receiver);
         }
     },
-}) as RpcApi<SolanaRpcApiMainnet & TritonGetAssetApi>; // Cast to a type that is a mix of both APIs.
+}) as RpcApi<TrezoaRpcApiMainnet & TritonGetAssetApi>; // Cast to a type that is a mix of both APIs.
 
 /**
  * STEP 3: RPC CONNECTION
@@ -105,15 +105,15 @@ const customizedRpcApi = new Proxy(solanaRpcApi, {
  */
 const customizedRpc = createRpc({
     api: customizedRpcApi,
-    transport: createDefaultRpcTransport({ url: mainnet('https://api.mainnet-beta.solana.com') }),
+    transport: createDefaultRpcTransport({ url: mainnet('https://api.mainnet-beta.trezoa.com') }),
 });
 
 /**
  * STEP 4: USE THE DEFAULT API
- * Test that the base API still works by calling a Solana RPC API method like `getLatestBlockhash`.
+ * Test that the base API still works by calling a Trezoa RPC API method like `getLatestBlockhash`.
  */
 const { value: latestBlockhash } = await customizedRpc.getLatestBlockhash().send();
-log.info(latestBlockhash, '[step 1] Solana RPC methods like `getLatestBlockhash` still work');
+log.info(latestBlockhash, '[step 1] Trezoa RPC methods like `getLatestBlockhash` still work');
 
 /**
  * STEP 5: USE THE CUSTOM API

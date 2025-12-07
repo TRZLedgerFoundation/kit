@@ -6,7 +6,7 @@ import {
     OffchainMessageEnvelope,
     OffchainMessageSignatory,
     OffchainMessageWithRequiredSignatories,
-} from '@solana/offchain-messages';
+} from '@trezoa/offchain-messages';
 
 import {
     isMessageModifyingSigner,

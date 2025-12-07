@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
-import type { SolanaRpcResponse, TransactionError } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
+import type { TrezoaRpcResponse, TransactionError } from '@trezoa/rpc-types';
 
 import type { LogsNotificationsApi } from '../logs-notifications';
 
 const rpcSubscriptions = null as unknown as RpcSubscriptions<LogsNotificationsApi>;
 
-type TNotification = SolanaRpcResponse<
+type TNotification = TrezoaRpcResponse<
     Readonly<{
         err: TransactionError | null;
         logs: readonly string[] | null;

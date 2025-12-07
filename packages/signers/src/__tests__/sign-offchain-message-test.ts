@@ -1,13 +1,13 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, TrezoaError } from '@trezoa/errors';
 import {
     compileOffchainMessageEnvelope,
     FullySignedOffchainMessageEnvelope,
     OffchainMessageBytes,
     OffchainMessageEnvelope,
-} from '@solana/offchain-messages';
+} from '@trezoa/offchain-messages';
 
 import { partiallySignOffchainMessageWithSigners, signOffchainMessageWithSigners } from '../sign-offchain-message';
 import {
@@ -16,8 +16,8 @@ import {
     createMockOffchainMessageWithSigners,
 } from './__setup__';
 
-jest.mock('@solana/offchain-messages', () => ({
-    ...jest.requireActual('@solana/offchain-messages'),
+jest.mock('@trezoa/offchain-messages', () => ({
+    ...jest.requireActual('@trezoa/offchain-messages'),
     compileOffchainMessageEnvelope: jest.fn(),
 }));
 
@@ -473,7 +473,7 @@ describe('signOffchainMessageWithSigners', () => {
         // Then we expect an error letting us know the message is not fully signed.
         // This is because non Signers are ignored by signOffchainMessageWithSigners.
         await expect(promise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATURES_MISSING, {
                 addresses: ['signerBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB' as Address],
             }),
         );

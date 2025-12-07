@@ -1,5 +1,5 @@
-import type { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
-import type { Transaction } from '@solana/transactions';
+import type { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
+import type { Transaction } from '@trezoa/transactions';
 
 import {
     canceledSingleTransactionPlanResult,

@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__MALFORMED_NUMBER_STRING, SolanaError } from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
+import { TREZOA_ERROR__MALFORMED_NUMBER_STRING, TrezoaError } from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
 
 /**
  * This type represents a number which has been encoded as a string for transit over a transport
@@ -14,7 +14,7 @@ export type StringifiedNumber = Brand<string, 'StringifiedNumber'>;
  *
  * @example
  * ```ts
- * import { isStringifiedNumber } from '@solana/rpc-types';
+ * import { isStringifiedNumber } from '@trezoa/rpc-types';
  *
  * if (isStringifiedNumber(numericString)) {
  *     // At this point, `numericString` has been refined to a `StringifiedNumber`
@@ -35,7 +35,7 @@ export function isStringifiedNumber(putativeNumber: string): putativeNumber is S
  *
  * @example
  * ```ts
- * import { assertIsStringifiedNumber } from '@solana/rpc-types';
+ * import { assertIsStringifiedNumber } from '@trezoa/rpc-types';
  *
  * // Imagine having received a value that you presume represents some decimal number.
  * // At this point we know only that it conforms to the `string` type.
@@ -52,7 +52,7 @@ export function isStringifiedNumber(putativeNumber: string): putativeNumber is S
  */
 export function assertIsStringifiedNumber(putativeNumber: string): asserts putativeNumber is StringifiedNumber {
     if (Number.isNaN(Number(putativeNumber))) {
-        throw new SolanaError(SOLANA_ERROR__MALFORMED_NUMBER_STRING, {
+        throw new TrezoaError(TREZOA_ERROR__MALFORMED_NUMBER_STRING, {
             value: putativeNumber,
         });
     }
@@ -64,7 +64,7 @@ export function assertIsStringifiedNumber(putativeNumber: string): asserts putat
  *
  * @example
  * ```ts
- * import { stringifiedNumber } from '@solana/rpc-types';
+ * import { stringifiedNumber } from '@trezoa/rpc-types';
  *
  * const decimalNumberString = stringifiedNumber('-42.1');
  * ```

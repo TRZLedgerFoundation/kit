@@ -22,22 +22,22 @@ describe('useSignMessage', () => {
         mockSignMessage = jest.fn().mockResolvedValue([{ signature: 'abc' }]);
         mockUiWalletAccount = {
             address: 'abc',
-            chains: ['solana:danknet'] as const,
-            features: ['solana:signMessage'] as const,
+            chains: ['trezoa:danknet'] as const,
+            features: ['trezoa:signMessage'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
             '~uiWalletHandle': null as unknown as UiWalletAccount['~uiWalletHandle'],
         };
         mockWalletAccount = {
             address: 'abc',
-            chains: ['solana:danknet'] as const,
-            features: ['solana:signMessage'] as const,
+            chains: ['trezoa:danknet'] as const,
+            features: ['trezoa:signMessage'] as const,
             publicKey: new Uint8Array([1, 2, 3]),
         };
         const mockWallet: Wallet = {
             accounts: [mockWalletAccount],
-            chains: ['solana:danknet'],
+            chains: ['trezoa:danknet'],
             features: {
-                ['solana:signMessage']: {
+                ['trezoa:signMessage']: {
                     signMessage: mockSignMessage,
                 },
             },
@@ -54,14 +54,14 @@ describe('useSignMessage', () => {
         jest.spyOn(console, 'error').mockImplementation();
         jest.spyOn(console, 'warn').mockImplementation();
     });
-    it('fatals when passed a wallet account that does not support the `solana:signMessage` feature', () => {
+    it('fatals when passed a wallet account that does not support the `trezoa:signMessage` feature', () => {
         const { result } = renderHook(() => useSignMessage({ ...mockUiWalletAccount, features: ['other:feature'] }));
         expect(result.__type).toBe('error');
         expect(result.current).toEqual(
             new WalletStandardError(WALLET_STANDARD_ERROR__FEATURES__WALLET_ACCOUNT_FEATURE_UNIMPLEMENTED, {
                 address: 'abc',
-                featureName: 'solana:signMessage',
-                supportedChains: ['solana:danknet'],
+                featureName: 'trezoa:signMessage',
+                supportedChains: ['trezoa:danknet'],
                 supportedFeatures: ['other:feature'],
             }),
         );

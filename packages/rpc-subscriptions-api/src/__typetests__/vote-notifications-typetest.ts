@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
-import type { Blockhash, Slot, UnixTimestamp } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
+import type { Blockhash, Slot, UnixTimestamp } from '@trezoa/rpc-types';
 
 import { VoteNotificationsApi } from '../vote-notifications';
 

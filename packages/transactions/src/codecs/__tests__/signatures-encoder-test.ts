@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 
 import { SignaturesMap } from '../../transaction';
 import { getSignaturesEncoder } from '../signatures-encoder';
@@ -11,7 +11,7 @@ describe('getSignaturesEncoder', () => {
     it('should throw if the signatures map is empty', () => {
         const signatures: SignaturesMap = {};
         expect(() => encoder.encode(signatures)).toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION__CANNOT_ENCODE_WITH_EMPTY_SIGNATURES),
         );
     });
 

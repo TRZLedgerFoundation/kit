@@ -1,4 +1,4 @@
-import { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+import { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 
 export type ChannelPoolEntry = {
     channel: PromiseLike<RpcSubscriptionsChannel<unknown, unknown>> | RpcSubscriptionsChannel<unknown, unknown>;

@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58EncodedData,
@@ -8,8 +8,8 @@ import type {
     Commitment,
     DataSlice,
     Slot,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 type GetMultipleAccountsApiResponseBase = AccountInfoBase | null;
 
@@ -19,7 +19,7 @@ type GetMultipleAccountsApiCommonConfig = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -66,7 +66,7 @@ export type GetMultipleAccountsApi = {
      * @param addresses A maximum of 100 addresses for which to fetch account data
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/http/getmultipleaccounts
+     * @see https://trezoa.com/docs/rpc/http/getmultipleaccounts
      */
     getMultipleAccounts(
         addresses: readonly Address[],
@@ -75,7 +75,7 @@ export type GetMultipleAccountsApi = {
             Readonly<{
                 encoding: 'base64';
             }>,
-    ): SolanaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase64EncodedData | null))[]>;
+    ): TrezoaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase64EncodedData | null))[]>;
     /**
      * Fetches information associated with the accounts at the given addresses.
      *
@@ -86,7 +86,7 @@ export type GetMultipleAccountsApi = {
      * @param addresses A maximum of 100 addresses for which to fetch account data
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/http/getmultipleaccounts
+     * @see https://trezoa.com/docs/rpc/http/getmultipleaccounts
      */
     getMultipleAccounts(
         addresses: readonly Address[],
@@ -95,7 +95,7 @@ export type GetMultipleAccountsApi = {
             Readonly<{
                 encoding: 'base64+zstd';
             }>,
-    ): SolanaRpcResponse<
+    ): TrezoaRpcResponse<
         (GetMultipleAccountsApiResponseBase & (AccountInfoWithBase64EncodedZStdCompressedData | null))[]
     >;
     /**
@@ -109,7 +109,7 @@ export type GetMultipleAccountsApi = {
      * @param addresses A maximum of 100 addresses for which to fetch account data
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/http/getmultipleaccounts
+     * @see https://trezoa.com/docs/rpc/http/getmultipleaccounts
      */
     getMultipleAccounts(
         addresses: readonly Address[],
@@ -117,7 +117,7 @@ export type GetMultipleAccountsApi = {
             Readonly<{
                 encoding: 'jsonParsed';
             }>,
-    ): SolanaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithJsonData | null))[]>;
+    ): TrezoaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithJsonData | null))[]>;
     /**
      * Fetches information associated with the accounts at the given addresses.
      *
@@ -128,7 +128,7 @@ export type GetMultipleAccountsApi = {
      * @param addresses A maximum of 100 addresses for which to fetch account data
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/http/getmultipleaccounts
+     * @see https://trezoa.com/docs/rpc/http/getmultipleaccounts
      */
     getMultipleAccounts(
         addresses: readonly Address[],
@@ -137,7 +137,7 @@ export type GetMultipleAccountsApi = {
             Readonly<{
                 encoding: 'base58';
             }>,
-    ): SolanaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase58EncodedData | null))[]>;
+    ): TrezoaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase58EncodedData | null))[]>;
     /**
      * Fetches information associated with the accounts at the given addresses.
      *
@@ -147,10 +147,10 @@ export type GetMultipleAccountsApi = {
      * @param addresses A maximum of 100 addresses for which to fetch account data
      *
      * {@label base58-legacy}
-     * @see https://solana.com/docs/rpc/http/getmultipleaccounts
+     * @see https://trezoa.com/docs/rpc/http/getmultipleaccounts
      */
     getMultipleAccounts(
         addresses: readonly Address[],
         config?: GetMultipleAccountsApiCommonConfig,
-    ): SolanaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase64EncodedData | null))[]>;
+    ): TrezoaRpcResponse<(GetMultipleAccountsApiResponseBase & (AccountInfoWithBase64EncodedData | null))[]>;
 };

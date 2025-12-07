@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { FixedSizeCodec } from '../codec';
 import { resizeCodec } from '../resize-codec';
@@ -23,7 +23,7 @@ describe('resizeCodec', () => {
     it('throws when fixed-size codecs have negative sizes', () => {
         const mockCodec = getMockCodec({ size: 42 }) as FixedSizeCodec<unknown, 42>;
         expect(() => resizeCodec(mockCodec, size => size - 100).fixedSize).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
                 bytesLength: -58,
                 codecDescription: 'resizeEncoder',
             }),
@@ -34,7 +34,7 @@ describe('resizeCodec', () => {
         const mockCodec = getMockCodec();
         mockCodec.getSizeFromValue.mockReturnValue(42);
         expect(() => resizeCodec(mockCodec, size => size - 100).getSizeFromValue(null)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_POSITIVE_BYTE_LENGTH, {
                 bytesLength: -58,
                 codecDescription: 'resizeEncoder',
             }),

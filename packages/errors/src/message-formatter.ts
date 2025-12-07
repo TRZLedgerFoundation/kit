@@ -1,6 +1,6 @@
-import { SolanaErrorCode } from './codes';
+import { TrezoaErrorCode } from './codes';
 import { encodeContextObject } from './context';
-import { SolanaErrorMessages } from './messages';
+import { TrezoaErrorMessages } from './messages';
 
 const enum StateType {
     EscapeSequence,
@@ -14,11 +14,11 @@ type State = Readonly<{
 const START_INDEX = 'i';
 const TYPE = 't';
 
-export function getHumanReadableErrorMessage<TErrorCode extends SolanaErrorCode>(
+export function getHumanReadableErrorMessage<TErrorCode extends TrezoaErrorCode>(
     code: TErrorCode,
     context: object = {},
 ): string {
-    const messageFormatString = SolanaErrorMessages[code];
+    const messageFormatString = TrezoaErrorMessages[code];
     if (messageFormatString.length === 0) {
         return '';
     }
@@ -84,14 +84,14 @@ export function getHumanReadableErrorMessage<TErrorCode extends SolanaErrorCode>
     return fragments.join('');
 }
 
-export function getErrorMessage<TErrorCode extends SolanaErrorCode>(
+export function getErrorMessage<TErrorCode extends TrezoaErrorCode>(
     code: TErrorCode,
     context: Record<string, unknown> = {},
 ): string {
     if (__DEV__) {
         return getHumanReadableErrorMessage(code, context);
     } else {
-        let decodingAdviceMessage = `Solana error #${code}; Decode this error by running \`npx @solana/errors decode -- ${code}`;
+        let decodingAdviceMessage = `Trezoa error #${code}; Decode this error by running \`npx @trezoa/errors decode -- ${code}`;
         if (Object.keys(context).length) {
             /**
              * DANGER: Be sure that the shell command is escaped in such a way that makes it

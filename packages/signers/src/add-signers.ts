@@ -1,6 +1,6 @@
-import { Address } from '@solana/addresses';
-import { Instruction, isSignerRole } from '@solana/instructions';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { Instruction, isSignerRole } from '@trezoa/instructions';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { AccountSignerMeta, InstructionWithSigners, TransactionMessageWithSigners } from './account-signer-meta';
 import { deduplicateSigners } from './deduplicate-signers';
@@ -19,8 +19,8 @@ import { isTransactionSigner, TransactionSigner } from './transaction-signer';
  *
  * @example
  * ```ts
- * import { AccountRole, Instruction } from '@solana/instructions';
- * import { addSignersToInstruction, TransactionSigner } from '@solana/signers';
+ * import { AccountRole, Instruction } from '@trezoa/instructions';
+ * import { addSignersToInstruction, TransactionSigner } from '@trezoa/signers';
  *
  * const instruction: Instruction = {
  *     accounts: [
@@ -76,9 +76,9 @@ export function addSignersToInstruction<TInstruction extends Instruction>(
  *
  * @example
  * ```ts
- * import { AccountRole, Instruction } from '@solana/instructions';
- * import { BaseTransactionMessage } from '@solana/transaction-messages';
- * import { addSignersToTransactionMessage, TransactionSigner } from '@solana/signers';
+ * import { AccountRole, Instruction } from '@trezoa/instructions';
+ * import { BaseTransactionMessage } from '@trezoa/transaction-messages';
+ * import { addSignersToTransactionMessage, TransactionSigner } from '@trezoa/signers';
  *
  * const instructionA: Instruction = {
  *     accounts: [{ address: '1111' as Address, role: AccountRole.READONLY_SIGNER }],

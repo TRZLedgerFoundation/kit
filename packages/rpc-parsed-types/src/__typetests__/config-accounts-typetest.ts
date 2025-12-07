@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { JsonParsedConfigProgramAccount } from '../config-accounts';
 

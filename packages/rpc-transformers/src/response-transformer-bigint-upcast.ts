@@ -10,7 +10,7 @@ import { getTreeWalkerResponseTransformer, KeyPath } from './tree-traversal';
  *
  * @example
  * ```ts
- * import { getBigIntUpcastResponseTransformer } from '@solana/rpc-transformers';
+ * import { getBigIntUpcastResponseTransformer } from '@trezoa/rpc-transformers';
  *
  * const responseTransformer = getBigIntUpcastResponseTransformer([
  *     ['index'],

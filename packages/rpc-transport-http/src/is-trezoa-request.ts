@@ -1,6 +1,6 @@
-import { isJsonRpcPayload } from '@solana/rpc-spec';
+import { isJsonRpcPayload } from '@trezoa/rpc-spec';
 
-const SOLANA_RPC_METHODS = [
+const TREZOA_RPC_METHODS = [
     'getAccountInfo',
     'getBalance',
     'getBlock',
@@ -57,12 +57,12 @@ const SOLANA_RPC_METHODS = [
 ] as const;
 
 /**
- * Helper function that checks if a given `RpcRequest` comes from the Solana RPC API.
+ * Helper function that checks if a given `RpcRequest` comes from the Trezoa RPC API.
  */
-export function isSolanaRequest(payload: unknown): payload is Readonly<{
+export function isTrezoaRequest(payload: unknown): payload is Readonly<{
     jsonrpc: '2.0';
-    method: (typeof SOLANA_RPC_METHODS)[number];
+    method: (typeof TREZOA_RPC_METHODS)[number];
     params: unknown;
 }> {
-    return isJsonRpcPayload(payload) && (SOLANA_RPC_METHODS as readonly string[]).includes(payload.method);
+    return isJsonRpcPayload(payload) && (TREZOA_RPC_METHODS as readonly string[]).includes(payload.method);
 }

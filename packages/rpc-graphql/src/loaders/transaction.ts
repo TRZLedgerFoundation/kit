@@ -1,4 +1,4 @@
-import type { GetTransactionApi, Rpc } from '@solana/rpc';
+import type { GetTransactionApi, Rpc } from '@trezoa/rpc';
 import DataLoader from 'dataloader';
 
 import { buildCoalescedFetchesByArgsHash, ToFetchMap } from './coalescer';

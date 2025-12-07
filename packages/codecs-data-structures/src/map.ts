@@ -11,8 +11,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { NumberCodec, NumberDecoder, NumberEncoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-core';
+import { NumberCodec, NumberDecoder, NumberEncoder } from '@trezoa/codecs-numbers';
 
 import { ArrayLikeCodecSize, getArrayDecoder, getArrayEncoder } from './array';
 import { getTupleDecoder, getTupleEncoder } from './tuple';

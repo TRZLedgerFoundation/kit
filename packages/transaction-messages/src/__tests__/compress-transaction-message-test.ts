@@ -1,8 +1,8 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { pipe } from '@solana/functional';
-import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { pipe } from '@trezoa/functional';
+import { AccountLookupMeta, AccountMeta, AccountRole, Instruction } from '@trezoa/instructions';
 
 import { AddressesByLookupTableAddress } from '../addresses-by-lookup-table-address';
 import { compressTransactionMessageUsingAddressLookupTables } from '../compress-transaction-message';

@@ -1,4 +1,4 @@
-import { isSignerRole, isWritableRole } from '@solana/instructions';
+import { isSignerRole, isWritableRole } from '@trezoa/instructions';
 
 import { OrderedAccounts } from '../compile/accounts';
 

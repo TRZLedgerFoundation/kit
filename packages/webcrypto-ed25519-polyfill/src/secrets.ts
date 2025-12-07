@@ -4,7 +4,7 @@
  *   ʕ·͡ᴥ·ʔ     <== ATTENTION PLEASE
  *
  * Key material generated in this module must stay in this module. So long as the secrets cache and
- * the methods that interact with it are not exported from `@solana/webcrypto-ed25519-polyfill`,
+ * the methods that interact with it are not exported from `@trezoa/webcrypto-ed25519-polyfill`,
  * accidental logging of the actual bytes of a secret key (eg. to the console, or to a remote
  * server) should not be possible.
  *

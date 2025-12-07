@@ -1,7 +1,7 @@
-import { addCodecSentinel, addCodecSizePrefix, fixCodecSize, offsetCodec } from '@solana/codecs-core';
-import { getI16Codec, getU8Codec, getU32Codec, getU64Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
-import { SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, SolanaError } from '@solana/errors';
+import { addCodecSentinel, addCodecSizePrefix, fixCodecSize, offsetCodec } from '@trezoa/codecs-core';
+import { getI16Codec, getU8Codec, getU32Codec, getU64Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, TrezoaError } from '@trezoa/errors';
 
 import { getTupleCodec } from '../tuple';
 import { b } from './__setup__';
@@ -38,7 +38,7 @@ describe('getTupleCodec', () => {
         // Fails if given the wrong number of items.
         // @ts-expect-error Tuple should have the right number of items.
         expect(() => tuple([u8(), u8()]).encode([42])).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_NUMBER_OF_ITEMS, {
                 actual: 1,
                 codecDescription: 'tuple',
                 expected: 2,

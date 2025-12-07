@@ -1,12 +1,12 @@
-import { Address } from '@solana/addresses';
-import { Blockhash } from '@solana/rpc-types';
+import { Address } from '@trezoa/addresses';
+import { Blockhash } from '@trezoa/rpc-types';
 import type {
     Nonce,
     TransactionMessage,
     TransactionMessageWithBlockhashLifetime,
     TransactionMessageWithDurableNonceLifetime,
     TransactionMessageWithLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import {
     assertIsTransactionWithBlockhashLifetime,

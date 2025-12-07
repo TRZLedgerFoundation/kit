@@ -1,5 +1,5 @@
-import { address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_SIGNER, SolanaError } from '@solana/errors';
+import { address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import { assertIsMessageSigner, isMessageSigner, MessageSigner } from '../message-signer';
 
@@ -36,7 +36,7 @@ describe('assertIsMessageSigner', () => {
             modifyAndSignMessages: () => Promise.resolve([]),
         } satisfies MessageSigner<'Gp7YgHcJciP4px5FdFnywUiMG4UcfMZV9UagSAZzDxdy'>;
 
-        const expectedError = new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_MESSAGE_SIGNER, {
+        const expectedError = new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_MESSAGE_SIGNER, {
             address: myAddress,
         });
         expect(() => assertIsMessageSigner(myPartialSigner)).not.toThrow();

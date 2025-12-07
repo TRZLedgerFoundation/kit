@@ -5,14 +5,14 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { getTupleDecoder, getTupleEncoder } from '@solana/codecs-data-structures';
-import { getUtf8Decoder, getUtf8Encoder } from '@solana/codecs-strings';
+} from '@trezoa/codecs-core';
+import { getTupleDecoder, getTupleEncoder } from '@trezoa/codecs-data-structures';
+import { getUtf8Decoder, getUtf8Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { OffchainMessageContentFormat } from '../content';
 import {
@@ -29,7 +29,7 @@ import { getOffchainMessageV0PreambleDecoder, getOffchainMessageV0PreambleEncode
  *
  * @example
  * ```ts
- * import { getOffchainMessageV0Decoder } from '@solana/offchain-messages';
+ * import { getOffchainMessageV0Decoder } from '@trezoa/offchain-messages';
  *
  * const offchainMessageDecoder = getOffchainMessageV0Decoder();
  * const offchainMessage = offchainMessageDecoder.decode(
@@ -46,7 +46,7 @@ export function getOffchainMessageV0Decoder(): VariableSizeDecoder<OffchainMessa
         ([{ messageLength, messageFormat, requiredSignatories, ...preambleRest }, text]) => {
             const actualLength = getUtf8Encoder().getSizeFromValue(text);
             if (messageLength !== actualLength) {
-                throw new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
+                throw new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_LENGTH_MISMATCH, {
                     actualLength: actualLength,
                     specifiedLength: messageLength,
                 });
@@ -79,7 +79,7 @@ export function getOffchainMessageV0Decoder(): VariableSizeDecoder<OffchainMessa
                     return offchainMessage;
                 }
                 default: {
-                    throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
+                    throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
                         unexpectedValue: messageFormat satisfies never,
                     });
                 }
@@ -111,7 +111,7 @@ export function getOffchainMessageV0Encoder(): VariableSizeEncoder<OffchainMessa
                     break;
                 }
                 default: {
-                    throw new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
+                    throw new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__SWITCH_MUST_BE_EXHAUSTIVE, {
                         unexpectedValue: offchainMessage.content satisfies never,
                     });
                 }

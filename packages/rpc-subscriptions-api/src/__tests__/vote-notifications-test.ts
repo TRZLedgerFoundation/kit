@@ -1,12 +1,12 @@
-import { type RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
+import { type RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
 
 import type { VoteNotificationsApi } from '../vote-notifications';
-import { createLocalhostSolanaRpcSubscriptions } from './__setup__';
+import { createLocalhostTrezoaRpcSubscriptions } from './__setup__';
 
 describe('voteNotifications', () => {
     let rpc: RpcSubscriptions<VoteNotificationsApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpcSubscriptions();
+        rpc = createLocalhostTrezoaRpcSubscriptions();
     });
 
     it('produces vote notifications', async () => {

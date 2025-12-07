@@ -1,21 +1,21 @@
 import {
-    SOLANA_ERROR__INVARIANT_VIOLATION__DATA_PUBLISHER_CHANNEL_UNIMPLEMENTED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__EXPECTED_SERVER_SUBSCRIPTION_ID,
-    SolanaError,
-} from '@solana/errors';
-import { DataPublisher } from '@solana/subscribable';
+    TREZOA_ERROR__INVARIANT_VIOLATION__DATA_PUBLISHER_CHANNEL_UNIMPLEMENTED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__EXPECTED_SERVER_SUBSCRIPTION_ID,
+    TrezoaError,
+} from '@trezoa/errors';
+import { DataPublisher } from '@trezoa/subscribable';
 
 import { RpcSubscriptionChannelEvents, RpcSubscriptionsChannel } from '../rpc-subscriptions-channel';
 import { executeRpcPubSubSubscriptionPlan } from '../rpc-subscriptions-pubsub-plan';
 
 let mockId = 0;
 let lastMessageId: number;
-jest.mock('@solana/rpc-spec-types', () => ({
-    ...jest.requireActual('@solana/rpc-spec-types'),
+jest.mock('@trezoa/rpc-spec-types', () => ({
+    ...jest.requireActual('@trezoa/rpc-spec-types'),
     createRpcMessage(...args: never[]) {
         lastMessageId = mockId++;
         return {
-            ...jest.requireActual('@solana/rpc-spec-types').createRpcMessage(...args),
+            ...jest.requireActual('@trezoa/rpc-spec-types').createRpcMessage(...args),
             id: lastMessageId,
         };
     },
@@ -136,7 +136,7 @@ describe('executeRpcPubSubSubscriptionPlan', () => {
         await Promise.resolve();
         receiveMessage({ id: lastMessageId, jsonrpc: '2.0', result: undefined });
         await expect(publisherPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__EXPECTED_SERVER_SUBSCRIPTION_ID),
+            new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__EXPECTED_SERVER_SUBSCRIPTION_ID),
         );
     });
     describe('given that the server has already acknowledged the subscription', () => {
@@ -192,7 +192,7 @@ describe('executeRpcPubSubSubscriptionPlan', () => {
                     badListener,
                 );
             }).toThrow(
-                new SolanaError(SOLANA_ERROR__INVARIANT_VIOLATION__DATA_PUBLISHER_CHANNEL_UNIMPLEMENTED, {
+                new TrezoaError(TREZOA_ERROR__INVARIANT_VIOLATION__DATA_PUBLISHER_CHANNEL_UNIMPLEMENTED, {
                     channelName: 'bad',
                     supportedChannelNames: ['notification', 'error'],
                 }),
@@ -285,7 +285,7 @@ describe('executeRpcPubSubSubscriptionPlan', () => {
                 receiveMessage({ id: lastMessageId, jsonrpc: '2.0', result: (expectedSubscriptionId = 123) });
             });
             /**
-             * Because of https://github.com/solana-labs/solana/pull/18943, two subscriptions for
+             * Because of https://github.com/trezoa-team/solana/pull/18943, two subscriptions for
              * materially the same notification will be coalesced on the server. This means they
              * will be assigned the same subscription id, and will occupy one subscription slot. We
              * must be careful not to send the unsubscribe message until the last subscriber aborts.

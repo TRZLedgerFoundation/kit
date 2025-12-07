@@ -1,5 +1,5 @@
-import { addCodecSizePrefix, fixCodecSize, offsetCodec } from '@solana/codecs-core';
-import { getU8Codec, getU32Codec } from '@solana/codecs-numbers';
+import { addCodecSizePrefix, fixCodecSize, offsetCodec } from '@trezoa/codecs-core';
+import { getU8Codec, getU32Codec } from '@trezoa/codecs-numbers';
 
 import { getBase16Codec } from '../base16';
 import { getBase58Codec } from '../base58';

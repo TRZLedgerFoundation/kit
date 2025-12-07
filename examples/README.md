@@ -8,7 +8,7 @@ Start by installing all dependencies.
 pnpm install
 ```
 
-Most examples use a local test Solana validator. Install one by running the following command in the root of this monorepo.
+Most examples use a local test Trezoa validator. Install one by running the following command in the root of this monorepo.
 
 ```shell
 pnpm test:setup

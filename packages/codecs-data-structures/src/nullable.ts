@@ -16,7 +16,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     FixedSizeNumberCodec,
     FixedSizeNumberDecoder,
@@ -26,7 +26,7 @@ import {
     NumberCodec,
     NumberDecoder,
     NumberEncoder,
-} from '@solana/codecs-numbers';
+} from '@trezoa/codecs-numbers';
 
 import { getBooleanDecoder, getBooleanEncoder } from './boolean';
 import { getConstantDecoder, getConstantEncoder } from './constant';

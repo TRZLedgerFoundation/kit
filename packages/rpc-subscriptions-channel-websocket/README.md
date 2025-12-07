@@ -5,11 +5,11 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-subscriptions-channel-websocket?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-subscriptions-channel-websocket?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-subscriptions-channel-websocket
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-subscriptions-channel-websocket?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-subscriptions-channel-websocket?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-subscriptions-channel-websocket
 
-# @solana/rpc-subscriptions-channel-websocket
+# @trezoa/rpc-subscriptions-channel-websocket
 
 This package allows developers to create custom RPC Subscriptions channels. Using these primitives, developers can create custom channels that perform transforms on messages sent and received, perform autopings, and implement custom channel pooling strategies.
 
@@ -22,13 +22,13 @@ Creates an object that represents an open channel to a `WebSocket` server.
 You can use it to send messages by calling its `send()` function and you can receive them by subscribing to the `RpcSubscriptionChannelEvents` it emits.
 
 ```ts
-import { createWebSocketChannel } from '@solana/rpc-subscriptions-channel-websocket';
+import { createWebSocketChannel } from '@trezoa/rpc-subscriptions-channel-websocket';
 
 const abortController = new AbortController();
 const webSocketChannel = await createWebSocketChannel({
     sendBufferHighWatermark: Number.POSITIVE_INFINITY,
     signal: abortController.signal,
-    url: 'wss://api.mainnet-beta.solana.com',
+    url: 'wss://api.mainnet-beta.trezoa.com',
 });
 const channel = {
     ...webSocketChannel,

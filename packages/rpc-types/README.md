@@ -5,19 +5,19 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-types?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-types?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-types
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-types?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-types?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-types
 
-# @solana/rpc-types
+# @trezoa/rpc-types
 
-This package defines types for values used in the [Solana JSON-RPC](https://docs.solana.com/api/http) and a series of helpers for working with them. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package defines types for values used in the [Trezoa JSON-RPC](https://docs.trezoa.com/api/http) and a series of helpers for working with them. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Types
 
 ### `Commitment`
 
-A type that enumerates the possible commitment statuses &ndash; each a measure of the network confirmation and stake levels on a particular block. Read more about the statuses themselves, [here](https://docs.solana.com/cluster/commitments).
+A type that enumerates the possible commitment statuses &ndash; each a measure of the network confirmation and stake levels on a particular block. Read more about the statuses themselves, [here](https://docs.trezoa.com/cluster/commitments).
 
 ### `Lamports`
 
@@ -44,7 +44,7 @@ Lamport values returned from the RPC API conform to the type `Lamports`. You can
 From time to time you might acquire a number that you expect to be a quantity of Lamports, from an untrusted network API or user input. To assert that such an arbitrary number is usable as a quantity of Lamports, use the `assertIsLamports` function.
 
 ```ts
-import { assertIsLamports } from '@solana/rpc-types';
+import { assertIsLamports } from '@trezoa/rpc-types';
 
 // Imagine a function that creates a transfer instruction when a user submits a form.
 function handleSubmit() {
@@ -91,7 +91,7 @@ See [`assertIsLamports()`](#assertislamports) for an example of how to use an as
 A function that accepts two `Commitments` as input, and returns `-1` if the first is lower than the second, `0` if they are the same, and `1` if the second is higher than the first. You can use this comparator to sort items by commitment, or to determine an upper/lower bound on a level of commitment given two options.
 
 ```ts
-import { commitmentComparator } from '@solana/rpc-types';
+import { commitmentComparator } from '@trezoa/rpc-types';
 
 transactions.sort((a, b) => commitmentComparator(a.confirmationStatus, b.confirmationStatus));
 ```
@@ -101,7 +101,7 @@ transactions.sort((a, b) => commitmentComparator(a.confirmationStatus, b.confirm
 This is a type guard that accepts a `bigint` as input. It will both return `true` if the integer conforms to the `Lamports` type and will refine the type for use in your program.
 
 ```ts
-import { isLamports } from '@solana/rpc-types';
+import { isLamports } from '@trezoa/rpc-types';
 
 if (isLamports(lamports)) {
     // At this point, `lamports` has been refined to a
@@ -135,7 +135,7 @@ See [`isLamports()`](#islamports) for an example of how to use a type guard.
 This helper combines _asserting_ that a number is a possible number of Lamports with _coercing_ it to the `Lamports` type. It's best used with untrusted input.
 
 ```ts
-import { lamports } from '@solana/rpc-types';
+import { lamports } from '@trezoa/rpc-types';
 
 await transfer(address(fromAddress), address(toAddress), lamports(100000n));
 ```

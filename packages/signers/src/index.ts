@@ -1,7 +1,7 @@
 /**
- * This package provides an abstraction layer over signing messages and transactions in Solana.
+ * This package provides an abstraction layer over signing messages and transactions in Trezoa.
  * It can be used standalone, but it is also exported as part of Kit
- * [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+ * [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
  *
  * You can think of signers as an abstract way to sign messages and transactions.
  * This could be using a {@link CryptoKeyPair}, a wallet adapter in the browser,
@@ -10,10 +10,10 @@
  *
  * @example
  * ```ts
- * import { pipe } from '@solana/functional';
- * import { generateKeyPairSigner } from '@solana/signers';
- * import { createTransactionMessage } from '@solana/transaction-messages';
- * import { compileTransaction } from '@solana/transactions';
+ * import { pipe } from '@trezoa/functional';
+ * import { generateKeyPairSigner } from '@trezoa/signers';
+ * import { createTransactionMessage } from '@trezoa/transaction-messages';
+ * import { compileTransaction } from '@trezoa/transactions';
  *
  * // Generate a key pair signer.
  * const mySigner = await generateKeyPairSigner();

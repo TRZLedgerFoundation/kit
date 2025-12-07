@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-subscriptions?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-subscriptions?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-subscriptions
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-subscriptions?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-subscriptions?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-subscriptions
 
-# @solana/rpc-subscriptions
+# @trezoa/rpc-subscriptions
 
-This package contains types that implement RPC subscriptions as required by the Solana RPC. Additionally, it incorporates some useful defaults that make working with subscriptions easier, more performant, and more reliable. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types that implement RPC subscriptions as required by the Trezoa RPC. Additionally, it incorporates some useful defaults that make working with subscriptions easier, more performant, and more reliable. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Functions
 
@@ -19,9 +19,9 @@ This package contains types that implement RPC subscriptions as required by the 
 
 Creates a function that returns new subscription channels when called.
 
-### `createDefaultSolanaRpcSubscriptionsChannelCreator(config)`
+### `createDefaultTrezoaRpcSubscriptionsChannelCreator(config)`
 
-Similar to `createDefaultRpcSubscriptionsChannelCreator` with some Solana-specific defaults. For instance, it safely handles `BigInt` values in JSON messages since Solana RPC servers accept and return integers larger than `Number.MAX_SAFE_INTEGER`.
+Similar to `createDefaultRpcSubscriptionsChannelCreator` with some Trezoa-specific defaults. For instance, it safely handles `BigInt` values in JSON messages since Trezoa RPC servers accept and return integers larger than `Number.MAX_SAFE_INTEGER`.
 
 #### Arguments
 

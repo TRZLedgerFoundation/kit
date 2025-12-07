@@ -1,7 +1,7 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { address } from '@solana/addresses';
-import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@solana/transactions';
+import { address } from '@trezoa/addresses';
+import { Transaction, TransactionWithinSizeLimit, TransactionWithLifetime } from '@trezoa/transactions';
 
 import { createNoopSigner, NoopSigner } from '../noop-signer';
 import { createSignableMessage } from '../signable-message';

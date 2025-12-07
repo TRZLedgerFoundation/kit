@@ -5,7 +5,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 import { Option, OptionOrNullable } from '../option';
 import { getOptionCodec, getOptionDecoder, getOptionEncoder } from '../option-codec';

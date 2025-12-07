@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
 import type {
     Base58EncodedBytes,
     Base58EncodedDataResponse,
@@ -13,8 +13,8 @@ import type {
     TransactionError,
     TransactionStatus,
     UnixTimestamp,
-} from '@solana/rpc-types';
-import type { TransactionVersion } from '@solana/transaction-messages';
+} from '@trezoa/rpc-types';
+import type { TransactionVersion } from '@trezoa/transaction-messages';
 
 type ReturnData = {
     /** A tuple whose first element is the bytes of the return data as a base64-encoded string. */
@@ -97,7 +97,7 @@ type InstructionWithStackHeight = Readonly<{
      * will have a height of 2, an instruction called by that instruction using a CPI will have a
      * depth of 3, and so on.
      */
-    stackHeight: number; // FIXME(https://github.com/anza-xyz/agave/issues/5732) Should be `1` instead of `null` at base of stack
+    stackHeight: number; // FIXME(https://github.com/trezoa-xyz/agave/issues/5732) Should be `1` instead of `null` at base of stack
 }>;
 
 type InstructionWithData = Readonly<{
@@ -216,7 +216,7 @@ type GetTransactionCommonConfig<TMaxSupportedTransactionVersion> = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -244,7 +244,7 @@ type GetTransactionCommonConfig<TMaxSupportedTransactionVersion> = Readonly<{
      *
      * If a transaction with the supplied signature is found with a version higher than this, the
      * server will throw
-     * {@link SolanaErrorCode.SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | SOLANA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
+     * {@link TrezoaErrorCode.TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION | TREZOA_ERROR__JSON_RPC__SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION}.
      */
     maxSupportedTransactionVersion?: TMaxSupportedTransactionVersion;
 }>;
@@ -310,7 +310,7 @@ export type GetTransactionApi = {
      * accounts, a program address, and base64-encoded instruction data.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/http/gettransaction
+     * @see https://trezoa.com/docs/rpc/http/gettransaction
      */
     getTransaction<TMaxSupportedTransactionVersion extends TransactionVersion | void = void>(
         signature: Signature,
@@ -341,7 +341,7 @@ export type GetTransactionApi = {
      * transaction as a base64-encoded string.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/http/gettransaction
+     * @see https://trezoa.com/docs/rpc/http/gettransaction
      */
     getTransaction<TMaxSupportedTransactionVersion extends TransactionVersion | void = void>(
         signature: Signature,
@@ -375,7 +375,7 @@ export type GetTransactionApi = {
      * transaction as a base58-encoded string.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/http/gettransaction
+     * @see https://trezoa.com/docs/rpc/http/gettransaction
      */
     getTransaction<TMaxSupportedTransactionVersion extends TransactionVersion | void = void>(
         signature: Signature,
@@ -408,7 +408,7 @@ export type GetTransactionApi = {
      * Materializes the transaction as structured {@link TransactionJson}.
      *
      * {@label json}
-     * @see https://solana.com/docs/rpc/http/gettransaction
+     * @see https://trezoa.com/docs/rpc/http/gettransaction
      */
     getTransaction<TMaxSupportedTransactionVersion extends TransactionVersion | void = void>(
         signature: Signature,

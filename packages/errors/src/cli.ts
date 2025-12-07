@@ -2,24 +2,24 @@ import chalk from 'chalk';
 import { Command, InvalidArgumentError } from 'commander';
 
 import { version } from '../package.json';
-import { SolanaErrorCode } from './codes';
+import { TrezoaErrorCode } from './codes';
 import { decodeEncodedContext } from './context';
 import { getHumanReadableErrorMessage } from './message-formatter';
-import { SolanaErrorMessages } from './messages';
+import { TrezoaErrorMessages } from './messages';
 
 const program = new Command();
 
-program.name('@solana/errors').description('Decode Solana JavaScript errors thrown in production').version(version);
+program.name('@trezoa/errors').description('Decode Trezoa JavaScript errors thrown in production').version(version);
 
 program
     .command('decode')
-    .description('Decode a `SolanaErrorCode` to a human-readable message')
+    .description('Decode a `TrezoaErrorCode` to a human-readable message')
     .argument('<code>', 'numeric error code to decode', rawCode => {
         const code = parseInt(rawCode, 10);
         if (isNaN(code) || `${code}` !== rawCode) {
             throw new InvalidArgumentError('It must be an integer');
         }
-        if (!(code in SolanaErrorMessages)) {
+        if (!(code in TrezoaErrorMessages)) {
             throw new InvalidArgumentError('There exists no error with that code');
         }
         return code;
@@ -32,7 +32,7 @@ program
         }
     })
     .action((code: number, context: object) => {
-        const message = getHumanReadableErrorMessage(code as SolanaErrorCode, context);
+        const message = getHumanReadableErrorMessage(code as TrezoaErrorCode, context);
         console.log(`
 ${
     chalk.bold(
@@ -45,7 +45,7 @@ ${
             chalk.rgb(79, 212, 181)('e') +
             chalk.rgb(57, 227, 166)('d') +
             chalk.rgb(19, 241, 149)(']'),
-    ) + chalk.rgb(19, 241, 149)(' Solana error code #' + code)
+    ) + chalk.rgb(19, 241, 149)(' Trezoa error code #' + code)
 }
     - ${message}`);
         if (context) {

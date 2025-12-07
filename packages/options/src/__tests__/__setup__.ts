@@ -1,5 +1,5 @@
-import { Codec, createCodec } from '@solana/codecs-core';
-import { getBase16Codec } from '@solana/codecs-strings';
+import { Codec, createCodec } from '@trezoa/codecs-core';
+import { getBase16Codec } from '@trezoa/codecs-strings';
 
 export const base16 = getBase16Codec();
 export const b = (s: string) => base16.encode(s);

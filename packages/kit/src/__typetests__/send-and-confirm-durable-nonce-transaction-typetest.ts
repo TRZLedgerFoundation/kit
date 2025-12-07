@@ -7,7 +7,7 @@ import {
     RpcMainnet,
     RpcTestnet,
     SendTransactionApi,
-} from '@solana/rpc';
+} from '@trezoa/rpc';
 import {
     AccountNotificationsApi,
     RpcSubscriptions,
@@ -15,7 +15,7 @@ import {
     RpcSubscriptionsMainnet,
     RpcSubscriptionsTestnet,
     SignatureNotificationsApi,
-} from '@solana/rpc-subscriptions';
+} from '@trezoa/rpc-subscriptions';
 
 import { sendAndConfirmDurableNonceTransactionFactory } from '../send-and-confirm-durable-nonce-transaction';
 

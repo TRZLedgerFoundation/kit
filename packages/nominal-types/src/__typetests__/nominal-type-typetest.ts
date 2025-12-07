@@ -5,6 +5,6 @@ import { NominalType } from '../index';
     // It adds a particularly named readonly property/value to any type
     {
         const typedValue = null as unknown as NominalType<'foo', 'bar'>;
-        typedValue satisfies { readonly ['__foo:@solana/kit']: 'bar' };
+        typedValue satisfies { readonly ['__foo:@trezoa/kit']: 'bar' };
     }
 }

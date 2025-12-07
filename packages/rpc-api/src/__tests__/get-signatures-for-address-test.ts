@@ -1,14 +1,14 @@
-import type { Address } from '@solana/addresses';
-import { SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, SolanaError } from '@solana/errors';
-import type { Rpc } from '@solana/rpc-spec';
+import type { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED, TrezoaError } from '@trezoa/errors';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { GetSignaturesForAddressApi } from '../index';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('getSignaturesForAddress', () => {
     let rpc: Rpc<GetSignaturesForAddressApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
 
     (
@@ -47,10 +47,10 @@ describe('getSignaturesForAddress', () => {
                 })
                 .send();
             await Promise.all([
-                expect(sendPromise).rejects.toThrow(SolanaError),
+                expect(sendPromise).rejects.toThrow(TrezoaError),
                 expect(sendPromise).rejects.toHaveProperty(
                     'context.__code',
-                    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
+                    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED,
                 ),
                 expect(sendPromise).rejects.toHaveProperty('context.contextSlot', expect.any(BigInt)),
             ]);

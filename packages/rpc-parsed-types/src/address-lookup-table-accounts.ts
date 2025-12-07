@@ -1,5 +1,5 @@
-import type { Address } from '@solana/addresses';
-import type { StringifiedBigInt } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { StringifiedBigInt } from '@trezoa/rpc-types';
 
 import { RpcParsedInfo } from './rpc-parsed-type';
 

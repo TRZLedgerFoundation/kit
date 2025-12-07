@@ -1,4 +1,4 @@
-import type { BaseTransactionMessage, TransactionMessageWithinSizeLimit } from '@solana/transaction-messages';
+import type { BaseTransactionMessage, TransactionMessageWithinSizeLimit } from '@trezoa/transaction-messages';
 
 import { Transaction } from '../transaction';
 import {

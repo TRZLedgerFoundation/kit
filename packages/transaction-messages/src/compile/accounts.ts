@@ -1,9 +1,9 @@
-import { Address, getAddressComparator } from '@solana/addresses';
+import { Address, getAddressComparator } from '@trezoa/addresses';
 import {
-    SOLANA_ERROR__TRANSACTION__INVOKED_PROGRAMS_CANNOT_PAY_FEES,
-    SOLANA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__TRANSACTION__INVOKED_PROGRAMS_CANNOT_PAY_FEES,
+    TREZOA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE,
+    TrezoaError,
+} from '@trezoa/errors';
 import {
     AccountLookupMeta,
     AccountMeta,
@@ -18,8 +18,8 @@ import {
     WritableAccount,
     WritableAccountLookup,
     WritableSignerAccount,
-} from '@solana/instructions';
-import { Brand } from '@solana/nominal-types';
+} from '@trezoa/instructions';
+import { Brand } from '@trezoa/nominal-types';
 
 export const enum AddressMapEntryType {
     FEE_PAYER,
@@ -67,11 +67,11 @@ export function getAddressMapFromInstructions(feePayer: Address, instructions: r
                 if (isWritableRole(entry.role)) {
                     switch (entry[TYPE]) {
                         case AddressMapEntryType.FEE_PAYER:
-                            throw new SolanaError(SOLANA_ERROR__TRANSACTION__INVOKED_PROGRAMS_CANNOT_PAY_FEES, {
+                            throw new TrezoaError(TREZOA_ERROR__TRANSACTION__INVOKED_PROGRAMS_CANNOT_PAY_FEES, {
                                 programAddress: instruction.programAddress,
                             });
                         default:
-                            throw new SolanaError(SOLANA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE, {
+                            throw new TrezoaError(TREZOA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE, {
                                 programAddress: instruction.programAddress,
                             });
                     }
@@ -141,8 +141,8 @@ export function getAddressMapFromInstructions(feePayer: Address, instructions: r
                                 addressesOfInvokedPrograms.has(account.address)
                             ) {
                                 if (isWritableRole(accountMeta.role)) {
-                                    throw new SolanaError(
-                                        SOLANA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE,
+                                    throw new TrezoaError(
+                                        TREZOA_ERROR__TRANSACTION__INVOKED_PROGRAMS_MUST_NOT_BE_WRITABLE,
                                         {
                                             programAddress: account.address,
                                         },

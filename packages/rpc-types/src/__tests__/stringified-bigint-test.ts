@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__MALFORMED_BIGINT_STRING, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__MALFORMED_BIGINT_STRING, TrezoaError } from '@trezoa/errors';
 
 import { assertIsStringifiedBigInt } from '../stringified-bigint';
 
@@ -7,14 +7,14 @@ describe('assertIsStringifiedBigInt()', () => {
         expect(() => {
             assertIsStringifiedBigInt('abc');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
                 value: 'abc',
             }),
         );
         expect(() => {
             assertIsStringifiedBigInt('123a');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
                 value: '123a',
             }),
         );
@@ -23,14 +23,14 @@ describe('assertIsStringifiedBigInt()', () => {
         expect(() => {
             assertIsStringifiedBigInt('123.0');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
                 value: '123.0',
             }),
         );
         expect(() => {
             assertIsStringifiedBigInt('123.5');
         }).toThrow(
-            new SolanaError(SOLANA_ERROR__MALFORMED_BIGINT_STRING, {
+            new TrezoaError(TREZOA_ERROR__MALFORMED_BIGINT_STRING, {
                 value: '123.5',
             }),
         );

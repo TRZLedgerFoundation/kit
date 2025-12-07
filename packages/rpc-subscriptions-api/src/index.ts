@@ -3,15 +3,15 @@ import {
     executeRpcPubSubSubscriptionPlan,
     RpcSubscriptionsApi,
     RpcSubscriptionsApiMethods,
-} from '@solana/rpc-subscriptions-spec';
+} from '@trezoa/rpc-subscriptions-spec';
 import {
     AllowedNumericKeypaths,
-    getDefaultRequestTransformerForSolanaRpc,
-    getDefaultResponseTransformerForSolanaRpcSubscriptions,
+    getDefaultRequestTransformerForTrezoaRpc,
+    getDefaultResponseTransformerForTrezoaRpcSubscriptions,
     jsonParsedAccountsConfigs,
     KEYPATH_WILDCARD,
     RequestTransformerConfig,
-} from '@solana/rpc-transformers';
+} from '@trezoa/rpc-transformers';
 
 import { AccountNotificationsApi } from './account-notifications';
 import { BlockNotificationsApi } from './block-notifications';
@@ -23,13 +23,13 @@ import { SlotNotificationsApi } from './slot-notifications';
 import { SlotsUpdatesNotificationsApi } from './slots-updates-notifications';
 import { VoteNotificationsApi } from './vote-notifications';
 
-export type SolanaRpcSubscriptionsApi = AccountNotificationsApi &
+export type TrezoaRpcSubscriptionsApi = AccountNotificationsApi &
     LogsNotificationsApi &
     ProgramNotificationsApi &
     RootNotificationsApi &
     SignatureNotificationsApi &
     SlotNotificationsApi;
-export type SolanaRpcSubscriptionsApiUnstable = BlockNotificationsApi &
+export type TrezoaRpcSubscriptionsApiUnstable = BlockNotificationsApi &
     SlotsUpdatesNotificationsApi &
     VoteNotificationsApi;
 
@@ -47,11 +47,11 @@ export type {
 
 type Config = RequestTransformerConfig;
 
-function createSolanaRpcSubscriptionsApi_INTERNAL<TApi extends RpcSubscriptionsApiMethods>(
+function createTrezoaRpcSubscriptionsApi_INTERNAL<TApi extends RpcSubscriptionsApiMethods>(
     config?: Config,
 ): RpcSubscriptionsApi<TApi> {
-    const requestTransformer = getDefaultRequestTransformerForSolanaRpc(config);
-    const responseTransformer = getDefaultResponseTransformerForSolanaRpcSubscriptions({
+    const requestTransformer = getDefaultRequestTransformerForTrezoaRpc(config);
+    const responseTransformer = getDefaultResponseTransformerForTrezoaRpcSubscriptions({
         allowedNumericKeyPaths: getAllowedNumericKeypaths(),
     });
     return createRpcSubscriptionsApi<TApi>({
@@ -67,20 +67,20 @@ function createSolanaRpcSubscriptionsApi_INTERNAL<TApi extends RpcSubscriptionsA
     });
 }
 
-export function createSolanaRpcSubscriptionsApi<TApi extends RpcSubscriptionsApiMethods = SolanaRpcSubscriptionsApi>(
+export function createTrezoaRpcSubscriptionsApi<TApi extends RpcSubscriptionsApiMethods = TrezoaRpcSubscriptionsApi>(
     config?: Config,
 ): RpcSubscriptionsApi<TApi> {
-    return createSolanaRpcSubscriptionsApi_INTERNAL<TApi>(config);
+    return createTrezoaRpcSubscriptionsApi_INTERNAL<TApi>(config);
 }
 
-export function createSolanaRpcSubscriptionsApi_UNSTABLE(config?: Config) {
-    return createSolanaRpcSubscriptionsApi_INTERNAL<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>(
+export function createTrezoaRpcSubscriptionsApi_UNSTABLE(config?: Config) {
+    return createTrezoaRpcSubscriptionsApi_INTERNAL<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>(
         config,
     );
 }
 
 let memoizedKeypaths: AllowedNumericKeypaths<
-    RpcSubscriptionsApi<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>
+    RpcSubscriptionsApi<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>
 >;
 
 /**
@@ -88,7 +88,7 @@ let memoizedKeypaths: AllowedNumericKeypaths<
  * to a `bigint`. These are values that are legitimately defined as `u8` or `usize` on the backend.
  */
 function getAllowedNumericKeypaths(): AllowedNumericKeypaths<
-    RpcSubscriptionsApi<SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable>
+    RpcSubscriptionsApi<TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable>
 > {
     if (!memoizedKeypaths) {
         memoizedKeypaths = {

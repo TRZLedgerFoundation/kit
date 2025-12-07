@@ -1,17 +1,17 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@solana/codecs-core';
-import { getBase16Decoder } from '@solana/codecs-strings';
+import { Address } from '@trezoa/addresses';
+import { ReadonlyUint8Array, VariableSizeDecoder, VariableSizeEncoder } from '@trezoa/codecs-core';
+import { getBase16Decoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__CODECS__INVALID_CONSTANT,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION,
-    SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__INVALID_CONSTANT,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION,
+    TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { getOffchainMessageV1Decoder, getOffchainMessageV1Encoder } from '../codecs/message-v1';
 import { OffchainMessageV1 } from '../message-v1';
@@ -101,7 +101,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     0x09,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_CONSTANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_CONSTANT, {
                 constant: OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES,
                 data: encodedMessage,
                 hexConstant: getBase16Decoder().decode(OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES),
@@ -127,7 +127,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x0A, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
                 actualVersion: 0,
                 expectedVersion: 1,
             }),
@@ -150,7 +150,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x0A, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE),
         );
     });
     it('throws when decoding an message with an unsupported version', () => {
@@ -170,7 +170,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x0A, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: 255,
             }),
         );
@@ -189,7 +189,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x0A, 0x77, 0x6f, 0x72, 0x6c, 0x64,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
         );
     });
     it('throws when decoding a message whose message content length is zero', () => {
@@ -207,7 +207,7 @@ describe('getOffchainMessageV1Decoder()', () => {
                     ...SIGNER_B_BYTES,
             ]);
         expect(() => decoder.decode(encodedMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
 });
@@ -270,7 +270,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 0,
         };
         expect(() => encoder.encode(offchainMessage as unknown as OffchainMessageV1)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__UNEXPECTED_VERSION, {
                 actualVersion: 0,
                 expectedVersion: 1,
             }),
@@ -283,7 +283,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 255,
         };
         expect(() => encoder.encode(offchainMessage as unknown as OffchainMessageV1)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__VERSION_NUMBER_NOT_SUPPORTED, {
                 unsupportedVersion: 255,
             }),
         );
@@ -295,7 +295,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 1,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__NUM_REQUIRED_SIGNERS_CANNOT_BE_ZERO),
         );
     });
     it('throws when encoding an message whose message content length is zero', () => {
@@ -305,7 +305,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 1,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__MESSAGE_MUST_BE_NON_EMPTY),
         );
     });
     it('throws when there are duplicate signatories', () => {
@@ -315,7 +315,7 @@ describe('getOffchainMessageEncoder()', () => {
             version: 1,
         };
         expect(() => encoder.encode(offchainMessage)).toThrow(
-            new SolanaError(SOLANA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE),
+            new TrezoaError(TREZOA_ERROR__OFFCHAIN_MESSAGE__SIGNATORIES_MUST_BE_UNIQUE),
         );
     });
     it('sorts the signatories in lexicographical order in the output', () => {

@@ -1,4 +1,4 @@
-import type { Blockhash } from '@solana/rpc-types';
+import type { Blockhash } from '@trezoa/rpc-types';
 
 import { getCompiledLifetimeToken } from '../../compile/lifetime-token';
 import { Nonce } from '../../durable-nonce';

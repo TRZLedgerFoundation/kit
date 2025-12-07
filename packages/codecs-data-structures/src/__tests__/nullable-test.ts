@@ -1,6 +1,6 @@
-import { getShortU16Codec, getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@solana/codecs-numbers';
-import { getUtf8Codec } from '@solana/codecs-strings';
-import { SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH, SolanaError } from '@solana/errors';
+import { getShortU16Codec, getU8Codec, getU16Codec, getU32Codec, getU64Codec } from '@trezoa/codecs-numbers';
+import { getUtf8Codec } from '@trezoa/codecs-strings';
+import { TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { getNullableCodec } from '../nullable';
 import { b } from './__setup__';
@@ -135,7 +135,7 @@ describe('getNullableCodec', () => {
         it('fails if the items is not fixed', () => {
             // @ts-expect-error It cannot wrap a variable size item when fixed is true.
             expect(() => getNullableCodec(getUtf8Codec(), { noneValue: 'zeroes', prefix: null })).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH),
+                new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH),
             );
         });
     });
@@ -277,7 +277,7 @@ describe('getNullableCodec', () => {
         it('fails if the items is not fixed', () => {
             // @ts-expect-error It cannot wrap a variable size item when fixed is true.
             expect(() => getNullableCodec(getUtf8Codec(), { noneValue: 'zeroes' })).toThrow(
-                new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_FIXED_LENGTH),
+                new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_FIXED_LENGTH),
             );
         });
     });

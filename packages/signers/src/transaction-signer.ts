@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_SIGNER, SolanaError } from '@solana/errors';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_SIGNER, TrezoaError } from '@trezoa/errors';
 
 import { isTransactionModifyingSigner, TransactionModifyingSigner } from './transaction-modifying-signer';
 import { isTransactionPartialSigner, TransactionPartialSigner } from './transaction-partial-signer';
@@ -26,8 +26,8 @@ export type TransactionSigner<TAddress extends string = string> =
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { isTransactionSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { isTransactionSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * isTransactionSigner({ address, signTransactions: async () => {} }); // true
@@ -54,8 +54,8 @@ export function isTransactionSigner<TAddress extends string>(value: {
  *
  * @example
  * ```ts
- * import { Address } from '@solana/addresses';
- * import { assertIsTransactionSigner } from '@solana/signers';
+ * import { Address } from '@trezoa/addresses';
+ * import { assertIsTransactionSigner } from '@trezoa/signers';
  *
  * const address = '1234..5678' as Address<'1234..5678'>;
  * assertIsTransactionSigner({ address, signTransactions: async () => {} }); // void
@@ -71,7 +71,7 @@ export function assertIsTransactionSigner<TAddress extends string>(value: {
     address: Address<TAddress>;
 }): asserts value is TransactionSigner<TAddress> {
     if (!isTransactionSigner(value)) {
-        throw new SolanaError(SOLANA_ERROR__SIGNER__EXPECTED_TRANSACTION_SIGNER, {
+        throw new TrezoaError(TREZOA_ERROR__SIGNER__EXPECTED_TRANSACTION_SIGNER, {
             address: value.address,
         });
     }

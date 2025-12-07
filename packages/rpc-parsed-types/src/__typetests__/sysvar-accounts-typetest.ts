@@ -1,4 +1,4 @@
-import { Blockhash, Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@solana/rpc-types';
+import { Blockhash, Epoch, Slot, StringifiedBigInt, UnixTimestamp } from '@trezoa/rpc-types';
 
 import { JsonParsedSysvarAccount } from '../sysvar-accounts';
 

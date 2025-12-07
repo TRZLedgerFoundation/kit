@@ -1,4 +1,4 @@
-import type { Instruction } from '@solana/instructions';
+import type { Instruction } from '@trezoa/instructions';
 
 import {
     getLinearMessagePackerInstructionPlan,

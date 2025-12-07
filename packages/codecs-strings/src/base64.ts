@@ -7,8 +7,8 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
-import { SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, SolanaError } from '@solana/errors';
+} from '@trezoa/codecs-core';
+import { TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, TrezoaError } from '@trezoa/errors';
 
 import { assertValidBaseString } from './assertions';
 import { getBaseXResliceDecoder, getBaseXResliceEncoder } from './baseX-reslice';
@@ -41,7 +41,7 @@ export const getBase64Encoder = (): VariableSizeEncoder<string> => {
                 try {
                     return (atob as Window['atob'])(value).length;
                 } catch {
-                    throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+                    throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                         alphabet,
                         base: 64,
                         value,
@@ -56,7 +56,7 @@ export const getBase64Encoder = (): VariableSizeEncoder<string> => {
                     bytes.set(bytesToAdd, offset);
                     return bytesToAdd.length + offset;
                 } catch {
-                    throw new SolanaError(SOLANA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
+                    throw new TrezoaError(TREZOA_ERROR__CODECS__INVALID_STRING_FOR_BASE, {
                         alphabet,
                         base: 64,
                         value,

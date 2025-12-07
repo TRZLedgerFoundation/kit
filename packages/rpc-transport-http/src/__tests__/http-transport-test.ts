@@ -1,9 +1,9 @@
-import { SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR, SolanaError } from '@solana/errors';
-import { RpcTransport } from '@solana/rpc-spec';
+import { TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR, TrezoaError } from '@trezoa/errors';
+import { RpcTransport } from '@trezoa/rpc-spec';
 
 // HACK: Pierce the veil of `jest.isolateModules` so that the modules inside get the same version of
-//       `@solana/errors` that is imported above.
-jest.mock('@solana/errors', () => jest.requireActual('@solana/errors'));
+//       `@trezoa/errors` that is imported above.
+jest.mock('@trezoa/errors', () => jest.requireActual('@trezoa/errors'));
 
 describe('createHttpTransport', () => {
     let fetchSpy: jest.SpyInstance;
@@ -33,7 +33,7 @@ describe('createHttpTransport', () => {
             expect.assertions(1);
             const requestPromise = makeHttpRequest({ payload: 123 });
             await expect(requestPromise).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR, {
+                new TrezoaError(TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR, {
                     headers: expectedHeaders,
                     message: 'We looked everywhere',
                     statusCode: 404,
@@ -42,33 +42,33 @@ describe('createHttpTransport', () => {
         });
         it('exposes the response headers on the error context', async () => {
             expect.assertions(2);
-            let thrownError!: SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+            let thrownError!: TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             try {
                 await makeHttpRequest({ payload: 123 });
             } catch (e) {
-                thrownError = e as SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+                thrownError = e as TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             }
             expect(thrownError).toBeDefined();
             expect(thrownError.context.headers).toBe(expectedHeaders);
         });
         it('does not leak the response header values through the error message', async () => {
             expect.assertions(2);
-            let thrownError!: SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+            let thrownError!: TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             try {
                 await makeHttpRequest({ payload: 123 });
             } catch (e) {
-                thrownError = e as SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+                thrownError = e as TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             }
             expect(thrownError).toBeDefined();
             expect(thrownError.message).not.toMatch(/doNotLog/);
         });
         it('the `Headers` on the error context do not leak the header values when stringified', async () => {
             expect.assertions(2);
-            let thrownError!: SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+            let thrownError!: TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             try {
                 await makeHttpRequest({ payload: 123 });
             } catch (e) {
-                thrownError = e as SolanaError<typeof SOLANA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
+                thrownError = e as TrezoaError<typeof TREZOA_ERROR__RPC__TRANSPORT_HTTP_ERROR>;
             }
             expect(thrownError).toBeDefined();
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions

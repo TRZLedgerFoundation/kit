@@ -5,20 +5,20 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/rpc-subscriptions-spec?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/rpc-subscriptions-spec?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/rpc-subscriptions-spec
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/rpc-subscriptions-spec?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/rpc-subscriptions-spec?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/rpc-subscriptions-spec
 
-# @solana/rpc-subscriptions-spec
+# @trezoa/rpc-subscriptions-spec
 
-This package contains types that describe the implementation of the JSON RPC Subscriptions API, as well as methods to create one. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types that describe the implementation of the JSON RPC Subscriptions API, as well as methods to create one. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 This API is designed to be used as follows:
 
 ```ts
 const rpcSubscriptions =
     // Step 1 - Create a `RpcSubscriptions` instance. This may be stateful.
-    createSolanaRpcSubscriptions(mainnet('wss://api.mainnet-beta.solana.com'));
+    createTrezoaRpcSubscriptions(mainnet('wss://api.mainnet-beta.trezoa.com'));
 const response = await rpcSubscriptions
     // Step 2 - Call supported methods on it to produce `PendingRpcSubscriptionsRequest` objects.
     .slotNotifications({ commitment: 'confirmed' })
@@ -57,7 +57,7 @@ Subscription channels publish events on two channel names:
 
 ### `executeRpcPubSubSubscriptionPlan({ channel, responseTransformer, signal, subscribeRequest, unsubscribeMethodName })`
 
-Given a channel, this function executes the particular subscription plan required by the Solana JSON RPC Subscriptions API.
+Given a channel, this function executes the particular subscription plan required by the Trezoa JSON RPC Subscriptions API.
 
 1. Calls the `subscribeRequest` on the remote RPC
 2. Waits for a response containing the subscription id

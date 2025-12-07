@@ -1,9 +1,9 @@
-import '@solana/test-matchers/toBeFrozenObject';
+import '@trezoa/test-matchers/toBeFrozenObject';
 
-import { Address } from '@solana/addresses';
-import { SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, SolanaError } from '@solana/errors';
-import { AccountRole, Instruction } from '@solana/instructions';
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+import { Address } from '@trezoa/addresses';
+import { TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, TrezoaError } from '@trezoa/errors';
+import { AccountRole, Instruction } from '@trezoa/instructions';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/transaction-messages';
 
 import { AccountSignerMeta, InstructionWithSigners } from '../account-signer-meta';
 import { addSignersToInstruction, addSignersToTransactionMessage } from '../add-signers';
@@ -118,7 +118,7 @@ describe('addSignersToInstruction', () => {
 
         // Then we expect an error to be thrown.
         expect(fn).toThrow(
-            new SolanaError(SOLANA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
+            new TrezoaError(TREZOA_ERROR__SIGNER__ADDRESS_CANNOT_HAVE_MULTIPLE_SIGNERS, {
                 address: '1111',
             }),
         );

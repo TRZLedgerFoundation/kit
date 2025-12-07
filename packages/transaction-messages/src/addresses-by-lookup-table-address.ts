@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 /**
  * Represents a mapping of lookup table addresses to the addresses of the accounts that are stored

@@ -1,6 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "@solana/nominal-types",
+    "display": "@trezoa/nominal-types",
     "extends": "../tsconfig/base.json",
     "include": ["src"]
 }

@@ -1,4 +1,4 @@
-import { createSolanaRpc, createSolanaRpcSubscriptions } from '@solana/kit';
+import { createTrezoaRpc, createTrezoaRpcSubscriptions } from '@trezoa/kit';
 import { ReactNode, useContext, useMemo } from 'react';
 
 import { ChainContext } from './ChainContext';
@@ -9,15 +9,15 @@ type Props = Readonly<{
 }>;
 
 export function RpcContextProvider({ children }: Props) {
-    const { solanaRpcSubscriptionsUrl, solanaRpcUrl } = useContext(ChainContext);
+    const { trezoaRpcSubscriptionsUrl, trezoaRpcUrl } = useContext(ChainContext);
     return (
         <RpcContext.Provider
             value={useMemo(
                 () => ({
-                    rpc: createSolanaRpc(solanaRpcUrl),
-                    rpcSubscriptions: createSolanaRpcSubscriptions(solanaRpcSubscriptionsUrl),
+                    rpc: createTrezoaRpc(trezoaRpcUrl),
+                    rpcSubscriptions: createTrezoaRpcSubscriptions(trezoaRpcSubscriptionsUrl),
                 }),
-                [solanaRpcSubscriptionsUrl, solanaRpcUrl],
+                [trezoaRpcSubscriptionsUrl, trezoaRpcUrl],
             )}
         >
             {children}

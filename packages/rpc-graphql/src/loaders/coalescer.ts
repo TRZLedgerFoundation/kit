@@ -1,4 +1,4 @@
-import { DataSlice } from '@solana/rpc-types';
+import { DataSlice } from '@trezoa/rpc-types';
 
 import { BatchLoadPromiseCallback, cacheKeyFn } from './loader';
 

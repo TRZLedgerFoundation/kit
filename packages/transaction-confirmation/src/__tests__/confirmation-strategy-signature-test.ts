@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN, SolanaError } from '@solana/errors';
-import { Signature } from '@solana/keys';
+import { TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN, TrezoaError } from '@trezoa/errors';
+import { Signature } from '@trezoa/keys';
 
 import { createRecentSignatureConfirmationPromiseFactory } from '../confirmation-strategy-recent-signature';
 
@@ -122,7 +122,7 @@ describe('createSignatureConfirmationPromiseFactory', () => {
             signature: 'abc' as Signature,
         });
         await expect(signatureConfirmationPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN, { errorName: 'o no' }),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN, { errorName: 'o no' }),
         );
     });
     it('resolves when a signature status notification is returned by the signature subscription', async () => {
@@ -152,7 +152,7 @@ describe('createSignatureConfirmationPromiseFactory', () => {
             signature: 'abc' as Signature,
         });
         await expect(signatureConfirmationPromise).rejects.toThrow(
-            new SolanaError(SOLANA_ERROR__TRANSACTION_ERROR__UNKNOWN, { errorName: 'o no' }),
+            new TrezoaError(TREZOA_ERROR__TRANSACTION_ERROR__UNKNOWN, { errorName: 'o no' }),
         );
     });
     it('calls the abort signal passed to the signature statuses query when aborted', async () => {

@@ -1,4 +1,4 @@
-import type { NominalType } from '@solana/nominal-types';
+import type { NominalType } from '@trezoa/nominal-types';
 
 import type { BaseTransactionMessage } from './transaction-message';
 
@@ -14,5 +14,5 @@ export type TransactionMessageWithinSizeLimit = NominalType<'transactionSize', '
  */
 export type ExcludeTransactionMessageWithinSizeLimit<TTransactionMessage extends BaseTransactionMessage> = Omit<
     TTransactionMessage,
-    '__transactionSize:@solana/kit'
+    '__transactionSize:@trezoa/kit'
 >;

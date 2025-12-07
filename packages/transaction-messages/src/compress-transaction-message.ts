@@ -1,5 +1,5 @@
-import { Address } from '@solana/addresses';
-import { AccountLookupMeta, AccountMeta, AccountRole, Instruction, isSignerRole } from '@solana/instructions';
+import { Address } from '@trezoa/addresses';
+import { AccountLookupMeta, AccountMeta, AccountRole, Instruction, isSignerRole } from '@trezoa/instructions';
 
 import { AddressesByLookupTableAddress } from './addresses-by-lookup-table-address';
 import { BaseTransactionMessage, TransactionMessage } from './transaction-message';
@@ -66,12 +66,12 @@ type WidenTransactionMessageInstructions<TTransactionMessage extends Transaction
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
+ * import { address } from '@trezoa/addresses';
  * import {
  *     AddressesByLookupTableAddress,
  *     compressTransactionMessageUsingAddressLookupTables,
- * } from '@solana/transaction-messages';
- * import { fetchAddressLookupTable } from '@solana-program/address-lookup-table';
+ * } from '@trezoa/transaction-messages';
+ * import { fetchAddressLookupTable } from '@trezoa-program/address-lookup-table';
  *
  * const lookupTableAddress = address('4QwSwNriKPrz8DLW4ju5uxC2TN5cksJx6tPUPj7DGLAW');
  * const {

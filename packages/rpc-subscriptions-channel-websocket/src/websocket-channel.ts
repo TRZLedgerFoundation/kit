@@ -1,13 +1,13 @@
 import {
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
-    SolanaError,
-} from '@solana/errors';
-import { EventTarget } from '@solana/event-target-impl';
-import { RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
-import { getDataPublisherFromEventEmitter } from '@solana/subscribable';
-import WebSocket from '@solana/ws-impl';
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
+    TrezoaError,
+} from '@trezoa/errors';
+import { EventTarget } from '@trezoa/event-target-impl';
+import { RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
+import { getDataPublisherFromEventEmitter } from '@trezoa/subscribable';
+import WebSocket from '@trezoa/ws-impl';
 
 export type Config = Readonly<{
     /**
@@ -87,7 +87,7 @@ export function createWebSocketChannel({
         if (!signal.aborted && !(ev.wasClean && ev.code === NORMAL_CLOSURE_CODE)) {
             eventTarget.dispatchEvent(
                 new CustomEvent('error', {
-                    detail: new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
+                    detail: new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED, {
                         cause: ev,
                     }),
                 }),
@@ -99,7 +99,7 @@ export function createWebSocketChannel({
             return;
         }
         if (!hasConnected) {
-            const failedToConnectError = new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT, {
+            const failedToConnectError = new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT, {
                 errorEvent: ev,
             });
             rejectOpen(failedToConnectError);
@@ -124,7 +124,7 @@ export function createWebSocketChannel({
             ...dataPublisher,
             async send(message) {
                 if (webSocket.readyState !== WebSocket.OPEN) {
-                    throw new SolanaError(SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED);
+                    throw new TrezoaError(TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED);
                 }
                 if (!bufferDrainWatcher && webSocket.bufferedAmount > sendBufferHighWatermark) {
                     let onCancel!: () => void;
@@ -143,8 +143,8 @@ export function createWebSocketChannel({
                             bufferDrainWatcher = undefined;
                             clearInterval(intervalId);
                             reject(
-                                new SolanaError(
-                                    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
+                                new TrezoaError(
+                                    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
                                 ),
                             );
                         };
@@ -174,7 +174,7 @@ export function createWebSocketChannel({
     webSocket.addEventListener('error', handleError);
     webSocket.addEventListener('message', handleMessage);
     webSocket.addEventListener('open', handleOpen);
-    let rejectOpen!: (e: SolanaError) => void;
+    let rejectOpen!: (e: TrezoaError) => void;
     let resolveOpen!: (value: RpcSubscriptionsChannel<WebSocketMessage, string>) => void;
     return new Promise<RpcSubscriptionsChannel<WebSocketMessage, string>>((resolve, reject) => {
         rejectOpen = reject;

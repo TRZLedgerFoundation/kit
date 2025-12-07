@@ -8,11 +8,11 @@ import { transactionTypeResolvers } from './transaction';
 import { typeTypeResolvers } from './types';
 
 /**
- * Create the GraphQL type resolvers for the Solana GraphQL schema.
+ * Create the GraphQL type resolvers for the Trezoa GraphQL schema.
  *
- * @returns     Solana GraphQL type resolvers.
+ * @returns     Trezoa GraphQL type resolvers.
  */
-export function createSolanaGraphQLTypeResolvers(): Parameters<typeof makeExecutableSchema>[0]['resolvers'] {
+export function createTrezoaGraphQLTypeResolvers(): Parameters<typeof makeExecutableSchema>[0]['resolvers'] {
     return {
         ...accountTypeResolvers,
         ...blockTypeResolvers,

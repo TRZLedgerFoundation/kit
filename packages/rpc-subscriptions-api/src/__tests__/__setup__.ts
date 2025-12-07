@@ -1,17 +1,17 @@
-import { createWebSocketChannel } from '@solana/rpc-subscriptions-channel-websocket';
-import { createSubscriptionRpc, RpcSubscriptions, RpcSubscriptionsChannel } from '@solana/rpc-subscriptions-spec';
+import { createWebSocketChannel } from '@trezoa/rpc-subscriptions-channel-websocket';
+import { createSubscriptionRpc, RpcSubscriptions, RpcSubscriptionsChannel } from '@trezoa/rpc-subscriptions-spec';
 
 import {
-    createSolanaRpcSubscriptionsApi_UNSTABLE,
-    SolanaRpcSubscriptionsApi,
-    SolanaRpcSubscriptionsApiUnstable,
+    createTrezoaRpcSubscriptionsApi_UNSTABLE,
+    TrezoaRpcSubscriptionsApi,
+    TrezoaRpcSubscriptionsApiUnstable,
 } from '..';
 
-export function createLocalhostSolanaRpcSubscriptions(): RpcSubscriptions<
-    SolanaRpcSubscriptionsApi & SolanaRpcSubscriptionsApiUnstable
+export function createLocalhostTrezoaRpcSubscriptions(): RpcSubscriptions<
+    TrezoaRpcSubscriptionsApi & TrezoaRpcSubscriptionsApiUnstable
 > {
     return createSubscriptionRpc({
-        api: createSolanaRpcSubscriptionsApi_UNSTABLE(),
+        api: createTrezoaRpcSubscriptionsApi_UNSTABLE(),
         async transport({ execute, signal }) {
             const webSocketChannel = await createWebSocketChannel({
                 sendBufferHighWatermark: Number.POSITIVE_INFINITY,

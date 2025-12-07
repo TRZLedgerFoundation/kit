@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, TrezoaError } from '@trezoa/errors';
 
 import { createPrivateKeyFromBytes } from '../private-key';
 import { getPublicKeyFromPrivateKey } from '../public-key';
@@ -49,7 +49,7 @@ describe('getPublicKeyFromPrivateKey', () => {
         it('cannot get the associated public key', async () => {
             expect.assertions(1);
             await expect(() => getPublicKeyFromPrivateKey(privateKey, true)).rejects.toThrow(
-                new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, { key: privateKey }),
+                new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, { key: privateKey }),
             );
         });
     });

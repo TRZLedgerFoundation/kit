@@ -1,5 +1,5 @@
 ---
-'@solana/instruction-plans': minor
+'@trezoa/instruction-plans': minor
 ---
 
 Add a function to summarize a `TransactionPlanResult`

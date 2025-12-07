@@ -3,7 +3,7 @@ import type {
     TransactionMessageWithBlockhashLifetime,
     TransactionMessageWithDurableNonceLifetime,
     TransactionMessageWithinSizeLimit,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import type {
     TransactionWithBlockhashLifetime,

@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/transactions?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/transactions?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/transactions
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/transactions?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/transactions?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/transactions
 
-# @solana/transactions
+# @trezoa/transactions
 
-This package contains types and functions for compiling, signing and sending transactions. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains types and functions for compiling, signing and sending transactions. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 Transactions are created by compiling a transaction message. They must then be signed before being submitted to the network.
 
@@ -41,7 +41,7 @@ This type represents a transaction that is signed by all of its required signers
 
 #### `TransactionWithSizeLimit`
 
-This type represents a transaction that is under or equal to the maximum size limit for transactions on the Solana network.
+This type represents a transaction that is under or equal to the maximum size limit for transactions on the Trezoa network.
 
 #### `SendableTransaction`
 
@@ -56,13 +56,13 @@ The `SendableTransaction` type is a prerequisite of functions designed to land t
 
 #### `getSignatureFromTransaction()`
 
-Given a transaction signed by its fee payer, this method will return the `Signature` that uniquely identifies it. This string can be used to look up transactions at a later date, for example on a Solana block explorer.
+Given a transaction signed by its fee payer, this method will return the `Signature` that uniquely identifies it. This string can be used to look up transactions at a later date, for example on a Trezoa block explorer.
 
 ```ts
-import { getSignatureFromTransaction } from '@solana/transactions';
+import { getSignatureFromTransaction } from '@trezoa/transactions';
 
 const signature = getSignatureFromTransaction(tx);
-console.debug(`Inspect this transaction at https://explorer.solana.com/tx/${signature}`);
+console.debug(`Inspect this transaction at https://explorer.trezoa.com/tx/${signature}`);
 ```
 
 ### `signTransaction()`
@@ -70,8 +70,8 @@ console.debug(`Inspect this transaction at https://explorer.solana.com/tx/${sign
 Given an array of `CryptoKey` objects which are private keys pertaining to addresses that are required to sign a transaction, this method will return a new signed transaction of type `FullySignedTransaction`. This function will throw unless the resulting transaction is fully signed.
 
 ```ts
-import { generateKeyPair } from '@solana/keys';
-import { signTransaction } from '@solana/transactions';
+import { generateKeyPair } from '@trezoa/keys';
+import { signTransaction } from '@trezoa/transactions';
 
 const signedTransaction = await signTransaction([myPrivateKey], tx);
 ```
@@ -97,7 +97,7 @@ This type represents the wire format of a transaction as a base64-encoded string
 Given a signed transaction, this method returns the transaction as a string that conforms to the `Base64EncodedWireTransaction` type.
 
 ```ts
-import { getBase64EncodedWireTransaction, signTransaction } from '@solana/transactions';
+import { getBase64EncodedWireTransaction, signTransaction } from '@trezoa/transactions';
 
 const serializedTransaction = getBase64EncodedWireTransaction(signedTransaction);
 const signature = await rpc.sendTransaction(serializedTransaction, { encoding: 'base64' }).send();

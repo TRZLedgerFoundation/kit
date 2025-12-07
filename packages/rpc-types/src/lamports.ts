@@ -7,10 +7,10 @@ import {
     FixedSizeDecoder,
     FixedSizeEncoder,
     transformDecoder,
-} from '@solana/codecs-core';
-import { getU64Decoder, getU64Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE, SolanaError } from '@solana/errors';
-import { Brand } from '@solana/nominal-types';
+} from '@trezoa/codecs-core';
+import { getU64Decoder, getU64Encoder, NumberCodec, NumberDecoder, NumberEncoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
+import { Brand } from '@trezoa/nominal-types';
 
 /**
  * Represents an integer value denominated in Lamports (ie. $1 \times 10^{-9}$ ◎).
@@ -41,7 +41,7 @@ function getMemoizedU64Decoder(): FixedSizeDecoder<bigint, 8> {
  *
  * @example
  * ```ts
- * import { isLamports } from '@solana/rpc-types';
+ * import { isLamports } from '@trezoa/rpc-types';
  *
  * if (isLamports(lamports)) {
  *     // At this point, `lamports` has been refined to a
@@ -66,7 +66,7 @@ export function isLamports(putativeLamports: bigint): putativeLamports is Lampor
  * quantity of Lamports, use this function.
  *
  * ```ts
- * import { assertIsLamports } from '@solana/rpc-types';
+ * import { assertIsLamports } from '@trezoa/rpc-types';
  *
  * // Imagine a function that creates a transfer instruction when a user submits a form.
  * function handleSubmit() {
@@ -86,7 +86,7 @@ export function isLamports(putativeLamports: bigint): putativeLamports is Lampor
  */
 export function assertIsLamports(putativeLamports: bigint): asserts putativeLamports is Lamports {
     if (putativeLamports < 0 || putativeLamports > maxU64Value) {
-        throw new SolanaError(SOLANA_ERROR__LAMPORTS_OUT_OF_RANGE);
+        throw new TrezoaError(TREZOA_ERROR__LAMPORTS_OUT_OF_RANGE);
     }
 }
 
@@ -96,7 +96,7 @@ export function assertIsLamports(putativeLamports: bigint): asserts putativeLamp
  *
  * @example
  * ```ts
- * import { lamports } from '@solana/rpc-types';
+ * import { lamports } from '@trezoa/rpc-types';
  *
  * await transfer(address(fromAddress), address(toAddress), lamports(100000n));
  * ```
@@ -123,8 +123,8 @@ export function getDefaultLamportsEncoder(): FixedSizeEncoder<Lamports, 8> {
  *
  * @example
  * ```ts
- * import { getLamportsEncoder } from '@solana/rpc-types';
- * import { getU16Encoder } from '@solana/codecs-numbers';
+ * import { getLamportsEncoder } from '@trezoa/rpc-types';
+ * import { getU16Encoder } from '@trezoa/codecs-numbers';
  *
  * const lamports = lamports(256n);
  * const lamportsEncoder = getLamportsEncoder(getU16Encoder());
@@ -155,8 +155,8 @@ export function getDefaultLamportsDecoder(): FixedSizeDecoder<Lamports, 8> {
  *
  * @example
  * ```ts
- * import { getLamportsDecoder } from '@solana/rpc-types';
- * import { getU16Decoder } from '@solana/codecs-numbers';
+ * import { getLamportsDecoder } from '@trezoa/rpc-types';
+ * import { getU16Decoder } from '@trezoa/codecs-numbers';
  *
  * const lamportsBytes = new Uint8Array([ 0, 1 ]);
  * const lamportsDecoder = getLamportsDecoder(getU16Decoder());

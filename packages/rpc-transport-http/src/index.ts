@@ -14,9 +14,9 @@
  * to multiple transports:
  *
  * ```ts
- * import { RpcTransport } from '@solana/rpc-spec';
- * import { RpcResponse } from '@solana/rpc-spec-types';
- * import { createHttpTransport } from '@solana/rpc-transport-http';
+ * import { RpcTransport } from '@trezoa/rpc-spec';
+ * import { RpcResponse } from '@trezoa/rpc-spec-types';
+ * import { createHttpTransport } from '@trezoa/rpc-transport-http';
  *
  * // Create a transport for each RPC server
  * const transports = [
@@ -44,9 +44,9 @@
  * latter:
  *
  * ```ts
- * import { RpcTransport } from '@solana/rpc-spec';
- * import { RpcResponse } from '@solana/rpc-spec-types';
- * import { createHttpTransport } from '@solana/rpc-transport-http';
+ * import { RpcTransport } from '@trezoa/rpc-spec';
+ * import { RpcResponse } from '@trezoa/rpc-spec-types';
+ * import { createHttpTransport } from '@trezoa/rpc-transport-http';
  *
  * // Create multiple transports
  * const transportA = createHttpTransport({ url: 'https://mainnet-beta.my-server-1.com' });
@@ -82,9 +82,9 @@
  * The transport library can also be used to implement custom retry logic on any request:
  *
  * ```ts
- * import { RpcTransport } from '@solana/rpc-spec';
- * import { RpcResponse } from '@solana/rpc-spec-types';
- * import { createHttpTransport } from '@solana/rpc-transport-http';
+ * import { RpcTransport } from '@trezoa/rpc-spec';
+ * import { RpcResponse } from '@trezoa/rpc-spec-types';
+ * import { createHttpTransport } from '@trezoa/rpc-transport-http';
  *
  * // Set the maximum number of attempts to retry a request
  * const MAX_ATTEMPTS = 4;
@@ -127,9 +127,9 @@
  * Here’s an example of some failover logic integrated into a transport:
  *
  * ```ts
- * import { RpcTransport } from '@solana/rpc-spec';
- * import { RpcResponse } from '@solana/rpc-spec-types';
- * import { createHttpTransport } from '@solana/rpc-transport-http';
+ * import { RpcTransport } from '@trezoa/rpc-spec';
+ * import { RpcResponse } from '@trezoa/rpc-spec-types';
+ * import { createHttpTransport } from '@trezoa/rpc-transport-http';
  *
  * // Create a transport for each RPC server
  * const transports = [
@@ -157,4 +157,4 @@
  * @packageDocumentation
  */
 export * from './http-transport';
-export * from './http-transport-for-solana-rpc';
+export * from './http-transport-for-trezoa-rpc';

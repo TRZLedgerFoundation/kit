@@ -1,5 +1,5 @@
-import { Codec, createCodec, Encoder } from '@solana/codecs-core';
-import { SOLANA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, SolanaError } from '@solana/errors';
+import { Codec, createCodec, Encoder } from '@trezoa/codecs-core';
+import { TREZOA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, TrezoaError } from '@trezoa/errors';
 
 export const assertValid = <T>(codec: Codec<T>, number: T, bytes: string, decodedNumber?: T): void => {
     // Encode.
@@ -37,7 +37,7 @@ export const assertRangeError = <T extends bigint | number>(
 ): void => {
     const { codecDescription, max, min } = config;
     expect(() => encoder.encode(value)).toThrow(
-        new SolanaError(SOLANA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, {
+        new TrezoaError(TREZOA_ERROR__CODECS__NUMBER_OUT_OF_RANGE, {
             codecDescription,
             max,
             min,

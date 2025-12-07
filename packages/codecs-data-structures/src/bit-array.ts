@@ -6,7 +6,7 @@ import {
     FixedSizeCodec,
     FixedSizeDecoder,
     FixedSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 
 /**
  * Defines the configuration options for bit array codecs.

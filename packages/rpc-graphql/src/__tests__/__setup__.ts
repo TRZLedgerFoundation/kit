@@ -1,10 +1,10 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
-import { createDefaultRpcTransport, createRpc, createSolanaRpcApi, Rpc, SolanaRpcApi } from '@solana/rpc';
+import { createDefaultRpcTransport, createRpc, createTrezoaRpcApi, Rpc, TrezoaRpcApi } from '@trezoa/rpc';
 
-export function createLocalhostSolanaRpc(): Rpc<SolanaRpcApi> {
+export function createLocalhostTrezoaRpc(): Rpc<TrezoaRpcApi> {
     return createRpc({
-        api: createSolanaRpcApi(),
+        api: createTrezoaRpcApi(),
         transport: createDefaultRpcTransport({ url: 'http://127.0.0.1:8899' }),
     });
 }

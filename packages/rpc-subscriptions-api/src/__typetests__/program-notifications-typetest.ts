@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import type { Address } from '@solana/addresses';
-import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@solana/rpc-subscriptions-spec';
+import type { Address } from '@trezoa/addresses';
+import type { PendingRpcSubscriptionsRequest, RpcSubscriptions } from '@trezoa/rpc-subscriptions-spec';
 import type {
     Base58EncodedBytes,
     Base58EncodedDataResponse,
@@ -8,8 +8,8 @@ import type {
     Base64EncodedDataResponse,
     Base64EncodedZStdCompressedDataResponse,
     Lamports,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 import type { ProgramNotificationsApi } from '../program-notifications';
 
@@ -30,7 +30,7 @@ type TNotificationBase = Readonly<{
 
 // No optional configs
 rpcSubscriptions.programNotifications(programId) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data: Base58EncodedBytes;
@@ -42,7 +42,7 @@ rpcSubscriptions
     .programNotifications(programId)
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data: Base58EncodedBytes;
@@ -55,7 +55,7 @@ rpcSubscriptions
 rpcSubscriptions.programNotifications(programId, {
     commitment: 'confirmed',
 }) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data: Base58EncodedBytes;
@@ -67,7 +67,7 @@ rpcSubscriptions
     .programNotifications(programId, { commitment: 'confirmed' })
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data: Base58EncodedBytes;
@@ -78,7 +78,7 @@ rpcSubscriptions
 >;
 // Base58 encoded data
 rpcSubscriptions.programNotifications(programId, { encoding: 'base58' }) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data: Base58EncodedDataResponse;
@@ -90,7 +90,7 @@ rpcSubscriptions
     .programNotifications(programId, { encoding: 'base58' })
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data: Base58EncodedDataResponse;
@@ -101,7 +101,7 @@ rpcSubscriptions
 >;
 // Base64 encoded data
 rpcSubscriptions.programNotifications(programId, { encoding: 'base64' }) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data: Base64EncodedDataResponse;
@@ -113,7 +113,7 @@ rpcSubscriptions
     .programNotifications(programId, { encoding: 'base64' })
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data: Base64EncodedDataResponse;
@@ -126,7 +126,7 @@ rpcSubscriptions
 rpcSubscriptions.programNotifications(programId, {
     encoding: 'base64+zstd',
 }) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data: Base64EncodedZStdCompressedDataResponse;
@@ -138,7 +138,7 @@ rpcSubscriptions
     .programNotifications(programId, { encoding: 'base64+zstd' })
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data: Base64EncodedZStdCompressedDataResponse;
@@ -151,7 +151,7 @@ rpcSubscriptions
 rpcSubscriptions.programNotifications(programId, {
     encoding: 'jsonParsed',
 }) satisfies PendingRpcSubscriptionsRequest<
-    SolanaRpcResponse<
+    TrezoaRpcResponse<
         TNotificationBase & {
             account: {
                 data:
@@ -169,7 +169,7 @@ rpcSubscriptions
     .programNotifications(programId, { encoding: 'jsonParsed' })
     .subscribe({ abortSignal: new AbortController().signal }) satisfies Promise<
     AsyncIterable<
-        SolanaRpcResponse<
+        TrezoaRpcResponse<
             TNotificationBase & {
                 account: {
                     data:

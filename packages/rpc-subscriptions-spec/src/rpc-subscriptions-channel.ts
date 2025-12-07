@@ -1,22 +1,22 @@
 import {
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
-    SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
-    SolanaError,
-} from '@solana/errors';
-import { DataPublisher } from '@solana/subscribable';
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED,
+    TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT,
+    TrezoaError,
+} from '@trezoa/errors';
+import { DataPublisher } from '@trezoa/subscribable';
 
-type RpcSubscriptionsChannelSolanaErrorCode =
-    | typeof SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED
-    | typeof SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED
-    | typeof SOLANA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT;
+type RpcSubscriptionsChannelTrezoaErrorCode =
+    | typeof TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CLOSED_BEFORE_MESSAGE_BUFFERED
+    | typeof TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_CONNECTION_CLOSED
+    | typeof TREZOA_ERROR__RPC_SUBSCRIPTIONS__CHANNEL_FAILED_TO_CONNECT;
 
 export type RpcSubscriptionChannelEvents<TInboundMessage> = {
     /**
      * Fires when the channel closes unexpectedly.
      * @eventProperty
      */
-    error: SolanaError<RpcSubscriptionsChannelSolanaErrorCode>;
+    error: TrezoaError<RpcSubscriptionsChannelTrezoaErrorCode>;
     /**
      * Fires on every message received from the remote end.
      * @eventProperty

@@ -1,10 +1,10 @@
-import { pipe } from '@solana/functional';
-import { RpcRequest, RpcResponse, RpcResponseTransformer } from '@solana/rpc-spec-types';
+import { pipe } from '@trezoa/functional';
+import { RpcRequest, RpcResponse, RpcResponseTransformer } from '@trezoa/rpc-spec-types';
 
 import { AllowedNumericKeypaths } from './response-transformer-allowed-numeric-values';
 import { getBigIntUpcastResponseTransformer } from './response-transformer-bigint-upcast';
 import { getResultResponseTransformer } from './response-transformer-result';
-import { getThrowSolanaErrorResponseTransformer } from './response-transformer-throw-solana-error';
+import { getThrowTrezoaErrorResponseTransformer } from './response-transformer-throw-solana-error';
 
 export type ResponseTransformerConfig<TApi> = Readonly<{
     /**
@@ -16,23 +16,23 @@ export type ResponseTransformerConfig<TApi> = Readonly<{
 }>;
 
 /**
- * Returns the default response transformer for the Solana RPC API.
+ * Returns the default response transformer for the Trezoa RPC API.
  *
  * Under the hood, this function composes multiple
  * {@link RpcResponseTransformer | RpcResponseTransformers} together such as the
- * {@link getThrowSolanaErrorResponseTransformer}, the {@link getResultResponseTransformer} and the
+ * {@link getThrowTrezoaErrorResponseTransformer}, the {@link getResultResponseTransformer} and the
  * {@link getBigIntUpcastResponseTransformer}.
  *
  * @example
  * ```ts
- * import { getDefaultResponseTransformerForSolanaRpc } from '@solana/rpc-transformers';
+ * import { getDefaultResponseTransformerForTrezoaRpc } from '@trezoa/rpc-transformers';
  *
- * const responseTransformer = getDefaultResponseTransformerForSolanaRpc({
+ * const responseTransformer = getDefaultResponseTransformerForTrezoaRpc({
  *     allowedNumericKeyPaths: getAllowedNumericKeypaths(),
  * });
  * ```
  */
-export function getDefaultResponseTransformerForSolanaRpc<TApi>(
+export function getDefaultResponseTransformerForTrezoaRpc<TApi>(
     config?: ResponseTransformerConfig<TApi>,
 ): RpcResponseTransformer {
     return (response: RpcResponse, request: RpcRequest): RpcResponse => {
@@ -41,7 +41,7 @@ export function getDefaultResponseTransformerForSolanaRpc<TApi>(
             config?.allowedNumericKeyPaths && methodName ? config.allowedNumericKeyPaths[methodName] : undefined;
         return pipe(
             response,
-            r => getThrowSolanaErrorResponseTransformer()(r, request),
+            r => getThrowTrezoaErrorResponseTransformer()(r, request),
             r => getResultResponseTransformer()(r, request),
             r => getBigIntUpcastResponseTransformer(keyPaths ?? [])(r, request),
         );
@@ -49,20 +49,20 @@ export function getDefaultResponseTransformerForSolanaRpc<TApi>(
 }
 
 /**
- * Returns the default response transformer for the Solana RPC Subscriptions API.
+ * Returns the default response transformer for the Trezoa RPC Subscriptions API.
  *
  * Under the hood, this function composes the {@link getBigIntUpcastResponseTransformer}.
  *
  * @example
  * ```ts
- * import { getDefaultResponseTransformerForSolanaRpcSubscriptions } from '@solana/rpc-transformers';
+ * import { getDefaultResponseTransformerForTrezoaRpcSubscriptions } from '@trezoa/rpc-transformers';
  *
- * const responseTransformer = getDefaultResponseTransformerForSolanaRpcSubscriptions({
+ * const responseTransformer = getDefaultResponseTransformerForTrezoaRpcSubscriptions({
  *     allowedNumericKeyPaths: getAllowedNumericKeypaths(),
  * });
  * ```
  */
-export function getDefaultResponseTransformerForSolanaRpcSubscriptions<TApi>(
+export function getDefaultResponseTransformerForTrezoaRpcSubscriptions<TApi>(
     config?: ResponseTransformerConfig<TApi>,
 ): RpcResponseTransformer {
     return (response: RpcResponse, request: RpcRequest): RpcResponse => {

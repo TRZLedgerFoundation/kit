@@ -1,4 +1,4 @@
-import type { Slot } from '@solana/rpc-types';
+import type { Slot } from '@trezoa/rpc-types';
 
 type GetFirstAvailableBlockApiResponse = Slot;
 
@@ -11,7 +11,7 @@ export type GetFirstAvailableBlockApi = {
      * genesis onward. When it is not, this method will tell you the slot of the lowest block
      * available.
      *
-     * @see https://solana.com/docs/rpc/http/getfirstavailableblock
+     * @see https://trezoa.com/docs/rpc/http/getfirstavailableblock
      */
     getFirstAvailableBlock(): GetFirstAvailableBlockApiResponse;
 };

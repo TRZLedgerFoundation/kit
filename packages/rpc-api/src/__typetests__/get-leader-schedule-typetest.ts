@@ -1,6 +1,6 @@
-import type { Address } from '@solana/addresses';
-import type { Rpc } from '@solana/rpc-spec';
-import type { Slot } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Rpc } from '@trezoa/rpc-spec';
+import type { Slot } from '@trezoa/rpc-types';
 
 import type { GetLeaderScheduleApi } from '../getLeaderSchedule';
 

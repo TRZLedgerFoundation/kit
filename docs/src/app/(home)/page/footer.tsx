@@ -15,8 +15,8 @@ export default function FooterSection() {
                     <Link className={linkClassName} href="/api">
                         API Reference
                     </Link>
-                    <Link className={linkClassName} href="https://www.anza.xyz/">
-                        Maintained by Anza
+                    <Link className={linkClassName} href="https://www.trezoa.xyz/">
+                        Maintained by Trezoa-team
                     </Link>
                 </div>
             </div>

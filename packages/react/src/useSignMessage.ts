@@ -1,15 +1,15 @@
 import {
-    SolanaSignMessage,
-    SolanaSignMessageFeature,
-    SolanaSignMessageInput,
-    SolanaSignMessageOutput,
-} from '@solana/wallet-standard-features';
+    TrezoaSignMessage,
+    TrezoaSignMessageFeature,
+    TrezoaSignMessageInput,
+    TrezoaSignMessageOutput,
+} from '@trezoa/wallet-standard-features';
 import { getWalletAccountFeature, UiWalletAccount } from '@wallet-standard/ui';
 import { getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from '@wallet-standard/ui-registry';
 import { useCallback } from 'react';
 
-type Input = Omit<SolanaSignMessageInput, 'account'>;
-type Output = Omit<SolanaSignMessageOutput, 'signatureType'>;
+type Input = Omit<TrezoaSignMessageInput, 'account'>;
+type Output = Omit<TrezoaSignMessageOutput, 'signatureType'>;
 
 /**
  * Use this to get a function capable of signing a message with the private key of a
@@ -17,7 +17,7 @@ type Output = Omit<SolanaSignMessageOutput, 'signatureType'>;
  *
  * @example
  * ```tsx
- * import { useSignMessage } from '@solana/react';
+ * import { useSignMessage } from '@trezoa/react';
  *
  * function SignMessageButton({ account, messageBytes }) {
  *     const signMessage = useSignMessage(account);
@@ -58,8 +58,8 @@ function useSignMessages<TWalletAccount extends UiWalletAccount>(
 ): (...inputs: readonly Input[]) => Promise<readonly Output[]> {
     const signMessageFeature = getWalletAccountFeature(
         uiWalletAccount,
-        SolanaSignMessage,
-    ) as SolanaSignMessageFeature[typeof SolanaSignMessage];
+        TrezoaSignMessage,
+    ) as TrezoaSignMessageFeature[typeof TrezoaSignMessage];
     const account = getWalletAccountForUiWalletAccount_DO_NOT_USE_OR_YOU_WILL_BE_FIRED(uiWalletAccount);
     return useCallback(
         async (...inputs) => {
@@ -67,7 +67,7 @@ function useSignMessages<TWalletAccount extends UiWalletAccount>(
             const results = await signMessageFeature.signMessage(...inputsWithAccount);
             const resultsWithoutSignatureType = results.map(
                 ({
-                    signatureType: _, // Solana signatures are always of type `ed25519` so drop this property.
+                    signatureType: _, // Trezoa signatures are always of type `ed25519` so drop this property.
                     ...rest
                 }) => rest,
             );

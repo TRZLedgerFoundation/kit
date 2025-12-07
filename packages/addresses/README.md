@@ -5,19 +5,19 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/addresses?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/addresses?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/addresses
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/addresses?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/addresses?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/addresses
 
-# @solana/addresses
+# @trezoa/addresses
 
-This package contains utilities for generating account addresses. It can be used standalone, but it is also exported as part of Kit [`@solana/kit`](https://github.com/anza-xyz/kit/tree/main/packages/kit).
+This package contains utilities for generating account addresses. It can be used standalone, but it is also exported as part of Kit [`@trezoa/kit`](https://github.com/trezoa-xyz/kit/tree/main/packages/kit).
 
 ## Types
 
 ### `Address`
 
-This type represents a string that validates as a Solana address. Functions that require well-formed addresses should specify their inputs in terms of this type.
+This type represents a string that validates as a Trezoa address. Functions that require well-formed addresses should specify their inputs in terms of this type.
 
 Whenever you need to validate an arbitrary string as a base58-encoded address, use the `address()`, `assertIsAddress()`, or `isAddress()` functions in this package.
 
@@ -38,7 +38,7 @@ This type represents an integer between 0-255 used as a seed when deriving a pro
 This helper combines _asserting_ that a string is an address with _coercing_ it to the `Address` type. It's best used with untrusted input.
 
 ```ts
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 
 await transfer(address(fromAddress), address(toAddress), lamports(100000n));
 ```
@@ -46,7 +46,7 @@ await transfer(address(fromAddress), address(toAddress), lamports(100000n));
 When starting from a known-good address as a string, it's more efficient to typecast it rather than to use the `address()` helper, because the helper unconditionally performs validation on its input.
 
 ```ts
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 const MEMO_PROGRAM_ADDRESS =
     'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
@@ -59,7 +59,7 @@ Client applications primarily deal with addresses and public keys in the form of
 From time to time you might acquire a string, that you expect to validate as an address, from an untrusted network API or user input. To assert that such an arbitrary string is a base58-encoded address, use the `assertIsAddress` function.
 
 ```ts
-import { assertIsAddress } from '@solana/addresses';
+import { assertIsAddress } from '@trezoa/addresses';
 
 // Imagine a function that fetches an account's balance when a user submits a form.
 function handleSubmit() {
@@ -88,7 +88,7 @@ See [`assertIsAddress()`](#assertisaddress) for an example of how to use an asse
 Returns a base58-encoded address derived from some base address, some program address, and a seed string or byte array.
 
 ```ts
-import { createAddressWithSeed } from '@solana/addresses';
+import { createAddressWithSeed } from '@trezoa/addresses';
 
 const derivedAddress = await createAddressWithSeed({
     // The private key associated with this address will be able to sign for `derivedAddress`.
@@ -104,7 +104,7 @@ const derivedAddress = await createAddressWithSeed({
 Returns a decoder that you can use to convert an array of 32 bytes representing an address to the base58-encoded representation of that address. Returns a tuple of the `Address` and the offset within the byte array at which the decoder stopped reading.
 
 ```ts
-import { getAddressDecoder } from '@solana/addresses';
+import { getAddressDecoder } from '@trezoa/addresses';
 
 const addressBytes = new Uint8Array([
     150, 183, 190, 48, 171, 8, 39, 156, 122, 213, 172, 108, 193, 95, 26, 158, 149, 243, 115, 254, 20, 200, 36, 30, 248,
@@ -119,7 +119,7 @@ const address = addressDecoder.decode(address); // B9Lf9z5BfNPT4d5KMeaBFx8x1G4CU
 Returns an encoder that you can use to encode a base58-encoded address to a byte array.
 
 ```ts
-import { getAddressEncoder } from '@solana/addresses';
+import { getAddressEncoder } from '@trezoa/addresses';
 
 const address = 'B9Lf9z5BfNPT4d5KMeaBFx8x1G4CULZYR1jA2kmxRDka' as Address;
 const addressEncoder = getAddressEncoder();
@@ -137,7 +137,7 @@ const addressBytes = addressEncoder.encode(address);
 Given a public `CryptoKey`, this method will return its associated `Address`.
 
 ```ts
-import { getAddressFromPublicKey } from '@solana/addresses';
+import { getAddressFromPublicKey } from '@trezoa/addresses';
 
 const address = await getAddressFromPublicKey(publicKey);
 ```
@@ -147,7 +147,7 @@ const address = await getAddressFromPublicKey(publicKey);
 Given a program's `Address` and up to 16 `Seeds`, this method will return the program derived address (PDA) associated with each.
 
 ```ts
-import { getAddressEncoder, getProgramDerivedAddress } from '@solana/addresses';
+import { getAddressEncoder, getProgramDerivedAddress } from '@trezoa/addresses';
 
 const addressEncoder = getAddressEncoder();
 const [pda, bumpSeed] = await getProgramDerivedAddress({
@@ -168,7 +168,7 @@ const [pda, bumpSeed] = await getProgramDerivedAddress({
 This is a type guard that accepts a string as input. It will both return `true` if the string conforms to the `Address` type and will refine the type for use in your program.
 
 ```ts
-import { isAddress } from '@solana/addresses';
+import { isAddress } from '@trezoa/addresses';
 
 if (isAddress(ownerAddress)) {
     // At this point, `ownerAddress` has been refined to a

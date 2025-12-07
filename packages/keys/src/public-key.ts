@@ -1,5 +1,5 @@
-import { assertKeyExporterIsAvailable } from '@solana/assertions';
-import { SOLANA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, SolanaError } from '@solana/errors';
+import { assertKeyExporterIsAvailable } from '@trezoa/assertions';
+import { TREZOA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, TrezoaError } from '@trezoa/errors';
 
 /**
  * Given an extractable [`CryptoKey`](https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey)
@@ -12,7 +12,7 @@ import { SOLANA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, SolanaE
  *
  * @example
  * ```ts
- * import { createPrivateKeyFromBytes, getPublicKeyFromPrivateKey } from '@solana/keys';
+ * import { createPrivateKeyFromBytes, getPublicKeyFromPrivateKey } from '@trezoa/keys';
  *
  * const privateKey = await createPrivateKeyFromBytes(new Uint8Array([...]), true);
  *
@@ -27,7 +27,7 @@ export async function getPublicKeyFromPrivateKey(
     assertKeyExporterIsAvailable();
 
     if (privateKey.extractable === false) {
-        throw new SolanaError(SOLANA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, { key: privateKey });
+        throw new TrezoaError(TREZOA_ERROR__SUBTLE_CRYPTO__CANNOT_EXPORT_NON_EXTRACTABLE_KEY, { key: privateKey });
     }
 
     // Export private key.

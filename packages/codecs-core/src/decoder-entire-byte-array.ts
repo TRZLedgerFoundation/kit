@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, TrezoaError } from '@trezoa/errors';
 
 import { createDecoder, Decoder } from './codec';
 
@@ -14,7 +14,7 @@ import { createDecoder, Decoder } from './codec';
  *
  * The `offset` parameter to `decode` and `read` is still considered, and will affect the new offset that is compared to the byte array length
  *
- * The error that is thrown by the returned decoder is a {@link SolanaError} with the code `SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY`
+ * The error that is thrown by the returned decoder is a {@link TrezoaError} with the code `TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY`
  *
  * @example
  * Create a decoder that decodes a `u32` (4 bytes) and ensures the entire byte array is consumed
@@ -34,7 +34,7 @@ export function createDecoderThatConsumesEntireByteArray<T>(decoder: Decoder<T>)
         read(bytes, offset) {
             const [value, newOffset] = decoder.read(bytes, offset);
             if (bytes.length > newOffset) {
-                throw new SolanaError(SOLANA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
+                throw new TrezoaError(TREZOA_ERROR__CODECS__EXPECTED_DECODER_TO_CONSUME_ENTIRE_BYTE_ARRAY, {
                     expectedLength: newOffset,
                     numExcessBytes: bytes.length - newOffset,
                 });

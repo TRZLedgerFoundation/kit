@@ -1,5 +1,5 @@
 /**
- * This package brings together every error message across all Solana JavaScript modules.
+ * This package brings together every error message across all Trezoa JavaScript modules.
  *
  * # Reading error messages
  *
@@ -23,28 +23,28 @@
  * For instance, to recover the error text for the error with code `123`:
  *
  * ```package-install
- * npx @solana/errors decode -- 123
+ * npx @trezoa/errors decode -- 123
  * ```
  *
  * > [!IMPORTANT]
- * > The string representation of a {@link SolanaError} should not be shown to users. Developers
- * > should use {@link isSolanaError} to distinguish the type of a thrown error, then show a custom,
+ * > The string representation of a {@link TrezoaError} should not be shown to users. Developers
+ * > should use {@link isTrezoaError} to distinguish the type of a thrown error, then show a custom,
  * > localized error message appropriate for their application's audience. Custom error messages
- * > should use the error's {@link SolanaError#context | `context`} if it would help the reader
+ * > should use the error's {@link TrezoaError#context | `context`} if it would help the reader
  * > understand what happened and/or what to do next.
  *
  * # Adding a new error
  *
  * 1. Add a new exported error code constant to `src/codes.ts`.
- * 2. Add that new constant to the {@link SolanaErrorCode} union in `src/codes.ts`.
+ * 2. Add that new constant to the {@link TrezoaErrorCode} union in `src/codes.ts`.
  * 3. If you would like the new error to encapsulate context about the error itself (eg. the public
  *    keys for which a transaction is missing signatures) define the shape of that context in
  *    `src/context.ts`.
  * 4. Add the error's message to `src/messages.ts`. Any context values that you defined above will
  *    be interpolated into the message wherever you write `$key`, where `key` is the index of a
  *    value in the context (eg. ``'Missing a signature for account `$address`'``).
- * 5. Publish a new version of `@solana/errors`.
- * 6. Bump the version of `@solana/errors` in the package from which the error is thrown.
+ * 5. Publish a new version of `@trezoa/errors`.
+ * 6. Bump the version of `@trezoa/errors` in the package from which the error is thrown.
  *
  * # Removing an error message
  *
@@ -59,7 +59,7 @@
  *
  * # Catching errors
  *
- * See {@link isSolanaError} for an example of how to handle a caught {@link SolanaError}.
+ * See {@link isTrezoaError} for an example of how to handle a caught {@link TrezoaError}.
  *
  * @packageDocumentation
  */

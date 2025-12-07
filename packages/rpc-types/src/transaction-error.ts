@@ -1,6 +1,6 @@
 type CustomProgramError = number;
 
-// Keep synced with RPC source: https://github.com/anza-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
+// Keep synced with RPC source: https://github.com/trezoa-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
 type InstructionError =
     | 'AccountAlreadyInitialized'
     | 'AccountBorrowFailed'
@@ -60,7 +60,7 @@ type InstructionError =
 type InstructionIndex = number;
 type AccountIndex = number;
 
-// Keep synced with RPC source: https://github.com/anza-xyz/agave/blob/master/sdk/src/transaction/error.rs
+// Keep synced with RPC source: https://github.com/trezoa-xyz/agave/blob/master/sdk/src/transaction/error.rs
 export type TransactionError =
     | 'AccountBorrowOutstanding'
     | 'AccountInUse'

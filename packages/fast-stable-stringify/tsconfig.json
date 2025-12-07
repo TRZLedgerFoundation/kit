@@ -3,7 +3,7 @@
     "compilerOptions": {
         "lib": ["DOM", "ES2020", "ES2020.BigInt", "ES2022.Error"]
     },
-    "display": "@solana/fast-stable-stringify",
+    "display": "@trezoa/fast-stable-stringify",
     "extends": "../tsconfig/base.json",
     "include": ["../build-scripts/build-time-constants.d.ts", "src"]
 }

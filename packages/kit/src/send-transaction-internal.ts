@@ -1,17 +1,17 @@
-import type { Signature } from '@solana/keys';
-import type { Rpc, SendTransactionApi } from '@solana/rpc';
-import { Commitment, commitmentComparator } from '@solana/rpc-types';
+import type { Signature } from '@trezoa/keys';
+import type { Rpc, SendTransactionApi } from '@trezoa/rpc';
+import { Commitment, commitmentComparator } from '@trezoa/rpc-types';
 import {
     TransactionWithLastValidBlockHeight,
     waitForDurableNonceTransactionConfirmation,
     waitForRecentTransactionConfirmation,
-} from '@solana/transaction-confirmation';
+} from '@trezoa/transaction-confirmation';
 import {
     getBase64EncodedWireTransaction,
     SendableTransaction,
     Transaction,
     TransactionWithDurableNonceLifetime,
-} from '@solana/transactions';
+} from '@trezoa/transactions';
 
 interface SendAndConfirmDurableNonceTransactionConfig
     extends SendTransactionBaseConfig,

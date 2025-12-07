@@ -1,4 +1,4 @@
-import { AffinePoint, Brand, EncodedString } from '@solana/nominal-types';
+import { AffinePoint, Brand, EncodedString } from '@trezoa/nominal-types';
 
 import { Address, address } from '../address';
 import { assertIsOffCurveAddress, isOffCurveAddress, OffCurveAddress, offCurveAddress } from '../curve';

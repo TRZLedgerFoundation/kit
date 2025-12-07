@@ -1,6 +1,6 @@
-import type { Address } from '@solana/addresses';
-import type { Signature } from '@solana/keys';
-import type { Commitment, Slot, TransactionError, UnixTimestamp } from '@solana/rpc-types';
+import type { Address } from '@trezoa/addresses';
+import type { Signature } from '@trezoa/keys';
+import type { Commitment, Slot, TransactionError, UnixTimestamp } from '@trezoa/rpc-types';
 
 type GetSignaturesForAddressTransaction = Readonly<{
     /** estimated production time of when transaction was processed. null if not available. */
@@ -32,7 +32,7 @@ type GetSignaturesForAddressConfig = Readonly<{
      * Fetch the signatures as of the highest slot that has reached this level of commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -64,7 +64,7 @@ export type GetSignaturesForAddressApi = {
      * {@label before-signature}
      * @returns Signatures in reverse chronological order starting from before, but excluding, the
      * signature supplied.
-     * @see https://solana.com/docs/rpc/http/getsignaturesforaddress
+     * @see https://trezoa.com/docs/rpc/http/getsignaturesforaddress
      */
     getSignaturesForAddress(
         address: Address,
@@ -79,7 +79,7 @@ export type GetSignaturesForAddressApi = {
      * {@label all}
      * @returns Signatures in reverse chronological order starting from the most recent confirmed
      * block.
-     * @see https://solana.com/docs/rpc/http/getsignaturesforaddress
+     * @see https://trezoa.com/docs/rpc/http/getsignaturesforaddress
      */
     getSignaturesForAddress(
         address: Address,

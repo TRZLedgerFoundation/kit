@@ -1,4 +1,4 @@
-import type { Commitment } from '@solana/rpc-types';
+import type { Commitment } from '@trezoa/rpc-types';
 
 type Config = Readonly<{
     abortSignal: AbortSignal;
@@ -18,8 +18,8 @@ type Config = Readonly<{
  *
  * @example
  * ```ts
- * import { safeRace } from '@solana/promises';
- * import { getTimeoutPromise } from '@solana/transaction-confirmation';
+ * import { safeRace } from '@trezoa/promises';
+ * import { getTimeoutPromise } from '@trezoa/transaction-confirmation';
  *
  * try {
  *     await safeRace([getCustomTransactionConfirmationPromise(/* ... *\/), getTimeoutPromise({ commitment })]);

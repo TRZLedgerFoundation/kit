@@ -1,4 +1,4 @@
-import { address } from '@solana/addresses';
+import { address } from '@trezoa/addresses';
 
 import {
     assertIsTransactionSendingSigner,

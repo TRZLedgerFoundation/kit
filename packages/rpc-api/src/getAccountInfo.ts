@@ -1,4 +1,4 @@
-import type { Address } from '@solana/addresses';
+import type { Address } from '@trezoa/addresses';
 import type {
     AccountInfoBase,
     AccountInfoWithBase58Bytes,
@@ -9,8 +9,8 @@ import type {
     Commitment,
     DataSlice,
     Slot,
-    SolanaRpcResponse,
-} from '@solana/rpc-types';
+    TrezoaRpcResponse,
+} from '@trezoa/rpc-types';
 
 type GetAccountInfoApiResponse<T> = (AccountInfoBase & T) | null;
 
@@ -20,7 +20,7 @@ type GetAccountInfoApiCommonConfig = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use. For
-     * example, when using an API created by a `createSolanaRpc*()` helper, the default commitment
+     * example, when using an API created by a `createTrezoaRpc*()` helper, the default commitment
      * is `"confirmed"` unless configured otherwise. Unmitigated by an API layer on the client, the
      * default commitment applied by the server is `"finalized"`.
      */
@@ -65,7 +65,7 @@ export type GetAccountInfoApi = {
      * is a base64-encoded string.
      *
      * {@label base64}
-     * @see https://solana.com/docs/rpc/http/getaccountinfo
+     * @see https://trezoa.com/docs/rpc/http/getaccountinfo
      */
     getAccountInfo(
         address: Address,
@@ -74,7 +74,7 @@ export type GetAccountInfoApi = {
             Readonly<{
                 encoding: 'base64';
             }>,
-    ): SolanaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase64EncodedData>>;
+    ): TrezoaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase64EncodedData>>;
     /**
      * Fetches information associated with the account at the given address.
      *
@@ -83,7 +83,7 @@ export type GetAccountInfoApi = {
      * as a tuple whose first element is a base64-encoded string.
      *
      * {@label base64-zstd-compressed}
-     * @see https://solana.com/docs/rpc/http/getaccountinfo
+     * @see https://trezoa.com/docs/rpc/http/getaccountinfo
      */
     getAccountInfo(
         address: Address,
@@ -92,7 +92,7 @@ export type GetAccountInfoApi = {
             Readonly<{
                 encoding: 'base64+zstd';
             }>,
-    ): SolanaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
+    ): TrezoaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
     /**
      * Fetches information associated with the account at the given address.
      *
@@ -102,7 +102,7 @@ export type GetAccountInfoApi = {
      * element is a base64-encoded string.
      *
      * {@label parsed}
-     * @see https://solana.com/docs/rpc/http/getaccountinfo
+     * @see https://trezoa.com/docs/rpc/http/getaccountinfo
      */
     getAccountInfo(
         address: Address,
@@ -110,7 +110,7 @@ export type GetAccountInfoApi = {
             Readonly<{
                 encoding: 'jsonParsed';
             }>,
-    ): SolanaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithJsonData>>;
+    ): TrezoaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithJsonData>>;
     /**
      * Fetches information associated with the account at the given address.
      *
@@ -119,7 +119,7 @@ export type GetAccountInfoApi = {
      * will raise an error.
      *
      * {@label base58}
-     * @see https://solana.com/docs/rpc/http/getaccountinfo
+     * @see https://trezoa.com/docs/rpc/http/getaccountinfo
      */
     getAccountInfo(
         address: Address,
@@ -128,7 +128,7 @@ export type GetAccountInfoApi = {
             Readonly<{
                 encoding: 'base58';
             }>,
-    ): SolanaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase58EncodedData>>;
+    ): TrezoaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase58EncodedData>>;
     /**
      * Fetches information associated with the account at the given address.
      *
@@ -136,10 +136,10 @@ export type GetAccountInfoApi = {
      * the account contains more than 129 bytes of data, this method will raise an error.
      *
      * {@label base58-legacy}
-     * @see https://solana.com/docs/rpc/http/getaccountinfo
+     * @see https://trezoa.com/docs/rpc/http/getaccountinfo
      */
     getAccountInfo(
         address: Address,
         config?: Omit<GetAccountInfoApiCommonConfig, 'encoding'>,
-    ): SolanaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase58Bytes>>;
+    ): TrezoaRpcResponse<GetAccountInfoApiResponse<AccountInfoWithBase58Bytes>>;
 };

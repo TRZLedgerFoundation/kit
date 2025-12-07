@@ -1,4 +1,4 @@
-import { getAddressDecoder } from '@solana/addresses';
+import { getAddressDecoder } from '@trezoa/addresses';
 import {
     combineCodec,
     fixDecoderSize,
@@ -8,7 +8,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getArrayDecoder,
     getBytesDecoder,
@@ -16,18 +16,18 @@ import {
     getStructDecoder,
     getStructEncoder,
     getTupleDecoder,
-} from '@solana/codecs-data-structures';
-import { getShortU16Decoder, getU8Decoder } from '@solana/codecs-numbers';
-import { SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
-import { getTransactionVersionDecoder } from '@solana/transaction-messages';
+} from '@trezoa/codecs-data-structures';
+import { getShortU16Decoder, getU8Decoder } from '@trezoa/codecs-numbers';
+import { TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
+import { getTransactionVersionDecoder } from '@trezoa/transaction-messages';
 
 import { SignaturesMap, Transaction, TransactionMessageBytes } from '../transaction';
 import { getSignaturesEncoder } from './signatures-encoder';
 
 /**
  * Returns an encoder that you can use to encode a {@link Transaction} to a byte array in a wire
- * format appropriate for sending to the Solana network for execution.
+ * format appropriate for sending to the Trezoa network for execution.
  */
 export function getTransactionEncoder(): VariableSizeEncoder<Transaction> {
     return getStructEncoder([
@@ -37,12 +37,12 @@ export function getTransactionEncoder(): VariableSizeEncoder<Transaction> {
 }
 
 /**
- * Returns a decoder that you can use to convert a byte array in the Solana transaction wire format
+ * Returns a decoder that you can use to convert a byte array in the Trezoa transaction wire format
  * to a {@link Transaction} object.
  *
  * @example
  * ```ts
- * import { getTransactionDecoder } from '@solana/transactions';
+ * import { getTransactionDecoder } from '@trezoa/transactions';
  *
  * const transactionDecoder = getTransactionDecoder();
  * const transaction = transactionDecoder.decode(wireTransactionBytes);
@@ -105,7 +105,7 @@ function decodePartiallyDecodedTransaction(transaction: PartiallyDecodedTransact
     // signer addresses and signatures must be the same length
     // we encode an all-zero signature when the signature is missing
     if (signerAddresses.length !== signatures.length) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__MESSAGE_SIGNATURES_MISMATCH, {
             numRequiredSignatures,
             signaturesLength: signatures.length,
             signerAddresses,

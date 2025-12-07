@@ -1,12 +1,12 @@
-import { assertSigningCapabilityIsAvailable, assertVerificationCapabilityIsAvailable } from '@solana/assertions';
-import { Encoder, ReadonlyUint8Array } from '@solana/codecs-core';
-import { getBase58Encoder } from '@solana/codecs-strings';
+import { assertSigningCapabilityIsAvailable, assertVerificationCapabilityIsAvailable } from '@trezoa/assertions';
+import { Encoder, ReadonlyUint8Array } from '@trezoa/codecs-core';
+import { getBase58Encoder } from '@trezoa/codecs-strings';
 import {
-    SOLANA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH,
-    SOLANA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
-import { Brand, EncodedString } from '@solana/nominal-types';
+    TREZOA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH,
+    TREZOA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { Brand, EncodedString } from '@trezoa/nominal-types';
 
 import { ED25519_ALGORITHM_IDENTIFIER } from './algorithm';
 
@@ -33,7 +33,7 @@ let base58Encoder: Encoder<string> | undefined;
  *
  * @example
  * ```ts
- * import { assertIsSignature } from '@solana/keys';
+ * import { assertIsSignature } from '@trezoa/keys';
  *
  * // Imagine a function that asserts whether a user-supplied signature is valid or not.
  * function handleSubmit() {
@@ -62,7 +62,7 @@ export function assertIsSignature(putativeSignature: string): asserts putativeSi
         // Highest value (64 bytes of 255)
         putativeSignature.length > 88
     ) {
-        throw new SolanaError(SOLANA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE, {
+        throw new TrezoaError(TREZOA_ERROR__KEYS__SIGNATURE_STRING_LENGTH_OUT_OF_RANGE, {
             actualLength: putativeSignature.length,
         });
     }
@@ -79,7 +79,7 @@ export function assertIsSignature(putativeSignature: string): asserts putativeSi
  *
  * @example
  * ```ts
- * import { assertIsSignatureBytes } from '@solana/keys';
+ * import { assertIsSignatureBytes } from '@trezoa/keys';
  *
  * // Imagine a function that verifies a signature.
  * function verifySignature() {
@@ -104,7 +104,7 @@ export function assertIsSignatureBytes(
 ): asserts putativeSignatureBytes is SignatureBytes {
     const numBytes = putativeSignatureBytes.byteLength;
     if (numBytes !== 64) {
-        throw new SolanaError(SOLANA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
+        throw new TrezoaError(TREZOA_ERROR__KEYS__INVALID_SIGNATURE_BYTE_LENGTH, {
             actualLength: numBytes,
         });
     }
@@ -116,7 +116,7 @@ export function assertIsSignatureBytes(
  *
  * @example
  * ```ts
- * import { isSignature } from '@solana/keys';
+ * import { isSignature } from '@trezoa/keys';
  *
  * if (isSignature(signature)) {
  *     // At this point, `signature` has been refined to a
@@ -153,7 +153,7 @@ export function isSignature(putativeSignature: string): putativeSignature is Sig
  *
  * @example
  * ```ts
- * import { isSignatureBytes } from '@solana/keys';
+ * import { isSignatureBytes } from '@trezoa/keys';
  *
  * if (isSignatureBytes(signatureBytes)) {
  *     // At this point, `signatureBytes` has been refined to a
@@ -177,7 +177,7 @@ export function isSignatureBytes(putativeSignatureBytes: ReadonlyUint8Array): pu
  *
  * @example
  * ```ts
- * import { signBytes } from '@solana/keys';
+ * import { signBytes } from '@trezoa/keys';
  *
  * const data = new Uint8Array([1, 2, 3]);
  * const signature = await signBytes(privateKey, data);
@@ -195,7 +195,7 @@ export async function signBytes(key: CryptoKey, data: ReadonlyUint8Array): Promi
  *
  * @example
  * ```ts
- * import { signature } from '@solana/keys';
+ * import { signature } from '@trezoa/keys';
  *
  * const signature = signature(userSuppliedSignature);
  * const {
@@ -214,7 +214,7 @@ export function signature(putativeSignature: string): Signature {
  *
  * @example
  * ```ts
- * import { signatureBytes } from '@solana/keys';
+ * import { signatureBytes } from '@trezoa/keys';
  *
  * const signature = signatureBytes(userSuppliedSignatureBytes);
  * if (!(await verifySignature(publicKey, signature, data))) {
@@ -235,7 +235,7 @@ export function signatureBytes(putativeSignatureBytes: ReadonlyUint8Array): Sign
  *
  * @example
  * ```ts
- * import { verifySignature } from '@solana/keys';
+ * import { verifySignature } from '@trezoa/keys';
  *
  * const data = new Uint8Array([1, 2, 3]);
  * if (!(await verifySignature(publicKey, signature, data))) {

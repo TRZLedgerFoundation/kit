@@ -5,13 +5,13 @@
 
 [code-style-prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
 [code-style-prettier-url]: https://github.com/prettier/prettier
-[npm-downloads-image]: https://img.shields.io/npm/dm/@solana/errors?style=flat
-[npm-image]: https://img.shields.io/npm/v/@solana/errors?style=flat
-[npm-url]: https://www.npmjs.com/package/@solana/errors
+[npm-downloads-image]: https://img.shields.io/npm/dm/@trezoa/errors?style=flat
+[npm-image]: https://img.shields.io/npm/v/@trezoa/errors?style=flat
+[npm-url]: https://www.npmjs.com/package/@trezoa/errors
 
-# @solana/errors
+# @trezoa/errors
 
-This package brings together every error message across all Solana JavaScript modules.
+This package brings together every error message across all Trezoa JavaScript modules.
 
 ## Reading error messages
 
@@ -29,17 +29,17 @@ When your bundler sets the constant `__DEV__` to `false`, error messages will be
 For instance, to recover the error text for the error with code `123`:
 
 ```shell
-npx @solana/errors decode -- 123
+npx @trezoa/errors decode -- 123
 ```
 
 ## Adding a new error
 
 1. Add a new exported error code constant to `src/codes.ts`.
-2. Add that new constant to the `SolanaErrorCode` union in `src/codes.ts`.
+2. Add that new constant to the `TrezoaErrorCode` union in `src/codes.ts`.
 3. If you would like the new error to encapsulate context about the error itself (eg. the public keys for which a transaction is missing signatures) define the shape of that context in `src/context.ts`.
 4. Add the error's message to `src/messages.ts`. Any context values that you defined above will be interpolated into the message wherever you write `$key`, where `key` is the index of a value in the context (eg. ``'Missing a signature for account `$address`'``).
-5. Publish a new version of `@solana/errors`.
-6. Bump the version of `@solana/errors` in the package from which the error is thrown.
+5. Publish a new version of `@trezoa/errors`.
+6. Bump the version of `@trezoa/errors` in the package from which the error is thrown.
 
 ## Removing an error message
 
@@ -52,29 +52,29 @@ When an older client throws an error, we want to make sure that they can always 
 
 ## Catching errors
 
-When you catch a `SolanaError` and assert its error code using `isSolanaError()`, TypeScript will refine the error's context to the type associated with that error code. You can use that context to render useful error messages, or to make context-aware decisions that help your application to recover from the error.
+When you catch a `TrezoaError` and assert its error code using `isTrezoaError()`, TypeScript will refine the error's context to the type associated with that error code. You can use that context to render useful error messages, or to make context-aware decisions that help your application to recover from the error.
 
 ```ts
 import {
     SOLANA_ERROR__TRANSACTION__MISSING_SIGNATURE,
     SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
-    isSolanaError,
-} from '@solana/errors';
-import { assertIsFullySignedTransaction, getSignatureFromTransaction } from '@solana/transactions';
+    isTrezoaError,
+} from '@trezoa/errors';
+import { assertIsFullySignedTransaction, getSignatureFromTransaction } from '@trezoa/transactions';
 
 try {
     const transactionSignature = getSignatureFromTransaction(tx);
     assertIsFullySignedTransaction(tx);
     /* ... */
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         displayError(
             "We can't send this transaction without signatures for these addresses:\n- %s",
             // The type of the `context` object is now refined to contain `addresses`.
             e.context.addresses.join('\n- '),
         );
         return;
-    } else if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
+    } else if (isTrezoaError(e, SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
         if (!tx.feePayer) {
             displayError('Choose a fee payer for this transaction before sending it');
         } else {

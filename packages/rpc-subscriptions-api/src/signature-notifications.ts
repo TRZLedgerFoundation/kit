@@ -1,9 +1,9 @@
-import type { Signature } from '@solana/keys';
-import type { Commitment, SolanaRpcResponse, TransactionError } from '@solana/rpc-types';
+import type { Signature } from '@trezoa/keys';
+import type { Commitment, TrezoaRpcResponse, TransactionError } from '@trezoa/rpc-types';
 
-type SignatureNotificationsApiNotificationReceived = SolanaRpcResponse<Readonly<'receivedSignature'>>;
+type SignatureNotificationsApiNotificationReceived = TrezoaRpcResponse<Readonly<'receivedSignature'>>;
 
-type SignatureNotificationsApiNotificationProcessed = SolanaRpcResponse<
+type SignatureNotificationsApiNotificationProcessed = TrezoaRpcResponse<
     Readonly<{
         /** Error if transaction failed, null if transaction succeeded. */
         err: TransactionError | null;
@@ -16,7 +16,7 @@ type SignatureNotificationsApiConfigBase = Readonly<{
      * commitment.
      *
      * @defaultValue Whichever default is applied by the underlying {@link RpcSubscriptionsApi} in
-     * use. For example, when using an API created by a `createSolanaRpcSubscriptions*()` helper,
+     * use. For example, when using an API created by a `createTrezoaRpcSubscriptions*()` helper,
      * the default commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API
      * layer on the client, the default commitment applied by the server is `"finalized"`.
      */
@@ -42,7 +42,7 @@ export type SignatureNotificationsApi = {
      *
      * @param signature Transaction signature as base-58 encoded string
      *
-     * @see https://solana.com/docs/rpc/websocket/signaturesubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/signaturesubscribe
      */
     signatureNotifications(
         signature: Signature,
@@ -62,7 +62,7 @@ export type SignatureNotificationsApi = {
      *
      * @param signature Transaction signature as base-58 encoded string
      *
-     * @see https://solana.com/docs/rpc/websocket/signaturesubscribe
+     * @see https://trezoa.com/docs/rpc/websocket/signaturesubscribe
      */
     signatureNotifications(
         signature: Signature,

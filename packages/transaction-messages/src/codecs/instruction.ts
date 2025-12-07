@@ -7,7 +7,7 @@ import {
     VariableSizeCodec,
     VariableSizeDecoder,
     VariableSizeEncoder,
-} from '@solana/codecs-core';
+} from '@trezoa/codecs-core';
 import {
     getArrayDecoder,
     getArrayEncoder,
@@ -15,8 +15,8 @@ import {
     getBytesEncoder,
     getStructDecoder,
     getStructEncoder,
-} from '@solana/codecs-data-structures';
-import { getShortU16Decoder, getShortU16Encoder, getU8Decoder, getU8Encoder } from '@solana/codecs-numbers';
+} from '@trezoa/codecs-data-structures';
+import { getShortU16Decoder, getShortU16Encoder, getU8Decoder, getU8Encoder } from '@trezoa/codecs-numbers';
 
 import { getCompiledInstructions } from '../compile/instructions';
 

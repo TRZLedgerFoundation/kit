@@ -1,5 +1,5 @@
-import { AbortController } from '@solana/event-target-impl';
-import { RpcSubscriptionsChannelCreator } from '@solana/rpc-subscriptions-spec';
+import { AbortController } from '@trezoa/event-target-impl';
+import { RpcSubscriptionsChannelCreator } from '@trezoa/rpc-subscriptions-spec';
 
 import { ChannelPoolEntry, createChannelPool } from './rpc-subscriptions-channel-pool-internal';
 
@@ -88,7 +88,7 @@ export function getChannelPoolingChannelCreator<
         }
         /**
          * A note about subscription counts.
-         * Because of https://github.com/solana-labs/solana/pull/18943, two subscriptions for
+         * Because of https://github.com/trezoa-team/solana/pull/18943, two subscriptions for
          * materially the same notification will be coalesced on the server. This means they will be
          * assigned the same subscription id, and will occupy one subscription slot. We can't tell,
          * from here, whether a subscription will be treated in this way or not, so we

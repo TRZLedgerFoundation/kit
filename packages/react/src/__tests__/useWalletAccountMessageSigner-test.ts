@@ -1,5 +1,5 @@
-import { SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, SolanaError } from '@solana/errors';
-import { SignatureBytes } from '@solana/keys';
+import { TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED, TrezoaError } from '@trezoa/errors';
+import { SignatureBytes } from '@trezoa/keys';
 import type { UiWalletAccount } from '@wallet-standard/ui';
 
 import { renderHook } from '../test-renderer';
@@ -63,7 +63,7 @@ describe('useWalletAccountMessageSigner', () => {
                     { content: new Uint8Array([1, 2, 3]), signatures: {} },
                     { content: new Uint8Array([4, 5, 6]), signatures: {} },
                 ]),
-            ).rejects.toThrow(new SolanaError(SOLANA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED));
+            ).rejects.toThrow(new TrezoaError(TREZOA_ERROR__SIGNER__WALLET_MULTISIGN_UNIMPLEMENTED));
         }
     });
     it('returns the exact same message object when no signature update or message modification takes place', async () => {

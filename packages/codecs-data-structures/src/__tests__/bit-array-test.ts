@@ -1,4 +1,4 @@
-import { SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, SolanaError } from '@solana/errors';
+import { TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, TrezoaError } from '@trezoa/errors';
 
 import { getBitArrayCodec } from '../bit-array';
 import { b } from './__setup__';
@@ -62,7 +62,7 @@ describe('getBitArrayCodec', () => {
 
         // It fails if the byte array is too short.
         expect(() => bitArray(3).read(b('ff'), 0)).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_BYTE_LENGTH, {
                 bytesLength: 1,
                 codecDescription: 'bitArray',
                 expected: 3,

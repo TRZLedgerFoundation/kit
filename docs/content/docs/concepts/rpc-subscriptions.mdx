@@ -7,7 +7,7 @@ description: Get notified of changes to the blockchain
 
 Kit offers a TypeScript interface that you can use to subscribe for notifications from a Solana JSON RPC server. Registering subscriptions with a <abbr title="Remote procedure call">RPC</abbr> server will yield notifications over that channel when data matching your subscription is updated.
 
-Kit aims to implement all of the RPC Subscription methods documented in the [Solana RPC WebSocket methods](https://solana.com/docs/rpc/websocket) docs. You can either browse the available methods in the docs, or you can follow Kit's TypeScript types and inline documentation in your editor.
+Kit aims to implement all of the RPC Subscription methods documented in the [Trezoa RPC WebSocket methods](https://trezoa.com/docs/rpc/websocket) docs. You can either browse the available methods in the docs, or you can follow Kit's TypeScript types and inline documentation in your editor.
 
 ## Installation
 
@@ -28,7 +28,7 @@ Note that the `@solana/rpc-subscriptions` package itself is composed of several 
 | [`@solana/rpc-spec-types`](https://npmjs.org/package/@solana/rpc-spec-types)                                           | Utility types common to both RPC and RPC Subscriptions implementations                                                                     |
 | [`@solana/rpc-transformers`](https://npmjs.org/package/@solana/rpc-transformers)                                       | Helpers for transforming RPC subscriptions and notifications in various ways appropriate for use in a JavaScript application               |
 | [`@solana/rpc-subscriptions-channel-websocket`](https://npmjs.org/package/@solana/rpc-subscriptions-channel-websocket) | Utilities for creating custom RPC Subscriptions channels                                                                                   |
-| [`@solana/rpc-types`](https://npmjs.org/package/@solana/rpc-types)                                                     | Types for values used in the [Solana Websocket API](https://docs.solana.com/api/websocket) and a series of helpers for working with them   |
+| [`@trezoa/rpc-types`](https://npmjs.org/package/@trezoa/rpc-types)                                                     | Types for values used in the [Trezoa Websocket API](https://docs.trezoa.com/api/websocket) and a series of helpers for working with them   |
 
 ## What is a RPC?
 
@@ -38,7 +38,7 @@ Here's a quick example that subscribes for a notification every time the network
 
 ```ts twoslash
 import { createSolanaRpcSubscriptions, mainnet } from '@solana/kit';
-const rpcSubscriptions = createSolanaRpcSubscriptions(mainnet('wss://api.mainnet-beta.solana.com'));
+const rpcSubscriptions = createSolanaRpcSubscriptions(mainnet('wss://api.mainnet-beta.trezoa.com'));
 const slotNotifications = await rpcSubscriptions
     .slotNotifications()
     .subscribe({ abortSignal: AbortSignal.timeout(10_000) });
@@ -53,8 +53,8 @@ Most RPC servers implement most of the Solana WebSocket API covered by Kit, but 
 
 For light development or personal use, you can use a public RPC server for the cluster you want to access.
 
-- `wss://api.mainnet-beta.solana.com`
-- `wss://api.testnet.solana.com`
-- `wss://api.devnet.solana.com`
+- `wss://api.mainnet-beta.trezoa.com`
+- `wss://api.testnet.trezoa.com`
+- `wss://api.devnet.trezoa.com`
 
-When deploying your application to production, you will want to lease an RPC server or [set up your own](https://docs.anza.xyz/operations/setup-an-rpc-node).
+When deploying your application to production, you will want to lease an RPC server or [set up your own](https://docs.trezoa.xyz/operations/setup-an-rpc-node).

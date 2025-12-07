@@ -1,13 +1,13 @@
-import type { GetAccountInfoApi } from '@solana/rpc-api';
-import type { Rpc } from '@solana/rpc-spec';
+import type { GetAccountInfoApi } from '@trezoa/rpc-api';
+import type { Rpc } from '@trezoa/rpc-spec';
 
 import { fetchSysvarLastRestartSlot, getSysvarLastRestartSlotCodec } from '../last-restart-slot';
-import { createLocalhostSolanaRpc } from './__setup__';
+import { createLocalhostTrezoaRpc } from './__setup__';
 
 describe('last restart slot', () => {
     let rpc: Rpc<GetAccountInfoApi>;
     beforeEach(() => {
-        rpc = createLocalhostSolanaRpc();
+        rpc = createLocalhostTrezoaRpc();
     });
     it('decode', () => {
         const lastRestartSlotState = new Uint8Array([119, 233, 246, 16, 0, 0, 0, 0]);

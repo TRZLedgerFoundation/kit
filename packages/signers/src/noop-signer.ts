@@ -1,4 +1,4 @@
-import { Address } from '@solana/addresses';
+import { Address } from '@trezoa/addresses';
 
 import { MessagePartialSigner } from './message-partial-signer';
 import { TransactionPartialSigner } from './transaction-partial-signer';
@@ -15,8 +15,8 @@ import { TransactionPartialSigner } from './transaction-partial-signer';
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { createNoopSigner } from '@solana/signers';
+ * import { address } from '@trezoa/addresses';
+ * import { createNoopSigner } from '@trezoa/signers';
  *
  * const signer = createNoopSigner(address('1234..5678'));
  * const [messageSignatures] = await signer.signMessages([message]);
@@ -44,8 +44,8 @@ export type NoopSigner<TAddress extends string = string> = MessagePartialSigner<
  *
  * @example
  * ```ts
- * import { address } from '@solana/addresses';
- * import { createNoopSigner } from '@solana/signers';
+ * import { address } from '@trezoa/addresses';
+ * import { createNoopSigner } from '@trezoa/signers';
  *
  * const signer = createNoopSigner(address('1234..5678'));
  * ```

@@ -1,10 +1,10 @@
-import { assertIsFixedSize, assertIsVariableSize } from '@solana/codecs-core';
-import { getShortU16Codec, getU32Codec } from '@solana/codecs-numbers';
+import { assertIsFixedSize, assertIsVariableSize } from '@trezoa/codecs-core';
+import { getShortU16Codec, getU32Codec } from '@trezoa/codecs-numbers';
 import {
-    SOLANA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT,
-    SOLANA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE,
-    SolanaError,
-} from '@solana/errors';
+    TREZOA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT,
+    TREZOA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE,
+    TrezoaError,
+} from '@trezoa/errors';
 
 import { getLiteralUnionCodec } from '../literal-union';
 import { b } from './__setup__';
@@ -94,7 +94,7 @@ describe('getLiteralUnionCodec', () => {
         const codec = getLiteralUnionCodec(['one', 2, 3n, false, null]);
         // @ts-expect-error Expected invalid variant.
         expect(() => codec.encode('missing')).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT, {
+            new TrezoaError(TREZOA_ERROR__CODECS__INVALID_LITERAL_UNION_VARIANT, {
                 value: 'missing',
                 variants: ['one', 2, 3n, false, null],
             }),
@@ -104,7 +104,7 @@ describe('getLiteralUnionCodec', () => {
     it('throws when provided with an invalid discriminator', () => {
         const codec = getLiteralUnionCodec(['one', 2, 3n, false, null]);
         expect(() => codec.decode(b('05'))).toThrow(
-            new SolanaError(SOLANA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE, {
+            new TrezoaError(TREZOA_ERROR__CODECS__LITERAL_UNION_DISCRIMINATOR_OUT_OF_RANGE, {
                 discriminator: 5,
                 maxRange: 4,
                 minRange: 0,

@@ -1,4 +1,4 @@
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 
 import { getOffchainMessageDecoder, getOffchainMessageEncoder } from '../codecs/message';
 import { OffchainMessage } from '../message';

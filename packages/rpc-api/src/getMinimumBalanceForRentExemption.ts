@@ -1,4 +1,4 @@
-import type { Commitment, Lamports } from '@solana/rpc-types';
+import type { Commitment, Lamports } from '@trezoa/rpc-types';
 
 type GetMinimumBalanceForRentExemptionApiResponse = Lamports;
 
@@ -8,7 +8,7 @@ export type GetMinimumBalanceForRentExemptionApi = {
      *
      * @returns The minimum {@link Lamports | Lamport} balance required to grant an account of the
      * specified size an exemption from rent collection.
-     * @see https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption
+     * @see https://trezoa.com/docs/rpc/http/getminimumbalanceforrentexemption
      */
     getMinimumBalanceForRentExemption(
         /**
@@ -22,7 +22,7 @@ export type GetMinimumBalanceForRentExemptionApi = {
              * commitment.
              *
              * @defaultValue Whichever default is applied by the underlying {@link RpcApi} in use.
-             * For example, when using an API created by a `createSolanaRpc*()` helper, the default
+             * For example, when using an API created by a `createTrezoaRpc*()` helper, the default
              * commitment is `"confirmed"` unless configured otherwise. Unmitigated by an API layer
              * on the client, the default commitment applied by the server is `"finalized"`.
              */

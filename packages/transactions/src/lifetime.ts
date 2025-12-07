@@ -1,12 +1,12 @@
-import { type Address, isAddress } from '@solana/addresses';
-import { ReadonlyUint8Array } from '@solana/codecs-core';
+import { type Address, isAddress } from '@trezoa/addresses';
+import { ReadonlyUint8Array } from '@trezoa/codecs-core';
 import {
-    SOLANA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME,
-    SOLANA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME,
-    SOLANA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE,
-    SolanaError,
-} from '@solana/errors';
-import { type Blockhash, isBlockhash, type Slot } from '@solana/rpc-types';
+    TREZOA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME,
+    TREZOA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME,
+    TREZOA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE,
+    TrezoaError,
+} from '@trezoa/errors';
+import { type Blockhash, isBlockhash, type Slot } from '@trezoa/rpc-types';
 import type {
     CompiledTransactionMessage,
     CompiledTransactionMessageWithLifetime,
@@ -14,7 +14,7 @@ import type {
     TransactionMessage,
     TransactionMessageWithBlockhashLifetime,
     TransactionMessageWithDurableNonceLifetime,
-} from '@solana/transaction-messages';
+} from '@trezoa/transaction-messages';
 
 import type { Transaction } from './transaction';
 
@@ -68,7 +68,7 @@ export type TransactionDurableNonceLifetime = {
  * This describes a window of time after which a transaction is constructed and before which it will
  * no longer be accepted by the network.
  *
- * No transaction can land on Solana without having a `lifetimeConstraint` set.
+ * No transaction can land on Trezoa without having a `lifetimeConstraint` set.
  */
 export type TransactionWithLifetime = {
     readonly lifetimeConstraint: TransactionBlockhashLifetime | TransactionDurableNonceLifetime;
@@ -155,7 +155,7 @@ export async function getTransactionLifetimeConstraintFromCompiledTransactionMes
     if (firstInstruction && compiledInstructionIsAdvanceNonceInstruction(firstInstruction, staticAccounts)) {
         const nonceAccountAddress = staticAccounts[firstInstruction.accountIndices[0]];
         if (!nonceAccountAddress) {
-            throw new SolanaError(SOLANA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, {
+            throw new TrezoaError(TREZOA_ERROR__TRANSACTION__NONCE_ACCOUNT_CANNOT_BE_IN_LOOKUP_TABLE, {
                 nonce: compiledTransactionMessage.lifetimeToken,
             });
         }
@@ -179,7 +179,7 @@ export async function getTransactionLifetimeConstraintFromCompiledTransactionMes
  *
  * @example
  * ```ts
- * import { isTransactionWithBlockhashLifetime } from '@solana/transactions';
+ * import { isTransactionWithBlockhashLifetime } from '@trezoa/transactions';
  *
  * if (isTransactionWithBlockhashLifetime(transaction)) {
  *     // At this point, `transaction` has been refined to a `TransactionWithBlockhashLifetime`.
@@ -212,7 +212,7 @@ export function isTransactionWithBlockhashLifetime(
  *
  * @example
  * ```ts
- * import { assertIsTransactionWithBlockhashLifetime } from '@solana/transactions';
+ * import { assertIsTransactionWithBlockhashLifetime } from '@trezoa/transactions';
  *
  * try {
  *     // If this type assertion function doesn't throw, then
@@ -231,7 +231,7 @@ export function assertIsTransactionWithBlockhashLifetime(
     transaction: Transaction | (Transaction & TransactionWithLifetime),
 ): asserts transaction is Transaction & TransactionWithBlockhashLifetime {
     if (!isTransactionWithBlockhashLifetime(transaction)) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__EXPECTED_BLOCKHASH_LIFETIME);
     }
 }
 
@@ -242,8 +242,8 @@ export function assertIsTransactionWithBlockhashLifetime(
  *
  * @example
  * ```ts
- * import { isTransactionWithDurableNonceLifetime } from '@solana/transactions';
- * import { fetchNonce } from "@solana-program/system";
+ * import { isTransactionWithDurableNonceLifetime } from '@trezoa/transactions';
+ * import { fetchNonce } from "@trezoa-program/system";
  *
  * if (isTransactionWithDurableNonceLifetime(transaction)) {
  *     // At this point, `transaction` has been refined to a
@@ -277,7 +277,7 @@ export function isTransactionWithDurableNonceLifetime(
  *
  * @example
  * ```ts
- * import { assertIsTransactionWithDurableNonceLifetime } from '@solana/transactions';
+ * import { assertIsTransactionWithDurableNonceLifetime } from '@trezoa/transactions';
  *
  * try {
  *     // If this type assertion function doesn't throw, then
@@ -296,6 +296,6 @@ export function assertIsTransactionWithDurableNonceLifetime(
     transaction: Transaction | (Transaction & TransactionWithLifetime),
 ): asserts transaction is Transaction & TransactionWithDurableNonceLifetime {
     if (!isTransactionWithDurableNonceLifetime(transaction)) {
-        throw new SolanaError(SOLANA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME);
+        throw new TrezoaError(TREZOA_ERROR__TRANSACTION__EXPECTED_NONCE_LIFETIME);
     }
 }
