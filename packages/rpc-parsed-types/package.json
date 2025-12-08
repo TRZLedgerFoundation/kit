@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-parsed-types",
     "version": "5.0.0",
     "description": "Type definitions for parsed types used in the Trezoa RPC",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-parsed-types",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-parsed-types",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

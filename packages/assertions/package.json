@@ -2,7 +2,7 @@
     "name": "@trezoa/assertions",
     "version": "5.0.0",
     "description": "Helpers for asserting that a JavaScript environment supports certain features necessary for the operation of the Trezoa JavaScript SDK",
-    "homepage": "https://www.trezoakit.com/api#solanaassertions",
+    "homepage": "https://www.trezoakit.com/api#trezoaassertions",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

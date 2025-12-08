@@ -2,7 +2,7 @@
     "name": "@trezoa/nominal-types",
     "version": "5.0.0",
     "description": "Type utilties for creating nominal/branded types in TypeScript",
-    "homepage": "https://www.trezoakit.com/api#solananominal-types",
+    "homepage": "https://www.trezoakit.com/api#trezoanominal-types",
     "types": "./dist/types/index.d.ts",
     "type": "commonjs",
     "files": [

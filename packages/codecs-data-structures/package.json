@@ -2,7 +2,7 @@
     "name": "@trezoa/codecs-data-structures",
     "version": "5.0.0",
     "description": "Codecs for various data structures",
-    "homepage": "https://www.trezoakit.com/api#solanacodecs-data-structures",
+    "homepage": "https://www.trezoakit.com/api#trezoacodecs-data-structures",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

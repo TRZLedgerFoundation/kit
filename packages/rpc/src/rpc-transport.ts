@@ -51,7 +51,7 @@ export function createDefaultRpcTransport<TClusterUrl extends ClusterUrl>(
                 ...(config.headers ? normalizeHeaders(config.headers) : undefined),
                 ...({
                     // Keep these headers lowercase so they will override any user-supplied headers above.
-                    'solana-client': __VERSION__ ? `js/${__VERSION__}` : 'UNKNOWN',
+                    'trezoa-client': __VERSION__ ? `js/${__VERSION__}` : 'UNKNOWN',
                 } as { [overrideHeader: string]: string }),
             },
         }) as RpcTransportFromClusterUrl<TClusterUrl>,

@@ -2,7 +2,7 @@
     "name": "@trezoa/promises",
     "version": "5.0.0",
     "description": "Helpers for using JavaScript promises",
-    "homepage": "https://www.trezoakit.com/api#solanapromises",
+    "homepage": "https://www.trezoakit.com/api#trezoapromises",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

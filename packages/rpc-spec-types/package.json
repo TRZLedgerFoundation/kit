@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-spec-types",
     "version": "5.0.0",
     "description": "Shared generic JSON RPC specifications",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-spec-types",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-spec-types",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

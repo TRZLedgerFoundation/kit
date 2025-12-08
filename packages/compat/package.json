@@ -2,7 +2,7 @@
     "name": "@trezoa/compat",
     "version": "5.0.0",
     "description": "Helpers for converting from legacy web3js classes",
-    "homepage": "https://www.trezoakit.com/api#solanacompat",
+    "homepage": "https://www.trezoakit.com/api#trezoacompat",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

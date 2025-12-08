@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc",
     "version": "5.0.0",
     "description": "A library for sending JSON RPC requests to Trezoa RPCs",
-    "homepage": "https://www.trezoakit.com/api#solanarpc",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

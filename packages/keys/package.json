@@ -2,7 +2,7 @@
     "name": "@trezoa/keys",
     "version": "5.0.0",
     "description": "Helpers for generating and transforming key material",
-    "homepage": "https://www.trezoakit.com/api#solanakeys",
+    "homepage": "https://www.trezoakit.com/api#trezoakeys",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

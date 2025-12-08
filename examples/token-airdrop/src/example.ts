@@ -43,7 +43,7 @@ const log = createLogger('Token Airdrop');
  * SETUP: SOURCE ACCOUNT
  * The account that will pay for the airdrop needs to sign the transaction. We need to
  * create a `TransactionSigner` for it. You can find the account this key relates to in the test
- * validator fixtures in `/scripts/fixtures/example-transfer-sol-source-account.json`
+ * validator fixtures in `/scripts/fixtures/example-transfer-trz-source-account.json`
  */
 const SOURCE_ACCOUNT_SIGNER = await createKeyPairSignerFromBytes(
     /**

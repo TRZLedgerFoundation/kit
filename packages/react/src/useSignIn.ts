@@ -26,7 +26,7 @@ type Output = Omit<TrezoaSignInOutput, 'account' | 'signatureType'> &
     }>;
 
 /**
- * Use the ['Sign In With Trezoa'](https://phantom.app/learn/developers/sign-in-with-solana) feature
+ * Use the ['Sign In With Trezoa'](https://phantom.app/learn/developers/sign-in-with-trezoa) feature
  * of a {@link UiWallet} or {@link UiWalletAccount}.
  *
  * @returns A function that you can call to sign in with the particular wallet and address specified

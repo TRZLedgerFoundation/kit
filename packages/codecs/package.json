@@ -2,7 +2,7 @@
     "name": "@trezoa/codecs",
     "version": "5.0.0",
     "description": "A library for encoding and decoding any data structure",
-    "homepage": "https://www.trezoakit.com/api#solanacodecs",
+    "homepage": "https://www.trezoakit.com/api#trezoacodecs",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

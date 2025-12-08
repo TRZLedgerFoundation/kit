@@ -159,7 +159,7 @@ export async function generateKeyPairSigner(): Promise<KeyPairSigner> {
  * import { createKeyPairSignerFromBytes } from '@trezoa/signers';
  *
  * // Get bytes from local keypair file.
- * const keypairFile = fs.readFileSync('~/.config/solana/id.json');
+ * const keypairFile = fs.readFileSync('~/.config/trezoa/id.json');
  * const keypairBytes = new Uint8Array(JSON.parse(keypairFile.toString()));
  *
  * // Create a KeyPairSigner from the bytes.

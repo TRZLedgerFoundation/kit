@@ -17,7 +17,7 @@ This package contains React hooks for building Trezoa apps.
 
 ### `useSignIn(uiWalletAccount, chain)`
 
-Given a `UiWallet` or `UiWalletAccount` this hook returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-solana) feature.
+Given a `UiWallet` or `UiWalletAccount` this hook returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-trezoa) feature.
 
 #### Example
 

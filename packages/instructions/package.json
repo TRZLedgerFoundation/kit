@@ -2,7 +2,7 @@
     "name": "@trezoa/instructions",
     "version": "5.0.0",
     "description": "Helpers for creating transaction instructions",
-    "homepage": "https://www.trezoakit.com/api#solanainstructions",
+    "homepage": "https://www.trezoakit.com/api#trezoainstructions",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

@@ -2,7 +2,7 @@
     "name": "@trezoa/sysvars",
     "version": "5.0.0",
     "description": "An abstraction layer over signing messages and transactions in Trezoa",
-    "homepage": "https://www.trezoakit.com/api#solanasysvars",
+    "homepage": "https://www.trezoakit.com/api#trezoasysvars",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

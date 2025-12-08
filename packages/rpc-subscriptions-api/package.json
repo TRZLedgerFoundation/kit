@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-subscriptions-api",
     "version": "5.0.0",
     "description": "Defines all default Trezoa RPC subscriptions as types",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-subscriptions-api",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-subscriptions-api",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

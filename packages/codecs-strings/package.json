@@ -2,7 +2,7 @@
     "name": "@trezoa/codecs-strings",
     "version": "5.0.0",
     "description": "Codecs for strings of different sizes and encodings",
-    "homepage": "https://www.trezoakit.com/api#solanacodecs-strings",
+    "homepage": "https://www.trezoakit.com/api#trezoacodecs-strings",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

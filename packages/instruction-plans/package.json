@@ -2,7 +2,7 @@
     "name": "@trezoa/instruction-plans",
     "version": "5.0.0",
     "description": "Construct, plan and execute transactions from multiple instructions.",
-    "homepage": "https://www.trezoakit.com/api#solanainstruction-plans",
+    "homepage": "https://www.trezoakit.com/api#trezoainstruction-plans",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

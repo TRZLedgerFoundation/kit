@@ -132,7 +132,7 @@
 
 ### Minor Changes
 
-- [#2928](https://github.com/trezoa-team/trezoa-web3.js/pull/2928) [`bac3747`](https://github.com/trezoa-team/trezoa-web3.js/commit/bac37479dcfad3da86ccd01da5095759f449eb3d) Thanks [@steveluscher](https://github.com/steveluscher)! - Added a `useSignIn` hook that, given a `UiWallet` or `UiWalletAccount`, returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-solana) feature.
+- [#2928](https://github.com/trezoa-team/trezoa-web3.js/pull/2928) [`bac3747`](https://github.com/trezoa-team/trezoa-web3.js/commit/bac37479dcfad3da86ccd01da5095759f449eb3d) Thanks [@steveluscher](https://github.com/steveluscher)! - Added a `useSignIn` hook that, given a `UiWallet` or `UiWalletAccount`, returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-trezoa) feature.
 
     #### Example
 
@@ -241,7 +241,7 @@
 
 ### Minor Changes
 
-- [#2928](https://github.com/trezoa-team/trezoa-web3.js/pull/2928) [`bac3747`](https://github.com/trezoa-team/trezoa-web3.js/commit/bac37479dcfad3da86ccd01da5095759f449eb3d) Thanks [@steveluscher](https://github.com/steveluscher)! - Added a `useSignIn` hook that, given a `UiWallet` or `UiWalletAccount`, returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-solana) feature.
+- [#2928](https://github.com/trezoa-team/trezoa-web3.js/pull/2928) [`bac3747`](https://github.com/trezoa-team/trezoa-web3.js/commit/bac37479dcfad3da86ccd01da5095759f449eb3d) Thanks [@steveluscher](https://github.com/steveluscher)! - Added a `useSignIn` hook that, given a `UiWallet` or `UiWalletAccount`, returns a function that you can call to trigger a wallet's [&lsquo;Sign In With Trezoa&rsquo;](https://phantom.app/learn/developers/sign-in-with-trezoa) feature.
 
     #### Example
 

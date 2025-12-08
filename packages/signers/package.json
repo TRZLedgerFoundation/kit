@@ -2,7 +2,7 @@
     "name": "@trezoa/signers",
     "version": "5.0.0",
     "description": "An abstraction layer over signing messages and transactions in Trezoa",
-    "homepage": "https://www.trezoakit.com/api#solanasigners",
+    "homepage": "https://www.trezoakit.com/api#trezoasigners",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

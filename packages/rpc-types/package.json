@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-types",
     "version": "5.0.0",
     "description": "Type definitions for values used in the Trezoa RPC, and helper functions for working with them",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-types",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-types",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

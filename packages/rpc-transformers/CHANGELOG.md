@@ -138,7 +138,7 @@
 
 - [#3184](https://github.com/trezoa-team/trezoa-web3.js/pull/3184) [`28ca5d1`](https://github.com/trezoa-team/trezoa-web3.js/commit/28ca5d17d4c574a690a5bf29d4f1fe0ad8f5883c) Thanks [@lorisleiva](https://github.com/lorisleiva)! - Remove temporary fix for Agave issue 479
 
-    The fix is now deployed on mainnet-beta (See https://github.com/trezoa-xyz/agave/issues/479 and https://github.com/trezoa-xyz/agave/pull/483).
+    The fix is now deployed on mainnet-beta (See https://github.com/trezoa-xyz/trezoa/issues/479 and https://github.com/trezoa-xyz/trezoa/pull/483).
 
 - [#2606](https://github.com/trezoa-team/trezoa-web3.js/pull/2606) [`367b8ad`](https://github.com/trezoa-team/trezoa-web3.js/commit/367b8ad0cce55a916abfb0125f36b6e844333b2b) Thanks [@lorisleiva](https://github.com/lorisleiva)! - Use commonjs package type
 
@@ -199,7 +199,7 @@
 
 - [#3184](https://github.com/trezoa-team/trezoa-web3.js/pull/3184) [`28ca5d1`](https://github.com/trezoa-team/trezoa-web3.js/commit/28ca5d17d4c574a690a5bf29d4f1fe0ad8f5883c) Thanks [@lorisleiva](https://github.com/lorisleiva)! - Remove temporary fix for Agave issue 479
 
-    The fix is now deployed on mainnet-beta (See https://github.com/trezoa-xyz/agave/issues/479 and https://github.com/trezoa-xyz/agave/pull/483).
+    The fix is now deployed on mainnet-beta (See https://github.com/trezoa-xyz/trezoa/issues/479 and https://github.com/trezoa-xyz/trezoa/pull/483).
 
 - [#3137](https://github.com/trezoa-team/trezoa-web3.js/pull/3137) [`fd72c2e`](https://github.com/trezoa-team/trezoa-web3.js/commit/fd72c2ed1edad488318fa5d3e285f04852f4210a) Thanks [@mcintyre94](https://github.com/mcintyre94)! - The build is now compatible with the Vercel Edge runtime and Cloudflare Workers through the addition of `edge-light` and `workerd` to the package exports.
 

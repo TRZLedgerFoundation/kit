@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-subscriptions-spec",
     "version": "5.0.0",
     "description": "A generic implementation of JSON RPC Subscriptions using proxies",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-subscriptions-spec",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-subscriptions-spec",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

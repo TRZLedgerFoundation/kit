@@ -1029,7 +1029,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Group: InitializeGroup instruction
+    Tpl Token Group: InitializeGroup instruction
     """
     type SplTokenGroupInitializeGroup implements TransactionInstruction {
         programId: Address
@@ -1041,7 +1041,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Group: UpdateGroupMaxSize instruction
+    Tpl Token Group: UpdateGroupMaxSize instruction
     """
     type SplTokenGroupUpdateGroupMaxSize implements TransactionInstruction {
         programId: Address
@@ -1051,7 +1051,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Group: UpdateGroupAuthority instruction
+    Tpl Token Group: UpdateGroupAuthority instruction
     """
     type SplTokenGroupUpdateGroupAuthority implements TransactionInstruction {
         programId: Address
@@ -1061,7 +1061,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Group: InitializeMember instruction
+    Tpl Token Group: InitializeMember instruction
     """
     type SplTokenGroupInitializeMember implements TransactionInstruction {
         programId: Address
@@ -1073,7 +1073,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Metadata: InitializeMetadata instruction
+    Tpl Token Metadata: InitializeMetadata instruction
     """
     type SplTokenMetadataInitialize implements TransactionInstruction {
         programId: Address
@@ -1087,7 +1087,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Metadata: UpdateField instruction
+    Tpl Token Metadata: UpdateField instruction
     """
     type SplTokenMetadataUpdateField implements TransactionInstruction {
         programId: Address
@@ -1098,7 +1098,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Metadata: RemoveKey instruction
+    Tpl Token Metadata: RemoveKey instruction
     """
     type SplTokenMetadataRemoveKey implements TransactionInstruction {
         programId: Address
@@ -1109,7 +1109,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Metadata: UpdateAuthority instruction
+    Tpl Token Metadata: UpdateAuthority instruction
     """
     type SplTokenMetadataUpdateAuthority implements TransactionInstruction {
         programId: Address
@@ -1119,7 +1119,7 @@ export const instructionTypeDefs = /* GraphQL */ `
     }
 
     """
-    Spl Token Metadata: Emit instruction
+    Tpl Token Metadata: Emit instruction
     """
     type SplTokenMetadataEmit implements TransactionInstruction {
         programId: Address

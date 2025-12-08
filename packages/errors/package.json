@@ -2,7 +2,7 @@
     "name": "@trezoa/errors",
     "version": "5.0.0",
     "description": "Throw, identify, and decode Trezoa JavaScript errors",
-    "homepage": "https://www.trezoakit.com/api#solanaerrors",
+    "homepage": "https://www.trezoakit.com/api#trezoaerrors",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

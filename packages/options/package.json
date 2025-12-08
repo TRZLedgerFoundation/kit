@@ -2,7 +2,7 @@
     "name": "@trezoa/options",
     "version": "5.0.0",
     "description": "Managing and serializing Rust-like Option types in JavaScript",
-    "homepage": "https://www.trezoakit.com/api#solanaoptions",
+    "homepage": "https://www.trezoakit.com/api#trezoaoptions",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

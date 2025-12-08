@@ -2,7 +2,7 @@
     "name": "@trezoa/codecs-numbers",
     "version": "5.0.0",
     "description": "Codecs for numbers of different sizes and endianness",
-    "homepage": "https://www.trezoakit.com/api#solanacodecs-numbers",
+    "homepage": "https://www.trezoakit.com/api#trezoacodecs-numbers",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

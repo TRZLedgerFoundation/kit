@@ -1,5 +1,5 @@
-import solanaReactConfig from '@trezoa/eslint-config-trezoa/react';
+import trezoaReactConfig from '@trezoa/eslint-config-trezoa/react';
 
 import baseConfig from '../../eslint.config.mjs';
 
-export default [...solanaReactConfig, ...baseConfig];
+export default [...trezoaReactConfig, ...baseConfig];

@@ -2,7 +2,7 @@
     "name": "@trezoa/webcrypto-ed25519-polyfill",
     "version": "5.0.0",
     "description": "A polyfill that adds Ed25519 key manipulation capabilities to `SubtleCrypto` in environments where it is not yet supported",
-    "homepage": "https://www.trezoakit.com/api#solanawebcrypto-ed25519-polyfill",
+    "homepage": "https://www.trezoakit.com/api#trezoawebcrypto-ed25519-polyfill",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

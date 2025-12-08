@@ -223,7 +223,7 @@ describe('programAccounts', () => {
                 },
             });
         });
-        it('spl token program', async () => {
+        it('tpl token program', async () => {
             expect.assertions(1);
             const variableValues = {
                 programAddress: 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',

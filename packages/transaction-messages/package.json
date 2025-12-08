@@ -2,7 +2,7 @@
     "name": "@trezoa/transaction-messages",
     "version": "5.0.0",
     "description": "Helpers for creating transaction messages",
-    "homepage": "https://www.trezoakit.com/api#solanatransaction-messages",
+    "homepage": "https://www.trezoakit.com/api#trezoatransaction-messages",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

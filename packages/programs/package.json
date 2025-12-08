@@ -2,7 +2,7 @@
     "name": "@trezoa/programs",
     "version": "5.0.0",
     "description": "Helpers for defining programs and resolving program errors",
-    "homepage": "https://www.trezoakit.com/api#solanaprograms",
+    "homepage": "https://www.trezoakit.com/api#trezoaprograms",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

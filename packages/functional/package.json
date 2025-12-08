@@ -2,7 +2,7 @@
     "name": "@trezoa/functional",
     "version": "5.0.0",
     "description": "Functional JavaScript helpers",
-    "homepage": "https://www.trezoakit.com/api#solanafunctional",
+    "homepage": "https://www.trezoakit.com/api#trezoafunctional",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

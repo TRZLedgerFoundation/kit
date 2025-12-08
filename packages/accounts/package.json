@@ -2,7 +2,7 @@
     "name": "@trezoa/accounts",
     "version": "5.0.0",
     "description": "Helpers for representing, fetching and decoding Trezoa accounts",
-    "homepage": "https://www.trezoakit.com/api#solanaaccounts",
+    "homepage": "https://www.trezoakit.com/api#trezoaaccounts",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-subscriptions-channel-websocket",
     "version": "5.0.0",
     "description": "An RPC Subscriptions transport that uses WebSockets",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-subscriptions-channel-websocket",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-subscriptions-channel-websocket",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

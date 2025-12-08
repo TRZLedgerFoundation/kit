@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-transport-http",
     "version": "5.0.0",
     "description": "An RPC transport that uses HTTP requests",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-transport-http",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-transport-http",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

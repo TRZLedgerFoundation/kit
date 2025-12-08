@@ -2,7 +2,7 @@
     "name": "@trezoa/codecs-core",
     "version": "5.0.0",
     "description": "Core types and helpers for encoding and decoding byte arrays on Trezoa",
-    "homepage": "https://www.trezoakit.com/api#solanacodecs-core",
+    "homepage": "https://www.trezoakit.com/api#trezoacodecs-core",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

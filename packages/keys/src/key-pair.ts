@@ -49,7 +49,7 @@ export async function generateKeyPair(): Promise<CryptoKeyPair> {
  * import { createKeyPairFromBytes } from '@trezoa/keys';
  *
  * // Get bytes from local keypair file.
- * const keypairFile = fs.readFileSync('~/.config/solana/id.json');
+ * const keypairFile = fs.readFileSync('~/.config/trezoa/id.json');
  * const keypairBytes = new Uint8Array(JSON.parse(keypairFile.toString()));
  *
  * // Create a CryptoKeyPair from the bytes.

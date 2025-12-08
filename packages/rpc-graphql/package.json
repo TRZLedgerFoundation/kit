@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-graphql",
     "version": "5.0.0",
     "description": "A library for resolving GraphQl query calls to the Trezoa JSON RPC API",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-graphql",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-graphql",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",

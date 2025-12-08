@@ -2,7 +2,7 @@
     "name": "@trezoa/subscribable",
     "version": "5.0.0",
     "description": "Helpers for creating subscription-based event emitters",
-    "homepage": "https://www.trezoakit.com/api#solanasubscribable",
+    "homepage": "https://www.trezoakit.com/api#trezoasubscribable",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
