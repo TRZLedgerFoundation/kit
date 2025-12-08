@@ -2,7 +2,7 @@ import { Address } from '@trezoa/addresses';
 import { PublicKey } from '@trezoa/web3.js';
 
 /**
- * Converts a legacy [PublicKey](https://trz-ledger-foundation.github.io/solana-web3.js/classes/PublicKey.html)
+ * Converts a legacy [PublicKey](https://trz-ledger-foundation.github.io/trezoa-web3.js/classes/PublicKey.html)
  * object to an {@link Address}.
  *
  * @example

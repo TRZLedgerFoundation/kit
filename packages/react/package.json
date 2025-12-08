@@ -1,8 +1,8 @@
 {
     "name": "@trezoa/react",
     "version": "5.0.0",
-    "description": "React hooks for building Solana apps",
-    "homepage": "https://www.trezoakit.com/api#solanareact",
+    "description": "React hooks for building Trezoa apps",
+    "homepage": "https://www.trezoakit.com/api#trezoareact",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

@@ -1,8 +1,8 @@
 {
     "name": "@trezoa/transaction-confirmation",
     "version": "5.0.0",
-    "description": "Helpers for confirming Solana transactions",
-    "homepage": "https://www.trezoakit.com/api#solanatransaction-confirmation",
+    "description": "Helpers for confirming Trezoa transactions",
+    "homepage": "https://www.trezoakit.com/api#trezoatransaction-confirmation",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

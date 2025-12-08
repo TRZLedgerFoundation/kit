@@ -24,7 +24,7 @@ describe('getTokenAccountsByOwner', () => {
         describe(`when called with \`${commitment}\` commitment`, () => {
             it('returns RPC response with account info', async () => {
                 expect.assertions(1);
-                // Owner for fixtures/spl-token-token-account-owner.json
+                // Owner for fixtures/tpl-token-token-account-owner.json
                 const owner =
                     'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -69,7 +69,7 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a `minContextSlot` higher than the highest slot available', () => {
         it('throws a slot not reached error', async () => {
             expect.assertions(3);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -118,7 +118,7 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a mint that does not exist', () => {
         it('throws an error for mint not existing', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -138,11 +138,11 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a mint that has a token account', () => {
         it('returns RPC response with account info', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
-            // Mint at fixtures/spl-token-mint-account-with-owner.json (mint for above account)
+            // Mint at fixtures/tpl-token-mint-account-with-owner.json (mint for above account)
             const mint =
                 '2nBoNW5B9SdpJYEg9neii7ecCJFwh6UrbXS6HFxkK7Gf' as Address<'2nBoNW5B9SdpJYEg9neii7ecCJFwh6UrbXS6HFxkK7Gf'>;
 
@@ -181,11 +181,11 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a mint that has no token accounts', () => {
         it('returns an empty list', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
-            // Mint at fixtures/spl-token-mint-no-token-accounts.json (not the same mint as above account)
+            // Mint at fixtures/tpl-token-mint-no-token-accounts.json (not the same mint as above account)
             const mint =
                 'HWHfrWotTpaNArteqeYDziV1ZX9Lm7WV684NeUCwPPzj' as Address<'HWHfrWotTpaNArteqeYDziV1ZX9Lm7WV684NeUCwPPzj'>;
 
@@ -201,7 +201,7 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a program that is not a Token program', () => {
         it('throws an error for unrecognized program', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -221,7 +221,7 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with a program that has no token accounts', () => {
         it('returns an empty list', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -240,14 +240,14 @@ describe('getTokenAccountsByOwner', () => {
 
     describe('when called with base58 encoding', () => {
         // Currently we can't test this because every token account is >128 bytes
-        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
+        // The trezoa source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/trezoa/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
         it.todo('returns RPC Response with account info with annotated base58 encoding');
     });
 
     describe('when called with base64 encoding', () => {
         it('returns RPC Response with account info with annotated base64 encoding', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -289,7 +289,7 @@ describe('getTokenAccountsByOwner', () => {
     describe('when called with base64+zstd encoding', () => {
         it('returns RPC Response with account info with annotated base64+zstd encoding', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -329,9 +329,9 @@ describe('getTokenAccountsByOwner', () => {
     });
 
     describe('when called with jsonParsed encoding', () => {
-        it('returns RPC response with parsed JSON data for SPL Token token account', async () => {
+        it('returns RPC response with parsed JSON data for TPL Token token account', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 
@@ -369,7 +369,7 @@ describe('getTokenAccountsByOwner', () => {
                                     },
                                     type: 'account',
                                 },
-                                program: 'spl-token',
+                                program: 'tpl-token',
                                 space: 165n,
                             },
                             executable: false,
@@ -387,14 +387,14 @@ describe('getTokenAccountsByOwner', () => {
 
     describe('when called with no encoding', () => {
         // Currently we can't test this because every token account is >128 bytes
-        // The solana source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/agave/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
+        // The trezoa source only allows base58 encoding up to 128 bytes: https://github.com/trezoa-xyz/trezoa/blob/d11072e4e00cb3a8009f62b3bddcec79069f970a/account-decoder/src/lib.rs#L39-L43
         it.todo('returns base58 data without an annotation');
     });
 
     describe('when called with a dataSlice', () => {
         it('returns the slice of the data', async () => {
             expect.assertions(1);
-            // Owner for fixtures/spl-token-token-account-owner.json
+            // Owner for fixtures/tpl-token-token-account-owner.json
             const owner =
                 'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL' as Address<'G4QJANEpvEN8vLaaMZoWwZtqHfWxuWpd5RrVVYXPCgeL'>;
 

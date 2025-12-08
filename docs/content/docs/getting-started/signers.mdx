@@ -12,7 +12,7 @@ The Kit library uses the [native Crypto API](https://developer.mozilla.org/en-US
 To create a new keypair, you can use the `generateKeyPair` helper function. This will return an instance of the native `CryptoKeyPair` type.
 
 ```ts twoslash
-import { generateKeyPair } from '@solana/kit';
+import { generateKeyPair } from '@trezoa/kit';
 
 const wallet: CryptoKeyPair = await generateKeyPair();
 ```
@@ -30,7 +30,7 @@ Different types of signers are available for various use cases, but in this tuto
 We can use the `generateKeyPairSigner` function to create a new `KeyPairSigner` instance like so.
 
 ```ts twoslash
-import { generateKeyPairSigner } from '@solana/kit';
+import { generateKeyPairSigner } from '@trezoa/kit';
 
 const wallet = await generateKeyPairSigner();
 ```
@@ -40,8 +40,8 @@ As you can see, this is very similar to generating a `CryptoKeyPair`, but now we
 For instance, here's how we could replace our `KeyPairSigner` with a signer that uses an in-browser wallet instead.
 
 ```tsx twoslash
-import { generateKeyPairSigner, KeyPairSigner, TransactionSigner } from '@solana/kit';
-import { useWalletAccountTransactionSendingSigner } from '@solana/react';
+import { generateKeyPairSigner, KeyPairSigner, TransactionSigner } from '@trezoa/kit';
+import { useWalletAccountTransactionSendingSigner } from '@trezoa/react';
 // ---cut-start---
 const account = null as unknown as Parameters<typeof useWalletAccountTransactionSendingSigner>[0];
 const currentChain = null as unknown as Parameters<
@@ -63,18 +63,18 @@ Now that we know how to generate a new signer, let's make sure we give it some l
 ```ts twoslash
 import {
     airdropFactory,
-    createSolanaRpc,
-    createSolanaRpcSubscriptions,
+    createTrezoaRpc,
+    createTrezoaRpcSubscriptions,
     generateKeyPairSigner,
     lamports,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 // Create the RPC, RPC Subscriptions and airdrop function.
-const rpc = createSolanaRpc('http://127.0.0.1:8899');
-const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+const rpc = createTrezoaRpc('http://127.0.0.1:8899');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
 const airdrop = airdropFactory({ rpc, rpcSubscriptions });
 
-// Generate a new wallet with 1 SOL.
+// Generate a new wallet with 1 TRZ.
 const wallet = await generateKeyPairSigner();
 await airdrop({
     recipientAddress: wallet.address,
@@ -89,13 +89,13 @@ Since we're going to rely on this signer for the rest of the tutorial, let's adj
 
 ```ts twoslash title="src/client.ts"
 import {
-    createSolanaRpc,
-    createSolanaRpcSubscriptions,
+    createTrezoaRpc,
+    createTrezoaRpcSubscriptions,
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
-} from '@solana/kit';
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
+} from '@trezoa/kit';
 // ---cut-before---
 import {
     airdropFactory,
@@ -103,11 +103,11 @@ import {
     lamports,
     MessageSigner,
     TransactionSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 export type Client = {
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     wallet: TransactionSigner & MessageSigner; // [!code ++]
 };
 
@@ -115,8 +115,8 @@ let client: Client | undefined;
 export async function createClient(): Promise<Client> {
     if (!client) {
         // Create RPC objects and airdrop function.
-        const rpc = createSolanaRpc('http://127.0.0.1:8899');
-        const rpcSubscriptions = createSolanaRpcSubscriptions('ws://127.0.0.1:8900');
+        const rpc = createTrezoaRpc('http://127.0.0.1:8899');
+        const rpcSubscriptions = createTrezoaRpcSubscriptions('ws://127.0.0.1:8900');
         const airdrop = airdropFactory({ rpc, rpcSubscriptions }); // [!code ++]
 
         // [!code ++:7]
@@ -141,14 +141,14 @@ Notice how we had to make the `createClient` function asynchronous since it now 
 import {
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
     TransactionSigner,
     MessageSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 export type Client = {
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     wallet: TransactionSigner & MessageSigner;
 };
 export async function createClient() {
@@ -162,4 +162,4 @@ async function tutorial() {
 }
 ```
 
-We've now got everything we need to start crafting transactions! In the next article, we'll build instructions that create a new token on Solana.
+We've now got everything we need to start crafting transactions! In the next article, we'll build instructions that create a new token on Trezoa.

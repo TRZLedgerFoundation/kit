@@ -2,7 +2,7 @@
     "name": "@trezoa/offchain-messages",
     "version": "5.0.0",
     "description": "Helpers for encoding and decoding messages according to the offchain message specification",
-    "homepage": "https://www.trezoakit.com/api#solanaoffchain-messages",
+    "homepage": "https://www.trezoakit.com/api#trezoaoffchain-messages",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

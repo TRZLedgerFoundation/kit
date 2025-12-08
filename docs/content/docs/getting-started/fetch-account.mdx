@@ -3,17 +3,17 @@ title: Fetch an account
 description: Fetch and decode on-chain accounts
 ---
 
-In the previous article of this series, we've learned how to send a transaction that creates a new Solana token — also known as a `Mint` account. In this last article, we'll learn how to retrieve the account we created and access its decoded data.
+In the previous article of this series, we've learned how to send a transaction that creates a new Trezoa token — also known as a `Mint` account. In this last article, we'll learn how to retrieve the account we created and access its decoded data.
 
 ## Fetch using RPC methods
 
 RPC methods such as `getAccountInfo` or `getMultipleAccounts` can be used to fetch on-chain accounts from their addresses. These take a variety of options and return different outputs based on these options. For instance, the `encoding` option will determine which string format to use when returning the account's encoded data.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { address } from '@solana/kit';
+import { address } from '@trezoa/kit';
 
 const { value: account } = await rpc.getAccountInfo(address('1234..5678')).send();
 const { value: accounts } = await rpc.getMultipleAccounts([address('1234..5678')]).send();
@@ -28,15 +28,15 @@ Additionally, when trying to fetch an account that does not exist on-chain, the 
 Therefore, Kit offers a set of types and helpers that aim to unify these APIs and make them easier to work with. For instance, the `fetchEncodedAccount` and `fetchEncodedAccounts` helpers can be used to fetch one or multiple accounts and return them in a unified format.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
 import {
     address,
     fetchEncodedAccount,
     fetchEncodedAccounts,
     MaybeEncodedAccount,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const account = await fetchEncodedAccount(rpc, address('1234..5678'));
 const accounts = await fetchEncodedAccounts(rpc, [address('1234..5678')]);
@@ -48,8 +48,8 @@ accounts satisfies MaybeEncodedAccount[];
 As you can see, the return types are all `MaybeAccounts`. This means the account may or may not exist on-chain. It contains an `exists` field indicating whether the account exists. If it does, we have access to all its fields. Otherwise, we just know its address — since it was provided as an input.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
 import {
     EncodedAccount,
@@ -57,7 +57,7 @@ import {
     Address,
     fetchEncodedAccount,
     fetchEncodedAccounts,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const account = await fetchEncodedAccount(rpc, address('1234..5678'));
 
@@ -73,8 +73,8 @@ if (account.exists) {
 We can also assert the existence of an account using the `assertAccountExists` helper. This will throw an error if the account does not exist and tell TypeScript that our `MaybeAccount` is actually an `Account` moving forward.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
 import {
     assertAccountExists,
@@ -82,7 +82,7 @@ import {
     address,
     fetchEncodedAccount,
     fetchEncodedAccounts,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const account = await fetchEncodedAccount(rpc, address('1234..5678'));
 assertAccountExists(account);
@@ -109,8 +109,8 @@ Mint accounts are composed of the following data:
 By composing various Codec functions — such as `getStructCodec` to create objects or `getOptionCodec` to create optional data — we can design a Codec object that describes the byte layout of the `Mint` account. Here's an example illustrating that. Note that the layout of the `Mint` account was slightly simplified for this example.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
 import {
     address,
@@ -124,7 +124,7 @@ import {
     getU64Codec,
     getU8Codec,
     Option,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 const account = await fetchEncodedAccount(rpc, address('1234..5678'));
 assertAccountExists(account);
@@ -151,14 +151,14 @@ decodedData satisfies {
 
 Fortunately for us, we often don't need to manually create these Codec objects as program clients will provide them for us. These helpers are typically [generated via Codama IDLs](https://github.com/codama-idl/codama) and follow the `getXCodec` naming convention where `X` is the name of the account.
 
-For instance, here's how we can access the `Mint` codec from the `@solana-program/token` library.
+For instance, here's how we can access the `Mint` codec from the `@trezoa-program/token` library.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { address, assertAccountExists, fetchEncodedAccount } from '@solana/kit';
-import { getMintCodec, Mint } from '@solana-program/token';
+import { address, assertAccountExists, fetchEncodedAccount } from '@trezoa/kit';
+import { getMintCodec, Mint } from '@trezoa-program/token';
 
 const account = await fetchEncodedAccount(rpc, address('1234..5678'));
 assertAccountExists(account);
@@ -171,11 +171,11 @@ decodedData satisfies Mint;
 This can be simplified even further by using the `decodeX` helpers from program clients. These helpers accept an `EncodedAccount` or a `MaybeEncodedAccount` and return an `Account<T>` or a `MaybeAccount<T>` respectively, where `T` is the type of the account data.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { Account, address, assertAccountExists, fetchEncodedAccount } from '@solana/kit';
-import { decodeMint, Mint } from '@solana-program/token';
+import { Account, address, assertAccountExists, fetchEncodedAccount } from '@trezoa/kit';
+import { decodeMint, Mint } from '@trezoa-program/token';
 
 const account = decodeMint(await fetchEncodedAccount(rpc, address('1234..5678')));
 assertAccountExists(account);
@@ -189,11 +189,11 @@ Last but not least, it is possible to fetch and decode an account in a single st
 This means, everything we've been doing so far can be simplified into a single line of code.
 
 ```ts twoslash
-import { Rpc, SolanaRpcApi } from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+import { Rpc, TrezoaRpcApi } from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { Account, address } from '@solana/kit';
-import { fetchMint, Mint } from '@solana-program/token';
+import { Account, address } from '@trezoa/kit';
+import { fetchMint, Mint } from '@trezoa-program/token';
 
 const account = await fetchMint(rpc, address('1234..5678'));
 account satisfies Account<Mint>;
@@ -213,11 +213,11 @@ import {
     MessageSigner,
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
     TransactionSigner,
     sendAndConfirmTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
     T extends BaseTransactionMessage & TransactionMessageWithFeePayer,
 >(
@@ -225,8 +225,8 @@ const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
 ) => Promise<T>;
 export type Client = {
     estimateAndSetComputeUnitLimit: ReturnType<typeof estimateAndSetComputeUnitLimitFactory>;
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     sendAndConfirmTransaction: ReturnType<typeof sendAndConfirmTransactionFactory>;
     wallet: TransactionSigner & MessageSigner;
 };
@@ -234,15 +234,15 @@ export async function createClient() {
     return {} as Client;
 }
 // @filename: create-mint.ts
-import { Address } from '@solana/kit';
+import { Address } from '@trezoa/kit';
 import { Client } from './client';
 export async function createMint(client: Client, options: { decimals?: number } = {}) {
     return '' as Address;
 }
 // @filename: index.ts
 // ---cut-before---
-import { unwrapOption } from '@solana/kit'; // [!code ++]
-import { fetchMint } from '@solana-program/token'; // [!code ++]
+import { unwrapOption } from '@trezoa/kit'; // [!code ++]
+import { fetchMint } from '@trezoa-program/token'; // [!code ++]
 
 import { createClient } from './client';
 import { createMint } from './create-mint';

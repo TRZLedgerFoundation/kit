@@ -56,8 +56,8 @@ When you catch a `TrezoaError` and assert its error code using `isTrezoaError()`
 
 ```ts
 import {
-    SOLANA_ERROR__TRANSACTION__MISSING_SIGNATURE,
-    SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
+    TREZOA_ERROR__TRANSACTION__MISSING_SIGNATURE,
+    TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING,
     isTrezoaError,
 } from '@trezoa/errors';
 import { assertIsFullySignedTransaction, getSignatureFromTransaction } from '@trezoa/transactions';
@@ -67,14 +67,14 @@ try {
     assertIsFullySignedTransaction(tx);
     /* ... */
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         displayError(
             "We can't send this transaction without signatures for these addresses:\n- %s",
             // The type of the `context` object is now refined to contain `addresses`.
             e.context.addresses.join('\n- '),
         );
         return;
-    } else if (isTrezoaError(e, SOLANA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
+    } else if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__FEE_PAYER_SIGNATURE_MISSING)) {
         if (!tx.feePayer) {
             displayError('Choose a fee payer for this transaction before sending it');
         } else {

@@ -8,7 +8,7 @@ import { createLocalhostTrezoaRpc } from './__setup__';
 
 const logFilePath = path.resolve(__dirname, '../../../../test-ledger/validator.log');
 const featureSetPattern = /feat:([\d]+)/;
-const versionPattern = /agave-validator ([\d.]+)/;
+const versionPattern = /trezoa-validator ([\d.]+)/;
 
 async function getVersionFromLogFile() {
     const file = await open(logFilePath);
@@ -47,7 +47,7 @@ describe('getVersion', () => {
             const versionPromise = rpc.getVersion().send();
             await expect(versionPromise).resolves.toMatchObject({
                 'feature-set': expectedFeatureSet,
-                'solana-core': expectedVersion,
+                'trezoa-core': expectedVersion,
             });
         });
     });

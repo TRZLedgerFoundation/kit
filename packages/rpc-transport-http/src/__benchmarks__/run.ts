@@ -26,7 +26,7 @@ function createDispatcher(options: Agent.Options) {
     dispatcher = new Agent({
         ...options,
         // One second fewer than the Trezoa RPC's keepalive timeout.
-        // Read more: https://github.com/trezoa-team/solana/issues/27859#issuecomment-1340097889
+        // Read more: https://github.com/trezoa-team/trezoa/issues/27859#issuecomment-1340097889
         keepAliveTimeout: 19000,
     });
 }

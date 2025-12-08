@@ -19,7 +19,7 @@ export default function InKeepSearchDialog(props: SharedProps) {
                  * Need to use search in development?
                  *
                  * ```shell
-                 * pnpm vercel link -p kit-docs -S anza-tech --yes
+                 * pnpm vercel link -p kit-docs -S trezoa-tech --yes
                  * pnpm vercel env pull --environment=development
                  * ```
                  */

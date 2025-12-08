@@ -49,11 +49,11 @@ export const resolveBlock = (fieldName?: string) => {
                         ...loadedBlock,
                     };
                 }
-                // @ts-expect-error FIX ME: https://github.com/trezoa-team/solana-web3.js/pull/2052
+                // @ts-expect-error FIX ME: https://github.com/trezoa-team/trezoa-web3.js/pull/2052
                 if (!result.signatures && loadedBlock.signatures) {
                     result = {
                         ...result,
-                        // @ts-expect-error FIX ME: https://github.com/trezoa-team/solana-web3.js/pull/2052
+                        // @ts-expect-error FIX ME: https://github.com/trezoa-team/trezoa-web3.js/pull/2052
                         signatures: loadedBlock.signatures,
                     };
                 }

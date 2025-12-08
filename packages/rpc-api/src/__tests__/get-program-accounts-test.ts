@@ -594,11 +594,11 @@ describe('getProgramAccounts', () => {
                     );
                 });
 
-                it('returns parsed JSON data for accounts owned by SPL Token', async () => {
+                it('returns parsed JSON data for accounts owned by TPL Token', async () => {
                     expect.assertions(1);
-                    // See scripts/fixtures/spl-token-account.json
-                    // See scripts/fixtures/spl-token-token-account.json
-                    // See scripts/fixtures/spl-token-multisig-account.json
+                    // See scripts/fixtures/tpl-token-account.json
+                    // See scripts/fixtures/tpl-token-token-account.json
+                    // See scripts/fixtures/tpl-token-multisig-account.json
                     const program =
                         'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA' as Address<'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'>;
 
@@ -625,7 +625,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -649,7 +649,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -673,7 +673,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -699,7 +699,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'multisig',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 355n,
                                     },
                                     executable: false,
@@ -735,7 +735,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -764,7 +764,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -788,7 +788,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -817,7 +817,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -841,7 +841,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -856,9 +856,9 @@ describe('getProgramAccounts', () => {
                     );
                 });
 
-                it('returns parsed JSON data for SPL Token 22 mint account', async () => {
+                it('returns parsed JSON data for TPL Token 22 mint account', async () => {
                     expect.assertions(1);
-                    // See scripts/fixtures/spl-token-22-mint-account.json
+                    // See scripts/fixtures/tpl-token-22-mint-account.json
                     const program =
                         'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb' as Address<'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'>;
 
@@ -907,7 +907,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token-2022',
+                                        program: 'tpl-token-2022',
                                         space: 278n,
                                     },
                                     executable: false,
@@ -926,7 +926,7 @@ describe('getProgramAccounts', () => {
                     expect.assertions(1);
                     const voteAccountAddress = await getNodeAddress(voteAccountKeypairPath);
                     // TODO: Test validator does not write this keypair to JSON
-                    // See solana-labs/solana/pull/33014
+                    // See trezoa-team/trezoa/pull/33014
                     const stakeAddress = expect.any(String);
                     // See scripts/fixtures/stake-account.json
                     const program =
@@ -1547,11 +1547,11 @@ describe('getProgramAccounts', () => {
                     });
                 });
 
-                it('returns RPC response with parsed JSON data for accounts owned by SPL Token', async () => {
+                it('returns RPC response with parsed JSON data for accounts owned by TPL Token', async () => {
                     expect.assertions(1);
-                    // See scripts/fixtures/spl-token-account.json
-                    // See scripts/fixtures/spl-token-account-account.json
-                    // See scripts/fixtures/spl-token-multisig-account.json
+                    // See scripts/fixtures/tpl-token-account.json
+                    // See scripts/fixtures/tpl-token-account-account.json
+                    // See scripts/fixtures/tpl-token-multisig-account.json
                     const program =
                         'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA' as Address<'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'>;
 
@@ -1579,7 +1579,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -1603,7 +1603,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -1627,7 +1627,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -1653,7 +1653,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'multisig',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 355n,
                                     },
                                     executable: false,
@@ -1689,7 +1689,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -1718,7 +1718,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -1742,7 +1742,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -1771,7 +1771,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'account',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 165n,
                                     },
                                     executable: false,
@@ -1795,7 +1795,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token',
+                                        program: 'tpl-token',
                                         space: 82n,
                                     },
                                     executable: false,
@@ -1810,9 +1810,9 @@ describe('getProgramAccounts', () => {
                     });
                 });
 
-                it('returns RPC response with parsed JSON data for SPL Token 22 mint account', async () => {
+                it('returns RPC response with parsed JSON data for TPL Token 22 mint account', async () => {
                     expect.assertions(1);
-                    // See scripts/fixtures/spl-token-22-mint-account.json
+                    // See scripts/fixtures/tpl-token-22-mint-account.json
                     const program =
                         'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb' as Address<'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'>;
 
@@ -1862,7 +1862,7 @@ describe('getProgramAccounts', () => {
                                             },
                                             type: 'mint',
                                         },
-                                        program: 'spl-token-2022',
+                                        program: 'tpl-token-2022',
                                         space: 278n,
                                     },
                                     executable: false,
@@ -1881,7 +1881,7 @@ describe('getProgramAccounts', () => {
                     expect.assertions(1);
                     const voteAccountAddress = await getNodeAddress(voteAccountKeypairPath);
                     // TODO: Test validator does not write this keypair to JSON
-                    // See solana-labs/solana/pull/33014
+                    // See trezoa-team/trezoa/pull/33014
                     const stakeAddress = expect.any(String);
                     // See scripts/fixtures/stake-account.json
                     const program =
@@ -2309,7 +2309,7 @@ describe('getProgramAccounts', () => {
                                 },
                                 type: 'account',
                             },
-                            program: 'spl-token',
+                            program: 'tpl-token',
                             space: 165n, // Token account space
                         },
                         executable: false,
@@ -2327,7 +2327,7 @@ describe('getProgramAccounts', () => {
     describe('when called with a memcmpy filter', () => {
         it('returns the matching accounts', async () => {
             expect.assertions(1);
-            // See scripts/fixtures/spl-token-mint-account.json
+            // See scripts/fixtures/tpl-token-mint-account.json
             const mint =
                 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
             const program =
@@ -2367,7 +2367,7 @@ describe('getProgramAccounts', () => {
                                 },
                                 type: 'account',
                             },
-                            program: 'spl-token',
+                            program: 'tpl-token',
                             space: 165n, // Token account space
                         },
                         executable: false,
@@ -2385,7 +2385,7 @@ describe('getProgramAccounts', () => {
     describe('when called with both a data size and a memcmpy filter', () => {
         it('returns the matching accounts', async () => {
             expect.assertions(1);
-            // See scripts/fixtures/spl-token-mint-account.json
+            // See scripts/fixtures/tpl-token-mint-account.json
             const mint =
                 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
             const program =
@@ -2428,7 +2428,7 @@ describe('getProgramAccounts', () => {
                                 },
                                 type: 'account',
                             },
-                            program: 'spl-token',
+                            program: 'tpl-token',
                             space: 165n, // Token account space
                         },
                         executable: false,

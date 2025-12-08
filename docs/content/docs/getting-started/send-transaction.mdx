@@ -3,7 +3,7 @@ title: Send a transaction
 description: Send a transaction to the blockchain and wait for its confirmation
 ---
 
-In the previous article, we constructed a signed transaction that creates a Solana token. Now, let's see how we can send this transaction and ensure it has been confirmed by the network.
+In the previous article, we constructed a signed transaction that creates a Trezoa token. Now, let's see how we can send this transaction and ensure it has been confirmed by the network.
 
 ## Send transactions without confirming
 
@@ -17,14 +17,14 @@ import {
     SendableTransaction,
     TransactionWithBlockhashLifetime,
     Rpc,
-    SolanaRpcApi,
-} from '@solana/kit';
+    TrezoaRpcApi,
+} from '@trezoa/kit';
 const transaction = null as unknown as Transaction &
     SendableTransaction &
     TransactionWithBlockhashLifetime;
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { getBase64EncodedWireTransaction } from '@solana/kit';
+import { getBase64EncodedWireTransaction } from '@trezoa/kit';
 
 const encodedTransaction = getBase64EncodedWireTransaction(transaction);
 await rpc
@@ -40,14 +40,14 @@ import {
     SendableTransaction,
     TransactionWithBlockhashLifetime,
     Rpc,
-    SolanaRpcApi,
-} from '@solana/kit';
+    TrezoaRpcApi,
+} from '@trezoa/kit';
 const transaction = null as unknown as Transaction &
     SendableTransaction &
     TransactionWithBlockhashLifetime;
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
 // ---cut-before---
-import { sendTransactionWithoutConfirmingFactory } from '@solana/kit';
+import { sendTransactionWithoutConfirmingFactory } from '@trezoa/kit';
 
 const sendTransaction = sendTransactionWithoutConfirmingFactory({ rpc });
 await sendTransaction(transaction, { commitment: 'confirmed' });
@@ -72,17 +72,17 @@ import {
     SendableTransaction,
     TransactionWithBlockhashLifetime,
     Rpc,
-    SolanaRpcApi,
+    TrezoaRpcApi,
     RpcSubscriptions,
-    SolanaRpcSubscriptionsApi,
-} from '@solana/kit';
+    TrezoaRpcSubscriptionsApi,
+} from '@trezoa/kit';
 const transaction = null as unknown as Transaction &
     SendableTransaction &
     TransactionWithBlockhashLifetime;
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = null as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = null as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 // ---cut-before---
-import { sendAndConfirmTransactionFactory } from '@solana/kit';
+import { sendAndConfirmTransactionFactory } from '@trezoa/kit';
 
 const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
 await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
@@ -103,17 +103,17 @@ import {
     SendableTransaction,
     TransactionWithBlockhashLifetime,
     Rpc,
-    SolanaRpcApi,
+    TrezoaRpcApi,
     RpcSubscriptions,
-    SolanaRpcSubscriptionsApi,
-} from '@solana/kit';
+    TrezoaRpcSubscriptionsApi,
+} from '@trezoa/kit';
 const transaction = null as unknown as Transaction &
     SendableTransaction &
     TransactionWithBlockhashLifetime;
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = null as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = null as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 // ---cut-before---
-import { getSignatureFromTransaction, sendAndConfirmTransactionFactory } from '@solana/kit';
+import { getSignatureFromTransaction, sendAndConfirmTransactionFactory } from '@trezoa/kit';
 
 // [!code ++:2]
 // Access the transaction signature.
@@ -135,12 +135,12 @@ import {
     MessageSigner,
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
     TransactionSigner,
-} from '@solana/kit';
-const rpc = null as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = null as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+} from '@trezoa/kit';
+const rpc = null as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = null as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 const wallet = null as unknown as TransactionSigner & MessageSigner;
 const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
     T extends BaseTransactionMessage & TransactionMessageWithFeePayer,
@@ -154,12 +154,12 @@ const estimateAndSetComputeUnitLimit = null as unknown as ReturnType<
 import {
     sendAndConfirmTransactionFactory, // [!code ++]
     // ...
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 export type Client = {
     estimateAndSetComputeUnitLimit: ReturnType<typeof estimateAndSetComputeUnitLimitFactory>;
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     sendAndConfirmTransaction: ReturnType<typeof sendAndConfirmTransactionFactory>; // [!code ++]
     wallet: TransactionSigner & MessageSigner;
 };
@@ -205,11 +205,11 @@ import {
     MessageSigner,
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
     TransactionSigner,
     sendAndConfirmTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
     T extends BaseTransactionMessage & TransactionMessageWithFeePayer,
 >(
@@ -217,8 +217,8 @@ const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
 ) => Promise<T>;
 export type Client = {
     estimateAndSetComputeUnitLimit: ReturnType<typeof estimateAndSetComputeUnitLimitFactory>;
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     sendAndConfirmTransaction: ReturnType<typeof sendAndConfirmTransactionFactory>;
     wallet: TransactionSigner & MessageSigner;
 };
@@ -234,13 +234,13 @@ import {
     setTransactionMessageFeePayerSigner,
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
-} from '@solana/kit';
-import { getCreateAccountInstruction } from '@solana-program/system';
+} from '@trezoa/kit';
+import { getCreateAccountInstruction } from '@trezoa-program/system';
 import {
     getInitializeMintInstruction,
     getMintSize,
     TOKEN_PROGRAM_ADDRESS,
-} from '@solana-program/token';
+} from '@trezoa-program/token';
 
 import type { Client } from './client';
 
@@ -303,11 +303,11 @@ import {
     MessageSigner,
     Rpc,
     RpcSubscriptions,
-    SolanaRpcApi,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcApi,
+    TrezoaRpcSubscriptionsApi,
     TransactionSigner,
     sendAndConfirmTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
     T extends BaseTransactionMessage & TransactionMessageWithFeePayer,
 >(
@@ -315,8 +315,8 @@ const estimateAndSetComputeUnitLimitFactory = {} as unknown as () => <
 ) => Promise<T>;
 export type Client = {
     estimateAndSetComputeUnitLimit: ReturnType<typeof estimateAndSetComputeUnitLimitFactory>;
-    rpc: Rpc<SolanaRpcApi>;
-    rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+    rpc: Rpc<TrezoaRpcApi>;
+    rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
     sendAndConfirmTransaction: ReturnType<typeof sendAndConfirmTransactionFactory>;
     wallet: TransactionSigner & MessageSigner;
 };
@@ -324,7 +324,7 @@ export async function createClient() {
     return {} as Client;
 }
 // @filename: create-mint.ts
-import { Address } from '@solana/kit';
+import { Address } from '@trezoa/kit';
 import { Client } from './client';
 export async function createMint(client: Client, options: { decimals?: number } = {}) {
     return '' as Address;

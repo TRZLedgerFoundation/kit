@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/rpc-parsed-types",
     "version": "5.0.0",
-    "description": "Type definitions for parsed types used in the Solana RPC",
+    "description": "Type definitions for parsed types used in the Trezoa RPC",
     "homepage": "https://www.trezoakit.com/api#solanarpc-parsed-types",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

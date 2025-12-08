@@ -2,7 +2,7 @@
     "name": "@trezoa/rpc-spec",
     "version": "5.0.0",
     "description": "A generic implementation of JSON RPCs using proxies",
-    "homepage": "https://www.trezoakit.com/api#solanarpc-spec",
+    "homepage": "https://www.trezoakit.com/api#trezoarpc-spec",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

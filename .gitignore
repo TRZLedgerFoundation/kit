@@ -21,8 +21,8 @@ yarn-error.log*
 # Sapling SCM
 .sl
 
-# `solana-test-validator`
-.agave/
+# `trezoa-test-validator`
+.trezoa-team/
 test-ledger/
 
 # ignore JetBrains IDE

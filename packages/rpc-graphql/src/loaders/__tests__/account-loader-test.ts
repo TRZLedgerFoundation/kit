@@ -484,7 +484,7 @@ describe('account loader', () => {
                                 lamports
                             }
                         }
-                        # Mint account (see scripts/fixtures/spl-token-mint-account.json)
+                        # Mint account (see scripts/fixtures/tpl-token-mint-account.json)
                         account2: account(address: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr") {
                             lamports
                             ownerProgram {
@@ -573,7 +573,7 @@ describe('account loader', () => {
                         account1: account(address: "AiZExP8mK4RxDozh4r57knvqSZgkz86HrzPAMx61XMqU") {
                             lamports
                         }
-                        # Mint account (see scripts/fixtures/spl-token-mint-account.json)
+                        # Mint account (see scripts/fixtures/tpl-token-mint-account.json)
                         account2: account(address: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr") {
                             lamports
                         }

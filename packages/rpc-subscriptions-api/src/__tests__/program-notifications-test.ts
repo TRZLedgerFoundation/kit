@@ -39,13 +39,13 @@ describe('programNotifications', () => {
 
             it.todo('returns parsed JSON data for Nonce account');
 
-            it.todo('returns parsed JSON data for SPL Token mint account');
+            it.todo('returns parsed JSON data for TPL Token mint account');
 
-            it.todo('returns parsed JSON data for SPL Token token account');
+            it.todo('returns parsed JSON data for TPL Token token account');
 
-            it.todo('returns parsed JSON data for SPL token multisig account');
+            it.todo('returns parsed JSON data for TPL token multisig account');
 
-            it.todo('returns parsed JSON data for SPL Token 22 mint account');
+            it.todo('returns parsed JSON data for TPL Token 22 mint account');
 
             it.todo('returns parsed JSON data for Stake account');
 

@@ -5,7 +5,7 @@ type GetTokenAccountBalanceApiResponse = TokenAmount;
 
 export type GetTokenAccountBalanceApi = {
     /**
-     * Returns the balance of an SPL Token account.
+     * Returns the balance of an TPL Token account.
      *
      * @see https://trezoa.com/docs/rpc/http/gettokenaccountbalance
      */

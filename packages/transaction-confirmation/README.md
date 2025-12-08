@@ -30,7 +30,7 @@ const getBlockHeightExceedencePromise = createBlockHeightExceedencePromiseFactor
 try {
     await getBlockHeightExceedencePromise({ lastValidBlockHeight });
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+    if (isTrezoaError(e, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
         console.error(
             `The block height of the network has exceeded ${e.context.lastValidBlockHeight}. ` +
                 `It is now ${e.context.currentBlockHeight}`,
@@ -60,11 +60,11 @@ try {
         nonceAccountAddress,
     });
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__NONCE_INVALID)) {
+    if (isTrezoaError(e, TREZOA_ERROR__NONCE_INVALID)) {
         console.error(`The nonce has advanced to ${e.context.actualNonceValue}`);
         // Re-sign and retry the transaction.
         return;
-    } else if (isTrezoaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+    } else if (isTrezoaError(e, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
         console.error(`No nonce account was found at ${nonceAccountAddress}`);
     }
     throw e;

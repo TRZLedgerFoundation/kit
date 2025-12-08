@@ -140,7 +140,7 @@ function isAdvanceNonceAccountInstructionData(data: ReadonlyUint8Array): boolean
  * Note that this is less precise than checking a decompiled instruction, as we can't inspect
  * the address or role of input accounts (which may be in lookup tables). However, this is
  * sufficient for all valid advance durable nonce instructions.
- * Note that the program address must not be in a lookup table, see [this answer on StackExchange](https://solana.stackexchange.com/a/16224/289)
+ * Note that the program address must not be in a lookup table, see [this answer on StackExchange](https://trezoa.stackexchange.com/a/16224/289)
  * @see {@link isAdvanceNonceAccountInstruction}
  * Note that this function is async to allow for future implementations that may fetch `lastValidBlockHeight` using an RPC
  */

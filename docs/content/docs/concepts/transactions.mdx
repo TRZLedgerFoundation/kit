@@ -5,32 +5,32 @@ description: Build and compile transaction messages
 
 ## Introduction
 
-To take an action on Solana, whether to place an order, transfer an asset, or more generally to modify data on the blockchain, you need to prepare a transaction and sign to pay for it to be executed on the network. You can use Kit to create, sign, encode, and decode transactions.
+To take an action on Trezoa, whether to place an order, transfer an asset, or more generally to modify data on the blockchain, you need to prepare a transaction and sign to pay for it to be executed on the network. You can use Kit to create, sign, encode, and decode transactions.
 
 ## Installation
 
-Transaction utilities are **included within the `@solana/kit` library** but you may also install them using their standalone packages.
+Transaction utilities are **included within the `@trezoa/kit` library** but you may also install them using their standalone packages.
 
 To install transaction message builder utilities:
 
 ```package-install
-@solana/transaction-messages
+@trezoa/transaction-messages
 ```
 
 To install utilities that let you sign and compile transaction messages into transactions that can be landed on the network:
 
 ```package-install
-@solana/transactions
+@trezoa/transactions
 ```
 
 ## What is a Transaction?
 
-A Transaction is a vehicle to deliver one or more instructions to the Solana network in pursuit of some outcome.
+A Transaction is a vehicle to deliver one or more instructions to the Trezoa network in pursuit of some outcome.
 
 Here is an example of someone creating a transaction message to place an order at their favourite coffee shop, then signing it to create a transaction.
 
 ```ts twoslash
-import { Blockhash, TransactionSigner } from '@solana/kit';
+import { Blockhash, TransactionSigner } from '@trezoa/kit';
 const customerSigner = null as unknown as TransactionSigner;
 const latestBlockhash = null as unknown as { blockhash: Blockhash; lastValidBlockHeight: bigint };
 // ---cut-before---
@@ -44,16 +44,16 @@ import {
     setTransactionMessageFeePayerSigner,
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
-} from '@solana/kit';
-import { getAddMemoInstruction } from '@solana-program/memo';
-import { getTransferSolInstruction } from '@solana-program/system';
+} from '@trezoa/kit';
+import { getAddMemoInstruction } from '@trezoa-program/memo';
+import { getTransferTrzInstruction } from '@trezoa-program/system';
 
 const transactionMessage = pipe(
     // Create an empty transaction message.
     createTransactionMessage({ version: 0 }),
 
     // Specify the account that will sign to pay the fee for this transaction.
-    // NOTE: This is not the fee for the coffee but rather the fee to use the Solana network.
+    // NOTE: This is not the fee for the coffee but rather the fee to use the Trezoa network.
     (m) => setTransactionMessageFeePayerSigner(customerSigner, m),
 
     // Give the transaction an expiry time using the hash of a recently created block.
@@ -75,7 +75,7 @@ const transactionMessage = pipe(
     // Add a second instruction to pay the merchant for the coffee.
     (m) =>
         appendTransactionMessageInstruction(
-            getTransferSolInstruction({
+            getTransferTrzInstruction({
                 amount: lamports(25_000_000n),
                 destination: address('JJBeanoTcSMU3xKQa5Gru71Wi3AaEgTfA6z7MaLUT6h'),
                 source: customerSigner,
@@ -100,7 +100,7 @@ For more detail see the ‘[Build a transaction](/docs/getting-started/build-tra
 Given a [`TransactionVersion`](/api/type-aliases/TransactionVersion), the [`createTransactionMessage`](/api/functions/createTransactionMessage) method will return an empty transaction having the capabilities of that version.
 
 ```ts twoslash
-import { createTransactionMessage } from '@solana/kit';
+import { createTransactionMessage } from '@trezoa/kit';
 
 const message = createTransactionMessage({ version: 0 });
 ```
@@ -114,11 +114,11 @@ The [`TransactionMessageWithFeePayer`](/api/interfaces/TransactionMessageWithFee
 Given a [`TransactionSigner`](/api/type-aliases/TransactionSigner), this method will return a new transaction message having the same type as the one supplied plus the [`TransactionMessageWithFeePayer`](/api/interfaces/TransactionMessageWithFeePayer) type. Additionally, the resulting message will have the capability to self-sign using the [`signTransactionMessageWithSigners`](/api/functions/signTransactionMessageWithSigners) function.
 
 ```ts twoslash
-import { TransactionMessage } from '@solana/kit';
+import { TransactionMessage } from '@trezoa/kit';
 const keyPair = null as unknown as CryptoKeyPair;
 const transactionMessage = null as unknown as TransactionMessage;
 // ---cut-before---
-import { createSignerFromKeyPair, setTransactionMessageFeePayerSigner } from '@solana/kit';
+import { createSignerFromKeyPair, setTransactionMessageFeePayerSigner } from '@trezoa/kit';
 
 const mySigner = await createSignerFromKeyPair(keyPair);
 const transactionMessagePaidByMe = setTransactionMessageFeePayerSigner(
@@ -132,10 +132,10 @@ const transactionMessagePaidByMe = setTransactionMessageFeePayerSigner(
 Given a base58-encoded address of a system account, this method will return a new transaction message having the same type as the one supplied plus the [`TransactionMessageWithFeePayer`](/api/interfaces/TransactionMessageWithFeePayer) type.
 
 ```ts twoslash
-import { TransactionMessage } from '@solana/kit';
+import { TransactionMessage } from '@trezoa/kit';
 const transactionMessage = null as unknown as TransactionMessage;
 // ---cut-before---
-import { address, setTransactionMessageFeePayer } from '@solana/kit';
+import { address, setTransactionMessageFeePayer } from '@trezoa/kit';
 
 const myAddress = address('mpngsFd4tmbUfzDYJayjKZwZcaR7aWb2793J6grLsGu');
 const transactionMessagePaidByMe = setTransactionMessageFeePayer(myAddress, transactionMessage);
@@ -157,11 +157,11 @@ The [`TransactionMessageWithBlockhashLifetime`](/api/interfaces/TransactionMessa
 Given a blockhash and the last block height at which that blockhash is considered usable to land transactions, the [`setTransactionMessageLifetimeUsingBlockhash`](/api/functions/setTransactionMessageLifetimeUsingBlockhash) method will return a new transaction message having the same type as the one supplied plus the [`TransactionMessageWithBlockhashLifetime`](/api/interfaces/TransactionMessageWithBlockhashLifetime) type.
 
 ```ts twoslash
-import { Rpc, GetLatestBlockhashApi, TransactionMessage } from '@solana/kit';
+import { Rpc, GetLatestBlockhashApi, TransactionMessage } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<GetLatestBlockhashApi>;
 const transactionMessage = null as unknown as TransactionMessage;
 // ---cut-before---
-import { setTransactionMessageLifetimeUsingBlockhash } from '@solana/kit';
+import { setTransactionMessageLifetimeUsingBlockhash } from '@trezoa/kit';
 
 const { value: latestBlockhash } = await rpc.getLatestBlockhash().send();
 const txMessageWithBlockhashLifetime = setTransactionMessageLifetimeUsingBlockhash(
@@ -177,12 +177,12 @@ The [`TransactionMessageWithDurableNonceLifetime`](/api/interfaces/TransactionMe
 Given a nonce, the account where the value of the nonce is stored, and the address of the account authorized to consume that nonce, this method will return a new transaction having the same type as the one supplied plus the [`TransactionMessageWithDurableNonceLifetime`](/api/interfaces/TransactionMessageWithDurableNonceLifetime) type.
 
 ```ts twoslash
-import { TransactionMessage, address, Rpc, GetAccountInfoApi } from '@solana/kit';
+import { TransactionMessage, address, Rpc, GetAccountInfoApi } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<GetAccountInfoApi>;
 const transactionMessage = null as unknown as TransactionMessage;
 // ---cut-before---
-import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@solana/kit';
-import { fetchNonce } from '@solana-program/system';
+import { Nonce, setTransactionMessageLifetimeUsingDurableNonce } from '@trezoa/kit';
+import { fetchNonce } from '@trezoa-program/system';
 
 const nonceAccountAddress = address('EGtMh4yvXswwHhwVhyPxGrVV2TkLTgUqGodbATEPvojZ');
 const nonceAuthorityAddress = address('4KD1Rdrd89NG7XbzW3xsX9Aqnx2EExJvExiNme6g9iAT');
@@ -201,7 +201,7 @@ const durableNonceTransactionMessage = setTransactionMessageLifetimeUsingDurable
 In particular, this method _prepends_ an instruction to the transaction message designed to consume (or &lsquo;advance&rsquo;) the nonce in the same transaction whose lifetime is defined by it.
 
 ```ts twoslash
-import { TransactionMessageWithDurableNonceLifetime } from '@solana/kit';
+import { TransactionMessageWithDurableNonceLifetime } from '@trezoa/kit';
 const durableNonceTransactionMessage =
     null as unknown as TransactionMessageWithDurableNonceLifetime<
         'EGtMh4yvXswwHhwVhyPxGrVV2TkLTgUqGodbATEPvojZ',
@@ -226,11 +226,11 @@ There are three types that correspond to the different parts of an instruction. 
 Given an instruction, the [`appendTransactionMessageInstruction`](/api/functions/appendTransactionMessageInstruction) method will return a new transaction message with that instruction having been added to the end of the list of existing instructions.
 
 ```ts twoslash
-import { TransactionMessage } from '@solana/kit';
+import { TransactionMessage } from '@trezoa/kit';
 const transactionMessage = null as unknown as TransactionMessage;
 // ---cut-before---
-import { address, appendTransactionMessageInstruction, getUtf8Encoder } from '@solana/kit';
-import { getAddMemoInstruction } from '@solana-program/memo';
+import { address, appendTransactionMessageInstruction, getUtf8Encoder } from '@trezoa/kit';
+import { getAddMemoInstruction } from '@trezoa-program/memo';
 
 const memoTransactionMessage = appendTransactionMessageInstruction(
     getAddMemoInstruction({ memo: 'Hello world!' }),
@@ -259,12 +259,12 @@ import {
     Rpc,
     GetAccountInfoApi,
     TransactionMessage,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const rpc = null as unknown as Rpc<GetAccountInfoApi>;
 const transactionMessage = null as unknown as Extract<TransactionMessage, { version: 0 }>;
 // ---cut-before---
-import { address, compressTransactionMessageUsingAddressLookupTables } from '@solana/kit';
-import { fetchAddressLookupTable } from '@solana-program/address-lookup-table';
+import { address, compressTransactionMessageUsingAddressLookupTables } from '@trezoa/kit';
+import { fetchAddressLookupTable } from '@trezoa-program/address-lookup-table';
 
 const lookupTableAddress = address('4QwSwNriKPrz8DLW4ju5uxC2TN5cksJx6tPUPj7DGLAW');
 const {
@@ -291,7 +291,7 @@ Consider how compressing transaction messages creates more space for instruction
 In order to be executed a transaction message must be signed by all of the private keys belonging to accounts that are required signers of the transaction, and must not exceed the size allowable by the network. You may encounter these types when using functions that send transactions.
 
 - [`FullySignedTransaction`](/api/type-aliases/FullySignedTransaction): A transaction that is signed by all of its required signers.
-- [`TransactionWithinSizeLimit`](/api/type-aliases/TransactionWithinSizeLimit): A transaction that is under or equal to the maximum size limit for transactions on the Solana network.
+- [`TransactionWithinSizeLimit`](/api/type-aliases/TransactionWithinSizeLimit): A transaction that is under or equal to the maximum size limit for transactions on the Trezoa network.
 - [`SendableTransaction`](/api/type-aliases/SendableTransaction): A union of `FullySignedTransaction` and `TransactionWithinSizeLimit`
 
 Transaction messages whose signers are specified using `TransactionSigner` objects have the ability to self-sign. This is because signers encapsulate both the address of the signing account as well as an implementation of the signing algorithm for the private key associated with that account.
@@ -303,21 +303,21 @@ import {
     TransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionMessageWithSigners,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const transactionMessage = null as unknown as TransactionMessage &
     TransactionMessageWithFeePayer &
     TransactionMessageWithSigners;
 // ---cut-before---
 import {
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    isSolanaError,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    isTrezoaError,
     signTransactionMessageWithSigners,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 try {
     const fullySignedTransaction = await signTransactionMessageWithSigners(transactionMessage);
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         console.error('Missing signers for the following addresses:', e.context.addresses);
     } else {
         throw e;
@@ -347,12 +347,12 @@ import {
     TransactionMessage,
     TransactionMessageWithFeePayer,
     TransactionMessageWithSigners,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const transactionMessage = null as unknown as TransactionMessage &
     TransactionMessageWithFeePayer &
     TransactionMessageWithSigners;
 // ---cut-before---
-import { compileTransaction } from '@solana/kit';
+import { compileTransaction } from '@trezoa/kit';
 
 const transaction = compileTransaction(transactionMessage);
 ```
@@ -364,20 +364,20 @@ This produces an unsigned transaction. Follow the [instructions for signing tran
 Wherever you have a `Transaction` instead of a `TransactionMessage` you can add or replace a signature using the [`signTransaction`](/api/functions/signTransaction) method and one or more `CryptoKeyPairs`.
 
 ```ts twoslash
-import { Transaction, TransactionWithLifetime } from '@solana/kit';
+import { Transaction, TransactionWithLifetime } from '@trezoa/kit';
 const keyPair = null as unknown as CryptoKeyPair;
 const transaction = null as unknown as Transaction & TransactionWithLifetime;
 // ---cut-before---
 import {
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    isSolanaError,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    isTrezoaError,
     signTransaction,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 try {
     const fullySignedTransaction = await signTransaction([keyPair], transaction);
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         console.error('Missing signers for the following addresses:', e.context.addresses);
     } else {
         throw e;
@@ -398,11 +398,11 @@ If you would like to send a transaction to the network manually, you must first 
 Given a transaction, the [`getBase64EncodedWireTransaction`](/api/functions/getBase64EncodedWireTransaction) method returns the transaction as a string that conforms to the `Base64EncodedWireTransaction` type.
 
 ```ts twoslash
-import { Transaction, Rpc, SendTransactionApi } from '@solana/kit';
+import { Transaction, Rpc, SendTransactionApi } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<SendTransactionApi>;
 const signedTransaction = null as unknown as Transaction;
 // ---cut-before---
-import { getBase64EncodedWireTransaction, signTransaction } from '@solana/kit';
+import { getBase64EncodedWireTransaction, signTransaction } from '@trezoa/kit';
 
 const serializedTransaction = getBase64EncodedWireTransaction(signedTransaction);
 const signature = await rpc.sendTransaction(serializedTransaction, { encoding: 'base64' }).send();
@@ -419,8 +419,8 @@ const signature = await rpc.sendTransaction(serializedTransaction, { encoding: '
 You can fetch the raw bytes of a transaction from the network using an RPC server.
 
 ```ts twoslash
-import { createSolanaRpc, getBase64Encoder, Signature } from '@solana/kit';
-const rpc = createSolanaRpc('...');
+import { createTrezoaRpc, getBase64Encoder, Signature } from '@trezoa/kit';
+const rpc = createTrezoaRpc('...');
 // ---cut-before---
 const response = await rpc
     .getTransaction(
@@ -437,23 +437,23 @@ const {
 const transactionBytes = getBase64Encoder().encode(base64EncodedTransaction);
 ```
 
-Decoding the wire transaction bytes yields a `Transaction` object. This takes the form of a transaction message encoded as a byte array, and a list of signatures of those bytes created by those who must authorize the message and pay for it to be executed on Solana.
+Decoding the wire transaction bytes yields a `Transaction` object. This takes the form of a transaction message encoded as a byte array, and a list of signatures of those bytes created by those who must authorize the message and pay for it to be executed on Trezoa.
 
 ```ts twoslash
-import { ReadonlyUint8Array } from '@solana/kit';
+import { ReadonlyUint8Array } from '@trezoa/kit';
 const transactionBytes = new Uint8Array() as ReadonlyUint8Array;
 // ---cut-before---
-import { getTransactionDecoder } from '@solana/kit';
+import { getTransactionDecoder } from '@trezoa/kit';
 const transaction = getTransactionDecoder().decode(transactionBytes);
 ```
 
 Decoding the network wire format bytes of the message will yield a transaction message in its **compiled** form – a message in a form suitable for execution on the network. Encountering a compiled message in your application is rare, but it's important to know that they exist.
 
 ```ts twoslash
-import { Transaction } from '@solana/kit';
+import { Transaction } from '@trezoa/kit';
 const transaction = null as unknown as Transaction;
 // ---cut-before---
-import { getCompiledTransactionMessageDecoder } from '@solana/kit';
+import { getCompiledTransactionMessageDecoder } from '@trezoa/kit';
 const compiledTransactionMessage = getCompiledTransactionMessageDecoder().decode(
     transaction.messageBytes,
 );
@@ -462,11 +462,11 @@ const compiledTransactionMessage = getCompiledTransactionMessageDecoder().decode
 Finally, decompiling a compiled message will yield a `TransactionMessage` object. This is the most common form of transaction message that you will encounter when using Kit to build an application.
 
 ```ts twoslash
-import { CompiledTransactionMessage, CompiledTransactionMessageWithLifetime } from '@solana/kit';
+import { CompiledTransactionMessage, CompiledTransactionMessageWithLifetime } from '@trezoa/kit';
 const compiledTransactionMessage = null as unknown as CompiledTransactionMessage &
     CompiledTransactionMessageWithLifetime;
 // ---cut-before---
-import { decompileTransactionMessage } from '@solana/kit';
+import { decompileTransactionMessage } from '@trezoa/kit';
 const transactionMessage = decompileTransactionMessage(compiledTransactionMessage);
 ```
 

@@ -23,7 +23,7 @@ describe('account', () => {
     });
 
     describe('basic queries', () => {
-        // See scripts/fixtures/spl-token-token-account.json
+        // See scripts/fixtures/tpl-token-token-account.json
         const variableValues = {
             address: 'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca',
         };
@@ -105,7 +105,7 @@ describe('account', () => {
         });
     });
     describe('nested basic queries', () => {
-        // See scripts/fixtures/spl-token-token-account.json
+        // See scripts/fixtures/tpl-token-token-account.json
         const variableValues = {
             address: 'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca',
             commitment: 'CONFIRMED',
@@ -140,7 +140,7 @@ describe('account', () => {
         });
     });
     describe('double nested basic queries', () => {
-        // See scripts/fixtures/spl-token-token-account.json
+        // See scripts/fixtures/tpl-token-token-account.json
         const variableValues = {
             address: 'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca',
             commitment: 'CONFIRMED',
@@ -181,7 +181,7 @@ describe('account', () => {
         });
     });
     describe('triple nested basic queries', () => {
-        // See scripts/fixtures/spl-token-token-account.json
+        // See scripts/fixtures/tpl-token-token-account.json
         const variableValues = {
             address: 'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca',
             commitment: 'CONFIRMED',
@@ -477,7 +477,7 @@ describe('account', () => {
                 }
             `;
             const resultParsed = await rpcGraphQL.query(source, {
-                // See scripts/fixtures/spl-token-mint-account.json
+                // See scripts/fixtures/tpl-token-mint-account.json
                 address: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr',
             });
             expect(resultParsed).toMatchObject({
@@ -588,7 +588,7 @@ describe('account', () => {
         });
         it('can get a mint account', async () => {
             expect.assertions(1);
-            // See scripts/fixtures/spl-token-mint-account.json
+            // See scripts/fixtures/tpl-token-mint-account.json
             const variableValues = {
                 address: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr',
             };
@@ -636,7 +636,7 @@ describe('account', () => {
         });
         it('can get a token account', async () => {
             expect.assertions(1);
-            // See scripts/fixtures/spl-token-token-account.json
+            // See scripts/fixtures/tpl-token-token-account.json
             const variableValues = {
                 address: 'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca',
             };
@@ -1214,13 +1214,13 @@ describe('account', () => {
             });
         });
         describe('token-2022 extensions', () => {
-            // See scripts/fixtures/spl-token-22-mint-mega-token.json
+            // See scripts/fixtures/tpl-token-22-mint-mega-token.json
             const megaMintAddress = '5gSwsLGzyCwgwPJSnxjsQCaFeE19ZFaibHMLky9TDFim';
-            // See scripts/fixtures/spl-token-22-mint-with-token-group-account.json
+            // See scripts/fixtures/tpl-token-22-mint-with-token-group-account.json
             const tokenGroupMintAddress = '6sN6TS566ttRqmQzSTKxuHBtb8rPNZoqZeiERggev7zW';
-            // See scripts/fixtures/spl-token-22-mint-with-token-group-member-account.json
+            // See scripts/fixtures/tpl-token-22-mint-with-token-group-member-account.json
             const tokenGroupMemberAddress = 'A2ka2DEVUy1Jm8iuPbXETSKFZQ2wDTq5HW8SrJqMiCi3';
-            // See scripts/fixtures/spl-token-22-account-mega-token-member.json
+            // See scripts/fixtures/tpl-token-22-account-mega-token-member.json
             const megaAccountAddress = 'aUg6iJ3p43hTJsxHrQ1KfqMQYStoFvqcSJRcc51cYzK';
             it('mint-close-authority', async () => {
                 expect.assertions(1);

@@ -463,9 +463,9 @@ describe('getMultipleAccounts', () => {
                 });
             });
 
-            it('returns parsed JSON data for SPL Token mint account', async () => {
+            it('returns parsed JSON data for TPL Token mint account', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-account.json
+                // See scripts/fixtures/tpl-token-account.json
                 const publicKey =
                     'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
 
@@ -491,7 +491,7 @@ describe('getMultipleAccounts', () => {
                                     },
                                     type: 'mint',
                                 },
-                                program: 'spl-token',
+                                program: 'tpl-token',
                                 space: 82n,
                             },
                             executable: false,
@@ -504,9 +504,9 @@ describe('getMultipleAccounts', () => {
                 });
             });
 
-            it('returns parsed JSON data for SPL Token token account', async () => {
+            it('returns parsed JSON data for TPL Token token account', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-account.json
+                // See scripts/fixtures/tpl-token-account.json
                 const publicKey =
                     'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca' as Address<'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca'>;
 
@@ -537,7 +537,7 @@ describe('getMultipleAccounts', () => {
                                     },
                                     type: 'account',
                                 },
-                                program: 'spl-token',
+                                program: 'tpl-token',
                                 space: 165n,
                             },
                             executable: false,
@@ -550,9 +550,9 @@ describe('getMultipleAccounts', () => {
                 });
             });
 
-            it('returns parsed JSON data for SPL token multisig account', async () => {
+            it('returns parsed JSON data for TPL token multisig account', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-account.json
+                // See scripts/fixtures/tpl-token-account.json
                 const publicKey =
                     '4Uh9vK5nnxfskc73asy7AeRYDfZocrv1th9DEjtdCn88' as Address<'4Uh9vK5nnxfskc73asy7AeRYDfZocrv1th9DEjtdCn88'>;
 
@@ -580,7 +580,7 @@ describe('getMultipleAccounts', () => {
                                     },
                                     type: 'multisig',
                                 },
-                                program: 'spl-token',
+                                program: 'tpl-token',
                                 space: 355n,
                             },
                             executable: false,
@@ -593,9 +593,9 @@ describe('getMultipleAccounts', () => {
                 });
             });
 
-            it('returns parsed JSON data for SPL Token 22 mint account', async () => {
+            it('returns parsed JSON data for TPL Token 22 mint account', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-22-mint-account.json
+                // See scripts/fixtures/tpl-token-22-mint-account.json
                 const publicKey =
                     'CKfatsPMUf8SkiURsDXs7eK6GWb4Jsd6UDbs7twMCWxo' as Address<'CKfatsPMUf8SkiURsDXs7eK6GWb4Jsd6UDbs7twMCWxo'>;
 
@@ -643,7 +643,7 @@ describe('getMultipleAccounts', () => {
                                     },
                                     type: 'mint',
                                 },
-                                program: 'spl-token-2022',
+                                program: 'tpl-token-2022',
                                 space: 278n,
                             },
                             executable: false,

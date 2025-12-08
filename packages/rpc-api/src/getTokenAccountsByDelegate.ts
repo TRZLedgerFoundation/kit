@@ -87,7 +87,7 @@ type GetTokenAccountsByDelegateApiSliceableCommonConfig = Readonly<{
 
 export type GetTokenAccountsByDelegateApi = {
     /**
-     * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
+     * Returns all TPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
      *
      * The accounts' data will be returned in the response as a tuple whose first element is a
@@ -109,7 +109,7 @@ export type GetTokenAccountsByDelegateApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedData>>;
     /**
-     * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
+     * Returns all TPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
      *
      * The accounts' data will first be compressed using
@@ -132,7 +132,7 @@ export type GetTokenAccountsByDelegateApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
     /**
-     * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
+     * Returns all TPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
      *
      * The server will attempt to process the accounts' data using a parser specific to each
@@ -153,7 +153,7 @@ export type GetTokenAccountsByDelegateApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<TokenAccountInfoWithJsonData>>;
     /**
-     * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
+     * Returns all TPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
      *
      * The accounts' data will be returned in the response as a tuple whose first element is a
@@ -176,7 +176,7 @@ export type GetTokenAccountsByDelegateApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByDelegateResponse<AccountInfoWithBase58EncodedData>>;
     /**
-     * Returns all SPL Token accounts for which transfer authority over some quantity of tokens has
+     * Returns all TPL Token accounts for which transfer authority over some quantity of tokens has
      * been delegated to the supplied address.
      *
      * The accounts' data will be returned in the response as a base58-encoded string. If any

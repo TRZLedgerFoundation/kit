@@ -31,7 +31,7 @@ interface RpcErrorResponse {
 type TransactionError = string | { [key: string]: unknown };
 
 /**
- * Keep in sync with https://github.com/trezoa-xyz/agave/blob/master/rpc-client-types/src/response.rs
+ * Keep in sync with https://github.com/trezoa-xyz/trezoa/blob/master/rpc-client-types/src/response.rs
  * @hidden
  */
 export interface RpcSimulateTransactionResult {

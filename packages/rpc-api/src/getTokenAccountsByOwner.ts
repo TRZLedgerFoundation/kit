@@ -86,7 +86,7 @@ type GetTokenAccountsByOwnerApiSliceableCommonConfig = Readonly<{
 }>;
 export type GetTokenAccountsByOwnerApi = {
     /**
-     * Returns all SPL Token accounts owned by the supplied address.
+     * Returns all TPL Token accounts owned by the supplied address.
      *
      * The accounts' data will be returned in the response as a tuple whose first element is a
      * base64-encoded string.
@@ -107,7 +107,7 @@ export type GetTokenAccountsByOwnerApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByOwnerResponse<AccountInfoWithBase64EncodedData>>;
     /**
-     * Returns all SPL Token accounts owned by the supplied address.
+     * Returns all TPL Token accounts owned by the supplied address.
      *
      * The accounts' data will first be compressed using
      * [ZStandard](https://facebook.github.io/zstd/) and the result will be returned in the response
@@ -129,7 +129,7 @@ export type GetTokenAccountsByOwnerApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByOwnerResponse<AccountInfoWithBase64EncodedZStdCompressedData>>;
     /**
-     * Returns all SPL Token accounts owned by the supplied address.
+     * Returns all TPL Token accounts owned by the supplied address.
      *
      * The server will attempt to process the accounts' data using a parser specific to each
      * account's owning token program.
@@ -149,7 +149,7 @@ export type GetTokenAccountsByOwnerApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByOwnerResponse<TokenAccountInfoWithJsonData>>;
     /**
-     * Returns all SPL Token accounts owned by the supplied address.
+     * Returns all TPL Token accounts owned by the supplied address.
      *
      * The accounts' data will be returned in the response as a tuple whose first element is a
      * base58-encoded string. If any account contains more than 129 bytes of data, this method will
@@ -171,7 +171,7 @@ export type GetTokenAccountsByOwnerApi = {
             }>,
     ): TrezoaRpcResponse<GetTokenAccountsByOwnerResponse<AccountInfoWithBase58EncodedData>>;
     /**
-     * Returns all SPL Token accounts owned by the supplied address.
+     * Returns all TPL Token accounts owned by the supplied address.
      *
      * The accounts' data will be returned in the response as a base58-encoded string. If any
      * account contains more than 129 bytes of data, this method will raise an error.

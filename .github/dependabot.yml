@@ -21,6 +21,6 @@ updates:
           - '@eslint/*'
           - '@typescript-eslint/*'
           - 'typescript'
-      solana-program-clients:
+      trezoa-program-clients:
         patterns:
-          - '@solana-program/*'
+          - '@trezoa-program/*'

@@ -1238,11 +1238,11 @@ We use [Codama](https://github.com/codama-idl/codama) to represent Trezoa progra
 import { appendTransactionMessageInstructions, createTransactionMessage, pipe } from '@trezoa/kit';
 import { getAddMemoInstruction } from '@trezoa-program/memo';
 import { getSetComputeUnitLimitInstruction } from '@trezoa-program/compute-budget';
-import { getTransferSolInstruction } from '@trezoa-program/system';
+import { getTransferTrzInstruction } from '@trezoa-program/system';
 
 const instructions = [
     getSetComputeUnitLimitInstruction({ units: 600_000 }),
-    getTransferSolInstruction({ source, destination, amount: 1_000_000_000 }),
+    getTransferTrzInstruction({ source, destination, amount: 1_000_000_000 }),
     getAddMemoInstruction({ memo: "I'm transferring some TRZ!" }),
 ];
 
@@ -1287,7 +1287,7 @@ const instruction = getCreateLookupTableInstruction({
 
 On top of instruction builders, these clients offer a variety of utilities such as:
 
-- Instruction codecs — e.g. `getTransferSolInstructionDataCodec`.
+- Instruction codecs — e.g. `getTransferTrzInstructionDataCodec`.
 - Account types — e.g. `AddressLookupTable`.
 - Account codecs — e.g. `getAddressLookupTableAccountDataCodec`.
 - Account helpers — e.g. `fetchAddressLookupTable`.

@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/kit",
     "version": "5.0.0",
-    "description": "Solana Javascript API",
+    "description": "Trezoa Javascript API",
     "homepage": "https://www.trezoakit.com",
     "exports": {
         "edge-light": {
@@ -41,7 +41,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

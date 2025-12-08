@@ -185,7 +185,7 @@ describe('sendTransaction', () => {
         await expect(resultPromise).rejects.toThrow(
             new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                 __serverMessage:
-                    'failed to deserialize solana_transaction::versioned::VersionedTransaction: ' +
+                    'failed to deserialize trezoa_transaction::versioned::VersionedTransaction: ' +
                     'invalid value: integer `126`, expected a valid transaction message version',
             }),
         );
@@ -210,7 +210,7 @@ describe('sendTransaction', () => {
         await expect(resultPromise).rejects.toThrow(
             new TrezoaError(TREZOA_ERROR__JSON_RPC__INVALID_PARAMS, {
                 __serverMessage:
-                    'failed to deserialize solana_transaction::versioned::VersionedTransaction: ' +
+                    'failed to deserialize trezoa_transaction::versioned::VersionedTransaction: ' +
                     'io error: failed to fill whole buffer',
             }),
         );

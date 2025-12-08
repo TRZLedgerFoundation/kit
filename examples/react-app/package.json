@@ -27,7 +27,7 @@
         "swr": "^2.3.7"
     },
     "devDependencies": {
-        "@trezoa/eslint-config-solana": "^5.0.0",
+        "@trezoa/eslint-config-trezoa": "^5.0.0",
         "@trezoa/wallet-standard-features": "^1.3.0",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",

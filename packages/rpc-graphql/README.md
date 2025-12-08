@@ -209,8 +209,8 @@ A set of specific parsed account types are supported in GraphQL.
 - `GenericAccount`: A generic base account type
 - `NonceAccount`: A nonce account
 - `LookupTableAccount`: An address lookup table account
-- `MintAccount`: An SPL mint
-- `TokenAccount`: An SPL token account
+- `MintAccount`: An TPL mint
+- `TokenAccount`: An TPL token account
 - `StakeAccount`: A stake account
 - `VoteAccount`: A vote account
 
@@ -658,9 +658,9 @@ Instructions for the following programs are supported.
 - BPF Loader
 - BPF Upgradeable Loader
 - Stake
-- SPL Associated Token
-- SPL Memo
-- SPL Token
+- TPL Associated Token
+- TPL Memo
+- TPL Token
 - System
 - Vote
 

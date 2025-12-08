@@ -663,7 +663,7 @@ describe('programAccounts', () => {
         });
     });
     describe('when called with a memcmp filter', () => {
-        // See scripts/fixtures/spl-token-mint-account.json
+        // See scripts/fixtures/tpl-token-mint-account.json
         const mintAddress =
             'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
         const programAddress =
@@ -716,7 +716,7 @@ describe('programAccounts', () => {
     });
 
     describe('when called with both a data size and a memcmpy filter', () => {
-        // See scripts/fixtures/spl-token-mint-account.json
+        // See scripts/fixtures/tpl-token-mint-account.json
         const mintAddress =
             'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
         const programAddress =

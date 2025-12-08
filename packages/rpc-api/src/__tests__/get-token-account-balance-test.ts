@@ -20,7 +20,7 @@ describe('getTokenAccountBalance', () => {
         describe(`when called with \`${commitment}\` commitment`, () => {
             it('returns token account balance', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-token-account.json
+                // See scripts/fixtures/tpl-token-token-account.json
                 const publicKey =
                     'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca' as Address<'AyGCwnwxQMCqaU4ixReHt8h5W4dwmxU7eM3BEQBdWVca'>;
                 const tokenAccountBalancePromise = rpc.getTokenAccountBalance(publicKey, { commitment }).send();

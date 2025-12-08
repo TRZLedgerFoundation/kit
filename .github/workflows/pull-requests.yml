@@ -44,7 +44,7 @@ jobs:
         with:
           version: ${{ matrix.node }}
 
-      - name: Setup Solana Test Validator
+      - name: Setup Trezoa Test Validator
         id: start-test-validator
         uses: ./.github/workflows/actions/setup-validator
 

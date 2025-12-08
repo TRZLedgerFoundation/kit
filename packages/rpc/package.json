@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/rpc",
     "version": "5.0.0",
-    "description": "A library for sending JSON RPC requests to Solana RPCs",
+    "description": "A library for sending JSON RPC requests to Trezoa RPCs",
     "homepage": "https://www.trezoakit.com/api#solanarpc",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

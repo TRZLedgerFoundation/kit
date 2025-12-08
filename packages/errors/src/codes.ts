@@ -38,7 +38,7 @@ export const TREZOA_ERROR__MALFORMED_JSON_RPC_ERROR = 10;
 
 // JSON-RPC-related errors.
 // Reserve error codes in the range [-32768, -32000]
-// Keep in sync with https://github.com/trezoa-xyz/agave/blob/master/rpc-client-api/src/custom_error.rs
+// Keep in sync with https://github.com/trezoa-xyz/trezoa/blob/master/rpc-client-api/src/custom_error.rs
 export const TREZOA_ERROR__JSON_RPC__PARSE_ERROR = -32700;
 export const TREZOA_ERROR__JSON_RPC__INTERNAL_ERROR = -32603;
 export const TREZOA_ERROR__JSON_RPC__INVALID_PARAMS = -32602;

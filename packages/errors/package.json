@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/errors",
     "version": "5.0.0",
-    "description": "Throw, identify, and decode Solana JavaScript errors",
+    "description": "Throw, identify, and decode Trezoa JavaScript errors",
     "homepage": "https://www.trezoakit.com/api#solanaerrors",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "bin": "./bin/cli.mjs",

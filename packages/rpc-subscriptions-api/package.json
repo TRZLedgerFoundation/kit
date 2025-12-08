@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/rpc-subscriptions-api",
     "version": "5.0.0",
-    "description": "Defines all default Solana RPC subscriptions as types",
+    "description": "Defines all default Trezoa RPC subscriptions as types",
     "homepage": "https://www.trezoakit.com/api#solanarpc-subscriptions-api",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

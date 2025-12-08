@@ -38,6 +38,6 @@ const transferTransactionMessage = pipe(
     // The return value of that function gets passed to the next...
     tx => setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, tx),
     // ...and so on.
-    tx => appendTransactionMessageInstruction(getTransferSolInstruction({ source, destination, amount }), tx),
+    tx => appendTransactionMessageInstruction(getTransferTrzInstruction({ source, destination, amount }), tx),
 );
 ```

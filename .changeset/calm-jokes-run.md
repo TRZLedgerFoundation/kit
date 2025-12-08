@@ -4,4 +4,4 @@
 '@trezoa/kit': minor
 ---
 
-Added codecs for encoding and decoding Trezoa Offchain Messages (see https://github.com/solana-foundation/SRFCs/discussions/3)
+Added codecs for encoding and decoding Trezoa Offchain Messages (see https://github.com/trzledgerfoundation/SRFCs/discussions/3)

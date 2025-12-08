@@ -127,7 +127,7 @@ describe('getProgramDerivedAddress()', () => {
         ]);
         expect(pdaButterfly).toStrictEqual(pdaButterFly);
     });
-    // https://solana.stackexchange.com/questions/7253/what-combination-of-program-address-and-seeds-would-cause-findprogramaddress-t
+    // https://trezoa.stackexchange.com/questions/7253/what-combination-of-program-address-and-seeds-would-cause-findprogramaddress-t
     it.todo(
         'fatals when supplied a combination of program address and seeds for which no off-curve point can be found',
     );

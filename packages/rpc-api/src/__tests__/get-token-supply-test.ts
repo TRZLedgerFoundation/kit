@@ -20,7 +20,7 @@ describe('getTokenSupply', () => {
         describe(`when called with \`${commitment}\` commitment`, () => {
             it('returns total token supply', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-mint-account.json
+                // See scripts/fixtures/tpl-token-mint-account.json
                 const pubkey =
                     'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
                 const tokenAccountBalancePromise = rpc.getTokenSupply(pubkey, { commitment }).send();

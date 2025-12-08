@@ -1,13 +1,13 @@
 ---
-title: Solana Programs Example
+title: Trezoa Programs Example
 ---
 
 {/* Please keep visible code between 4 to 8 lines of code. */}
 
 ```ts
-import { getTransferSolInstruction } from '@solana-program/system';
-const transferSol = getTransferSolInstruction({ source, destination, amount });
+import { getTransferTrzInstruction } from '@trezoa-program/system';
+const transferTrz = getTransferTrzInstruction({ source, destination, amount });
 
-import { fetchMint } from '@solana-program/token';
+import { fetchMint } from '@trezoa-program/token';
 const mintAccount = await fetchMint(rpc, mintAddress);
 ```

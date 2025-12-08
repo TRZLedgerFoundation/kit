@@ -712,7 +712,7 @@ export const instructionTypeResolvers = {
                         return 'BpfUpgradeableLoaderExtendProgramInstruction';
                     }
                 }
-                if (jsonParsedConfigs.programName === 'spl-associated-token-account') {
+                if (jsonParsedConfigs.programName === 'tpl-associated-token-account') {
                     if (jsonParsedConfigs.instructionType === 'create') {
                         return 'SplAssociatedTokenCreateInstruction';
                     }
@@ -723,10 +723,10 @@ export const instructionTypeResolvers = {
                         return 'SplAssociatedTokenRecoverNestedInstruction';
                     }
                 }
-                if (jsonParsedConfigs.programName === 'spl-memo') {
+                if (jsonParsedConfigs.programName === 'tpl-memo') {
                     return 'SplMemoInstruction';
                 }
-                if (jsonParsedConfigs.programName === 'spl-token') {
+                if (jsonParsedConfigs.programName === 'tpl-token') {
                     if (jsonParsedConfigs.instructionType === 'initializeMint') {
                         return 'SplTokenInitializeMintInstruction';
                     }

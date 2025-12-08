@@ -16,7 +16,7 @@ import { getOffchainMessageEnvelopeDecoder, getOffchainMessageEnvelopeEncoder } 
 import { OffchainMessageEnvelope } from '../envelope';
 import { OffchainMessageBytes } from '../message';
 
-// The string `'\xffsolana offchain'`
+// The string `'\xfftrezoa offchain'`
 const OFFCHAIN_MESSAGE_SIGNING_DOMAIN_BYTES: ReadonlyUint8Array = new Uint8Array([
     0xff, 0x73, 0x6f, 0x6c, 0x61, 0x6e, 0x61, 0x20, 0x6f, 0x66, 0x66, 0x63, 0x68, 0x61, 0x69, 0x6e,
 ]);

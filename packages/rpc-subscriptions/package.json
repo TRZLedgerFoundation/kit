@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/rpc-subscriptions",
     "version": "5.0.0",
-    "description": "A library for subscribing to Solana RPC notifications",
+    "description": "A library for subscribing to Trezoa RPC notifications",
     "homepage": "https://www.trezoakit.com/api#solanarpc-subscriptions",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

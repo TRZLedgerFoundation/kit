@@ -8,7 +8,7 @@ type GetVersionApiResponse = Readonly<{
      */
     'feature-set': number; // `u32`
     /** Software version of the node */
-    'solana-core': string;
+    'trezoa-core': string;
 }>;
 
 export type GetVersionApi = {

@@ -38,22 +38,22 @@ importers:
       '@prettier/sync':
         specifier: ^0.6.1
         version: 0.6.1(prettier@3.6.2)
-      '@solana/build-scripts':
+      '@trezoa/build-scripts':
         specifier: workspace:*
         version: link:packages/build-scripts
-      '@solana/eslint-config-solana':
+      '@trezoa/eslint-config-trezoa':
         specifier: ^4.0.0
         version: 4.0.0(a75c074b419cff6286bc2273f9285a13)
-      '@solana/prettier-config-solana':
+      '@trezoa/prettier-config-trezoa':
         specifier: 0.0.5
         version: 0.0.5(prettier@3.6.2)
-      '@solana/test-config':
+      '@trezoa/test-config':
         specifier: workspace:*
         version: link:packages/test-config
-      '@solana/test-matchers':
+      '@trezoa/test-matchers':
         specifier: workspace:*
         version: link:packages/test-matchers
-      '@solana/tsconfig':
+      '@trezoa/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
       '@swc/jest':
@@ -146,19 +146,19 @@ importers:
 
   examples/deserialize-transaction:
     dependencies:
-      '@solana-program/address-lookup-table':
+      '@trezoa-program/address-lookup-table':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana-program/memo':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa-program/memo':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana-program/system':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa-program/system':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana/example-utils':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -180,13 +180,13 @@ importers:
       '@radix-ui/themes':
         specifier: 3.2.1
         version: 3.2.1(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      '@solana-program/system':
+      '@trezoa-program/system':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana/kit':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
-      '@solana/react':
+      '@trezoa/react':
         specifier: workspace:*
         version: link:../../packages/react
       '@wallet-standard/core':
@@ -208,10 +208,10 @@ importers:
         specifier: ^2.3.7
         version: 2.3.7(react@19.2.1)
     devDependencies:
-      '@solana/eslint-config-solana':
+      '@trezoa/eslint-config-trezoa':
         specifier: ^5.0.0
         version: 5.0.0(05eb3607f3b2b74d94f3161ec535633f)
-      '@solana/wallet-standard-features':
+      '@trezoa/wallet-standard-features':
         specifier: ^1.3.0
         version: 1.3.0
       '@types/react':
@@ -235,10 +235,10 @@ importers:
 
   examples/rpc-custom-api:
     dependencies:
-      '@solana/example-utils':
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -248,10 +248,10 @@ importers:
 
   examples/rpc-transport-throttled:
     dependencies:
-      '@solana/example-utils':
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -264,13 +264,13 @@ importers:
 
   examples/signers:
     dependencies:
-      '@solana-program/system':
+      '@trezoa-program/system':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana/example-utils':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -283,19 +283,19 @@ importers:
 
   examples/token-airdrop:
     dependencies:
-      '@solana-program/compute-budget':
+      '@trezoa-program/compute-budget':
         specifier: ^0.11.0
-        version: 0.11.0(@solana/kit@packages+kit)
-      '@solana-program/system':
+        version: 0.11.0(@trezoa/kit@packages+kit)
+      '@trezoa-program/system':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana-program/token':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa-program/token':
         specifier: ^0.9.0
-        version: 0.9.0(@solana/kit@packages+kit)
-      '@solana/example-utils':
+        version: 0.9.0(@trezoa/kit@packages+kit)
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -308,13 +308,13 @@ importers:
 
   examples/transfer-lamports:
     dependencies:
-      '@solana-program/system':
+      '@trezoa-program/system':
         specifier: ^0.10.0
-        version: 0.10.0(@solana/kit@packages+kit)
-      '@solana/example-utils':
+        version: 0.10.0(@trezoa/kit@packages+kit)
+      '@trezoa/example-utils':
         specifier: workspace:*
         version: link:../utils
-      '@solana/kit':
+      '@trezoa/kit':
         specifier: workspace:*
         version: link:../../packages/kit
     devDependencies:
@@ -343,22 +343,22 @@ importers:
 
   packages/accounts:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/rpc-spec':
+      '@trezoa/rpc-spec':
         specifier: workspace:*
         version: link:../rpc-spec
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       typescript:
@@ -367,19 +367,19 @@ importers:
 
   packages/addresses:
     dependencies:
-      '@solana/assertions':
+      '@trezoa/assertions':
         specifier: workspace:*
         version: link:../assertions
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
       typescript:
@@ -388,7 +388,7 @@ importers:
 
   packages/assertions:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
@@ -430,19 +430,19 @@ importers:
 
   packages/codecs:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-data-structures':
+      '@trezoa/codecs-data-structures':
         specifier: workspace:*
         version: link:../codecs-data-structures
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/options':
+      '@trezoa/options':
         specifier: workspace:*
         version: link:../options
       typescript:
@@ -451,7 +451,7 @@ importers:
 
   packages/codecs-core:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
@@ -464,29 +464,29 @@ importers:
 
   packages/codecs-data-structures:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
 
   packages/codecs-numbers:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
@@ -495,13 +495,13 @@ importers:
 
   packages/codecs-strings:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       fastestsmallesttextencoderdecoder:
@@ -511,7 +511,7 @@ importers:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/text-encoding-impl':
+      '@trezoa/text-encoding-impl':
         specifier: workspace:*
         version: link:../text-encoding-impl
       tinybench:
@@ -520,29 +520,29 @@ importers:
 
   packages/compat:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.3
     devDependencies:
-      '@solana/web3.js':
+      '@trezoa/web3.js':
         specifier: ^1
         version: 1.98.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
 
@@ -592,69 +592,69 @@ importers:
 
   packages/instruction-plans:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/promises':
+      '@trezoa/promises':
         specifier: workspace:*
         version: link:../promises
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.3
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs':
+      '@trezoa/codecs':
         specifier: workspace:*
         version: link:../codecs
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
 
   packages/instructions:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
 
   packages/keys:
     dependencies:
-      '@solana/assertions':
+      '@trezoa/assertions':
         specifier: workspace:*
         version: link:../assertions
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
       typescript:
@@ -667,64 +667,64 @@ importers:
 
   packages/kit:
     dependencies:
-      '@solana/accounts':
+      '@trezoa/accounts':
         specifier: workspace:*
         version: link:../accounts
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs':
+      '@trezoa/codecs':
         specifier: workspace:*
         version: link:../codecs
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/instruction-plans':
+      '@trezoa/instruction-plans':
         specifier: workspace:*
         version: link:../instruction-plans
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/offchain-messages':
+      '@trezoa/offchain-messages':
         specifier: workspace:*
         version: link:../offchain-messages
-      '@solana/programs':
+      '@trezoa/programs':
         specifier: workspace:*
         version: link:../programs
-      '@solana/rpc':
+      '@trezoa/rpc':
         specifier: workspace:*
         version: link:../rpc
-      '@solana/rpc-parsed-types':
+      '@trezoa/rpc-parsed-types':
         specifier: workspace:*
         version: link:../rpc-parsed-types
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/rpc-subscriptions':
+      '@trezoa/rpc-subscriptions':
         specifier: workspace:*
         version: link:../rpc-subscriptions
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/signers':
+      '@trezoa/signers':
         specifier: workspace:*
         version: link:../signers
-      '@solana/sysvars':
+      '@trezoa/sysvars':
         specifier: workspace:*
         version: link:../sysvars
-      '@solana/transaction-confirmation':
+      '@trezoa/transaction-confirmation':
         specifier: workspace:*
         version: link:../transaction-confirmation
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
@@ -739,28 +739,28 @@ importers:
 
   packages/offchain-messages:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-data-structures':
+      '@trezoa/codecs-data-structures':
         specifier: workspace:*
         version: link:../codecs-data-structures
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
       typescript:
@@ -769,19 +769,19 @@ importers:
 
   packages/options:
     dependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-data-structures':
+      '@trezoa/codecs-data-structures':
         specifier: workspace:*
         version: link:../codecs-data-structures
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
@@ -790,20 +790,20 @@ importers:
 
   packages/programs:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
 
@@ -815,28 +815,28 @@ importers:
 
   packages/react:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/promises':
+      '@trezoa/promises':
         specifier: workspace:*
         version: link:../promises
-      '@solana/signers':
+      '@trezoa/signers':
         specifier: workspace:*
         version: link:../signers
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
-      '@solana/wallet-standard-features':
+      '@trezoa/wallet-standard-features':
         specifier: ^1.3.0
         version: 1.3.0
       '@wallet-standard/base':
@@ -852,10 +852,10 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
     devDependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       '@types/react':
@@ -876,84 +876,84 @@ importers:
 
   packages/rpc:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/fast-stable-stringify':
+      '@trezoa/fast-stable-stringify':
         specifier: workspace:*
         version: link:../fast-stable-stringify
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/rpc-api':
+      '@trezoa/rpc-api':
         specifier: workspace:*
         version: link:../rpc-api
-      '@solana/rpc-spec':
+      '@trezoa/rpc-spec':
         specifier: workspace:*
         version: link:../rpc-spec
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/rpc-transformers':
+      '@trezoa/rpc-transformers':
         specifier: workspace:*
         version: link:../rpc-transformers
-      '@solana/rpc-transport-http':
+      '@trezoa/rpc-transport-http':
         specifier: workspace:*
         version: link:../rpc-transport-http
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
 
   packages/rpc-api:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/rpc-parsed-types':
+      '@trezoa/rpc-parsed-types':
         specifier: workspace:*
         version: link:../rpc-parsed-types
-      '@solana/rpc-spec':
+      '@trezoa/rpc-spec':
         specifier: workspace:*
         version: link:../rpc-spec
-      '@solana/rpc-transformers':
+      '@trezoa/rpc-transformers':
         specifier: workspace:*
         version: link:../rpc-transformers
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/rpc-transport-http':
+      '@trezoa/rpc-transport-http':
         specifier: workspace:*
         version: link:../rpc-transport-http
 
@@ -962,10 +962,10 @@ importers:
       '@graphql-tools/schema':
         specifier: ^10.0.30
         version: 10.0.30(graphql@16.12.0)
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/fast-stable-stringify':
+      '@trezoa/fast-stable-stringify':
         specifier: workspace:*
         version: link:../fast-stable-stringify
       dataloader:
@@ -978,19 +978,19 @@ importers:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/rpc':
+      '@trezoa/rpc':
         specifier: workspace:*
         version: link:../rpc
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
 
@@ -1000,19 +1000,19 @@ importers:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
 
   packages/rpc-spec:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
       typescript:
@@ -1027,93 +1027,93 @@ importers:
 
   packages/rpc-subscriptions:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/fast-stable-stringify':
+      '@trezoa/fast-stable-stringify':
         specifier: workspace:*
         version: link:../fast-stable-stringify
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/promises':
+      '@trezoa/promises':
         specifier: workspace:*
         version: link:../promises
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/rpc-subscriptions-api':
+      '@trezoa/rpc-subscriptions-api':
         specifier: workspace:*
         version: link:../rpc-subscriptions-api
-      '@solana/rpc-subscriptions-channel-websocket':
+      '@trezoa/rpc-subscriptions-channel-websocket':
         specifier: workspace:*
         version: link:../rpc-subscriptions-channel-websocket
-      '@solana/rpc-subscriptions-spec':
+      '@trezoa/rpc-subscriptions-spec':
         specifier: workspace:*
         version: link:../rpc-subscriptions-spec
-      '@solana/rpc-transformers':
+      '@trezoa/rpc-transformers':
         specifier: workspace:*
         version: link:../rpc-transformers
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/subscribable':
+      '@trezoa/subscribable':
         specifier: workspace:*
         version: link:../subscribable
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
 
   packages/rpc-subscriptions-api:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/rpc-subscriptions-spec':
+      '@trezoa/rpc-subscriptions-spec':
         specifier: workspace:*
         version: link:../rpc-subscriptions-spec
-      '@solana/rpc-transformers':
+      '@trezoa/rpc-transformers':
         specifier: workspace:*
         version: link:../rpc-transformers
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/rpc-subscriptions-channel-websocket':
+      '@trezoa/rpc-subscriptions-channel-websocket':
         specifier: workspace:*
         version: link:../rpc-subscriptions-channel-websocket
 
   packages/rpc-subscriptions-channel-websocket:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/rpc-subscriptions-spec':
+      '@trezoa/rpc-subscriptions-spec':
         specifier: workspace:*
         version: link:../rpc-subscriptions-spec
-      '@solana/subscribable':
+      '@trezoa/subscribable':
         specifier: workspace:*
         version: link:../subscribable
       typescript:
@@ -1123,10 +1123,10 @@ importers:
         specifier: ^8.18.0
         version: 8.18.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     devDependencies:
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
-      '@solana/ws-impl':
+      '@trezoa/ws-impl':
         specifier: workspace:*
         version: link:../ws-impl
       jest-websocket-mock:
@@ -1135,41 +1135,41 @@ importers:
 
   packages/rpc-subscriptions-spec:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/promises':
+      '@trezoa/promises':
         specifier: workspace:*
         version: link:../promises
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/subscribable':
+      '@trezoa/subscribable':
         specifier: workspace:*
         version: link:../subscribable
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
 
   packages/rpc-transformers:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       typescript:
@@ -1178,13 +1178,13 @@ importers:
 
   packages/rpc-transport-http:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/rpc-spec':
+      '@trezoa/rpc-spec':
         specifier: workspace:*
         version: link:../rpc-spec
-      '@solana/rpc-spec-types':
+      '@trezoa/rpc-spec-types':
         specifier: workspace:*
         version: link:../rpc-spec-types
       typescript:
@@ -1206,22 +1206,22 @@ importers:
 
   packages/rpc-types:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
       typescript:
@@ -1230,88 +1230,88 @@ importers:
 
   packages/signers:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
-      '@solana/offchain-messages':
+      '@trezoa/offchain-messages':
         specifier: workspace:*
         version: link:../offchain-messages
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/text-encoding-impl':
+      '@trezoa/text-encoding-impl':
         specifier: workspace:*
         version: link:../text-encoding-impl
 
   packages/subscribable:
     dependencies:
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
 
   packages/sysvars:
     dependencies:
-      '@solana/accounts':
+      '@trezoa/accounts':
         specifier: workspace:*
         version: link:../accounts
-      '@solana/codecs':
+      '@trezoa/codecs':
         specifier: workspace:*
         version: link:../codecs
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/rpc-api':
+      '@trezoa/rpc-api':
         specifier: workspace:*
         version: link:../rpc-api
-      '@solana/rpc-parsed-types':
+      '@trezoa/rpc-parsed-types':
         specifier: workspace:*
         version: link:../rpc-parsed-types
-      '@solana/rpc-spec':
+      '@trezoa/rpc-spec':
         specifier: workspace:*
         version: link:../rpc-spec
-      '@solana/rpc-transport-http':
+      '@trezoa/rpc-transport-http':
         specifier: workspace:*
         version: link:../rpc-transport-http
 
@@ -1345,123 +1345,123 @@ importers:
 
   packages/transaction-confirmation:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/promises':
+      '@trezoa/promises':
         specifier: workspace:*
         version: link:../promises
-      '@solana/rpc':
+      '@trezoa/rpc':
         specifier: workspace:*
         version: link:../rpc
-      '@solana/rpc-subscriptions':
+      '@trezoa/rpc-subscriptions':
         specifier: workspace:*
         version: link:../rpc-subscriptions
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
-      '@solana/transactions':
+      '@trezoa/transactions':
         specifier: workspace:*
         version: link:../transactions
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/event-target-impl':
+      '@trezoa/event-target-impl':
         specifier: workspace:*
         version: link:../event-target-impl
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
 
   packages/transaction-messages:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-data-structures':
+      '@trezoa/codecs-data-structures':
         specifier: workspace:*
         version: link:../codecs-data-structures
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
       typescript:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
 
   packages/transactions:
     dependencies:
-      '@solana/addresses':
+      '@trezoa/addresses':
         specifier: workspace:*
         version: link:../addresses
-      '@solana/codecs-core':
+      '@trezoa/codecs-core':
         specifier: workspace:*
         version: link:../codecs-core
-      '@solana/codecs-data-structures':
+      '@trezoa/codecs-data-structures':
         specifier: workspace:*
         version: link:../codecs-data-structures
-      '@solana/codecs-numbers':
+      '@trezoa/codecs-numbers':
         specifier: workspace:*
         version: link:../codecs-numbers
-      '@solana/codecs-strings':
+      '@trezoa/codecs-strings':
         specifier: workspace:*
         version: link:../codecs-strings
-      '@solana/errors':
+      '@trezoa/errors':
         specifier: workspace:*
         version: link:../errors
-      '@solana/functional':
+      '@trezoa/functional':
         specifier: workspace:*
         version: link:../functional
-      '@solana/instructions':
+      '@trezoa/instructions':
         specifier: workspace:*
         version: link:../instructions
-      '@solana/keys':
+      '@trezoa/keys':
         specifier: workspace:*
         version: link:../keys
-      '@solana/nominal-types':
+      '@trezoa/nominal-types':
         specifier: workspace:*
         version: link:../nominal-types
-      '@solana/rpc-types':
+      '@trezoa/rpc-types':
         specifier: workspace:*
         version: link:../rpc-types
-      '@solana/transaction-messages':
+      '@trezoa/transaction-messages':
         specifier: workspace:*
         version: link:../transaction-messages
       typescript:
@@ -1479,7 +1479,7 @@ importers:
         specifier: '>=5.3.3'
         version: 5.8.2
     devDependencies:
-      '@solana/crypto-impl':
+      '@trezoa/crypto-impl':
         specifier: workspace:*
         version: link:../crypto-impl
 
@@ -4295,55 +4295,55 @@ packages:
   '@sinonjs/fake-timers@8.1.0':
     resolution: {integrity: sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==}
 
-  '@solana-program/address-lookup-table@0.10.0':
+  '@trezoa-program/address-lookup-table@0.10.0':
     resolution: {integrity: sha512-lcp+IYwoFBODhg8vXsh5vpxweLxpSKqjAu8P1LyqQxgk2yqwYmJGA79YKa+lZvsQjP/c0rzIZYWIGxFMMes2zA==}
     peerDependencies:
-      '@solana/kit': ^5.0
+      '@trezoa/kit': ^5.0
 
-  '@solana-program/compute-budget@0.11.0':
+  '@trezoa-program/compute-budget@0.11.0':
     resolution: {integrity: sha512-7f1ePqB/eURkTwTOO9TNIdUXZcyrZoX3Uy2hNo7cXMfNhPFWp9AVgIyRNBc2jf15sdUa9gNpW+PfP2iV8AYAaw==}
     peerDependencies:
-      '@solana/kit': ^5.0
+      '@trezoa/kit': ^5.0
 
-  '@solana-program/memo@0.10.0':
+  '@trezoa-program/memo@0.10.0':
     resolution: {integrity: sha512-1FvQFenL3lzl5SpxhWV4QJCOLU/nvAOXGXjKjS7dprvG+0u971xoanApN7bM/a4NFZolp6S+lP2xVl6vTVIxbg==}
     peerDependencies:
-      '@solana/kit': ^5.0
+      '@trezoa/kit': ^5.0
 
-  '@solana-program/system@0.10.0':
+  '@trezoa-program/system@0.10.0':
     resolution: {integrity: sha512-Go+LOEZmqmNlfr+Gjy5ZWAdY5HbYzk2RBewD9QinEU/bBSzpFfzqDRT55JjFRBGJUvMgf3C2vfXEGT4i8DSI4g==}
     peerDependencies:
-      '@solana/kit': ^5.0
+      '@trezoa/kit': ^5.0
 
-  '@solana-program/token@0.9.0':
+  '@trezoa-program/token@0.9.0':
     resolution: {integrity: sha512-vnZxndd4ED4Fc56sw93cWZ2djEeeOFxtaPS8SPf5+a+JZjKA/EnKqzbE1y04FuMhIVrLERQ8uR8H2h72eZzlsA==}
     peerDependencies:
-      '@solana/kit': ^5.0
+      '@trezoa/kit': ^5.0
 
-  '@solana/buffer-layout@4.0.1':
+  '@trezoa/buffer-layout@4.0.1':
     resolution: {integrity: sha512-E1ImOIAD1tBZFRdjeM4/pzTiTApC0AOBGwyAMS4fwIodCWArzJ3DWdoh8cKxeFM2fElkxBh2Aqts1BPC373rHA==}
     engines: {node: '>=5.10'}
 
-  '@solana/codecs-core@2.3.0':
+  '@trezoa/codecs-core@2.3.0':
     resolution: {integrity: sha512-oG+VZzN6YhBHIoSKgS5ESM9VIGzhWjEHEGNPSibiDTxFhsFWxNaz8LbMDPjBUE69r9wmdGLkrQ+wVPbnJcZPvw==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
       typescript: '>=5.3.3'
 
-  '@solana/codecs-numbers@2.3.0':
+  '@trezoa/codecs-numbers@2.3.0':
     resolution: {integrity: sha512-jFvvwKJKffvG7Iz9dmN51OGB7JBcy2CJ6Xf3NqD/VP90xak66m/Lg48T01u5IQ/hc15mChVHiBm+HHuOFDUrQg==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
       typescript: '>=5.3.3'
 
-  '@solana/errors@2.3.0':
+  '@trezoa/errors@2.3.0':
     resolution: {integrity: sha512-66RI9MAbwYV0UtP7kGcTBVLxJgUxoZGm8Fbc0ah+lGiAw17Gugco6+9GrJCV83VyF2mDWyYnYM9qdI3yjgpnaQ==}
     engines: {node: '>=20.18.0'}
     hasBin: true
     peerDependencies:
       typescript: '>=5.3.3'
 
-  '@solana/eslint-config-solana@4.0.0':
+  '@trezoa/eslint-config-trezoa@4.0.0':
     resolution: {integrity: sha512-kDhd7uOsby+7Gffenn0EBeE692s2cwPe0/Lv1BsdfeniDM4NxBcfIXLQFB8iCCvdFWrO9b+0SMuGrhRHdgTDQQ==}
     peerDependencies:
       '@eslint/js': ^9.13.0
@@ -4359,7 +4359,7 @@ packages:
       typescript: ^5.6
       typescript-eslint: ^8.11.0
 
-  '@solana/eslint-config-solana@5.0.0':
+  '@trezoa/eslint-config-trezoa@5.0.0':
     resolution: {integrity: sha512-DPsoloOpVf/4JD7m3j394BvJX8mCKTSQ1xJrP0tyyeLEZN7x09OL9uj2bo2Ma4UTYZsyV97p2eiuiHmJVA0Kfw==}
     peerDependencies:
       '@eslint/js': ^9.13.0
@@ -4375,16 +4375,16 @@ packages:
       typescript: ^5.6
       typescript-eslint: ^8.11.0
 
-  '@solana/prettier-config-solana@0.0.5':
+  '@trezoa/prettier-config-trezoa@0.0.5':
     resolution: {integrity: sha512-igtLH1QaX5xzSLlqteexRIg9X1QKA03xKYQc2qY1TrMDDhxKXoRZOStQPWdita2FVJzxTGz/tdMGC1vS0biRcg==}
     peerDependencies:
       prettier: ^3.2.0
 
-  '@solana/wallet-standard-features@1.3.0':
+  '@trezoa/wallet-standard-features@1.3.0':
     resolution: {integrity: sha512-ZhpZtD+4VArf6RPitsVExvgkF+nGghd1rzPjd97GmBximpnt1rsUxMOEyoIEuH3XBxPyNB6Us7ha7RHWQR+abg==}
     engines: {node: '>=16'}
 
-  '@solana/web3.js@1.98.4':
+  '@trezoa/web3.js@1.98.4':
     resolution: {integrity: sha512-vv9lfnvjUsRiq//+j5pBdXig0IQdtzA0BRZ3bXEP4KaIyF1CcaydWqgyzQgfZMNIsWNWmG+AUHwPy4AHOD6gpw==}
 
   '@standard-schema/spec@1.0.0':
@@ -11205,48 +11205,48 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
-  '@solana-program/address-lookup-table@0.10.0(@solana/kit@packages+kit)':
+  '@trezoa-program/address-lookup-table@0.10.0(@trezoa/kit@packages+kit)':
     dependencies:
-      '@solana/kit': link:packages/kit
+      '@trezoa/kit': link:packages/kit
 
-  '@solana-program/compute-budget@0.11.0(@solana/kit@packages+kit)':
+  '@trezoa-program/compute-budget@0.11.0(@trezoa/kit@packages+kit)':
     dependencies:
-      '@solana/kit': link:packages/kit
+      '@trezoa/kit': link:packages/kit
 
-  '@solana-program/memo@0.10.0(@solana/kit@packages+kit)':
+  '@trezoa-program/memo@0.10.0(@trezoa/kit@packages+kit)':
     dependencies:
-      '@solana/kit': link:packages/kit
+      '@trezoa/kit': link:packages/kit
 
-  '@solana-program/system@0.10.0(@solana/kit@packages+kit)':
+  '@trezoa-program/system@0.10.0(@trezoa/kit@packages+kit)':
     dependencies:
-      '@solana/kit': link:packages/kit
+      '@trezoa/kit': link:packages/kit
 
-  '@solana-program/token@0.9.0(@solana/kit@packages+kit)':
+  '@trezoa-program/token@0.9.0(@trezoa/kit@packages+kit)':
     dependencies:
-      '@solana/kit': link:packages/kit
+      '@trezoa/kit': link:packages/kit
 
-  '@solana/buffer-layout@4.0.1':
+  '@trezoa/buffer-layout@4.0.1':
     dependencies:
       buffer: 6.0.3
 
-  '@solana/codecs-core@2.3.0(typescript@5.8.3)':
+  '@trezoa/codecs-core@2.3.0(typescript@5.8.3)':
     dependencies:
-      '@solana/errors': 2.3.0(typescript@5.8.3)
+      '@trezoa/errors': 2.3.0(typescript@5.8.3)
       typescript: 5.8.3
 
-  '@solana/codecs-numbers@2.3.0(typescript@5.8.3)':
+  '@trezoa/codecs-numbers@2.3.0(typescript@5.8.3)':
     dependencies:
-      '@solana/codecs-core': 2.3.0(typescript@5.8.3)
-      '@solana/errors': 2.3.0(typescript@5.8.3)
+      '@trezoa/codecs-core': 2.3.0(typescript@5.8.3)
+      '@trezoa/errors': 2.3.0(typescript@5.8.3)
       typescript: 5.8.3
 
-  '@solana/errors@2.3.0(typescript@5.8.3)':
+  '@trezoa/errors@2.3.0(typescript@5.8.3)':
     dependencies:
       chalk: 5.6.2
       commander: 14.0.2
       typescript: 5.8.3
 
-  '@solana/eslint-config-solana@4.0.0(a75c074b419cff6286bc2273f9285a13)':
+  '@trezoa/eslint-config-trezoa@4.0.0(a75c074b419cff6286bc2273f9285a13)':
     dependencies:
       '@eslint/js': 9.38.0
       '@types/eslint__js': 8.42.3
@@ -11261,7 +11261,7 @@ snapshots:
       typescript: 5.8.3
       typescript-eslint: 8.17.0(eslint@9.38.0(jiti@1.21.7))(typescript@5.8.3)
 
-  '@solana/eslint-config-solana@5.0.0(05eb3607f3b2b74d94f3161ec535633f)':
+  '@trezoa/eslint-config-trezoa@5.0.0(05eb3607f3b2b74d94f3161ec535633f)':
     dependencies:
       '@eslint/js': 9.38.0
       '@types/eslint__js': 8.42.3
@@ -11276,22 +11276,22 @@ snapshots:
       typescript: 5.8.3
       typescript-eslint: 8.17.0(eslint@9.38.0(jiti@1.21.7))(typescript@5.8.3)
 
-  '@solana/prettier-config-solana@0.0.5(prettier@3.6.2)':
+  '@trezoa/prettier-config-trezoa@0.0.5(prettier@3.6.2)':
     dependencies:
       prettier: 3.6.2
 
-  '@solana/wallet-standard-features@1.3.0':
+  '@trezoa/wallet-standard-features@1.3.0':
     dependencies:
       '@wallet-standard/base': 1.1.0
       '@wallet-standard/features': 1.1.0
 
-  '@solana/web3.js@1.98.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)':
+  '@trezoa/web3.js@1.98.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)':
     dependencies:
       '@babel/runtime': 7.28.3
       '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
-      '@solana/buffer-layout': 4.0.1
-      '@solana/codecs-numbers': 2.3.0(typescript@5.8.3)
+      '@trezoa/buffer-layout': 4.0.1
+      '@trezoa/codecs-numbers': 2.3.0(typescript@5.8.3)
       agentkeepalive: 4.6.0
       bn.js: 5.2.2
       borsh: 0.7.0

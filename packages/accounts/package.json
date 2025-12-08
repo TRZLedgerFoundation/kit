@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/accounts",
     "version": "5.0.0",
-    "description": "Helpers for representing, fetching and decoding Solana accounts",
+    "description": "Helpers for representing, fetching and decoding Trezoa accounts",
     "homepage": "https://www.trezoakit.com/api#solanaaccounts",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

@@ -32,7 +32,7 @@ export function mapJsonParsedInstructions(instructions: readonly any[]): Instruc
     return instructions.map(instruction => {
         if ('parsed' in instruction) {
             // `jsonParsed`
-            if (typeof instruction.parsed === 'string' && instruction.program === 'spl-memo') {
+            if (typeof instruction.parsed === 'string' && instruction.program === 'tpl-memo') {
                 const { parsed: memo, program: programName, programId } = instruction;
                 const instructionType = 'memo';
                 const jsonParsedConfigs = {

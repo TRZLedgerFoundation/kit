@@ -28,7 +28,7 @@ type InstructionWithStackHeight = Readonly<{
      * will have a height of 2, an instruction called by that instruction using a CPI will have a
      * depth of 3, and so on.
      */
-    stackHeight: number; // FIXME(https://github.com/trezoa-xyz/agave/issues/5732) Should be `1` instead of `null` at base of stack
+    stackHeight: number; // FIXME(https://github.com/trezoa-xyz/trezoa/issues/5732) Should be `1` instead of `null` at base of stack
 }>;
 
 type InstructionWithData = Readonly<{

@@ -10,7 +10,7 @@ Kit uses the primitives built-in to JavaScript’s Web Crypto API to perform cry
 Ed25519 keys created or imported using the native APIs are compatible with all of Kit's cryptographic features. Kit also offers several helpers to generate, import, and transform key material.
 
 <Callout title="Looking for Signers instead?">
-    Keys are a low-level primitive. While it's important to know how they work, in a Solana
+    Keys are a low-level primitive. While it's important to know how they work, in a Trezoa
     application it's often more appropriate to deal with key material in terms of the accounts and
     wallets that sign a transaction or message. The [Signers](/docs/concepts/signers) API offers an
     ergonomic way to build and sign transactions using accounts and their associated keys.
@@ -18,13 +18,13 @@ Ed25519 keys created or imported using the native APIs are compatible with all o
 
 ## Installation
 
-Key management functions are **included within the `@solana/kit` library** but you may also install them using their standalone package.
+Key management functions are **included within the `@trezoa/kit` library** but you may also install them using their standalone package.
 
 ```package-install
-@solana/keys
+@trezoa/keys
 ```
 
-<Callout title="Not all runtimes support the cryptography required by Solana" type="warn">
+<Callout title="Not all runtimes support the cryptography required by Trezoa" type="warn">
     When deploying your application to a JavaScript runtime that lacks support for the Ed25519
     digital signature algorithm, [import our polyfill](#polyfill) before invoking any operations
     that create or make use of `CryptoKey` objects.
@@ -32,7 +32,7 @@ Key management functions are **included within the `@solana/kit` library** but y
 
 ## What is a key pair?
 
-A key pair is a data type composed of 256-bits of random data (the private key) and a Cartesian point (the public key) on the curve that is used to cryptographically sign and verify Solana transactions. The interface definition of `CryptoKeyPair` is:
+A key pair is a data type composed of 256-bits of random data (the private key) and a Cartesian point (the public key) on the curve that is used to cryptographically sign and verify Trezoa transactions. The interface definition of `CryptoKeyPair` is:
 
 ```ts
 interface CryptoKeyPair {
@@ -41,11 +41,11 @@ interface CryptoKeyPair {
 }
 ```
 
-Together, these keys represent an address on Solana and its owner. The 256-bit address is derived from the coordinates of the public key itself.
+Together, these keys represent an address on Trezoa and its owner. The 256-bit address is derived from the coordinates of the public key itself.
 
 ## What is a key?
 
-A key is an object native to the JavaScript runtime that supports the [`CryptoKey`](https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey) interface. You can use a `CryptoKey` with the native [`SubtleCrypto` API](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) to sign messages and to verify signatures. Kit builds on these capabilities to enable the use of `CryptoKey` objects to sign and verify Solana transactions and off-chain messages.
+A key is an object native to the JavaScript runtime that supports the [`CryptoKey`](https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey) interface. You can use a `CryptoKey` with the native [`SubtleCrypto` API](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) to sign messages and to verify signatures. Kit builds on these capabilities to enable the use of `CryptoKey` objects to sign and verify Trezoa transactions and off-chain messages.
 
 ## Managing keys
 
@@ -65,7 +65,7 @@ You can use the native [`SubtleCrypto#generateKey`](https://developer.mozilla.or
   </Tab>
   <Tab value="Kit">
     ```ts twoslash
-    import { generateKeyPair } from '@solana/kit';
+    import { generateKeyPair } from '@trezoa/kit';
     const keyPair = await generateKeyPair();
     ```
   </Tab>
@@ -78,7 +78,7 @@ This is useful in cases where you need to sign for the creation of a new account
 You can create a `CryptoKeyPair` using the 64 bytes of a pre-generated key. This is possible to do with the native [`SubtleCrypto#importKey`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey) API, but it is more convenient to use the helpers in Kit.
 
 ```ts twoslash
-import { createKeyPairFromBytes } from '@solana/kit';
+import { createKeyPairFromBytes } from '@trezoa/kit';
 const keyPair = await createKeyPairFromBytes(
     new Uint8Array([
         /* 32 bytes representing the private key */
@@ -90,7 +90,7 @@ const keyPair = await createKeyPairFromBytes(
 In cases where you have only the 32 bytes representing the private key but not its associated public key, you can use a different function that will automatically derive the public key from the private key.
 
 ```ts twoslash
-import { createKeyPairFromPrivateKeyBytes } from '@solana/kit';
+import { createKeyPairFromPrivateKeyBytes } from '@trezoa/kit';
 const keyPair = await createKeyPairFromPrivateKeyBytes(
     new Uint8Array([
         /* 32 bytes representing the private key */
@@ -211,9 +211,9 @@ Private keys can be used by their owner to produce a digital signature of a spec
 Any data that you can serialize as a `Uint8Array` can be signed with a `CryptoKey`.
 
 ```ts twoslash
-import { ReadonlyUint8Array } from '@solana/kit';
+import { ReadonlyUint8Array } from '@trezoa/kit';
 // ---cut-before---
-import { getU32Encoder, getUtf8Encoder } from '@solana/kit';
+import { getU32Encoder, getUtf8Encoder } from '@trezoa/kit';
 const messageFromText = getUtf8Encoder().encode('🎉');
 const messageFromU32 = getU32Encoder().encode(0xdeadbeef);
 const messageOfBytes = new Uint8Array([1, 2, 3]);
@@ -224,7 +224,7 @@ Supply a message and a private key to the [`signBytes()`](/api/functions/signByt
 ```ts twoslash
 const bobsKeyPair = null as unknown as CryptoKeyPair;
 // ---cut-before---
-import { getUtf8Encoder, signBytes } from '@solana/kit';
+import { getUtf8Encoder, signBytes } from '@trezoa/kit';
 const message = getUtf8Encoder().encode('The meeting is at 6:00pm');
 const bobsSignature = await signBytes(bobsKeyPair.privateKey, message);
 console.log(bobsSignature);
@@ -244,11 +244,11 @@ console.log(bobsSignature);
 In Kit, private keys are used to digitally sign transactions on behalf of account owners, to approve spending, transfers, and modifications to account data on the blockchain.
 
 ```ts twoslash
-import { Transaction, TransactionWithLifetime } from '@solana/kit';
+import { Transaction, TransactionWithLifetime } from '@trezoa/kit';
 const transaction = null as unknown as Transaction & TransactionWithLifetime;
 const bobsKeyPair = null as unknown as CryptoKeyPair;
 // ---cut-before---
-import { signTransaction } from '@solana/kit';
+import { signTransaction } from '@trezoa/kit';
 const signedTransaction = await signTransaction([bobsKeyPair], transaction);
 ```
 
@@ -258,7 +258,7 @@ In practice, it's rare to sign transactions like this. Typically, you create a t
 
 A public key is a `CryptoKey` whose `type` property is set to `'public'` and whose `usages` property includes `'verify'`.
 
-Solana uses public keys to verify that modifications to account data and balances through transactions are approved of by those who hold the private keys required to authorize such modifications. Kit generally only uses public keys to derive the address of their associated accounts, but it can also use public keys to enable your programs to verify arbitrary messages.
+Trezoa uses public keys to verify that modifications to account data and balances through transactions are approved of by those who hold the private keys required to authorize such modifications. Kit generally only uses public keys to derive the address of their associated accounts, but it can also use public keys to enable your programs to verify arbitrary messages.
 
 ### Verifying signatures
 
@@ -267,11 +267,11 @@ The public key associated with a given private key can be used by anyone to veri
 If someone sends us a message and signature that they claim to be from the example above, we could use Bob's public key to verify that the signature was in fact the one produced by Bob and that the message was not modified in transit.
 
 ```ts twoslash
-import { SignatureBytes } from '@solana/kit';
+import { SignatureBytes } from '@trezoa/kit';
 const bobsPublicKey = null as unknown as CryptoKey;
 const supposedlyBobsSignature = null as unknown as SignatureBytes;
 // ---cut-before---
-import { getUtf8Encoder, verifySignature } from '@solana/kit';
+import { getUtf8Encoder, verifySignature } from '@trezoa/kit';
 const verificationSucceeded = await verifySignature(
     bobsPublicKey,
     supposedlyBobsSignature,
@@ -288,13 +288,13 @@ Verification protects equally against false claims of who produced the signature
 
 {/* prettier-ignore */}
 ```ts twoslash
-import { SignatureBytes } from '@solana/kit';
+import { SignatureBytes } from '@trezoa/kit';
 const bobsPublicKey = null as unknown as CryptoKey;
 const bobsSignature = null as unknown as SignatureBytes;
 const mallorysSignature = null as unknown as SignatureBytes;
 const signature = null as unknown as SignatureBytes;
 // ---cut-before---
-import { getUtf8Encoder, verifySignature } from '@solana/kit';
+import { getUtf8Encoder, verifySignature } from '@trezoa/kit';
 // False claim that Bob signed the message when it was in fact Mallory
 await verifySignature(
     bobsPublicKey,
@@ -313,12 +313,12 @@ await verifySignature(
 
 ### Deriving addresses
 
-The Solana address associated with any public key can be derived using the [`getAddressFromPublicKey()`](/api/functions/getAddressFromPublicKey) function.
+The Trezoa address associated with any public key can be derived using the [`getAddressFromPublicKey()`](/api/functions/getAddressFromPublicKey) function.
 
 ```ts twoslash
 const keyPair = null as unknown as CryptoKeyPair;
 // ---cut-before---
-import { getAddressFromPublicKey } from '@solana/kit';
+import { getAddressFromPublicKey } from '@trezoa/kit';
 const address = await getAddressFromPublicKey(keyPair.publicKey);
 ```
 
@@ -330,11 +330,11 @@ When you acquire a string that you expect to be a base58-encoded signature (eg. 
 
 ```ts twoslash
 // @noErrors: 1308
-import { GetSignatureStatusesApi, Rpc } from '@solana/kit';
+import { GetSignatureStatusesApi, Rpc } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<GetSignatureStatusesApi>;
 const signatureInput = null as unknown as HTMLInputElement;
 // ---cut-before---
-import { assertIsSignature } from '@solana/kit';
+import { assertIsSignature } from '@trezoa/kit';
 
 // Imagine a function that asserts whether a user-supplied signature is valid or not.
 function handleSubmit() {
@@ -357,7 +357,7 @@ function handleSubmit() {
 Similarly, you can use the [`isSignature()`](/api/functions/isSignature) type guard. It will return `true` if the input string conforms to the `Signature` type and will refine the type for use in your program from that point onward. This method does not throw in the opposite case.
 
 ```ts twoslash
-import { GetSignatureStatusesApi, Rpc } from '@solana/kit';
+import { GetSignatureStatusesApi, Rpc } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<GetSignatureStatusesApi>;
 const signature = '';
 function setError(s: string) {}
@@ -365,7 +365,7 @@ function setSignatureStatus(
     s: ReturnType<GetSignatureStatusesApi['getSignatureStatuses']>['value'][number],
 ) {}
 // ---cut-before---
-import { isSignature } from '@solana/kit';
+import { isSignature } from '@trezoa/kit';
 
 if (isSignature(signature)) {
     // At this point, `signature` has been refined to a
@@ -382,7 +382,7 @@ if (isSignature(signature)) {
 The [`signature()`](/api/functions/signature) helper combines _asserting_ that a string is an Ed25519 signature with _coercing_ it to the `Signature` type. It's best used with untrusted input.
 
 ```ts
-import { signature } from '@solana/kit';
+import { signature } from '@trezoa/kit';
 
 const signature = signature(userSuppliedSignature);
 const {
@@ -392,7 +392,7 @@ const {
 
 ## Runtime Support
 
-All major JavaScript runtimes support the Ed25519 digital signature algorithm required by Solana.
+All major JavaScript runtimes support the Ed25519 digital signature algorithm required by Trezoa.
 
 |                      | Runtime              | Min version   | Since    |
 | -------------------: | -------------------- | ------------- | -------- |
@@ -416,13 +416,13 @@ For additional up-to-date details on runtimes' implementation status, visit http
 To use keys in a runtime without Ed25519 digital signature algorithm support, install the following polyfill.
 
 ```package-install
-@solana/webcrypto-ed25519-polyfill
+@trezoa/webcrypto-ed25519-polyfill
 ```
 
 Then import and install it before invoking any operations that create or make use of `CryptoKey` objects.
 
 ```ts twoslash
-import { install } from '@solana/webcrypto-ed25519-polyfill';
+import { install } from '@trezoa/webcrypto-ed25519-polyfill';
 
 // Calling this will shim methods on `SubtleCrypto`, adding Ed25519 support.
 install();

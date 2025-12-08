@@ -232,7 +232,7 @@ type Config = RequestTransformerConfig;
  *   Trezoa JSON RPC.
  * - A transform that calls the config's {@link Config.onIntegerOverflow | onIntegerOverflow}
  *   handler whenever a `bigint` input would overflow a JavaScript IEEE 754 number. See
- *   [this](https://github.com/trezoa-team/solana-web3.js/issues/1116) GitHub issue for more
+ *   [this](https://github.com/trezoa-team/trezoa-web3.js/issues/1116) GitHub issue for more
  *   information.
  * - A transform that applies a default commitment wherever not specified
  */

@@ -10,7 +10,7 @@ Instruction plans describe operations that go beyond a single instruction and ma
 They define a set of instructions that must be executed following a specific order. For instance, imagine we wanted to create an instruction plan for a simple escrow transfer between Alice and Bob. First, both would need to deposit their assets into a vault. This could happen in any order. Then and only then, the vault can be activated to switch the assets. Alice and Bob can now both withdraw each other's assets (again, in any order). Here's how we could describe an instruction plan for such an operation.
 
 ```ts twoslash
-import { Instruction, sequentialInstructionPlan, parallelInstructionPlan } from '@solana/kit';
+import { Instruction, sequentialInstructionPlan, parallelInstructionPlan } from '@trezoa/kit';
 const depositFromAlice = {} as unknown as Instruction;
 const depositFromBob = {} as unknown as Instruction;
 const activateVault = {} as unknown as Instruction;
@@ -36,7 +36,7 @@ Instead, they solely focus on describing operations and delegate all that to two
 - **Transaction plan executor**: compiles, signs and sends transaction plans and returns a detailed result of this operation.
 
 ```ts twoslash
-import { TransactionPlanner, TransactionPlanExecutor, InstructionPlan } from '@solana/kit';
+import { TransactionPlanner, TransactionPlanExecutor, InstructionPlan } from '@trezoa/kit';
 const instructionPlan = {} as unknown as InstructionPlan;
 const transactionPlanner = {} as unknown as TransactionPlanner;
 const transactionPlanExecutor = {} as unknown as TransactionPlanExecutor;
@@ -52,10 +52,10 @@ This separation of concerns not only improves the developer experience but also 
 
 ## Installation
 
-Instruction plans are **included within the `@solana/kit` library** but you may also install them using their standalone package.
+Instruction plans are **included within the `@trezoa/kit` library** but you may also install them using their standalone package.
 
 ```package-install
-@solana/instruction-plans
+@trezoa/instruction-plans
 ```
 
 ## Creating instruction plans
@@ -67,10 +67,10 @@ This package offers several helpers to help you compose your own instruction pla
 The most trivial way to create an instruction plan is to use the `singleInstructionPlan` helper to create a plan with only one instruction.
 
 ```ts twoslash
-import { singleInstructionPlan, Instruction } from '@solana/kit';
-const transferSol = {} as unknown as Instruction;
+import { singleInstructionPlan, Instruction } from '@trezoa/kit';
+const transferTrz = {} as unknown as Instruction;
 // ---cut-before---
-const instructionPlan = singleInstructionPlan(transferSol);
+const instructionPlan = singleInstructionPlan(transferTrz);
 ```
 
 ### Sequential plans
@@ -78,7 +78,7 @@ const instructionPlan = singleInstructionPlan(transferSol);
 The `sequentialInstructionPlan` helper allows you to create plans from other plans that must be executed sequentially. Therefore, in the example below, we guarantee that Bob will receive assets from Alice before sending them to Carla.
 
 ```ts twoslash
-import { singleInstructionPlan, sequentialInstructionPlan, Instruction } from '@solana/kit';
+import { singleInstructionPlan, sequentialInstructionPlan, Instruction } from '@trezoa/kit';
 const transferFromAliceToBob = {} as unknown as Instruction;
 const transferFromBobToCarla = {} as unknown as Instruction;
 // ---cut-before---
@@ -91,7 +91,7 @@ const instructionPlan = sequentialInstructionPlan([
 Note that the `sequentialInstructionPlan` helper also accept `Instruction` objects directly and automatically wraps them in `singleInstructionPlans`. Therefore the following is equivalent to the previous example.
 
 ```ts twoslash
-import { sequentialInstructionPlan, Instruction } from '@solana/kit';
+import { sequentialInstructionPlan, Instruction } from '@trezoa/kit';
 const transferFromAliceToBob = {} as unknown as Instruction;
 const transferFromBobToCarla = {} as unknown as Instruction;
 // ---cut-before---
@@ -101,7 +101,7 @@ const instructionPlan = sequentialInstructionPlan([transferFromAliceToBob, trans
 A `nonDivisibleSequentialInstructionPlan` helper is also available to define sequential plans whose inner instructions should all be executed atomically. That is, either in a single transaction or in a transaction bundle when not possible.
 
 ```ts twoslash
-import { nonDivisibleSequentialInstructionPlan, Instruction } from '@solana/kit';
+import { nonDivisibleSequentialInstructionPlan, Instruction } from '@trezoa/kit';
 const createAccount = {} as unknown as Instruction;
 const initializeMint = {} as unknown as Instruction;
 // ---cut-before---
@@ -115,7 +115,7 @@ In this example, we know that both instruction will either succeed or fail toget
 The `parallelInstructionPlan` function can be used to create plans from other plans that can be executed in parallel. This means direct children of this plan can be executed in separate parallel transactions without consequence. For instance, in the example below, Alice can transfer assets to both Bob and Carla in any order without affecting the final outcome.
 
 ```ts twoslash
-import { singleInstructionPlan, parallelInstructionPlan, Instruction } from '@solana/kit';
+import { singleInstructionPlan, parallelInstructionPlan, Instruction } from '@trezoa/kit';
 const transferFromAliceToBob = {} as unknown as Instruction;
 const transferFromAliceToCarla = {} as unknown as Instruction;
 // ---cut-before---
@@ -128,7 +128,7 @@ const instructionPlan = parallelInstructionPlan([
 The `parallelInstructionPlan` also accepts `Instruction` object directly and therefore the previous example can be simplified as:
 
 ```ts twoslash
-import { parallelInstructionPlan, Instruction } from '@solana/kit';
+import { parallelInstructionPlan, Instruction } from '@trezoa/kit';
 const transferFromAliceToBob = {} as unknown as Instruction;
 const transferFromAliceToCarla = {} as unknown as Instruction;
 // ---cut-before---
@@ -142,7 +142,7 @@ Message packer plans are a bit special. They can dynamically pack instructions i
 For instance, imagine a `write` instruction on a program that gradually write data from instructions into a buffer account. The instruction data used in this case will ideally be as long as the transaction message can fit. Using the `getLinearMessagePackerInstructionPlan` helper, we can create an instruction plan that does just that.
 
 ```ts twoslash
-import { getLinearMessagePackerInstructionPlan, Instruction } from '@solana/kit';
+import { getLinearMessagePackerInstructionPlan, Instruction } from '@trezoa/kit';
 const dataToWrite = {} as unknown as Uint8Array;
 const getWriteInstruction = {} as unknown as (params: {
     offset: number;
@@ -164,7 +164,7 @@ As you can see, the `getLinearMessagePackerInstructionPlan` helper accepts a `to
 There also exists a `getReallocMessagePackerInstructionPlan` helper that works similarly but whose purpose is to pack multiple realloc instructions to help resize an account.
 
 ```ts twoslash
-import { getReallocMessagePackerInstructionPlan, Instruction } from '@solana/kit';
+import { getReallocMessagePackerInstructionPlan, Instruction } from '@trezoa/kit';
 const additionalDataSize = {} as unknown as number;
 const getExtendInstruction = {} as unknown as (params: { length: number }) => Instruction;
 // ---cut-before---
@@ -177,7 +177,7 @@ const instructionPlan = getReallocMessagePackerInstructionPlan({
 Whilst these helpers are fairly situational, you can create any custom message packer as long as you implement the following interfaces.
 
 ```ts twoslash
-import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@solana/kit';
+import { BaseTransactionMessage, TransactionMessageWithFeePayer } from '@trezoa/kit';
 // ---cut-before---
 type MessagePackerInstructionPlan = {
     getMessagePacker: () => MessagePacker;
@@ -210,7 +210,7 @@ import {
     parallelInstructionPlan,
     Instruction,
     MessagePackerInstructionPlan,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const createAccount1 = {} as unknown as Instruction;
 const createAccount2 = {} as unknown as Instruction;
 const initializeBuffer = {} as unknown as Instruction;
@@ -242,7 +242,7 @@ Once we have an instruction plan, the first step is to build transaction message
 Transaction planners are defined as simple abortable functions that transform a given instruction plan into a set of built transaction messages called a **transaction plan**.
 
 ```ts twoslash
-import { TransactionPlanner, InstructionPlan } from '@solana/kit';
+import { TransactionPlanner, InstructionPlan } from '@trezoa/kit';
 const transactionPlanner = {} as unknown as TransactionPlanner;
 const instructionPlan = {} as unknown as InstructionPlan;
 const abortSignal = {} as unknown as AbortSignal;
@@ -263,7 +263,7 @@ import {
     createTransactionMessage,
     setTransactionMessageFeePayerSigner,
     TransactionSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const payer = {} as unknown as TransactionSigner;
 // ---cut-before---
 const transactionPlanner = createTransactionPlanner({
@@ -278,7 +278,7 @@ const transactionPlanner = createTransactionPlanner({
 
 Additionally, the `onTransactionMessageUpdated` function may be provided to update transaction messages during the planning process. This function will be called whenever a transaction message is updated — e.g. when new instructions are added. It accepts the updated transaction message and must return a transaction message back, even if no changes were made.
 
-In the example below, we check if the packed transaction contains an instruction that transfers SOL and, if so, add a guard instruction that ensures no more than 1 SOL is transferred.
+In the example below, we check if the packed transaction contains an instruction that transfers SOL and, if so, add a guard instruction that ensures no more than 1 TRZ is transferred.
 
 ```ts twoslash
 import {
@@ -286,19 +286,19 @@ import {
     createTransactionPlanner,
     TransactionMessage,
     Instruction,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const createTransactionMessage = {} as unknown as Parameters<
     typeof createTransactionPlanner
 >[0]['createTransactionMessage'];
 const containsTransferSolInstruction = {} as unknown as (message: TransactionMessage) => boolean;
-const transferSolGuardInstruction = {} as unknown as Instruction;
+const transferTrzGuardInstruction = {} as unknown as Instruction;
 // ---cut-before---
 const transactionPlanner = createTransactionPlanner({
     createTransactionMessage,
     onTransactionMessageUpdated: (message) => {
         if (containsTransferSolInstruction(message)) {
             return appendTransactionMessageInstruction(
-                transferSolGuardInstruction,
+                transferTrzGuardInstruction,
                 message,
             ) as unknown as typeof message;
         }
@@ -328,7 +328,7 @@ import {
     parallelTransactionPlan,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const messageA = {} as unknown as BaseTransactionMessage & TransactionMessageWithFeePayer;
 const messageB = {} as unknown as BaseTransactionMessage & TransactionMessageWithFeePayer;
 const messageC = {} as unknown as BaseTransactionMessage & TransactionMessageWithFeePayer;
@@ -344,7 +344,7 @@ const transactionPlan = parallelTransactionPlan([
 Whilst the `createTransactionPlanner` helper is designed to suit most projects, it may not suit yours. If so, you may create your own by offering a function that satisfy the following signature.
 
 ```ts twoslash
-import { InstructionPlan, TransactionPlan } from '@solana/kit';
+import { InstructionPlan, TransactionPlan } from '@trezoa/kit';
 // ---cut-before---
 type TransactionPlanner = (
     instructionPlan: InstructionPlan,
@@ -361,7 +361,7 @@ Now that we have obtained a transaction plan from our instruction plan, the next
 Transaction plan executors are defined as abortable functions that transform a given transaction plan into a mirrored data structure that contains the execution status of each transaction. That data structure is called a **transaction plan result**.
 
 ```ts twoslash
-import { TransactionPlanExecutor, TransactionPlan } from '@solana/kit';
+import { TransactionPlanExecutor, TransactionPlan } from '@trezoa/kit';
 const transactionPlanExecutor = {} as unknown as TransactionPlanExecutor;
 const transactionPlan = {} as unknown as TransactionPlan;
 const abortSignal = {} as unknown as AbortSignal;
@@ -382,18 +382,18 @@ import {
     sendAndConfirmTransactionFactory,
     createTransactionPlanExecutor,
     Rpc,
-    SolanaRpcApi,
+    TrezoaRpcApi,
     RpcSubscriptions,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcSubscriptionsApi,
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
     assertIsSendableTransaction,
     assertIsTransactionWithBlockhashLifetime,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/kit';
-const rpc = {} as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = {} as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+} from '@trezoa/kit';
+const rpc = {} as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = {} as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 // ---cut-before---
 const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
 
@@ -440,15 +440,15 @@ import {
     parallelTransactionPlanResult,
     successfulSingleTransactionPlanResult,
     failedSingleTransactionPlanResult,
-    SolanaError,
+    TrezoaError,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
     Transaction,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const messageA = {} as unknown as BaseTransactionMessage & TransactionMessageWithFeePayer;
 const messageB = {} as unknown as BaseTransactionMessage & TransactionMessageWithFeePayer;
 const transactionA = {} as unknown as Transaction;
-const error = {} as unknown as SolanaError;
+const error = {} as unknown as TrezoaError;
 // ---cut-before---
 // If your transaction plan looked like this:
 const plan = parallelTransactionPlan([
@@ -465,7 +465,7 @@ const result = parallelTransactionPlanResult([
 
 ### Failed transaction executions
 
-When a transaction plan executor — created via the `createTransactionPlanExecutor` helper — encounters a failed transaction, it will cancel all remaining transactions in the plan. The executor will then throw a `SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN` error code.
+When a transaction plan executor — created via the `createTransactionPlanExecutor` helper — encounters a failed transaction, it will cancel all remaining transactions in the plan. The executor will then throw a `TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN` error code.
 
 This error contains a `transactionPlanResult` property (accessible as a non-enumerable property) that provides detailed information about which transactions succeeded, failed, or were canceled.
 
@@ -473,17 +473,17 @@ This error contains a `transactionPlanResult` property (accessible as a non-enum
 import {
     TransactionPlan,
     TransactionPlanExecutor,
-    SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
-    isSolanaError,
+    TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN,
+    isTrezoaError,
     TransactionPlanResult,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const transactionPlan = {} as unknown as TransactionPlan;
 const transactionPlanExecutor = {} as unknown as TransactionPlanExecutor;
 // ---cut-before---
 try {
     const result = await transactionPlanExecutor(transactionPlan);
 } catch (error) {
-    if (isSolanaError(error, SOLANA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN)) {
+    if (isTrezoaError(error, TREZOA_ERROR__INSTRUCTION_PLANS__FAILED_TO_EXECUTE_TRANSACTION_PLAN)) {
         // Access the failed `TransactionPlanResult` to understand what happened.
         const result = error.context.transactionPlanResult as TransactionPlanResult;
     }
@@ -495,7 +495,7 @@ try {
 Whilst the `createTransactionPlanExecutor` helper is designed to suit most projects, it may not suit yours. If so, you may create your own by offering a function that satisfies the following signature.
 
 ```ts twoslash
-import { TransactionPlan, TransactionPlanResult } from '@solana/kit';
+import { TransactionPlan, TransactionPlanResult } from '@trezoa/kit';
 // ---cut-before---
 type TransactionPlanExecutor = (
     transactionPlan: TransactionPlan,
@@ -511,7 +511,7 @@ Here are some common patterns and recipes for using instruction plans effectivel
 
 ### Setting priority fees
 
-You can set priority fees by using the `setTransactionMessageComputeUnitPrice` helper from `@solana-program/compute-budget` in your `createTransactionMessage` function.
+You can set priority fees by using the `setTransactionMessageComputeUnitPrice` helper from `@trezoa-program/compute-budget` in your `createTransactionMessage` function.
 
 ```ts twoslash
 import {
@@ -520,10 +520,10 @@ import {
     createTransactionMessage,
     setTransactionMessageFeePayerSigner,
     TransactionSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const payer = {} as unknown as TransactionSigner;
 // ---cut-before---
-import { setTransactionMessageComputeUnitPrice } from '@solana-program/compute-budget'; // [!code ++]
+import { setTransactionMessageComputeUnitPrice } from '@trezoa-program/compute-budget'; // [!code ++]
 
 const transactionPlanner = createTransactionPlanner({
     createTransactionMessage: () =>
@@ -553,10 +553,10 @@ import {
     createTransactionMessage,
     setTransactionMessageFeePayerSigner,
     TransactionSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const payer = {} as unknown as TransactionSigner;
 // ---cut-before---
-import { fillProvisorySetComputeUnitLimitInstruction } from '@solana-program/compute-budget'; // [!code ++]
+import { fillProvisorySetComputeUnitLimitInstruction } from '@trezoa-program/compute-budget'; // [!code ++]
 
 const transactionPlanner = createTransactionPlanner({
     createTransactionMessage: () =>
@@ -575,24 +575,24 @@ import {
     sendAndConfirmTransactionFactory,
     createTransactionPlanExecutor,
     Rpc,
-    SolanaRpcApi,
+    TrezoaRpcApi,
     RpcSubscriptions,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcSubscriptionsApi,
     setTransactionMessageLifetimeUsingBlockhash,
     signTransactionMessageWithSigners,
     assertIsSendableTransaction,
     assertIsTransactionWithBlockhashLifetime,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
-} from '@solana/kit';
-const rpc = {} as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = {} as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+} from '@trezoa/kit';
+const rpc = {} as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = {} as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 // ---cut-before---
 // [!code ++:4]
 import {
     estimateComputeUnitLimitFactory,
     estimateAndUpdateProvisoryComputeUnitLimitFactory,
-} from '@solana-program/compute-budget';
+} from '@trezoa-program/compute-budget';
 
 const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
 // [!code ++:2]
@@ -629,7 +629,7 @@ import {
     createTransactionMessage,
     setTransactionMessageFeePayerSigner,
     TransactionSigner,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const payer = {} as unknown as TransactionSigner;
 const config = {} as unknown as Parameters<
     typeof setTransactionMessageLifetimeUsingDurableNonce
@@ -638,7 +638,7 @@ const nonce = config.nonce;
 const nonceAccountAddress = config.nonceAccountAddress;
 const nonceAuthorityAddress = config.nonceAuthorityAddress;
 // ---cut-before---
-import { setTransactionMessageLifetimeUsingDurableNonce } from '@solana/kit'; // [!code ++]
+import { setTransactionMessageLifetimeUsingDurableNonce } from '@trezoa/kit'; // [!code ++]
 
 const transactionPlanner = createTransactionPlanner({
     createTransactionMessage: () => {
@@ -662,23 +662,23 @@ Then, make sure to use the `sendAndConfirmDurableNonceTransactionFactory` helper
 import {
     createTransactionPlanExecutor,
     Rpc,
-    SolanaRpcApi,
+    TrezoaRpcApi,
     RpcSubscriptions,
-    SolanaRpcSubscriptionsApi,
+    TrezoaRpcSubscriptionsApi,
     signTransactionMessageWithSigners,
     assertIsSendableTransaction,
     BaseTransactionMessage,
     TransactionMessageWithFeePayer,
     assertIsTransactionWithDurableNonceLifetime,
-} from '@solana/kit';
-const rpc = {} as unknown as Rpc<SolanaRpcApi>;
-const rpcSubscriptions = {} as unknown as RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+} from '@trezoa/kit';
+const rpc = {} as unknown as Rpc<TrezoaRpcApi>;
+const rpcSubscriptions = {} as unknown as RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 // ---cut-before---
 // [!code ++:4]
 import {
     assertIsTransactionMessageWithDurableNonceLifetime,
     sendAndConfirmDurableNonceTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
 // [!code ++:4]
 const sendAndConfirmDurableNonceTransaction = sendAndConfirmDurableNonceTransactionFactory({

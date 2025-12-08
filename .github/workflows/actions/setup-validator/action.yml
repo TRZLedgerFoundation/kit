@@ -1,5 +1,5 @@
-name: Install Solana Test Validator
-description: Downloads and caches an install of the latest Solana Test Validator
+name: Install Trezoa Test Validator
+description: Downloads and caches an install of the latest Trezoa Test Validator
 
 outputs:
   pid:

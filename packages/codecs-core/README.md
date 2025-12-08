@@ -553,12 +553,12 @@ u32InTheMiddleCodec.encode(0xffffffff);
 // 0x0000ffffffff0000
 ```
 
-Also note that any negative offset or offset that exceeds the size of the byte array will throw a `TrezoaError` of code `SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE`.
+Also note that any negative offset or offset that exceeds the size of the byte array will throw a `TrezoaError` of code `TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE`.
 
 ```ts
 const u32InTheEndCodec = offsetCodec(biggerU32Codec, { preOffset: () => -4 });
 u32InTheEndCodec.encode(0xffffffff);
-// throws new TrezoaError(SOLANA_ERROR__CODECS__OFFSET_OUT_OF_RANGE)
+// throws new TrezoaError(TREZOA_ERROR__CODECS__OFFSET_OUT_OF_RANGE)
 ```
 
 To avoid this, you may use the `wrapBytes` function to wrap the offset around the byte array length. For instance, here's how we can use the `wrapBytes` function to move the pre-offset 4 bytes from the end of the byte array.

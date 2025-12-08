@@ -3,7 +3,7 @@ title: Installation
 description: Get started with Kit
 ---
 
-Kit is a JavaScript SDK for building Solana apps across environments like Node, the web, and React Native. It provides a comprehensive set of data types and helper functions, forming the foundation for interacting with Solana in JavaScript.
+Kit is a JavaScript SDK for building Trezoa apps across environments like Node, the web, and React Native. It provides a comprehensive set of data types and helper functions, forming the foundation for interacting with Trezoa in JavaScript.
 
 <Callout title="Coming from Web3.js?">
     Check out our [Upgrade guide](/docs/upgrade-guide) to see how Kit compares to Web3.js.
@@ -18,10 +18,10 @@ Follow these simple steps to install and get started with Kit:
  
 ### Install Kit
 
-Install Kit using the main `@solana/kit` library. It includes many smaller packages — such as `@solana/rpc` or `@solana/transactions` — that can also be used individually for more granular imports.
+Install Kit using the main `@trezoa/kit` library. It includes many smaller packages — such as `@trezoa/rpc` or `@trezoa/transactions` — that can also be used individually for more granular imports.
 
 ```package-install
-@solana/kit
+@trezoa/kit
 ```
 
 </Step>
@@ -30,13 +30,13 @@ Install Kit using the main `@solana/kit` library. It includes many smaller packa
 
 ### Install program clients
 
-Install Kit compatible clients for any program you want to interact with. For example, to interact with the System program, install the `@solana-program/system` package. You can find a [list of available program clients here](/docs/compatible-clients).
+Install Kit compatible clients for any program you want to interact with. For example, to interact with the System program, install the `@trezoa-program/system` package. You can find a [list of available program clients here](/docs/compatible-clients).
 
 ```package-install
-npm install @solana-program/system \
-  @solana-program/memo \
-  @solana-program/token \
-  @solana-program/compute-budget
+npm install @trezoa-program/system \
+  @trezoa-program/memo \
+  @trezoa-program/token \
+  @trezoa-program/compute-budget
 ```
 
 </Step>
@@ -45,19 +45,19 @@ npm install @solana-program/system \
 
 ### Set up your project
 
-Use primitives provided by Kit to set up your project and start interacting with Solana!
+Use primitives provided by Kit to set up your project and start interacting with Trezoa!
 
 For example, if you are planning on sending transactions, you will likely need an RPC API, an RPC Subscriptions API and a "send and confirm" strategy.
 
 ```ts twoslash
 import {
-    createSolanaRpc,
-    createSolanaRpcSubscriptions,
+    createTrezoaRpc,
+    createTrezoaRpcSubscriptions,
     sendAndConfirmTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 
-const rpc = createSolanaRpc('https://api.devnet.trezoa.com');
-const rpcSubscriptions = createSolanaRpcSubscriptions('wss://api.devnet.trezoa.com');
+const rpc = createTrezoaRpc('https://api.devnet.trezoa.com');
+const rpcSubscriptions = createTrezoaRpcSubscriptions('wss://api.devnet.trezoa.com');
 const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSubscriptions });
 ```
 

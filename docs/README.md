@@ -13,7 +13,7 @@ pnpm install --ignore-workspace
 ## Download necessary environment variables (employees only)
 
 ```bash
-pnpm vercel link -p kit-docs -S anza-tech --yes
+pnpm vercel link -p kit-docs -S trezoa-tech --yes
 pnpm vercel env pull --environment=development
 ```
 

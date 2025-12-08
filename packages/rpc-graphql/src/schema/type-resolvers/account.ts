@@ -118,8 +118,8 @@ export const accountTypeResolvers = {
                     return 'NonceAccount';
                 }
                 if (
-                    jsonParsedConfigs.programName === 'spl-token' ||
-                    jsonParsedConfigs.programName === 'spl-token-2022'
+                    jsonParsedConfigs.programName === 'tpl-token' ||
+                    jsonParsedConfigs.programName === 'tpl-token-2022'
                 ) {
                     if (jsonParsedConfigs.accountType === 'mint') {
                         return 'MintAccount';

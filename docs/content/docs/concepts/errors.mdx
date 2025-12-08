@@ -9,17 +9,17 @@ The ecosystem of packages based on Kit's error system benefit from strongly type
 
 ## Installation
 
-Errors are **included within the `@solana/kit` library** but you may also install them using their standalone package.
+Errors are **included within the `@trezoa/kit` library** but you may also install them using their standalone package.
 
 ```package-install
-@solana/errors
+@trezoa/errors
 ```
 
-## What is a `SolanaError`?
+## What is a `TrezoaError`?
 
-A `SolanaError` is a class made of three components:
+A `TrezoaError` is a class made of three components:
 
-- An error **code**; found in the union named [`SolanaErrorCode`](/api/type-aliases/SolanaErrorCode)
+- An error **code**; found in the union named [`TrezoaErrorCode`](/api/type-aliases/TrezoaErrorCode)
 - An error **message**
 - Optional error **context**
 
@@ -30,7 +30,7 @@ import {
     Transaction,
     TransactionWithBlockhashLifetime,
     sendAndConfirmTransactionFactory,
-} from '@solana/kit';
+} from '@trezoa/kit';
 const sendAndConfirmTransaction = null as unknown as ReturnType<
     typeof sendAndConfirmTransactionFactory
 >;
@@ -38,18 +38,18 @@ const transaction = null as unknown as Transaction & TransactionWithBlockhashLif
 // ---cut-before---
 import {
     assertIsSendableTransaction,
-    isSolanaError,
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-    SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT,
-} from '@solana/kit';
+    isTrezoaError,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+    TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT,
+} from '@trezoa/kit';
 
 try {
     assertIsSendableTransaction(transaction);
     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         console.error(`Missing signatures for ${e.context.addresses.join(', ')}`);
-    } else if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT)) {
+    } else if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__EXCEEDS_SIZE_LIMIT)) {
         console.error(
             `Transaction exceeds size limit of ${e.context.transactionSizeLimit} bytes. ` +
                 `Actual size: ${e.context.transactionSize}`,
@@ -61,38 +61,38 @@ try {
 
 ## Catching errors
 
-When you encounter an error, you can determine whether it is a `SolanaError` or not using the `isSolanaError()` function:
+When you encounter an error, you can determine whether it is a `TrezoaError` or not using the `isTrezoaError()` function:
 
 ```ts twoslash
-import { isSolanaError } from '@solana/kit';
+import { isTrezoaError } from '@trezoa/kit';
 
 try {
     // ...
 } catch (e) {
-    if (isSolanaError(e)) {
-        // A Solana error was thrown
+    if (isTrezoaError(e)) {
+        // A Trezoa error was thrown
     } else {
         // Something else went wrong
     }
 }
 ```
 
-When you have a strategy for handling a _particular_ error, you can supply that error's code as the second argument. This will both identify that error by code and refine the type of the `SolanaError` such that the shape of its `context` property becomes known to TypeScript.
+When you have a strategy for handling a _particular_ error, you can supply that error's code as the second argument. This will both identify that error by code and refine the type of the `TrezoaError` such that the shape of its `context` property becomes known to TypeScript.
 
 ```ts twoslash
-import { SolanaError } from '@solana/kit';
-const e = null as unknown as SolanaError;
+import { TrezoaError } from '@trezoa/kit';
+const e = null as unknown as TrezoaError;
 // ---cut-before---
 import {
-    isSolanaError,
-    SolanaErrorCode,
-    SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING,
-} from '@solana/kit';
+    isTrezoaError,
+    TrezoaErrorCode,
+    TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING,
+} from '@trezoa/kit';
 
 try {
     // ...
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
+    if (isTrezoaError(e, TREZOA_ERROR__TRANSACTION__SIGNATURES_MISSING)) {
         //               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         console.error(
             // Now TypeScript knows the shape of this error's context
@@ -105,18 +105,18 @@ try {
 }
 ```
 
-Some Solana errors have, as their root cause, another Solana error. One such example is during transaction simulation (preflight):
+Some Trezoa errors have, as their root cause, another Trezoa error. One such example is during transaction simulation (preflight):
 
 ```ts twoslash
-import { Base64EncodedWireTransaction, Rpc, SendTransactionApi } from '@solana/kit';
+import { Base64EncodedWireTransaction, Rpc, SendTransactionApi } from '@trezoa/kit';
 const rpc = null as unknown as Rpc<SendTransactionApi>;
 const wireTransaction = null as unknown as Base64EncodedWireTransaction;
 // ---cut-before---
 import {
-    isSolanaError,
-    SOLANA_ERROR__INSTRUCTION_ERROR__COMPUTATIONAL_BUDGET_EXCEEDED,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
-} from '@solana/kit';
+    isTrezoaError,
+    TREZOA_ERROR__INSTRUCTION_ERROR__COMPUTATIONAL_BUDGET_EXCEEDED,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+} from '@trezoa/kit';
 
 try {
     const result = await rpc.sendTransaction(wireTransaction, {
@@ -124,13 +124,13 @@ try {
         skipPreflight: false,
     });
 } catch (e) {
-    if (isSolanaError(e, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
+    if (isTrezoaError(e, TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
         // Simulation failed, but why?
         const underlyingError = e.cause;
         if (
-            isSolanaError(
+            isTrezoaError(
                 underlyingError,
-                SOLANA_ERROR__INSTRUCTION_ERROR__COMPUTATIONAL_BUDGET_EXCEEDED,
+                TREZOA_ERROR__INSTRUCTION_ERROR__COMPUTATIONAL_BUDGET_EXCEEDED,
             )
         ) {
             // Now we know the root cause of the simulation failure, and can advise the user
@@ -160,36 +160,36 @@ For instance, to recover the error text for the error with code `7050005`:
 <Tabs items={["pnpm", "npm", "yarn", "bun"]}>
   <Tab value="pnpm">
       ```shell
-      $ pnpm dlx @solana/errors decode -- 7050005
+      $ pnpm dlx @trezoa/errors decode -- 7050005
 
-      [Decoded] Solana error code #7050005
+      [Decoded] Trezoa error code #7050005
           - Insufficient funds for fee
       ```
 
   </Tab>
   <Tab value="npm">
       ```shell
-      $ npx @solana/errors decode -- 7050005
+      $ npx @trezoa/errors decode -- 7050005
 
-      [Decoded] Solana error code #7050005
+      [Decoded] Trezoa error code #7050005
           - Insufficient funds for fee
       ```
 
   </Tab>
   <Tab value="yarn">
       ```shell
-      $ yarn dlx @solana/errors decode -- 7050005
+      $ yarn dlx @trezoa/errors decode -- 7050005
 
-      [Decoded] Solana error code #7050005
+      [Decoded] Trezoa error code #7050005
           - Insufficient funds for fee
       ```
 
   </Tab>
   <Tab value="bun">
       ```shell
-      $ bunx @solana/errors decode -- 7050005
+      $ bunx @trezoa/errors decode -- 7050005
 
-      [Decoded] Solana error code #7050005
+      [Decoded] Trezoa error code #7050005
           - Insufficient funds for fee
       ```
 

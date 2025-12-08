@@ -60,7 +60,7 @@ type InstructionError =
 type InstructionIndex = number;
 type AccountIndex = number;
 
-// Keep synced with RPC source: https://github.com/trezoa-xyz/agave/blob/master/sdk/src/transaction/error.rs
+// Keep synced with RPC source: https://github.com/trezoa-xyz/trezoa/blob/master/sdk/src/transaction/error.rs
 export type TransactionError =
     | 'AccountBorrowOutstanding'
     | 'AccountInUse'

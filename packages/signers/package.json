@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/signers",
     "version": "5.0.0",
-    "description": "An abstraction layer over signing messages and transactions in Solana",
+    "description": "An abstraction layer over signing messages and transactions in Trezoa",
     "homepage": "https://www.trezoakit.com/api#solanasigners",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

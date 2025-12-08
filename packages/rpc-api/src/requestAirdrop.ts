@@ -20,7 +20,7 @@ export type RequestAirdropApi = {
     /**
      * Requests an airdrop of {@link Lamports} to the specified address.
      *
-     * This method is offered by test clusters as a way to obtain SOL tokens to pay transaction
+     * This method is offered by test clusters as a way to obtain TRZ tokens to pay transaction
      * fees.
      *
      * @returns The signature of the airdrop transaction, as a base-58 encoded string.

@@ -35,13 +35,13 @@ describe('accountNotifications', () => {
 
             it.todo('produces account notifications with parsed JSON data for Nonce account');
 
-            it.todo('produces account notifications with parsed JSON data for SPL Token mint account');
+            it.todo('produces account notifications with parsed JSON data for TPL Token mint account');
 
-            it.todo('produces account notifications with parsed JSON data for SPL Token token account');
+            it.todo('produces account notifications with parsed JSON data for TPL Token token account');
 
-            it.todo('produces account notifications with parsed JSON data for SPL token multisig account');
+            it.todo('produces account notifications with parsed JSON data for TPL token multisig account');
 
-            it.todo('produces account notifications with parsed JSON data for SPL Token 22 mint account');
+            it.todo('produces account notifications with parsed JSON data for TPL Token 22 mint account');
 
             it.todo('produces account notifications with parsed JSON data for Stake account');
 

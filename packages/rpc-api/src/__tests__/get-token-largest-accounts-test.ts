@@ -21,7 +21,7 @@ describe('getTokenLargestAccounts', () => {
             // TODO: will need a way to create token mint + accounts in tests
             it('returns the 20 largest token accounts', async () => {
                 expect.assertions(1);
-                // See scripts/fixtures/spl-token-mint-account.json
+                // See scripts/fixtures/tpl-token-mint-account.json
                 const pubkey =
                     'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr' as Address<'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr'>;
                 const tokenAccountBalancePromise = rpc.getTokenLargestAccounts(pubkey, { commitment }).send();

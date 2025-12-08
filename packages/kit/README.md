@@ -102,7 +102,7 @@ const sendAndConfirmTransaction = sendAndConfirmTransactionFactory({ rpc, rpcSub
 try {
     await sendAndConfirmTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
+    if (isTrezoaError(e, TREZOA_ERROR__BLOCK_HEIGHT_EXCEEDED)) {
         console.error('This transaction depends on a blockhash that has expired');
     } else {
         throw e;
@@ -118,8 +118,8 @@ Returns a function that you can call to send a nonce-based transaction to the ne
 import {
     isTrezoaError,
     sendAndConfirmDurableNonceTransactionFactory,
-    SOLANA_ERROR__INVALID_NONCE,
-    SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND,
+    TREZOA_ERROR__INVALID_NONCE,
+    TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND,
 } from '@trezoa/kit';
 
 const sendAndConfirmNonceTransaction = sendAndConfirmDurableNonceTransactionFactory({ rpc, rpcSubscriptions });
@@ -127,12 +127,12 @@ const sendAndConfirmNonceTransaction = sendAndConfirmDurableNonceTransactionFact
 try {
     await sendAndConfirmNonceTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
+    if (isTrezoaError(e, TREZOA_ERROR__NONCE_ACCOUNT_NOT_FOUND)) {
         console.error(
             'The lifetime specified by this transaction refers to a nonce account ' +
                 `\`${e.context.nonceAccountAddress}\` that does not exist`,
         );
-    } else if (isTrezoaError(e, SOLANA_ERROR__INVALID_NONCE)) {
+    } else if (isTrezoaError(e, TREZOA_ERROR__INVALID_NONCE)) {
         console.error('This transaction depends on a nonce that is no longer valid');
     } else {
         throw e;
@@ -147,7 +147,7 @@ Returns a function that you can call to send a transaction with any kind of life
 ```ts
 import {
     sendTransactionWithoutConfirmingFactory,
-    SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+    TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
 } from '@trezoa/kit';
 
 const sendTransaction = sendTransactionWithoutConfirmingFactory({ rpc });
@@ -155,7 +155,7 @@ const sendTransaction = sendTransactionWithoutConfirmingFactory({ rpc });
 try {
     await sendTransaction(transaction, { commitment: 'confirmed' });
 } catch (e) {
-    if (isTrezoaError(e, SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
+    if (isTrezoaError(e, TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE)) {
         console.error('The transaction failed in simulation', e.cause);
     } else {
         throw e;

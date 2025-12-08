@@ -74,5 +74,5 @@
             "jest-runner-prettier@1.0.0": "patches/jest-runner-prettier@1.0.0.patch"
         }
     },
-    "prettier": "@trezoa/prettier-config-solana"
+    "prettier": "@trezoa/prettier-config-trezoa"
 }

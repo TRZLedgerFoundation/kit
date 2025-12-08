@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/rpc-types",
     "version": "5.0.0",
-    "description": "Type definitions for values used in the Solana RPC, and helper functions for working with them",
+    "description": "Type definitions for values used in the Trezoa RPC, and helper functions for working with them",
     "homepage": "https://www.trezoakit.com/api#solanarpc-types",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

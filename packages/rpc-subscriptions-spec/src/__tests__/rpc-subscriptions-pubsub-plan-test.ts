@@ -285,7 +285,7 @@ describe('executeRpcPubSubSubscriptionPlan', () => {
                 receiveMessage({ id: lastMessageId, jsonrpc: '2.0', result: (expectedSubscriptionId = 123) });
             });
             /**
-             * Because of https://github.com/trezoa-team/solana/pull/18943, two subscriptions for
+             * Because of https://github.com/trezoa-team/trezoa/pull/18943, two subscriptions for
              * materially the same notification will be coalesced on the server. This means they
              * will be assigned the same subscription id, and will occupy one subscription slot. We
              * must be careful not to send the unsubscribe message until the last subscriber aborts.

@@ -2,7 +2,7 @@
     "name": "@trezoa/transactions",
     "version": "5.0.0",
     "description": "Helpers for creating and serializing transactions",
-    "homepage": "https://www.trezoakit.com/api#solanatransactions",
+    "homepage": "https://www.trezoakit.com/api#trezoatransactions",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

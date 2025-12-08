@@ -4,7 +4,7 @@ import { TransactionInstruction } from '@trezoa/web3.js';
 import { fromLegacyPublicKey } from './address';
 
 /**
- * This can be used to convert a legacy [`TransactionInstruction`](https://trz-ledger-foundation.github.io/solana-web3.js/classes/TransactionInstruction.html)
+ * This can be used to convert a legacy [`TransactionInstruction`](https://trz-ledger-foundation.github.io/trezoa-web3.js/classes/TransactionInstruction.html)
  * object to an {@link Instruction}.
  *
  * @example

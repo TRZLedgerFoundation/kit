@@ -1,0 +1,107 @@
+NOTICE
+
+This project is a fork of the Solana Web3.js library, modified for use with the Trezoa blockchain.
+
+================================================================================
+
+ORIGINAL PROJECT:
+Solana Web3.js JavaScript SDK
+Copyright (c) 2021-2025 Solana Labs, Inc.
+Copyright (c) 2025 Anza Technology, Inc.
+Original project: https://github.com/solana-labs/solana-web3.js
+Original license: MIT License
+
+MODIFIED PROJECT:
+Trezoa Web3.js JavaScript SDK
+Copyright (c) 2025 Trezoa-team Technology, Inc.
+Modified project: https://github.com/trezoa-xyz/kit
+License: MIT License
+
+================================================================================
+
+MODIFICATIONS MADE:
+
+This fork contains the following modifications from the original Solana Web3.js library:
+
+1. BRANDING AND NAMING CHANGES:
+   - Changed all references from "Solana" to "Trezoa"
+   - Changed cryptocurrency symbol from "SOL" to "TRZ"
+   - Changed token standard from "SPL" to "TPL" (Trezoa Program Library)
+   - Updated organization names:
+     * "Solana Labs" → "Trezoa-team"
+     * "Solana Foundation" → "TRZ Ledger Foundation"
+     * "Agave Labs" → "Trezoa-team"
+     * "Anza" → "Trezoa-team"
+
+2. DOMAIN AND URL CHANGES:
+   - solana.com → trezoa.com
+   - solana.org → trzledger.org
+   - Anza.xyz → trezoa.xyz
+   - agave.com → trezoa.xyz
+   - Anza.com → trezoa.xyz
+
+3. PACKAGE NAMESPACE CHANGES:
+   - Internal packages: @solana/* → @trezoa/*
+   - Maintained workspace structure with local dependencies
+
+4. CONTACT INFORMATION:
+   - Updated maintainer email: maintainers@trezoa.xyz
+   - Updated repository URL: https://github.com/trezoa-xyz/kit
+   - Updated issue tracker: https://github.com/trezoa-xyz/kit/issues
+
+5. DOCUMENTATION UPDATES:
+   - Updated all README files with Trezoa-specific information
+   - Updated API documentation references
+   - Updated code examples and snippets
+
+6. CONFIGURATION CHANGES:
+   - Updated package.json files with new names and descriptions
+   - Updated TypeScript configuration files
+   - Updated build scripts and CI/CD configurations
+   - Updated explorer URLs to reference Trezoa explorer
+
+================================================================================
+
+LEGAL COMPLIANCE:
+
+1. This derivative work is distributed under the same MIT License as the original.
+
+2. All original copyright notices have been preserved where applicable.
+
+3. This NOTICE file serves to document the modifications made to comply with 
+   the MIT License requirement to include appropriate attribution.
+
+4. The original Solana Web3.js project and its contributors are acknowledged 
+   as the foundation for this work.
+
+5. No warranty is provided for this modified version beyond what is stated 
+   in the MIT License.
+
+================================================================================
+
+MIT LICENSE REQUIREMENTS COMPLIANCE:
+
+✓ Permission is hereby granted to use, copy, modify, merge, publish, distribute
+✓ Original copyright notice is preserved
+✓ This permission notice is included with distributions
+✓ Original license terms are maintained
+✓ Modifications are documented in this NOTICE file
+
+================================================================================
+
+THIRD-PARTY DEPENDENCIES:
+
+This project includes dependencies from the Node.js ecosystem. Each dependency
+retains its original license. See individual package.json files and node_modules
+for specific dependency licenses.
+
+External Solana packages that remain unchanged:
+- @solana-program/* packages (maintained for compatibility)
+- Other ecosystem packages as specified in package.json files
+
+================================================================================
+
+Date of Fork: December 8, 2025
+Modified by: Trezoa-team Technology, Inc.
+
+For questions about this fork or licensing, contact: maintainers@trezoa.xyz

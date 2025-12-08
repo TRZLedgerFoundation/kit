@@ -2,7 +2,7 @@
     "name": "@trezoa/addresses",
     "version": "5.0.0",
     "description": "Helpers for generating account addresses",
-    "homepage": "https://www.trezoakit.com/api#solanaaddresses",
+    "homepage": "https://www.trezoakit.com/api#trezoaaddresses",
     "exports": {
         "edge-light": {
             "import": "./dist/index.node.mjs",
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {

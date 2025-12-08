@@ -1,7 +1,7 @@
 {
     "name": "@trezoa/codecs-core",
     "version": "5.0.0",
-    "description": "Core types and helpers for encoding and decoding byte arrays on Solana",
+    "description": "Core types and helpers for encoding and decoding byte arrays on Trezoa",
     "homepage": "https://www.trezoakit.com/api#solanacodecs-core",
     "exports": {
         "edge-light": {
@@ -38,7 +38,7 @@
     "sideEffects": false,
     "keywords": [
         "blockchain",
-        "solana",
+        "trezoa",
         "web3"
     ],
     "scripts": {
