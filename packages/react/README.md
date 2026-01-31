@@ -95,7 +95,7 @@ function SignMessageButton({ account, text }) {
 
 ### `useWalletAccountTransactionSigner(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionModifyingSigner` interface of `@trezoa/signers`.
+Given a `UiWalletAccount` and a chain that begins with `trezoa:`, this hook returns an object that conforms to the `TransactionModifyingSigner` interface of `@trezoa/signers`.
 
 #### Example
 
@@ -103,7 +103,7 @@ Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook retu
 import { useWalletAccountTransactionSigner } from '@trezoa/react';
 
 function SignTransactionButton({ account, transaction }) {
-    const transactionSigner = useWalletAccountTransactionSigner(account, 'solana:devnet');
+    const transactionSigner = useWalletAccountTransactionSigner(account, 'trezoa:devnet');
     return (
         <button
             onClick={async () => {
@@ -127,7 +127,7 @@ function SignTransactionButton({ account, transaction }) {
 
 ### `useWalletAccountTransactionSendingSigner(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns an object that conforms to the `TransactionSendingSigner` interface of `@trezoa/signers`.
+Given a `UiWalletAccount` and a chain that begins with `trezoa:`, this hook returns an object that conforms to the `TransactionSendingSigner` interface of `@trezoa/signers`.
 
 #### Example
 
@@ -144,7 +144,7 @@ import {
 } from '@trezoa/kit';
 
 function RecordMemoButton({ account, rpc, text }) {
-    const signer = useWalletAccountTransactionSendingSigner(account, 'solana:devnet');
+    const signer = useWalletAccountTransactionSendingSigner(account, 'trezoa:devnet');
     return (
         <button
             onClick={async () => {
@@ -217,7 +217,7 @@ function SignMessageButton({ account, messageBytes }) {
 
 ### `useSignTransaction(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns a function you can call to sign a serialized transaction.
+Given a `UiWalletAccount` and a chain that begins with `trezoa:`, this hook returns a function you can call to sign a serialized transaction.
 
 #### Arguments
 
@@ -239,7 +239,7 @@ An object with the following properties:
 import { useSignTransaction } from '@trezoa/react';
 
 function SignTransactionButton({ account, transactionBytes }) {
-    const signTransaction = useSignTransaction(account, 'solana:devnet');
+    const signTransaction = useSignTransaction(account, 'trezoa:devnet');
     return (
         <button
             onClick={async () => {
@@ -261,7 +261,7 @@ function SignTransactionButton({ account, transactionBytes }) {
 
 ### `useSignAndSendTransaction(uiWalletAccount, chain)`
 
-Given a `UiWalletAccount` and a chain that begins with `solana:`, this hook returns a function you can call to sign and send a serialized transaction.
+Given a `UiWalletAccount` and a chain that begins with `trezoa:`, this hook returns a function you can call to sign and send a serialized transaction.
 
 #### Arguments
 
@@ -284,7 +284,7 @@ import { getBase58Decoder } from '@trezoa/codecs-strings';
 import { useSignAndSendTransaction } from '@trezoa/react';
 
 function SignAndSendTransactionButton({ account, transactionBytes }) {
-    const signAndSendTransaction = useSignAndSendTransaction(account, 'solana:devnet');
+    const signAndSendTransaction = useSignAndSendTransaction(account, 'trezoa:devnet');
     return (
         <button
             onClick={async () => {

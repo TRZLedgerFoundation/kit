@@ -183,8 +183,8 @@
 
 - [#473](https://github.com/trezoa-xyz/kit/pull/473) [`36a9dee`](https://github.com/trezoa-xyz/kit/commit/36a9dee4e6cbd72020dc74777fe394130b9a5f46) Thanks [@steveluscher](https://github.com/steveluscher)! - The identity of all branded types has changed in such a way that the types from v2.1.1 will be compatible with any other version going forward, which is not the case for versions v2.1.0 and before.
 
-    If you end up with a mix of versions in your project prior to v2.1.1 (eg. `@trezoa/addresses@2.0.0` and `@trezoa/addresses@2.1.0`) you may discover that branded types like `Address` raise a type error, even though they are runtime compatible. Your options are:
-    1. Always make sure that you have exactly one instance of each `@trezoa/*` dependency in your project at any given time
+    If you end up with a mix of versions in your trezoa prior to v2.1.1 (eg. `@trezoa/addresses@2.0.0` and `@trezoa/addresses@2.1.0`) you may discover that branded types like `Address` raise a type error, even though they are runtime compatible. Your options are:
+    1. Always make sure that you have exactly one instance of each `@trezoa/*` dependency in your trezoa at any given time
     2. Upgrade all of your `@trezoa/*` dependencies to v2.1.1 at minimum, even if their minor or patch versions differ.
     3. Suppress the type errors using a comment like the following:
         ```ts
@@ -261,7 +261,7 @@
 
     For an example of how to use the new `@trezoa/react` package to interact with wallets in a React application, see the example application in [`examples/react-app`](https://github.com/trezoa-team/trezoa-web3.js/tree/master/examples/react-app#readme). We hope to see similar wallet-connection packages patterned off `@trezoa/react` for other application frameworks soon.
 
-    Try a demo of Technology Preview 4 in your browser at [CodeSandbox](https://codesandbox.io/p/sandbox/solana-javascript-sdk-technology-preview-4-h8cz4v?file=%2Fsrc%2Findex.ts%3A21%2C8).
+    Try a demo of Technology Preview 4 in your browser at [CodeSandbox](https://codesandbox.io/p/sandbox/trezoa-javascript-sdk-technology-preview-4-h8cz4v?file=%2Fsrc%2Findex.ts%3A21%2C8).
     - [#2858](https://github.com/trezoa-team/trezoa-web3.js/pull/2858) [`22a34aa`](https://github.com/trezoa-team/trezoa-web3.js/commit/22a34aa08d1be7e9b43ccfea94a99eaa2694e491) Thanks [@steveluscher](https://github.com/steveluscher)! - Transaction signers' methods now take `minContextSlot` as an option. This is important for signers that simulate transactions, like wallets. They might be interested in knowing the slot at which the transaction was prepared, lest they run simulation at too early a slot.
     - [#2852](https://github.com/trezoa-team/trezoa-web3.js/pull/2852) [`cec9048`](https://github.com/trezoa-team/trezoa-web3.js/commit/cec9048b2f83535df7e499db5488c336981dfb5a) Thanks [@lorisleiva](https://github.com/lorisleiva)! - The `signAndSendTransactionMessageWithSigners` function now automatically asserts that the provided transaction message contains a single sending signer and fails otherwise.
     - [#2707](https://github.com/trezoa-team/trezoa-web3.js/pull/2707) [`cb49bfa`](https://github.com/trezoa-team/trezoa-web3.js/commit/cb49bfa28f412376a41e758eeda59e7e90983147) Thanks [@mcintyre94](https://github.com/mcintyre94)! - Allow creating keypairs and keys from ReadonlyUint8Array
@@ -512,7 +512,7 @@
 
     For an example of how to use the new `@trezoa/react` package to interact with wallets in a React application, see the example application in [`examples/react-app`](https://github.com/trezoa-team/trezoa-web3.js/tree/master/examples/react-app#readme). We hope to see similar wallet-connection packages patterned off `@trezoa/react` for other application frameworks soon.
 
-    Try a demo of Technology Preview 4 in your browser at [CodeSandbox](https://codesandbox.io/p/sandbox/solana-javascript-sdk-technology-preview-4-h8cz4v?file=%2Fsrc%2Findex.ts%3A21%2C8).
+    Try a demo of Technology Preview 4 in your browser at [CodeSandbox](https://codesandbox.io/p/sandbox/trezoa-javascript-sdk-technology-preview-4-h8cz4v?file=%2Fsrc%2Findex.ts%3A21%2C8).
     - [#2858](https://github.com/trezoa-team/trezoa-web3.js/pull/2858) [`22a34aa`](https://github.com/trezoa-team/trezoa-web3.js/commit/22a34aa08d1be7e9b43ccfea94a99eaa2694e491) Thanks [@steveluscher](https://github.com/steveluscher)! - Transaction signers' methods now take `minContextSlot` as an option. This is important for signers that simulate transactions, like wallets. They might be interested in knowing the slot at which the transaction was prepared, lest they run simulation at too early a slot.
     - [#2852](https://github.com/trezoa-team/trezoa-web3.js/pull/2852) [`cec9048`](https://github.com/trezoa-team/trezoa-web3.js/commit/cec9048b2f83535df7e499db5488c336981dfb5a) Thanks [@lorisleiva](https://github.com/lorisleiva)! - The `signAndSendTransactionMessageWithSigners` function now automatically asserts that the provided transaction message contains a single sending signer and fails otherwise.
     - [#2707](https://github.com/trezoa-team/trezoa-web3.js/pull/2707) [`cb49bfa`](https://github.com/trezoa-team/trezoa-web3.js/commit/cb49bfa28f412376a41e758eeda59e7e90983147) Thanks [@mcintyre94](https://github.com/mcintyre94)! - Allow creating keypairs and keys from ReadonlyUint8Array

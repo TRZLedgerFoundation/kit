@@ -4,7 +4,7 @@ import { RpcRequest, RpcResponse, RpcResponseTransformer } from '@trezoa/rpc-spe
 import { AllowedNumericKeypaths } from './response-transformer-allowed-numeric-values';
 import { getBigIntUpcastResponseTransformer } from './response-transformer-bigint-upcast';
 import { getResultResponseTransformer } from './response-transformer-result';
-import { getThrowTrezoaErrorResponseTransformer } from './response-transformer-throw-solana-error';
+import { getThrowTrezoaErrorResponseTransformer } from './response-transformer-throw-trezoa-error';
 
 export type ResponseTransformerConfig<TApi> = Readonly<{
     /**

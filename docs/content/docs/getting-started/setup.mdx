@@ -1,11 +1,11 @@
 ---
-title: Set up your project
+title: Set up your trezoa
 description: Set up the environment and prepare a personalised client object
 ---
 
 ## Install dependencies
 
-First things first, set up a new TypeScript project with a `src/index.ts` file and install the `@trezoa/kit` library. Additionally, to keep this tutorial focused on the Kit library, we'll use `tsx` to compile and run our TypeScript code.
+First things first, set up a new TypeScript trezoa with a `src/index.ts` file and install the `@trezoa/kit` library. Additionally, to keep this tutorial focused on the Kit library, we'll use `tsx` to compile and run our TypeScript code.
 
 ```package-install
 @trezoa/kit tsx
@@ -21,7 +21,7 @@ Let's also create a `start` script that runs `tsx src/index.ts` and a `validator
     "version": "1.0.0",
     "scripts": {
         "start": "tsx src/index.ts",
-        "validator": "solana-test-validator"
+        "validator": "trezoa-test-validator"
     },
     "dependencies": {
         "@trezoa/kit": "^2.1.0",

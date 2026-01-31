@@ -5,13 +5,13 @@ import DarkCodecsImage from '@/public/features/dark-codecs.png';
 import DarkRpcSubscriptionsImage from '@/public/features/dark-rpc-subscriptions.png';
 import DarkRpcImage from '@/public/features/dark-rpc.png';
 import DarkSignersImage from '@/public/features/dark-signers.png';
-import DarkTrezoaProgramsImage from '@/public/features/dark-solana-programs.png';
+import DarkTrezoaProgramsImage from '@/public/features/dark-trezoa-programs.png';
 import DarkTransactionsImage from '@/public/features/dark-transactions.png';
 import LightCodecsImage from '@/public/features/light-codecs.png';
 import LightRpcSubscriptionsImage from '@/public/features/light-rpc-subscriptions.png';
 import LightRpcImage from '@/public/features/light-rpc.png';
 import LightSignersImage from '@/public/features/light-signers.png';
-import LightTrezoaProgramsImage from '@/public/features/light-solana-programs.png';
+import LightTrezoaProgramsImage from '@/public/features/light-trezoa-programs.png';
 import LightTransactionsImage from '@/public/features/light-transactions.png';
 import { Link } from 'fumadocs-core/framework';
 import { cn } from 'fumadocs-ui/utils/cn';
@@ -82,9 +82,9 @@ const features: Feature[] = [
         },
     },
     {
-        key: 'solana-programs',
+        key: 'trezoa-programs',
         label: 'Trezoa Programs',
-        description: 'Interact with various Trezoa programs using their Codama-generated SDKs.',
+        description: 'Interact with various Trezoa programs using their Codoma-generated SDKs.',
         href: '/docs/compatible-clients',
         image: {
             dark: DarkTrezoaProgramsImage,

@@ -616,11 +616,11 @@ packages:
     resolution: {integrity: sha512-qtSrqCqRU93SjEBedz987tvWao1YQSELjBhGkHYGVP7Dg0lBWP6d+uZEIt5gxTAYio/YWWlhivmRABvRfPLmnQ==}
     engines: {node: '>= 16.0.0'}
 
-  '@oxc-project/runtime@0.82.3':
+  '@oxc-trezoa/runtime@0.82.3':
     resolution: {integrity: sha512-LNh5GlJvYHAnMurO+EyA8jJwN1rki7l3PSHuosDh2I7h00T6/u9rCkUjg/SvPmT1CZzvhuW0y+gf7jcqUy/Usg==}
     engines: {node: '>=6.9.0'}
 
-  '@oxc-project/types@0.82.3':
+  '@oxc-trezoa/types@0.82.3':
     resolution: {integrity: sha512-6nCUxBnGX0c6qfZW5MaF6/fmu5dHJDMiMPaioKHKs5mi5+8/FHQ7WGjgQIz1zxpmceMYfdIXkOaLYE+ejbuOtA==}
 
   '@oxc-transform/binding-darwin-arm64@0.53.0':
@@ -5757,9 +5757,9 @@ snapshots:
 
   '@orama/orama@3.1.6': {}
 
-  '@oxc-project/runtime@0.82.3': {}
+  '@oxc-trezoa/runtime@0.82.3': {}
 
-  '@oxc-project/types@0.82.3': {}
+  '@oxc-trezoa/types@0.82.3': {}
 
   '@oxc-transform/binding-darwin-arm64@0.53.0':
     optional: true
@@ -10559,8 +10559,8 @@ snapshots:
 
   rolldown@1.0.0-beta.35:
     dependencies:
-      '@oxc-project/runtime': 0.82.3
-      '@oxc-project/types': 0.82.3
+      '@oxc-trezoa/runtime': 0.82.3
+      '@oxc-trezoa/types': 0.82.3
       '@rolldown/pluginutils': 1.0.0-beta.35
       ansis: 4.2.0
     optionalDependencies:

@@ -12,5 +12,5 @@ export * from './response-transformer';
 export * from './response-transformer-allowed-numeric-values';
 export * from './response-transformer-bigint-upcast';
 export * from './response-transformer-result';
-export * from './response-transformer-throw-solana-error';
+export * from './response-transformer-throw-trezoa-error';
 export * from './tree-traversal';

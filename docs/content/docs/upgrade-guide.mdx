@@ -1,6 +1,6 @@
 ---
 title: Upgrade guide
-description: Upgrade your Web3.js project to Kit
+description: Upgrade your Web3.js trezoa to Kit
 ---
 
 import TreeShaking from './tree-shaking';
@@ -229,7 +229,7 @@ if (decodedAccount.exists) {
 
 Fortunately, you don't need to create a custom codec every time you decode an account. Kit provides client libraries for many popular Trezoa programs that can help with that. For example, System program helpers are available in the `@trezoa-program/system` library.
 
-These libraries are [generated via Codama](https://github.com/codama-idl/codama), ensuring consistent structure across them. For instance, the `fetchNonce` function from `@trezoa-program/system` can be used to fetch and decode a `Nonce` account from its address.
+These libraries are [generated via Codoma](https://github.com/codoma-idl/codoma), ensuring consistent structure across them. For instance, the `fetchNonce` function from `@trezoa-program/system` can be used to fetch and decode a `Nonce` account from its address.
 
 ```ts twoslash title="Kit"
 import { Account, address } from '@trezoa/kit';
@@ -518,9 +518,9 @@ Additionally, the `sendAndConfirmTransactionFactory` function requires both an R
 
 ## Closing words
 
-We've now explored the key differences between Web3.js and Kit, giving you a solid foundation for upgrading your project. Since Kit is a complete rewrite, there's no simple step-by-step migration guide, and the process may take some time.
+We've now explored the key differences between Web3.js and Kit, giving you a solid foundation for upgrading your trezoa. Since Kit is a complete rewrite, there's no simple step-by-step migration guide, and the process may take some time.
 
-To ease the transition, Kit provides a `@trezoa/compat` package, which allows for incremental migration. This package includes functions that convert core types — such as public keys and transactions — between Web3.js and Kit. This means you can start integrating Kit without having to refactor your entire project at once.
+To ease the transition, Kit provides a `@trezoa/compat` package, which allows for incremental migration. This package includes functions that convert core types — such as public keys and transactions — between Web3.js and Kit. This means you can start integrating Kit without having to refactor your entire trezoa at once.
 
 ```ts twoslash title="Kit"
 import { Keypair, PublicKey } from '@trezoa/web3.js';

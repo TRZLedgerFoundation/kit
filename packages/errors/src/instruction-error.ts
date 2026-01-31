@@ -3,7 +3,7 @@ import { TrezoaError } from './error';
 import { getTrezoaErrorFromRpcError } from './rpc-enum-errors';
 
 const ORDERED_ERROR_NAMES = [
-    // Keep synced with RPC source: https://github.com/trezoa-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
+    // Keep synced with RPC source: https://github.com/trezoa-xyz/trezoa-sdk/blob/master/instruction-error/src/lib.rs
     // If this list ever gets too large, consider implementing a compression strategy like this:
     // https://gist.github.com/steveluscher/aaa7cbbb5433b1197983908a40860c47
     'GenericError',

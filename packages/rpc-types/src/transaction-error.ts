@@ -1,6 +1,6 @@
 type CustomProgramError = number;
 
-// Keep synced with RPC source: https://github.com/trezoa-xyz/solana-sdk/blob/master/instruction-error/src/lib.rs
+// Keep synced with RPC source: https://github.com/trezoa-xyz/trezoa-sdk/blob/master/instruction-error/src/lib.rs
 type InstructionError =
     | 'AccountAlreadyInitialized'
     | 'AccountBorrowFailed'

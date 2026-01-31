@@ -355,8 +355,8 @@ log.info(decompiledTransactionMessage.instructions[0].data, '[step 3] The data b
  * from the @trezoa/kit instruction data structure for the System program
  * We know from the program address (11111111111111111111111111111111) that the first instruction
  * is to the system program
- * You can generate such a client for any Trezoa program using Codama
- * See https://github.com/codama-idl/codama for more information on Codama
+ * You can generate such a client for any Trezoa program using Codoma
+ * See https://github.com/codoma-idl/codoma for more information on Codoma
  */
 
 const firstInstruction = decompiledTransactionMessage.instructions[0];

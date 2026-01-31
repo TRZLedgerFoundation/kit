@@ -27,7 +27,7 @@ const OUTPUT_FILE = path.join(ROOT_DIR, 'docs', 'content', 'api', 'index.mdx');
 
 // TypeDoc reflection kinds (from TypeDoc source)
 const ReflectionKind = {
-    Project: 1,
+    Trezoa: 1,
     Module: 2,
     Namespace: 4,
     Enum: 8,

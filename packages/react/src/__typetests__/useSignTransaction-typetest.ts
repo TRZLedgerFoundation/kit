@@ -15,7 +15,7 @@ const mockWalletAccount = {
 
 // [DESCRIBE] useSignTransaction.
 {
-    // It accepts any chain in the solana namespace
+    // It accepts any chain in the trezoa namespace
     useSignTransaction(mockWalletAccount, 'trezoa:danknet');
     useSignTransaction(mockWalletAccount, 'trezoa:basednet');
 

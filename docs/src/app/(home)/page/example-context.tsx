@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 
-const EXAMPLES = ['rpc', 'codecs', 'signers', 'transactions', 'rpc-subscriptions', 'solana-programs'] as const;
+const EXAMPLES = ['rpc', 'codecs', 'signers', 'transactions', 'rpc-subscriptions', 'trezoa-programs'] as const;
 const TIMER_INTERVAL = 8000; // 8 seconds
 
 export type ExampleKey = (typeof EXAMPLES)[number];

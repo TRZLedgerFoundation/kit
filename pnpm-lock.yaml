@@ -4679,7 +4679,7 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <6.0.0'
 
-  '@typescript-eslint/project-service@8.47.0':
+  '@typescript-eslint/trezoa-service@8.47.0':
     resolution: {integrity: sha512-2X4BX8hUeB5JcA1TQJ7GjcgulXQ+5UkNb0DL8gHsHUHdFoiCTJoYLTpib3LtSDPZsRET5ygN4qqIWrHyYIKERA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
@@ -11634,7 +11634,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.47.0(typescript@5.8.3)':
+  '@typescript-eslint/trezoa-service@8.47.0(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.47.0(typescript@5.8.3)
       '@typescript-eslint/types': 8.47.0
@@ -11744,7 +11744,7 @@ snapshots:
 
   '@typescript-eslint/typescript-estree@8.47.0(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.47.0(typescript@5.8.3)
+      '@typescript-eslint/trezoa-service': 8.47.0(typescript@5.8.3)
       '@typescript-eslint/tsconfig-utils': 8.47.0(typescript@5.8.3)
       '@typescript-eslint/types': 8.47.0
       '@typescript-eslint/visitor-keys': 8.47.0

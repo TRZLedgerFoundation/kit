@@ -273,7 +273,7 @@ import {
  */
 export const TrezoaErrorMessages: Readonly<{
     // This type makes this data structure exhaustive with respect to `TrezoaErrorCode`.
-    // TypeScript will fail to build this project if add an error code without a message.
+    // TypeScript will fail to build this trezoa if add an error code without a message.
     [P in TrezoaErrorCode]: string;
 }> = {
     [TREZOA_ERROR__ACCOUNTS__ACCOUNT_NOT_FOUND]: 'Account not found at address: $address',

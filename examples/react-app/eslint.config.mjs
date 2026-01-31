@@ -17,7 +17,7 @@ export default [
                 ...globals.es2020,
             },
             parserOptions: {
-                project: './tsconfig.app.json',
+                trezoa: './tsconfig.app.json',
             },
         },
         plugins: {

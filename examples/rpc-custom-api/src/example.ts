@@ -25,7 +25,7 @@ const log = createLogger('Custom JSON RPC API');
  * STEP 1: CUSTOM JSON RPC API CALL SIGNATURE
  * Define the call signature of the custom API. For this example we will use the Triton One
  * `getAsset` API, available on the public mainnet RPC server.
- * https://docs.triton.one/digital-assets-api/metaplex-digital-assets-api/get-asset
+ * https://docs.triton.one/digital-assets-api/trezoaplex-digital-assets-api/get-asset
  */
 type AssetMetadata = Readonly<{
     description: string;

@@ -45,7 +45,7 @@ export default function InKeepSearchDialog(props: SharedProps) {
             },
             transformSource(source) {
                 const detectedTabs: string[] = [];
-                if (source.url.startsWith('https://solana.stackexchange.com/')) {
+                if (source.url.startsWith('https://trezoa.stackexchange.com/')) {
                     detectedTabs.push('Q & A');
                 } else if (source.contentType === 'documentation') {
                     detectedTabs.push(source.breadcrumbs[0] === 'API' ? 'API' : 'Docs');
